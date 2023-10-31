@@ -15,9 +15,9 @@ const allPages = await getCollection(collection, ({ data }) => {
 	return data.draft !== true;
 });
 
-const navigation = helper.buildNavigation(allPages, Astro.url.pathname, SITE.sidebar.components);
+const navigation = helper.buildNavigation(allPages, Astro.url.pathname, SITE.sidebar?.components);
 
-console.dir(navigation, { depth: null });
+// console.dir(navigation, { depth: null });
 ---
 
 <Layout title={frontmatter.title}>
@@ -102,7 +102,7 @@ console.dir(navigation, { depth: null });
 
 				<h4 class="mb-2 px-3 text-[13px] font-semibold text-slate-500">Your library</h4>
 
-				<nav class="mr-3 space-y-10" data-current-slug={Astro.url.pathname} x-data="sidebarLinkState">
+				<nav class="mr-3" data-current-slug={Astro.url.pathname} x-data="sidebarLinkState">
 					<SidebarList data={navigation} />
 				</nav>
 			</div>

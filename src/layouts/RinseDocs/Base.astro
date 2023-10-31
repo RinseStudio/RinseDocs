@@ -32,20 +32,17 @@ const { title } = Astro.props;
 			lucide.createIcons();
 
 			document.addEventListener('alpine:init', () => {
-				console.log('alpine loaded');
 				Alpine.data('sidebarLinkState', () => ({
 					activeSlug: null,
 					init() {},
-					updateLinks($el) {
+					updateLinks(el) {
 						const elements = document.querySelectorAll('.sidebar-link');
-						console.log(elements);
 						elements.forEach((element) => {
 							element.classList.remove('text-white');
 							element.classList.add('text-white/60');
 						});
-						$el.classList.remove('text-white/60');
-						$el.classList.add('text-white');
-						console.log(el);
+						el.classList.remove('text-white/60');
+						el.classList.add('text-white');
 					},
 				}));
 			});
