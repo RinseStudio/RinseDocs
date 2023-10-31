@@ -1,0 +1,54 @@
+---
+import { ViewTransitions } from 'astro:transitions';
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" class="bg-gray-950/90">
+	<head>
+		<title>{title}</title>
+
+		<!-- Meta -->
+		<meta charset="UTF-8" />
+		<meta name="description" content="Astro description" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="theme-color" content="#000000" />
+		<meta name="generator" content={Astro.generator} />
+
+		<!-- Favicon -->
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+		<!-- Alpine JS -->
+		<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+		<ViewTransitions />
+	</head>
+	<body class="font-sans font-normal text-slate-500 antialiased">
+		<slot />
+		<script is:inline src="https://unpkg.com/lucide@latest"></script>
+		<script is:inline>
+			'use strict';
+
+			// Initialize Lucide Icons
+			lucide.createIcons();
+
+			document.addEventListener('alpine:init', () => {
+				console.log('alpine loaded');
+				Alpine.data('sidebarLinkState', () => ({
+					activeSlug: null,
+					init() {},
+					updateLinks($el) {
+						const elements = document.querySelectorAll('.sidebar-link');
+						console.log(elements);
+						elements.forEach((element) => {
+							element.classList.remove('text-white');
+							element.classList.add('text-white/60');
+						});
+						$el.classList.remove('text-white/60');
+						$el.classList.add('text-white');
+						console.log(el);
+					},
+				}));
+			});
+		</script>
+	</body><!-- prettier-ignore -->
+</html>

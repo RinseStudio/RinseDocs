@@ -1,0 +1,60 @@
+---
+const { title } = Astro.props;
+
+import '@styles/rinsedocs.css';
+---
+
+<!doctype html>
+<html lang="en" class="bg-[#1f1d20]">
+	<head>
+		<title>{title}</title>
+
+		<!-- Meta -->
+		<meta charset="UTF-8" />
+		<meta name="description" content="Astro description" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="theme-color" content="#000000" />
+		<meta name="generator" content={Astro.generator} />
+
+		<!-- Favicon -->
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+		<!-- Preload font -->
+		<link rel="preload" href="/fonts/Saans/GX/SaansVFUprights.woff2" as="font" type="font/woff2" crossorigin />
+
+		<!-- Lucide icons -->
+		<script defer src="https://unpkg.com/lucide@latest"></script>
+
+		<!-- Alpine JS -->
+		<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+	</head>
+	<body class="font-sans font-normal text-white antialiased">
+		<slot />
+	</body>
+</html>
+<script is:inline>
+	'use strict';
+
+	document.addEventListener('alpine:init', () => {
+		console.log('alpine loaded');
+		Alpine.data('portfolioFilter', () => ({
+			currentFilter: 'all',
+
+			filter(tag) {
+				this.currentFilter = this.formatTag(tag);
+			},
+
+			isVisible(tags) {
+				// If current filter is "all", show all items
+				if (this.currentFilter === 'all') return true;
+
+				const tagArray = tags.split(',').map((tag) => this.formatTag(tag)); // Convert data-tags string to array and format
+				return tagArray.includes(this.currentFilter);
+			},
+
+			formatTag(tag) {
+				return tag.toLowerCase().replace(/\s+/g, '-'); // Convert to lowercase and replace spaces with hyphens
+			},
+		}));
+	});
+</script>

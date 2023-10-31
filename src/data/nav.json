@@ -1,0 +1,34 @@
+{
+  "General": {
+    "pages": [
+      {
+        "name": "Button",
+        "url": "#",
+        "headings": [
+          {
+            "name": "Heading 1",
+            "url": "#heading-1"
+          },
+          {
+            "name": "Heading 2",
+            "url": "#heading-2"
+          }
+        ]
+      },
+      {
+        "name": "Tab",
+        "url": "#",
+        "headings": [
+          {
+            "name": "Heading 3",
+            "url": "#heading-3"
+          }
+        ]
+      },
+      {
+        "name": "Accordion",
+        "url": "#"
+      }
+    ]
+  }
+}

@@ -1,0 +1,17 @@
+---
+const { url, dark = true } = Astro.props;
+---
+
+<div class="rounded-lg rounded-xl ring-1" class:list={dark && 'bg-black'}>
+	<iframe src={url} class="component-previewer w-full overflow-hidden"></iframe>
+</div>
+
+<script>
+	// Selecting the iframe element
+	let iframe = document.querySelector('.component-previewer') as HTMLIFrameElement;
+
+	// Adjusting the iframe height onload event
+	// iframe.onload = function(){
+	//   iframe.style.height = iframe.contentWindow!.document.body.scrollHeight + 'px';
+	// }
+</script>

@@ -1,0 +1,130 @@
+---
+import { getCollection } from 'astro:content';
+import { SITE } from '@/rdocs.config.ts';
+import { Icon } from 'astro-icon';
+
+import Layout from '@layouts/RinseDocs/Base.astro';
+import helper from '@/js/helpers.js';
+import SidebarList from '@/components/SidebarList.astro';
+
+import '@styles/rinsedocs.css';
+const { frontmatter, headings, entry } = Astro.props;
+
+const collection = entry.collection;
+const allPages = await getCollection(collection, ({ data }) => {
+	return data.draft !== true;
+});
+
+const navigation = helper.buildNavigation(allPages, Astro.url.pathname, SITE.sidebar.components);
+
+console.dir(navigation, { depth: null });
+---
+
+<Layout title={frontmatter.title}>
+	<main class="flex w-full">
+		<aside class="sticky top-0 flex h-[100dvh] flex-none" style="width: 320px">
+			<nav class="flex w-12 flex-none flex-col items-center border-r border-white/10 py-4">
+				<div class="flex flex-col gap-3">
+					<a class="flex h-8 w-8 items-center justify-center rounded-full bg-[#9E7CFF]">
+						<svg class="h-3 fill-current text-white" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"
+							><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+							<path
+								d="M96 0C43 0 0 43 0 96V416c0 53 43 96 96 96H384h32c17.7 0 32-14.3 32-32s-14.3-32-32-32V384c17.7 0 32-14.3 32-32V32c0-17.7-14.3-32-32-32H384 96zm0 384H352v64H96c-17.7 0-32-14.3-32-32s14.3-32 32-32zm32-240c0-8.8 7.2-16 16-16H336c8.8 0 16 7.2 16 16s-7.2 16-16 16H144c-8.8 0-16-7.2-16-16zm16 48H336c8.8 0 16 7.2 16 16s-7.2 16-16 16H144c-8.8 0-16-7.2-16-16s7.2-16 16-16z"
+							></path></svg
+						>
+					</a>
+					<a class="flex h-8 w-8 items-center justify-center rounded-full bg-[#2FB85E]">
+						<svg class="h-3 fill-current text-white" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512"
+							><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+							<path
+								d="M192 512C86 512 0 426 0 320C0 228.8 130.2 57.7 166.6 11.7C172.6 4.2 181.5 0 191.1 0h1.8c9.6 0 18.5 4.2 24.5 11.7C253.8 57.7 384 228.8 384 320c0 106-86 192-192 192zM96 336c0-8.8-7.2-16-16-16s-16 7.2-16 16c0 61.9 50.1 112 112 112c8.8 0 16-7.2 16-16s-7.2-16-16-16c-44.2 0-80-35.8-80-80z"
+							></path></svg
+						>
+					</a>
+					<a class="flex h-8 w-8 items-center justify-center rounded-full bg-[#F86868]">
+						<svg class="h-3 fill-current text-white" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"
+							><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+							<path
+								d="M0 96C0 60.7 28.7 32 64 32H448c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zM323.8 202.5c-4.5-6.6-11.9-10.5-19.8-10.5s-15.4 3.9-19.8 10.5l-87 127.6L170.7 297c-4.6-5.7-11.5-9-18.7-9s-14.2 3.3-18.7 9l-64 80c-5.8 7.2-6.9 17.1-2.9 25.4s12.4 13.6 21.6 13.6h96 32H424c8.9 0 17.1-4.9 21.2-12.8s3.6-17.4-1.4-24.7l-120-176zM112 192a48 48 0 1 0 0-96 48 48 0 1 0 0 96z"
+							></path></svg
+						>
+					</a>
+					<a class="flex h-8 w-8 items-center justify-center rounded-full bg-[#2799EC]">
+						<svg class="h-3 fill-current text-white" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"
+							><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+							<path
+								d="M254 52.8C249.3 40.3 237.3 32 224 32s-25.3 8.3-30 20.8L57.8 416H32c-17.7 0-32 14.3-32 32s14.3 32 32 32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32h-1.8l18-48H303.8l18 48H320c-17.7 0-32 14.3-32 32s14.3 32 32 32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H390.2L254 52.8zM279.8 304H168.2L224 155.1 279.8 304z"
+							></path></svg
+						>
+					</a>
+					<a class="flex h-8 w-8 items-center justify-center rounded-full bg-[#F19100]">
+						<svg class="h-3 fill-current text-white" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"
+							><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+							<path
+								d="M315.4 15.5C309.7 5.9 299.2 0 288 0s-21.7 5.9-27.4 15.5l-96 160c-5.9 9.9-6.1 22.2-.4 32.2s16.3 16.2 27.8 16.2H384c11.5 0 22.2-6.2 27.8-16.2s5.5-22.3-.4-32.2l-96-160zM288 312V456c0 22.1 17.9 40 40 40H472c22.1 0 40-17.9 40-40V312c0-22.1-17.9-40-40-40H328c-22.1 0-40 17.9-40 40zM128 512a128 128 0 1 0 0-256 128 128 0 1 0 0 256z"
+							></path></svg
+						>
+					</a>
+
+					<a class="flex h-8 w-8 items-center justify-center rounded-full bg-white">
+						<i data-lucide="plus" class="w-4 text-black"></i>
+					</a>
+				</div>
+			</nav>
+			<div class="flex-1 overflow-hidden">
+				<div class="flex items-center justify-between px-1 py-5">
+					<div class="px-2 text-sm font-semibold text-white">Component Library</div>
+					<button class="mr-2 flex h-6 w-6 items-center justify-center rounded-lg bg-white shadow outline-none ring-1 ring-gray-950/10 hover:ring-gray-950/20">
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-3 w-3">
+							<path fill-rule="evenodd" d="M7.455 2.004a.75.75 0 01.26.77 7 7 0 009.958 7.967.75.75 0 011.067.853A8.5 8.5 0 116.647 1.921a.75.75 0 01.808.083z" clip-rule="evenodd"
+							></path>
+						</svg>
+					</button>
+				</div>
+
+				<div class="mb-5 px-3">
+					<button
+						type="button"
+						class="flex w-full items-center justify-between rounded-lg bg-gray-700/60 px-3 py-2 text-left text-[13px] font-semibold text-white shadow outline-none ring-1 ring-gray-700/80 hover:ring-gray-700"
+					>
+						<div class="flex items-center gap-3">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-3.5 w-4 text-white">
+								<path
+									fill-rule="evenodd"
+									d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z"
+									clip-rule="evenodd"></path>
+							</svg>
+							<span class="text-[13px] font-normal text-slate-400">Quick search</span>
+						</div>
+						<span class="text-[13px] font-normal text-slate-400"> ⌘K</span>
+					</button>
+				</div>
+
+				<h4 class="mb-2 px-3 text-[13px] font-semibold text-slate-500">Your library</h4>
+
+				<nav class="mr-3 space-y-10" data-current-slug={Astro.url.pathname} x-data="sidebarLinkState">
+					<SidebarList data={navigation} />
+				</nav>
+			</div>
+		</aside>
+
+		<section class="my-3 flex-1 rounded-l-lg bg-white shadow-xl ring-1 ring-gray-950/10">
+			<header class="mb-10 px-8 py-10 text-left">
+				<h1 class="text-4xl font-bold tracking-tighter text-black">
+					{frontmatter.title}
+				</h1>
+				<div class="mt-4 max-w-xl">
+					<p class="text-[15px] font-normal text-slate-500">
+						In need of a button, but not the hefty background colors they bring? Replace the default modifier classes with the <code>.btn-outline-*</code> ones to remove all
+						background images and colors on any button.
+					</p>
+				</div>
+			</header>
+			<div class="space-y-10">
+				<article class="px-8">
+					<slot />
+				</article>
+			</div>
+		</section>
+	</main>
+</Layout>

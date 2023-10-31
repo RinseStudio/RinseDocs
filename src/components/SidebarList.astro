@@ -1,0 +1,49 @@
+---
+import SidebarListRecursive from '@components/SidebarList.astro';
+
+export interface SidebarListProps {
+	data: any[];
+}
+
+const { data } = Astro.props;
+---
+
+<ul transition:persist class="text-[13px] text-white">
+	{
+		data.map((section, index) => {
+			const sectionKey = Object.keys(section)[0];
+			const sectionData = section[sectionKey];
+			console.log(sectionData.content.depth);
+			return (
+				<li x-data={sectionData.content[0].depth === 1 ? '{open: true}' : '{open: false}'} x-cloak class="ml-3" class:list={sectionData.content[0].depth === 1 ? 'mb-4' : ''}>
+					<button x-on:click="open = !open" class="inline-flex items-center gap-0.5 font-semibold leading-[28px]">
+						{sectionData.label}
+						<svg x-bind:class="open ? '-rotate-180' : ''" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4 duration-100">
+							<path
+								fill-rule="evenodd"
+								d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+								clip-rule="evenodd"
+							/>
+						</svg>
+					</button>
+					<ul x-show="open == true" x-cloak class=" ml-3">
+						{sectionData.content.map((item) => (
+							<li>
+								<a
+									data-slug={'/' + item.slug}
+									x-on:click="updateLinks($el)"
+									href={'/' + item.slug}
+									class="sidebar-link leading-[28px] hover:text-white"
+									class:list={item.isCurrent ? 'text-white' : 'text-white/60'}
+								>
+									{item.title}
+								</a>
+							</li>
+						))}
+					</ul>
+					{sectionData.children.length > 0 && <SidebarListRecursive data={sectionData.children} />}
+				</li>
+			);
+		})
+	}
+</ul>
