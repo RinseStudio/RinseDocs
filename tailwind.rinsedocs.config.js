@@ -7,7 +7,12 @@ module.exports = {
 		},
 		extend: {
 			fontFamily: {
-				sans: ['Inter', 'system-ui', 'sans-serif'],
+				sans: [
+					'"Inter var", sans-serif',
+					{
+						fontFeatureSettings: '"salt"',
+					},
+				],
 			},
 		},
 	},

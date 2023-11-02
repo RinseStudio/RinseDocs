@@ -1,4 +1,4 @@
-@config "../../tailwind.rdocs.config.js";
+@config "../../tailwind.rinsedocs.config.js";
 
 /* The integration's default injected base.css file */
 @tailwind base;
@@ -7,14 +7,149 @@
 
 /* Register your custom font family and tell the browser where to find it. */
 @font-face {
-	font-family: 'Inter';
+	font-family: 'Inter var';
 	font-weight: 100 900;
 	font-display: swap;
-	font-style: oblique 0deg 10deg;
-	src: url('/fonts/Inter/Inter.var.woff2?v=3.19') format('woff2');
+	font-style: normal;
+	font-named-instance: 'Regular';
+	src: url('/fonts/Inter-roman.var.woff2?v=3.19') format('woff2');
+}
+@font-face {
+	font-family: 'Inter var';
+	font-weight: 100 900;
+	font-display: swap;
+	font-style: italic;
+	font-named-instance: 'Italic';
+	src: url('/fonts/Inter-italic.var.woff2?v=3.19') format('woff2');
 }
 
 /* Alpine JS - https://alpinejs.dev/directives/cloak */
 [x-cloak] {
 	display: none !important;
+}
+
+.astro-code {
+	@apply !bg-[#121723];
+}
+
+.rinsedown {
+	@apply text-[15px] leading-relaxed text-slate-600;
+}
+
+.rinsedown h1,
+.rinsedown h2,
+.rinsedown h3,
+.rinsedown h4,
+.rinsedown h5,
+.rinsedown h6,
+.rinsedown p,
+.rinsedown blockquote,
+.rinsedown > pre,
+.rinsedown ul,
+.rinsedown ol,
+.rinsedown dl,
+.rinsedown table {
+	@apply max-w-2xl;
+}
+
+.rinsedown h1,
+.rinsedown h2,
+.rinsedown h3 {
+	@apply font-semibold tracking-tight text-slate-900;
+}
+
+.rinsedown h1 {
+	font-size: 1.8em;
+}
+
+.rinsedown h2 {
+	@apply mb-4 mt-10 text-lg font-semibold;
+}
+
+.rinsedown h3 {
+	font-size: 1.25em;
+}
+
+.rinsedown p {
+	@apply mb-[1em];
+}
+
+.rinsedown blockquote {
+	margin-left: 0;
+	padding-left: 1em;
+	color: #777;
+	border-left: 4px solid #ddd;
+}
+
+.rinsedown pre {
+	padding: 16px;
+	overflow: auto;
+	font-family: monospace;
+	background-color: #f6f6f6;
+	@apply rounded-lg;
+}
+
+.rinsedown p code {
+	padding: 0.2em 0.5em;
+	margin: 0;
+	font-size: 85%;
+	background-color: #f6f6f6;
+	border-radius: 3px;
+}
+
+.rinsedown ul,
+.rinsedown ol {
+	margin-top: 16px;
+	margin-bottom: 16px;
+}
+
+.rinsedown ul {
+	padding-left: 30px;
+	list-style-type: disc;
+}
+
+.rinsedown ol {
+	padding-left: 30px;
+	list-style-type: decimal;
+}
+
+.rinsedown ul ul,
+.rinsedown ol ol,
+.rinsedown ul ol,
+.rinsedown ol ul {
+	margin-top: 0;
+	margin-bottom: 0;
+	padding-left: 30px;
+}
+
+.rinsedown table {
+	width: 100%;
+	border-collapse: collapse;
+	border-spacing: 0;
+	margin-bottom: 16px;
+}
+
+.rinsedown table th,
+.rinsedown table td {
+	padding: 8px 12px;
+	border: 1px solid #ddd;
+}
+
+.rinsedown table th {
+	background-color: #f6f6f6;
+	font-weight: bold;
+}
+
+.rinsedown a {
+	color: #0366d6;
+	text-decoration: none;
+}
+
+.rinsedown a:hover {
+	text-decoration: underline;
+}
+
+.rinsedown img {
+	max-width: 100%;
+	display: block;
 }

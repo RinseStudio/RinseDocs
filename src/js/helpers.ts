@@ -9,10 +9,10 @@ type NavigationOverride = {
 };
 
 // Create breadcrumb based off slug (file-path) and save the last 2 crumbs
-function buildBreadcrumb(slug) {
+export function buildBreadcrumb(slug) {
 	let breadcrumb = slug.split('/');
-	if (breadcrumb.length > 2) {
-		breadcrumb = breadcrumb.slice(-2);
+	if (breadcrumb.length > 3) {
+		breadcrumb = breadcrumb.slice(-3);
 	}
 	const prettyBreadcrumb = breadcrumb.map((crumb) =>
 		crumb
@@ -23,11 +23,12 @@ function buildBreadcrumb(slug) {
 	return prettyBreadcrumb;
 }
 
-function buildNavigation(collectionPages: Page[], currentPath: string = '', overrides: NavigationOverride[] = []) {
+export function buildNavigation(collectionPages: Page[], currentPath: string = '', overrides: NavigationOverride[] = []) {
 	// Step 1. Create a clean content array structure based on content collection array.
 	let contentStructure: {
 		title: any;
 		slug: string | undefined;
+		id: string | undefined;
 		breadcrumb: any;
 		weight: number;
 		depth: number;
@@ -38,6 +39,7 @@ function buildNavigation(collectionPages: Page[], currentPath: string = '', over
 		let schema = {
 			title: page.data.title,
 			slug: page.collection + '/' + page.slug,
+			id: page.collection + '/' + page.id,
 			breadcrumb: page.slug.split('/').filter(Boolean).slice(0, -1),
 			weight: page.data.weight,
 			depth: page.slug.split('/').filter(Boolean).slice(0, -1).length,
@@ -148,12 +150,3 @@ function buildNavigation(collectionPages: Page[], currentPath: string = '', over
 
 	return outputFinalArray(nestedStructure, overrides);
 }
-
-// Export the functions as properties of an object
-const helper = {
-	buildBreadcrumb,
-	buildNavigation,
-};
-
-// Export the object for use in other files
-export default helper;

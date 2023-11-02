@@ -1,0 +1,18 @@
+---
+
+---
+
+<div x-data="{mode: 'preview'}" class="rounded-lg bg-[#121723]">
+	<div class="flex h-9 items-center justify-between border-b border-white/10 px-4">
+		<div class="flex items-center gap-4 text-xs font-medium">
+			<button @click="mode = 'preview'" x-bind:class="mode === 'preview' ? 'text-white' : 'text-white/60'">Preview</button>
+			<button @click="mode = 'code'" x-bind:class="mode === 'code' ? 'text-white' : 'text-white/60'">Code</button>
+		</div>
+	</div>
+	<div x-show="mode == 'preview'" class="px-4 py-4">
+		<slot name="preview" />
+	</div>
+	<div x-show="mode == 'code'" class="">
+		<slot name="code" />
+	</div>
+</div>

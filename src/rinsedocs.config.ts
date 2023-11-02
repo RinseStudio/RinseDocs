@@ -18,11 +18,6 @@ export const SITE = {
 	sidebar: {
 		components: [
 			{
-				general: {
-					label: 'General',
-				},
-			},
-			{
 				form: {
 					label: 'Form',
 					children: [
