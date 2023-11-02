@@ -1,0 +1,29 @@
+@config "../../tailwind.config.cjs";
+
+/* The integration's default injected base.css file */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Register your custom font family and tell the browser where to find it. */
+@font-face {
+	font-family: 'Inter var';
+	font-weight: 100 900;
+	font-display: swap;
+	font-style: normal;
+	font-named-instance: 'Regular';
+	src: url('/fonts/Inter-roman.var.woff2?v=3.19') format('woff2');
+}
+@font-face {
+	font-family: 'Inter var';
+	font-weight: 100 900;
+	font-display: swap;
+	font-style: italic;
+	font-named-instance: 'Italic';
+	src: url('/fonts/Inter-italic.var.woff2?v=3.19') format('woff2');
+}
+
+/* Alpine JS - https://alpinejs.dev/directives/cloak */
+[x-cloak] {
+	display: none !important;
+}

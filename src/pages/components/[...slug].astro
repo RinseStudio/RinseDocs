@@ -1,6 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
-import BaseLayout from '@/layouts/RinseDocs/App.astro';
+import BaseLayout from '@/layouts/rinsedocs/App.astro';
 
 export async function getStaticPaths() {
 	const posts = await getCollection('components', ({ data }) => {

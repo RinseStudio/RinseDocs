@@ -26,9 +26,10 @@ import RDComponentPreview from '@components/rinsedocs/RDComponent/RDComponentPre
 
 In need of a button, but not the hefty background colors they bring? Replace the default modifier classes with the `.btn-outline-*` ones to remove all background images and colors on any button.
 
-
 <RDComponent>
-	<RDComponentCode slot="code">
+	
+	<RDComponentPreview slot="preview" url="/components/general/button/default-button" />
+  <RDComponentCode slot="code">
 		```js
 		export default defineConfig({
 			integrations: [
@@ -45,12 +46,7 @@ In need of a button, but not the hefty background colors they bring? Replace the
 		});
 		```
 	</RDComponentCode>
-	<RDComponentPreview slot="preview">
-		<button class="rounded-lg bg-blue-500 px-4 py-2 text-white">This is a simple button</button>
-	</RDComponentPreview>
 </RDComponent>
-
----
 
 ## Basic Button
 
@@ -77,6 +73,32 @@ In need of a button, but not the hefty background colors they bring? Replace the
 	</RDComponentPreview>
 </RDComponent>
 
+## Basic Button
+
+<RDComponent>
+	<RDComponentCode slot="code">
+		```js
+		export default defineConfig({
+			integrations: [
+				tailwind({
+					applyBaseStyles: false,
+				}),
+				mdx(),
+				alpinejs(),
+			],
+			markdown: {
+				remarkPlugins: [[remarkToc, { heading: 'contents' }]],
+				rehypePlugins: [rehypeSlug, [rehypeAutolinkHeadings, { behavior: 'append' }]],
+			},
+		});
+		```
+	</RDComponentCode>
+	<RDComponentPreview slot="preview">
+		<button class="rounded-lg bg-blue-500 px-4 py-2 text-white">This is a simple button</button>
+	</RDComponentPreview>
+</RDComponent>
+
+---
 
 - Type some Markdown on the left
 - See HTML in the right

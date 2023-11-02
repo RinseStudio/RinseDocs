@@ -33,7 +33,7 @@
 }
 
 .rinsedown {
-	@apply text-[15px] leading-relaxed text-slate-600;
+	@apply text-sm leading-relaxed text-slate-600;
 }
 
 .rinsedown h1,
@@ -58,12 +58,16 @@
 	@apply font-semibold tracking-tight text-slate-900;
 }
 
+.rinsedown hr {
+	@apply my-10 border-t border-slate-200;
+}
+
 .rinsedown h1 {
 	font-size: 1.8em;
 }
 
 .rinsedown h2 {
-	@apply mb-4 mt-10 text-lg font-semibold;
+	@apply mb-3 mt-10 text-lg font-semibold;
 }
 
 .rinsedown h3 {
@@ -71,7 +75,7 @@
 }
 
 .rinsedown p {
-	@apply mb-[1em];
+	@apply mb-3.5;
 }
 
 .rinsedown blockquote {
@@ -152,4 +156,9 @@
 .rinsedown img {
 	max-width: 100%;
 	display: block;
+}
+
+/* RD Component */
+.rd-component {
+	@apply mb-5 mt-5;
 }

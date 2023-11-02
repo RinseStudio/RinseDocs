@@ -1,14 +1,12 @@
 ---
 import { getCollection } from 'astro:content';
 import { SITE } from '@/rinsedocs.config';
-import { Icon } from 'astro-icon';
 
-import Layout from '@layouts/RinseDocs/Base.astro';
+import Layout from '@layouts/rinsedocs/Base.astro';
 import * as helper from '@/js/helpers.js';
 import SidebarList from '@/components/rinsedocs/SidebarList.astro';
 import TOC from '@/components/rinsedocs/TOC.astro';
 
-import '@styles/rinsedocs.css';
 const { frontmatter, headings, entry } = Astro.props;
 
 const collection = entry.collection;
@@ -113,8 +111,8 @@ const breadcrumb = helper.buildBreadcrumb(entry.slug);
 			</div>
 		</aside>
 
-		<section class="relative my-3 flex flex-1 rounded-l-lg bg-white shadow-xl ring-1 ring-gray-950/10">
-			<div class="flex-1">
+		<section class="relative my-3 flex flex-1 overflow-auto rounded-l-lg bg-white shadow-xl ring-1 ring-gray-950/10">
+			<div class="flex-1 overflow-auto">
 				<header class="px-7 text-left">
 					<ol role="list" class="mb-2 flex items-center gap-2 py-5">
 						{

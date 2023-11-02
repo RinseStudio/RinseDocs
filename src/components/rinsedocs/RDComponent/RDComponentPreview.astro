@@ -1,4 +1,17 @@
 ---
+const { url } = Astro.props;
 ---
 
-<slot />
+<div>
+	<iframe src={url} class="rd-component-iframe flex w-full items-center justify-center overflow-hidden"></iframe>
+</div>
+
+<script>
+	// Selecting the iframe element
+	// let iframe = document.querySelector('.rd-component-iframe') as HTMLIFrameElement;
+
+	// // Adjusting the iframe height onload event
+	// iframe.onload = function () {
+	// 	iframe.style.height = iframe.contentWindow!.document.body.scrollHeight + 'px';
+	// };
+</script>
