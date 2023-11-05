@@ -3,7 +3,7 @@ import { getCollection } from 'astro:content';
 import { SITE } from '@/rinsedocs.config';
 
 import Layout from '@layouts/rinsedocs/Base.astro';
-import * as helper from '@/js/helpers.js';
+import * as helper from '@/js/rinsedocs.model.js';
 import SidebarList from '@/components/rinsedocs/SidebarList.astro';
 import TOC from '@/components/rinsedocs/TOC.astro';
 
@@ -21,59 +21,127 @@ const breadcrumb = helper.buildBreadcrumb(entry.slug);
 ---
 
 <Layout title={frontmatter.title}>
-	<main class="flex w-full">
-		<aside class="sticky top-0 flex h-[100dvh] flex-none" style="width: 300px">
+	<main class="grid grid-cols-[300px,1fr]">
+		<aside class="sticky top-0 flex h-[100dvh] flex-none">
 			<nav class="flex flex-none flex-col items-center border-r border-white/10 px-2 py-4">
 				<div class="flex flex-col gap-3.5">
 					<a class="flex h-8 w-8 items-center justify-center rounded-full bg-[#9E7CFF]">
-						<svg class="h-3.5 fill-current text-white" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"
-							><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
-							<path
-								d="M96 0C43 0 0 43 0 96V416c0 53 43 96 96 96H384h32c17.7 0 32-14.3 32-32s-14.3-32-32-32V384c17.7 0 32-14.3 32-32V32c0-17.7-14.3-32-32-32H384 96zm0 384H352v64H96c-17.7 0-32-14.3-32-32s14.3-32 32-32zm32-240c0-8.8 7.2-16 16-16H336c8.8 0 16 7.2 16 16s-7.2 16-16 16H144c-8.8 0-16-7.2-16-16zm16 48H336c8.8 0 16 7.2 16 16s-7.2 16-16 16H144c-8.8 0-16-7.2-16-16s7.2-16 16-16z"
-							></path></svg
+						<svg
+							class="h-3.5 w-3.5 text-white"
+							xmlns="http://www.w3.org/2000/svg"
+							width="16"
+							height="16"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="3"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							class="lucide lucide-book-text"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"></path><path d="M8 7h6"></path><path d="M8 11h8"></path></svg
 						>
 					</a>
 					<a class="flex h-8 w-8 items-center justify-center rounded-full bg-[#2FB85E]">
-						<svg class="h-3.5 fill-current text-white" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512"
-							><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
-							<path
-								d="M192 512C86 512 0 426 0 320C0 228.8 130.2 57.7 166.6 11.7C172.6 4.2 181.5 0 191.1 0h1.8c9.6 0 18.5 4.2 24.5 11.7C253.8 57.7 384 228.8 384 320c0 106-86 192-192 192zM96 336c0-8.8-7.2-16-16-16s-16 7.2-16 16c0 61.9 50.1 112 112 112c8.8 0 16-7.2 16-16s-7.2-16-16-16c-44.2 0-80-35.8-80-80z"
-							></path></svg
+						<svg
+							class="h-3.5 w-3.5 text-white"
+							xmlns="http://www.w3.org/2000/svg"
+							width="16"
+							height="16"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="3"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							class="lucide lucide-droplets"
+							><path d="M7 16.3c2.2 0 4-1.83 4-4.05 0-1.16-.57-2.26-1.71-3.19S7.29 6.75 7 5.3c-.29 1.45-1.14 2.84-2.29 3.76S3 11.1 3 12.25c0 2.22 1.8 4.05 4 4.05z"></path><path
+								d="M12.56 6.6A10.97 10.97 0 0 0 14 3.02c.5 2.5 2 4.9 4 6.5s3 3.5 3 5.5a6.98 6.98 0 0 1-11.91 4.97"></path></svg
 						>
 					</a>
 					<a class="flex h-8 w-8 items-center justify-center rounded-full bg-[#F86868]">
-						<svg class="h-3.5 fill-current text-white" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"
-							><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
-							<path
-								d="M0 96C0 60.7 28.7 32 64 32H448c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zM323.8 202.5c-4.5-6.6-11.9-10.5-19.8-10.5s-15.4 3.9-19.8 10.5l-87 127.6L170.7 297c-4.6-5.7-11.5-9-18.7-9s-14.2 3.3-18.7 9l-64 80c-5.8 7.2-6.9 17.1-2.9 25.4s12.4 13.6 21.6 13.6h96 32H424c8.9 0 17.1-4.9 21.2-12.8s3.6-17.4-1.4-24.7l-120-176zM112 192a48 48 0 1 0 0-96 48 48 0 1 0 0 96z"
-							></path></svg
+						<svg
+							class="h-3.5 w-3.5 text-white"
+							xmlns="http://www.w3.org/2000/svg"
+							width="16"
+							height="16"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="3"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							class="lucide lucide-image"
+							><rect width="18" height="18" x="3" y="3" rx="2" ry="2"></rect><circle cx="9" cy="9" r="2"></circle><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"></path></svg
 						>
 					</a>
-					<a class="flex h-8 w-8 items-center justify-center rounded-full bg-[#2799EC]">
-						<svg class="h-3.5 fill-current text-white" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"
-							><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
-							<path
-								d="M254 52.8C249.3 40.3 237.3 32 224 32s-25.3 8.3-30 20.8L57.8 416H32c-17.7 0-32 14.3-32 32s14.3 32 32 32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32h-1.8l18-48H303.8l18 48H320c-17.7 0-32 14.3-32 32s14.3 32 32 32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H390.2L254 52.8zM279.8 304H168.2L224 155.1 279.8 304z"
-							></path></svg
+					<a class="flex h-8 w-8 items-center justify-center rounded-full bg-[#00BCA5]">
+						<svg
+							class="h-3.5 w-3.5 text-white"
+							xmlns="http://www.w3.org/2000/svg"
+							width="16"
+							height="16"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="3"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							class="lucide lucide-smile"
+							><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" x2="9.01" y1="9" y2="9"></line><line x1="15" x2="15.01" y1="9" y2="9"
+							></line></svg
 						>
 					</a>
 					<a class="flex h-8 w-8 items-center justify-center rounded-full bg-[#F19100]">
-						<svg class="h-3.5 fill-current text-white" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"
-							><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
-							<path
-								d="M315.4 15.5C309.7 5.9 299.2 0 288 0s-21.7 5.9-27.4 15.5l-96 160c-5.9 9.9-6.1 22.2-.4 32.2s16.3 16.2 27.8 16.2H384c11.5 0 22.2-6.2 27.8-16.2s5.5-22.3-.4-32.2l-96-160zM288 312V456c0 22.1 17.9 40 40 40H472c22.1 0 40-17.9 40-40V312c0-22.1-17.9-40-40-40H328c-22.1 0-40 17.9-40 40zM128 512a128 128 0 1 0 0-256 128 128 0 1 0 0 256z"
-							></path></svg
+						<svg
+							class="h-3.5 w-3.5 text-white"
+							xmlns="http://www.w3.org/2000/svg"
+							width="16"
+							height="16"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="3"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							class="lucide lucide-layout-panel-left"
+							><rect width="7" height="18" x="3" y="3" rx="1"></rect><rect width="7" height="7" x="14" y="3" rx="1"></rect><rect width="7" height="7" x="14" y="14" rx="1"
+							></rect></svg
+						>
+					</a>
+					<a class="flex h-8 w-8 items-center justify-center rounded-full bg-[#2799EC]">
+						<svg
+							class="h-3.5 w-3.5 text-white"
+							xmlns="http://www.w3.org/2000/svg"
+							width="16"
+							height="16"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="3"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							class="lucide lucide-app-window"
+							><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="M10 4v4"></path><path d="M2 8h20"></path><path d="M6 4v4"></path></svg
 						>
 					</a>
 
 					<a class="flex h-8 w-8 items-center justify-center rounded-full bg-white/10 hover:bg-white/20">
-						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4 fill-current text-white">
-							<path d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z"></path>
-						</svg>
+						<svg
+							class="h-3.5 w-3.5 text-white"
+							xmlns="http://www.w3.org/2000/svg"
+							width="16"
+							height="16"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="3"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							class="lucide lucide-plus"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg
+						>
 					</a>
 				</div>
 			</nav>
-			<div class="flex-1 overflow-hidden">
+			<div class="flex-1 overflow-auto">
 				<div class="flex items-center justify-between px-1 py-5">
 					<div class="px-2 text-sm font-semibold text-white">Component Library</div>
 					<button class="mr-2 flex h-6 w-6 items-center justify-center rounded-lg bg-white shadow outline-none ring-1 ring-gray-950/10 hover:ring-gray-950/20">
@@ -111,65 +179,149 @@ const breadcrumb = helper.buildBreadcrumb(entry.slug);
 			</div>
 		</aside>
 
-		<section class="relative my-3 flex flex-1 overflow-auto rounded-l-lg bg-white shadow-xl ring-1 ring-gray-950/10">
-			<div class="flex-1 overflow-auto">
-				<header class="px-7 text-left">
-					<ol role="list" class="mb-2 flex items-center gap-2 py-5">
+		<section class="relative my-3 grid grid-cols-1 rounded-l-lg bg-white shadow-xl ring-1 ring-gray-950/10 lg:grid-cols-[1fr,260px]">
+			<div class="grid grid-rows-[auto,1fr]">
+				<div class="sticky top-0 flex items-center justify-between rounded-tl-lg border-b border-slate-200 bg-white py-2 pl-4 pr-2">
+					<ol role="list" class="group/breadcrumb inline-flex items-center gap-2 text-xs">
 						{
 							breadcrumb.map((crumb, index) => (
 								<li>
-									<div class="flex items-center gap-3">
+									<div class="flex items-center gap-2">
 										{index !== 0 ? (
-											<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4">
-												<path
-													fill-rule="evenodd"
-													d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z"
-													clip-rule="evenodd"
-												/>
+											<svg
+												class="h-3 w-3"
+												xmlns="http://www.w3.org/2000/svg"
+												width="16"
+												height="16"
+												viewBox="0 0 24 24"
+												fill="none"
+												stroke="currentColor"
+												stroke-width="3"
+												stroke-linecap="round"
+												stroke-linejoin="round"
+												class="lucide lucide-chevron-right"
+											>
+												<path d="m9 18 6-6-6-6" />
 											</svg>
 										) : null}
 
-										<span class="text-sm text-slate-500" aria-current="page" class:list={index === 0 ? 'text-slate-400' : 'font-semibold text-slate-900'}>
+										<span aria-current="page" class:list={index === breadcrumb.length - 1 ? 'font-semibold text-slate-900' : 'font-medium text-slate-500'}>
 											{crumb}
 										</span>
 									</div>
 								</li>
 							))
 						}
+						<li>
+							<button
+								@click="copyURL"
+								@mouseleave="hideTooltip"
+								x-data="pageLink"
+								class="relative flex h-4 w-4 items-center justify-center text-slate-500 opacity-0 duration-300 hover:text-slate-900 group-hover/breadcrumb:opacity-100"
+							>
+								<svg
+									class="h-4 w-4"
+									xmlns="http://www.w3.org/2000/svg"
+									width="16"
+									height="16"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									class="lucide lucide-link-2"><path d="M9 17H7A5 5 0 0 1 7 7h2"></path><path d="M15 7h2a5 5 0 1 1 0 10h-2"></path><line x1="8" x2="16" y1="12" y2="12"></line></svg
+								>
+								<div
+									:class="showTooltip == true ? 'opacity-100' : 'opacity-0'"
+									class="pointer-events-none absolute left-full top-1/2 ml-2 flex h-6 -translate-y-1/2 items-center rounded-md bg-slate-900/80 px-1.5 text-[11px] font-semibold text-white duration-300"
+								>
+									Copied!
+								</div>
+							</button>
+						</li>
 					</ol>
-					<h1 class="mt-4 text-3xl font-bold tracking-tight text-slate-900">
-						{frontmatter.title}
-					</h1>
-					{
-						frontmatter.description && (
-							<div class="mt-3 max-w-2xl">
-								<p class="text-base font-normal text-slate-600">{frontmatter.description}</p>
-							</div>
-						)
-					}
-
-					<div class="mt-8 h-px w-full bg-slate-200"></div>
-				</header>
-				<div>
-					<article class="rinsedown px-7">
+					<div class="flex items-center gap-1">
+						<button class="flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 hover:bg-slate-100 hover:text-slate-600">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="16"
+								height="16"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2.5"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								class="lucide lucide-message-square"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg
+							>
+						</button>
+						<button class="flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 hover:bg-slate-100 hover:text-slate-600">
+							<svg
+								class=""
+								xmlns="http://www.w3.org/2000/svg"
+								width="16"
+								height="16"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								class="lucide lucide-panel-right-close"
+								><rect width="18" height="18" x="3" y="3" rx="2" ry="2"></rect><line x1="15" x2="15" y1="3" y2="21"></line><path d="m8 9 3 3-3 3"></path></svg
+							>
+						</button>
+					</div>
+				</div>
+				<div class="overflow-auto px-16">
+					<header>
+						<div class="pt-6">
+							<h1 class="mt-2 text-[28px] font-bold tracking-tight text-slate-900">
+								{frontmatter.title}
+							</h1>
+							{
+								frontmatter.description && (
+									<div class="mt-1 max-w-2xl">
+										<h4 class="text-base font-normal text-slate-700">{frontmatter.description}</h4>
+									</div>
+								)
+							}
+						</div>
+					</header>
+					<article class="rinsedown">
 						<slot />
 					</article>
 				</div>
 			</div>
-			<div class="relative w-[260px] flex-none border-l border-slate-200">
-				<nav class="sticky top-0 px-6 py-5">
+			<div class="relative hidden border-l border-slate-200 lg:block">
+				<nav class="sticky top-0 px-5 py-2">
+					<button class="absolute right-0 top-0 mr-2 mt-2 flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 hover:bg-slate-100 hover:text-slate-600">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="16"
+							height="16"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2.5"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							class="lucide lucide-x"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg
+						>
+					</button>
 					<div>
-						<h3 class="mb-3 text-sm font-semibold text-slate-900">On this page</h3>
+						<h3 class="mb-1.5 flex h-8 items-center text-[13px] font-semibold text-slate-900">On this page</h3>
 						<TOC data={headings} />
 					</div>
 					{
 						frontmatter.meta && (
-							<div class="mt-10">
-								<h3 class="mb-3 text-sm font-semibold text-slate-900">Contribute</h3>
+							<div class="mt-8">
+								<h3 class="mb-1.5 flex h-8 items-center text-[13px] font-semibold text-slate-900">Contribute</h3>
 								<ul class="text-sm">
 									{frontmatter.meta.map((link) => (
-										<li class="text-sm font-medium leading-[28px]">
-											<a class="flex items-center gap-1.5 text-slate-600 hover:text-slate-900" href={link.url}>
+										<li class="text-[13px] font-semibold leading-[28px]">
+											<a class="flex items-center gap-2 text-slate-600 hover:text-slate-900" href={link.url}>
 												{link.icon === 'pencil' ? (
 													// Pencil SVG
 													<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-3.5 w-3.5">
@@ -203,3 +355,4 @@ const breadcrumb = helper.buildBreadcrumb(entry.slug);
 		</section>
 	</main>
 </Layout>
+ @/js/rinsedocs.model.js

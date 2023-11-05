@@ -22,6 +22,14 @@
 	font-named-instance: 'Italic';
 	src: url('/fonts/Inter-italic.var.woff2?v=3.19') format('woff2');
 }
+/* Use stylistic alternative for headings */
+h1,
+h2,
+h3,
+h4,
+h5 {
+	font-feature-settings: 'salt';
+}
 
 /* Alpine JS - https://alpinejs.dev/directives/cloak */
 [x-cloak] {
@@ -36,56 +44,56 @@
 	@apply text-sm leading-relaxed text-slate-600;
 }
 
-.rinsedown h1,
-.rinsedown h2,
-.rinsedown h3,
-.rinsedown h4,
-.rinsedown h5,
-.rinsedown h6,
-.rinsedown p,
-.rinsedown blockquote,
+.rinsedown > h1,
+.rinsedown > h2,
+.rinsedown > h3,
+.rinsedown > h4,
+.rinsedown > h5,
+.rinsedown > h6,
+.rinsedown > p,
+.rinsedown > blockquote,
 .rinsedown > pre,
-.rinsedown ul,
-.rinsedown ol,
-.rinsedown dl,
-.rinsedown table {
+.rinsedown > ul,
+.rinsedown > ol,
+.rinsedown > dl,
+.rinsedown > table {
 	@apply max-w-2xl;
 }
 
-.rinsedown h1,
-.rinsedown h2,
-.rinsedown h3 {
+.rinsedown > h1,
+.rinsedown > h2,
+.rinsedown > h3 {
 	@apply font-semibold tracking-tight text-slate-900;
 }
 
-.rinsedown hr {
+.rinsedown > hr {
 	@apply my-10 border-t border-slate-200;
 }
 
-.rinsedown h1 {
+.rinsedown > h1 {
 	font-size: 1.8em;
 }
 
-.rinsedown h2 {
+.rinsedown > h2 {
 	@apply mb-3 mt-10 text-lg font-semibold;
 }
 
-.rinsedown h3 {
+.rinsedown > h3 {
 	font-size: 1.25em;
 }
 
-.rinsedown p {
+.rinsedown > p {
 	@apply mb-3.5;
 }
 
-.rinsedown blockquote {
+.rinsedown > blockquote {
 	margin-left: 0;
 	padding-left: 1em;
 	color: #777;
 	border-left: 4px solid #ddd;
 }
 
-.rinsedown pre {
+.rinsedown > pre {
 	padding: 16px;
 	overflow: auto;
 	font-family: monospace;
@@ -93,7 +101,7 @@
 	@apply rounded-lg;
 }
 
-.rinsedown p code {
+.rinsedown > p code {
 	padding: 0.2em 0.5em;
 	margin: 0;
 	font-size: 85%;
@@ -101,59 +109,59 @@
 	border-radius: 3px;
 }
 
-.rinsedown ul,
-.rinsedown ol {
+.rinsedown > ul,
+.rinsedown > ol {
 	margin-top: 16px;
 	margin-bottom: 16px;
 }
 
-.rinsedown ul {
+.rinsedown > ul {
 	padding-left: 30px;
 	list-style-type: disc;
 }
 
-.rinsedown ol {
+.rinsedown > ol {
 	padding-left: 30px;
 	list-style-type: decimal;
 }
 
-.rinsedown ul ul,
-.rinsedown ol ol,
-.rinsedown ul ol,
-.rinsedown ol ul {
+.rinsedown > ul ul,
+.rinsedown > ol ol,
+.rinsedown > ul ol,
+.rinsedown > ol ul {
 	margin-top: 0;
 	margin-bottom: 0;
 	padding-left: 30px;
 }
 
-.rinsedown table {
+.rinsedown > table {
 	width: 100%;
 	border-collapse: collapse;
 	border-spacing: 0;
 	margin-bottom: 16px;
 }
 
-.rinsedown table th,
-.rinsedown table td {
+.rinsedown > table th,
+.rinsedown > table td {
 	padding: 8px 12px;
 	border: 1px solid #ddd;
 }
 
-.rinsedown table th {
+.rinsedown > table th {
 	background-color: #f6f6f6;
 	font-weight: bold;
 }
 
-.rinsedown a {
+.rinsedown > a {
 	color: #0366d6;
 	text-decoration: none;
 }
 
-.rinsedown a:hover {
+.rinsedown > a:hover {
 	text-decoration: underline;
 }
 
-.rinsedown img {
+.rinsedown > img {
 	max-width: 100%;
 	display: block;
 }

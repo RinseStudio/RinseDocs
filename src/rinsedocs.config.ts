@@ -18,22 +18,13 @@ export const SITE = {
 	sidebar: {
 		components: [
 			{
+				general: {
+					label: 'General first?',
+				},
+			},
+			{
 				form: {
-					label: 'Form',
-					children: [
-						{
-							subform: {
-								label: 'Subform',
-								children: [
-									{
-										supersub1: {
-											label: 'Supersub',
-										},
-									},
-								],
-							},
-						},
-					],
+					label: 'Form lets go',
 				},
 			},
 		] as NavigationOverride[],

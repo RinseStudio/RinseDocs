@@ -6,16 +6,17 @@ export interface SidebarListProps {
 const { data } = Astro.props;
 ---
 
-<ul class="" transition:persist>
+<!-- <ul class="" transition:persist>
 	{
 		data.map((section, index) => {
 			const sectionKey = Object.keys(section)[0];
 			const sectionData = section[sectionKey];
+			// console.dir(sectionData, { depth: null });
 			return (
 				<>
 					{sectionData.content[0].depth === 1 ? (
 						<li x-data="{open: true}">
-							<button class="text-sm font-semibold leading-[28px] text-gray-500" x-on:click="open = !open, active = !active">
+							<button class="text-[11px] font-bold uppercase leading-[32px] tracking-wide text-slate-300/70" x-on:click="open = !open, active = !active">
 								<div class="group/sidebarParent inline-flex items-center">
 									{sectionData.label}
 									<svg
@@ -40,9 +41,9 @@ const { data } = Astro.props;
 											<a
 												data-slug={'/' + item.slug}
 												x-on:click="updateLinks($el)"
-												x-bind:class={'activeSlug === ' + "'/" + item.slug + "'" + " ? 'rounded-[6px] text-white font-semibold bg-slate-300/[0.08]' : 'text-white/60'"}
+												x-bind:class={'activeSlug === ' + "'/" + item.slug + "'" + " ? 'rounded-[6px] text-white font-semibold bg-slate-300/[0.08]' : 'text-slate-200/60'"}
 												href={'/' + item.slug}
-												class="inline-flex w-full px-[12px] text-sm leading-[28px] hover:text-white"
+												class="inline-flex w-full px-[12px] text-sm leading-[32px] hover:text-white"
 											>
 												{item.title}
 											</a>
@@ -54,10 +55,10 @@ const { data } = Astro.props;
 						</li>
 					) : (
 						<li x-data="{open: false}" class="last:mb-4">
-							<button class="w-full text-sm leading-[28px] text-white/60 hover:text-white" x-data="{active: false}" x-on:click="open = !open, active = !active">
+							<button class="w-full text-sm leading-[32px] text-slate-200/60 hover:text-white" x-data="{active: false}" x-on:click="open = !open, active = !active">
 								<div
 									class="group/sidebarParent inline-flex w-full items-center justify-between pl-[12px]"
-									x-bind:class="active == true ? 'text-white' : 'text-white/60 hover:text-white'"
+									x-bind:class="active == true ? 'text-white' : 'text-slate-200/60 hover:text-white'"
 								>
 									{sectionData.label}
 									<svg
@@ -81,9 +82,9 @@ const { data } = Astro.props;
 										<a
 											data-slug={'/' + item.slug}
 											x-on:click="updateLinks($el)"
-											x-bind:class={'activeSlug === ' + "'/" + item.slug + "'" + " ? 'rounded-[6px] text-white font-semibold bg-slate-300/[0.08]' : 'text-white/60'"}
+											x-bind:class={'activeSlug === ' + "'/" + item.slug + "'" + " ? 'rounded-[6px] text-white font-semibold bg-slate-300/[0.08]' : 'text-slate-200/60'"}
 											href={'/' + item.slug}
-											class="inline-flex w-full px-[12px] text-sm leading-[28px] hover:text-white"
+											class="inline-flex w-full px-[12px] text-sm leading-[32px] hover:text-white"
 										>
 											{item.title}
 										</a>
@@ -99,4 +100,4 @@ const { data } = Astro.props;
 			);
 		})
 	}
-</ul>
+</ul> -->

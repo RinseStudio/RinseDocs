@@ -1,4 +1,7 @@
 ---
+const { label, language } = Astro.props;
 ---
 
-<slot />
+<div x-show={'language == ' + "'" + language + "'"}>
+	<slot />
+</div>

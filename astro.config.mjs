@@ -11,7 +11,6 @@ export default defineConfig({
 			applyBaseStyles: false,
 		}),
 		mdx(),
-		alpinejs(),
 	],
 	markdown: {
 		shikiConfig: {

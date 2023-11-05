@@ -20,18 +20,15 @@ import '@styles/rinsedocs.css';
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
 		<!-- Alpine JS -->
-		<!-- <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script> -->
+		<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.2/dist/cdn.min.js"></script>
 		<ViewTransitions />
 	</head>
 	<body class="font-sans font-normal text-slate-500 antialiased">
 		<slot />
-		<script is:inline src="https://unpkg.com/lucide@latest"></script>
 		<script is:inline>
 			'use strict';
 
-			// Initialize Lucide Icons
-			lucide.createIcons();
-
+			// Initialize Alpine
 			document.addEventListener('alpine:init', () => {
 				Alpine.data('sidebarLinkState', ($el) => ({
 					activeSlug: $el.dataset.currentSlug,
@@ -40,11 +37,32 @@ import '@styles/rinsedocs.css';
 						this.activeSlug = el.dataset.slug;
 					},
 				}));
+
+				Alpine.data('pageLink', () => ({
+					showTooltip: false,
+					copyURL() {
+						// Use the Clipboard API to copy the current URL to the clipboard
+						navigator.clipboard
+							.writeText(window.location.href)
+							.then(() => {
+								// Successfully copied to clipboard
+								this.showTooltip = true; // Show the tooltip
+
+								// Hide the tooltip after 2 seconds
+								setTimeout(() => {
+									this.showTooltip = false;
+								}, 2000);
+							})
+							.catch((err) => {
+								// Handle errors (such as user not granting clipboard permissions)
+								console.error('Failed to copy: ', err);
+							});
+					},
+					hideTooltip() {
+						this.showTooltip = false; // Hide the tooltip
+					},
+				}));
 			});
-		</script>
-		<script>
-			'use strict';
-			console.log('test');
 		</script>
 	</body>
 </html>
