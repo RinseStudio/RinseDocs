@@ -1,0 +1,280 @@
+---
+const { languages, src, height } = Astro.props;
+const alpineData = `{ 
+	mode: 'preview', 
+	languageSelection: 0, 
+	languages: ['${languages.join("','")}'],
+	showTooltip: false,
+	dragging: false,
+	cursorOffset: 0,
+	width: 20,
+
+	init: function () {
+		this.slideMoveHandler = this.slideMove.bind(this); // Save a reference to the bound slideMove function
+		window.addEventListener('resize', this.resetContainer.bind(this));
+	},
+	resetContainer(e) {
+		e.preventDefault();
+		this.width = this.$refs.componentPreviewerWrapper.offsetWidth;
+	},
+	slideReady(e) {
+		e.preventDefault();
+		this.dragging = true;
+		this.cursorOffset = e.clientX - this.$refs.componentPreviewerHandle.getBoundingClientRect().x;
+		document.body.style.pointerEvents = 'none';
+		document.documentElement.style.cursor = 'grabbing';
+
+		window.addEventListener('mousemove', this.slideMoveHandler);
+		window.addEventListener('mouseup', this.slideFinish.bind(this));
+
+		window.addEventListener('touchmove', this.slideMoveHandler);
+		window.addEventListener('touchend', this.slideFinish.bind(this));
+	},
+	slideFinish() {
+		document.body.style.pointerEvents = 'auto';
+		document.documentElement.style.cursor = 'default';
+		window.removeEventListener('mousemove', this.slideMoveHandler);
+		window.removeEventListener('touchmove', this.slideMoveHandler);
+	},
+	slideMove(e) {
+		let containerWidth = this.$refs.componentPreviewerWrapper.offsetWidth;
+
+		let slideWidth = this.$refs.componentPreviewerWrapper.getBoundingClientRect().right - e.clientX;
+
+		if (e.touches && e.touches[0]) {
+			slideWidth = this.$refs.componentPreviewerWrapper.getBoundingClientRect().right - e.touches[0].clientX;
+		} else if (e.clientX) {
+			slideWidth = this.$refs.componentPreviewerWrapper.getBoundingClientRect().right - e.clientX;
+		}
+
+		if (slideWidth >= containerWidth - this.cursorOffset) {
+			this.width = containerWidth + this.cursorOffset;
+		} else if (slideWidth <= 20) {
+			this.width = 20;
+		} else {
+			this.width = slideWidth + this.cursorOffset;
+		}
+	},
+	copyCode() {
+		// Use the Clipboard API to copy the current Code to the clipboard
+		const activeSlot = this.$refs.componentPreviewer.querySelector('.rd-frame-code.is-active');
+		const codeContent = activeSlot ? activeSlot.innerText : '';
+		navigator.clipboard
+			.writeText(codeContent)
+			.then(() => {
+				// Successfully copied to clipboard
+				this.showTooltip = true; // Show the tooltip
+
+				// Hide the tooltip after 2 seconds
+				setTimeout(() => {
+					this.showTooltip = false;
+				}, 2000);
+			})
+			.catch((err) => {
+				// Handle errors (such as user not granting clipboard permissions)
+				console.error('Failed to copy: ', err);
+			});
+	},
+	hideTooltip() {
+		this.showTooltip = false; // Hide the tooltip
+	},
+}`;
+---
+
+<div x-data={alpineData} x-ref="componentPreviewer" class="rounded-lg bg-gray-900">
+	<div class="flex items-center justify-between border-b border-white/10 pl-4">
+		<div class="flex items-center gap-4 text-xs font-medium">
+			<button class="h-9" @click="mode = 'preview'" x-bind:class="mode === 'preview' ? 'text-white' : 'text-white/60 hover:text-white'">Preview</button>
+			<button class="h-9" @click="mode = 'code'" x-bind:class="mode === 'code' ? 'text-white' : 'text-white/60 hover:text-white'">Code</button>
+		</div>
+
+		<div x-cloak x-show="mode == 'preview'">
+			<a href={src} target="_blank" class="flex h-9 w-9 items-center justify-center border-l border-white/10 text-white/60 hover:text-white">
+				<svg
+					class="h-3.5 w-3.5"
+					xmlns="http://www.w3.org/2000/svg"
+					width="24"
+					height="24"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					class="lucide lucide-external-link"
+				>
+					<polyline points="15 3 21 3 21 9"></polyline>
+					<>
+						<path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+						<line x1="10" x2="21" y1="14" y2="3"></line>
+					</>
+				</svg>
+			</a>
+		</div>
+
+		<div x-cloak x-show="mode == 'code'" class="flex items-center">
+			{
+				languages.length > 2 && (
+					<div class="flex items-center pr-2">
+						<div class="relative inline-block text-left" x-data="{open: false}" x-on:click.away="open = false">
+							<button
+								x-on:click="open = !open"
+								type="button"
+								class="inline-flex w-full items-center justify-center gap-1.5 text-xs font-medium text-white"
+								id="menu-button"
+								aria-expanded="true"
+								aria-haspopup="true"
+							>
+								<div x-text="languages[languageSelection]" />
+								<svg
+									class="h-3 w-3 text-white"
+									xmlns="http://www.w3.org/2000/svg"
+									width="24"
+									height="24"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2.5"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									class="lucide lucide-chevron-down"
+								>
+									<path d="m6 9 6 6 6-6" />
+								</svg>
+							</button>
+
+							<div
+								x-show="open"
+								x-transition
+								x-cloak
+								class="absolute right-0 z-10 mt-2 origin-top-right rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+								role="menu"
+								aria-orientation="vertical"
+								aria-labelledby="menu-button"
+								tabindex="-1"
+							>
+								<ul class="py-1" role="none">
+									{languages.map((language, index) => (
+										<li class="px-1">
+											<a
+												x-on:click={"languageSelection = '" + index + "', open = false"}
+												class="font-regular flex h-7 cursor-pointer items-center rounded-md px-2 text-xs text-gray-900 hover:bg-gray-100"
+												role="menuitem"
+												tabindex="-1"
+												id="menu-item-0"
+											>
+												<div x-bind:class={'languageSelection == ' + index + "? 'bg-blue-500' : ''"} class="mr-2.5 h-1.5 w-1.5 rounded-full " />
+												{language}
+											</a>
+										</li>
+									))}
+								</ul>
+							</div>
+						</div>
+					</div>
+				)
+			}
+			<button @click="copyCode" class="relative flex h-9 w-9 items-center justify-center border-l border-white/10 text-white/60 hover:text-white">
+				<svg
+					class="h-3.5 w-3.5"
+					xmlns="http://www.w3.org/2000/svg"
+					width="24"
+					height="24"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					class="lucide lucide-clipboard"
+					><rect width="8" height="4" x="8" y="2" rx="1" ry="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path></svg
+				>
+				<div
+					:class="showTooltip == true ? 'opacity-100' : 'opacity-0'"
+					class="pointer-events-none absolute bottom-full left-1/2 z-20 flex h-6 -translate-x-1/2 items-center rounded-md bg-slate-900/80 px-1.5 text-[11px] font-semibold text-white opacity-0 duration-300"
+				>
+					Copied!
+				</div>
+			</button>
+		</div>
+	</div>
+
+	<div class="overflow-hidden rounded-b-lg">
+		<div x-show="mode == 'preview'" class="relative flex" x-ref="componentPreviewerWrapper">
+			<div class="flex-1">
+				<iframe src={src} class="rd-iframe w-full flex-1 items-center justify-center overflow-hidden"></iframe>
+			</div>
+			<div class="flex w-5 flex-none bg-white/10" :style="'width: ' + width + 'px;'">
+				<div
+					class="relative z-10 flex w-[20px] flex-none cursor-grab items-center justify-center bg-white/[.06] hover:bg-white/[0.1]"
+					@mousedown="slideReady"
+					@touchstart="slideReady"
+					x-ref="componentPreviewerHandle"
+				>
+					<div
+						class="after:contents-[''] before:contents-[''] flex
+					w-[4] gap-0.5 before:block before:h-3.5 before:w-px
+					before:bg-gray-500 after:block after:h-3.5 after:w-px after:bg-gray-500"
+					>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div x-show="mode == 'code'" x-cloak class="max-h-[500px] min-h-[200px] overflow-auto text-sm">
+			<div x-show="languageSelection == 0" class="rd-frame-code" x-bind:class="languageSelection == 0 ? 'is-active' : ''">
+				<slot name="0" />
+			</div>
+			<div x-cloak x-show="languageSelection == 1" class="rd-frame-code" x-bind:class="languageSelection == 1 ? 'is-active' : ''">
+				<slot name="1" />
+			</div>
+			<div x-cloak x-show="languageSelection == 2" class="rd-frame-code" x-bind:class="languageSelection == 2 ? 'is-active' : ''">
+				<slot name="2" />
+			</div>
+			<div x-cloak x-show="languageSelection == 3" class="rd-frame-code" x-bind:class="languageSelection == 3 ? 'is-active' : ''">
+				<slot name="3" />
+			</div>
+			<div x-cloak x-show="languageSelection == 4" class="rd-frame-code" x-bind:class="languageSelection == 4 ? 'is-active' : ''">
+				<slot name="4" />
+			</div>
+			<div x-cloak x-show="languageSelection == 5" class="rd-frame-code" x-bind:class="languageSelection == 5 ? 'is-active' : ''">
+				<slot name="5" />
+			</div>
+			<div x-cloak x-show="languageSelection == 6" class="rd-frame-code" x-bind:class="languageSelection == 6 ? 'is-active' : ''">
+				<slot name="6" />
+			</div>
+			<div x-cloak x-show="languageSelection == 7" class="rd-frame-code" x-bind:class="languageSelection == 7 ? 'is-active' : ''">
+				<slot name="7" />
+			</div>
+			<div x-cloak x-show="languageSelection == 8" class="rd-frame-code" x-bind:class="languageSelection == 8 ? 'is-active' : ''">
+				<slot name="8" />
+			</div>
+			<div x-cloak x-show="languageSelection == 9" class="rd-frame-code" x-bind:class="languageSelection == 9 ? 'is-active' : ''">
+				<slot name="9" />
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+	const iframes = document.querySelectorAll('iframe.rd-iframe');
+
+	iframes.forEach((iframe) => {
+		// Access the iframe's content document
+		const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+
+		// Access the body element inside the iframe and add a class
+		iframeDocument.body.style.background = '#000';
+	});
+
+	const setIframeHeight = (iframe) => {
+		const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+		const contentHeight = iframeDocument.body.scrollHeight + 40;
+		iframe.style.height = `${contentHeight}px`;
+	};
+
+	iframes.forEach((iframe) => {
+		// Set iframe height based on content
+		setIframeHeight(iframe);
+	});
+</script>

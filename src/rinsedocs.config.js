@@ -1,11 +1,4 @@
-// RinseDocs Config
-type NavigationOverride = {
-	[key: string]: {
-		label: string;
-		children?: NavigationOverride[];
-	};
-};
-
+// Define your SITE constant without using 'as const'
 export const SITE = {
 	website: 'https://astro-paper.pages.dev/',
 	author: 'Sat Naing',
@@ -15,18 +8,17 @@ export const SITE = {
 	lightAndDarkMode: true,
 	postPerPage: 3,
 
-	sidebar: {
+	sidebarOverrides: {
 		components: [
 			{
-				general: {
-					label: 'General first?',
-				},
+				label: ['inputs', 'Inputs'],
 			},
 			{
-				form: {
-					label: 'Form lets go',
-				},
+				label: ['getting-started', 'Getting Started'],
 			},
-		] as NavigationOverride[],
+			{
+				label: ['data-display', 'Data Display'],
+			},
+		], // Use the type for the array of overrides here
 	},
 };

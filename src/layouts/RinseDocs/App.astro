@@ -14,10 +14,9 @@ const allPages = await getCollection(collection, ({ data }) => {
 	return data.draft !== true;
 });
 
-const navigation = helper.buildNavigation(allPages, Astro.url.pathname, SITE.sidebar?.components);
+const navigation = helper.buildNavigation(allPages, Astro.url.pathname, SITE.sidebarOverrides.components);
 
 const breadcrumb = helper.buildBreadcrumb(entry.slug);
-// console.dir(headings, { depth: null });
 ---
 
 <Layout title={frontmatter.title}>
@@ -34,7 +33,7 @@ const breadcrumb = helper.buildBreadcrumb(entry.slug);
 							viewBox="0 0 24 24"
 							fill="none"
 							stroke="currentColor"
-							stroke-width="3"
+							stroke-width="2"
 							stroke-linecap="round"
 							stroke-linejoin="round"
 							class="lucide lucide-book-text"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"></path><path d="M8 7h6"></path><path d="M8 11h8"></path></svg
@@ -49,7 +48,7 @@ const breadcrumb = helper.buildBreadcrumb(entry.slug);
 							viewBox="0 0 24 24"
 							fill="none"
 							stroke="currentColor"
-							stroke-width="3"
+							stroke-width="2"
 							stroke-linecap="round"
 							stroke-linejoin="round"
 							class="lucide lucide-droplets"
@@ -66,7 +65,7 @@ const breadcrumb = helper.buildBreadcrumb(entry.slug);
 							viewBox="0 0 24 24"
 							fill="none"
 							stroke="currentColor"
-							stroke-width="3"
+							stroke-width="2"
 							stroke-linecap="round"
 							stroke-linejoin="round"
 							class="lucide lucide-image"
@@ -82,7 +81,7 @@ const breadcrumb = helper.buildBreadcrumb(entry.slug);
 							viewBox="0 0 24 24"
 							fill="none"
 							stroke="currentColor"
-							stroke-width="3"
+							stroke-width="2"
 							stroke-linecap="round"
 							stroke-linejoin="round"
 							class="lucide lucide-smile"
@@ -99,7 +98,7 @@ const breadcrumb = helper.buildBreadcrumb(entry.slug);
 							viewBox="0 0 24 24"
 							fill="none"
 							stroke="currentColor"
-							stroke-width="3"
+							stroke-width="2"
 							stroke-linecap="round"
 							stroke-linejoin="round"
 							class="lucide lucide-layout-panel-left"
@@ -116,7 +115,7 @@ const breadcrumb = helper.buildBreadcrumb(entry.slug);
 							viewBox="0 0 24 24"
 							fill="none"
 							stroke="currentColor"
-							stroke-width="3"
+							stroke-width="2"
 							stroke-linecap="round"
 							stroke-linejoin="round"
 							class="lucide lucide-app-window"
@@ -133,7 +132,7 @@ const breadcrumb = helper.buildBreadcrumb(entry.slug);
 							viewBox="0 0 24 24"
 							fill="none"
 							stroke="currentColor"
-							stroke-width="3"
+							stroke-width="2"
 							stroke-linecap="round"
 							stroke-linejoin="round"
 							class="lucide lucide-plus"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg
@@ -196,7 +195,7 @@ const breadcrumb = helper.buildBreadcrumb(entry.slug);
 												viewBox="0 0 24 24"
 												fill="none"
 												stroke="currentColor"
-												stroke-width="3"
+												stroke-width="2"
 												stroke-linecap="round"
 												stroke-linejoin="round"
 												class="lucide lucide-chevron-right"
@@ -355,4 +354,3 @@ const breadcrumb = helper.buildBreadcrumb(entry.slug);
 		</section>
 	</main>
 </Layout>
- @/js/rinsedocs.model.js
