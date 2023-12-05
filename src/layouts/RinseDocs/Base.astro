@@ -5,7 +5,7 @@ import '@styles/rinsedocs.css';
 ---
 
 <!doctype html>
-<html lang="en" class="bg-gray-900">
+<html lang="en" x-data="app" x-bind:class="$store.app.darkMode ? 'dark' : ''" transition:animate="none">
 	<head>
 		<title>{title}</title>
 
@@ -23,13 +23,68 @@ import '@styles/rinsedocs.css';
 		<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.2/dist/cdn.min.js"></script>
 		<ViewTransitions />
 	</head>
-	<body class="font-sans font-normal text-slate-500 antialiased">
+	<body class="bg-zinc-50 font-sans font-normal text-slate-500 antialiased dark:bg-zinc-950">
 		<slot />
 		<script is:inline>
 			'use strict';
 
 			// Initialize Alpine
 			document.addEventListener('alpine:init', () => {
+				Alpine.data('app', {
+					app: {
+						darkMode: false,
+						toc: true,
+						sidebarNavScrollPos: 0,
+
+						cursorOffset: 0,
+						sidebarWidth: 300,
+					},
+					init() {
+						// this.darkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+					},
+					toggleDarkMode() {
+						this.darkMode = !this.darkMode;
+					},
+					toggleTOC() {
+						this.toc = !this.toc;
+					},
+
+					slideReady() {
+						$event.preventDefault();
+						console.log('takeoff!');
+						console.log('darkMode is' + this.darkMode);
+						console.log(this.sidebarWidth);
+						console.log(Alpine.store('viewSettings').sidebarWidth);
+						this.slideMoveHandler = this.slideMove.bind(this); // Save a reference to the bound slideMove function
+						this.cursorOffset = e.clientX - this.$refs.slideHandle.getBoundingClientRect().x;
+						document.body.style.pointerEvents = 'none';
+						document.documentElement.style.cursor = 'grabbing';
+
+						document.addEventListener('mousemove', this.slideMoveHandler);
+						document.addEventListener('mouseup', this.slideFinish.bind(this));
+					},
+					slideFinish() {
+						document.body.style.pointerEvents = 'auto';
+						document.documentElement.style.cursor = 'default';
+						document.removeEventListener('mousemove', this.slideMoveHandler);
+					},
+					slideMove(e) {
+						console.log('moving');
+						// let containerWidth = this.$refs.componentPreviewerWrapper.offsetWidth;
+
+						// let slideWidth = this.$refs.componentPreviewerWrapper.getBoundingClientRect().right - e.clientX;
+
+						// console.log(slideWidth);
+						// if (slideWidth >= containerWidth - this.cursorOffset) {
+						// 	this.width = containerWidth;
+						// } else if (slideWidth <= 20 - this.cursorOffset) {
+						// 	this.width = 20;
+						// } else {
+						// 	this.width = slideWidth + this.cursorOffset;
+						// }
+					},
+				});
+
 				Alpine.data('sidebarLinkState', ($el) => ({
 					activeSlug: $el.dataset.currentSlug,
 					init() {},
@@ -58,10 +113,157 @@ import '@styles/rinsedocs.css';
 								console.error('Failed to copy: ', err);
 							});
 					},
+				}));
+
+				Alpine.data('tooltip', () => ({
+					tooltipVisible: false,
+					showTooltip() {
+						console.log('tooltip-loaded');
+						this.tooltipVisible = true; // Show the tooltip
+					},
+					hideTooltip() {
+						this.tooltipVisible = false; // Hide the tooltip
+					},
+				}));
+
+				Alpine.data('componentPreviewer', (langs = '') => ({
+					mode: 'preview',
+					languageSelection: 0,
+					showTooltip: false,
+					cursorOffset: 0,
+					width: 20,
+					languages: langs,
+					init: function () {
+						document.addEventListener('resize', this.resetContainer.bind(this));
+					},
+					resetContainer(e) {
+						e.preventDefault();
+						this.width = this.$refs.componentPreviewerWrapper.offsetWidth;
+					},
+					slideReady(e) {
+						e.preventDefault();
+						this.slideMoveHandler = this.slideMove.bind(this); // Save a reference to the bound slideMove function
+						this.cursorOffset = e.clientX - this.$refs.componentPreviewerHandle.getBoundingClientRect().x;
+						document.body.style.pointerEvents = 'none';
+						document.documentElement.style.cursor = 'grabbing';
+
+						document.addEventListener('mousemove', this.slideMoveHandler);
+						document.addEventListener('mouseup', this.slideFinish.bind(this));
+
+						document.addEventListener('touchmove', this.slideMoveHandler);
+						document.addEventListener('touchend', this.slideFinish.bind(this));
+					},
+					slideFinish() {
+						document.body.style.pointerEvents = 'auto';
+						document.documentElement.style.cursor = 'default';
+						document.removeEventListener('mousemove', this.slideMoveHandler);
+						document.removeEventListener('touchmove', this.slideMoveHandler);
+					},
+					slideMove(e) {
+						let containerWidth = this.$refs.componentPreviewerWrapper.offsetWidth;
+
+						let slideWidth = this.$refs.componentPreviewerWrapper.getBoundingClientRect().right - e.clientX;
+
+						if (e.touches && e.touches[0]) {
+							slideWidth = this.$refs.componentPreviewerWrapper.getBoundingClientRect().right - e.touches[0].clientX;
+						} else if (e.clientX) {
+							slideWidth = this.$refs.componentPreviewerWrapper.getBoundingClientRect().right - e.clientX;
+						}
+
+						console.log(slideWidth);
+						if (slideWidth >= containerWidth - this.cursorOffset) {
+							this.width = containerWidth;
+						} else if (slideWidth <= 20 - this.cursorOffset) {
+							this.width = 20;
+						} else {
+							this.width = slideWidth + this.cursorOffset;
+						}
+					},
+					copyCode() {
+						// Use the Clipboard API to copy the current Code to the clipboard
+						const activeSlot = this.$refs.componentPreviewer.querySelector('.rd-frame-code.is-active');
+						const codeContent = activeSlot ? activeSlot.innerText : '';
+						navigator.clipboard
+							.writeText(codeContent)
+							.then(() => {
+								// Successfully copied to clipboard
+								this.showTooltip = true; // Show the tooltip
+
+								// Hide the tooltip after 2 seconds
+								setTimeout(() => {
+									this.showTooltip = false;
+								}, 2000);
+							})
+							.catch((err) => {
+								// Handle errors (such as user not granting clipboard permissions)
+								console.error('Failed to copy: ', err);
+							});
+					},
 					hideTooltip() {
 						this.showTooltip = false; // Hide the tooltip
 					},
 				}));
+			});
+
+			const sidebarNav = document.querySelector('.sidebarNav');
+			const sidebarLinks = sidebarNav.querySelectorAll('.sidebarItem a');
+			const currentURL = window.location.href;
+
+			sidebarLinks.forEach((link) => {
+				if (link.href === currentURL) {
+					link.closest('.sidebarItem').classList.add('bg-zinc-200/70', 'text-gray-900');
+				}
+			});
+
+			document.addEventListener('astro:before-preparation', (ev) => {
+				const sidebarWrapper = document.querySelector('.sidebarWrapper');
+				Alpine.store('viewSettings').sidebarNavScrollPos = sidebarWrapper.scrollTop;
+
+				const sidebarNav = document.querySelector('.sidebarNav');
+				const sidebarLinks = sidebarNav.querySelectorAll('.sidebarItem a');
+
+				const currentURL = window.location.href;
+				sidebarLinks.forEach((link) => {
+					link.closest('.sidebarItem').classList.remove('bg-zinc-200/70', 'text-gray-900');
+				});
+			});
+
+			document.addEventListener('astro:after-swap', () => {
+				const sidebarWrapper = document.querySelector('.sidebarWrapper');
+				sidebarWrapper.scrollTop = Alpine.store('viewSettings').sidebarNavScrollPos;
+
+				const sidebarNav = document.querySelector('.sidebarNav');
+				const sidebarLinks = sidebarNav.querySelectorAll('.sidebarItem a');
+
+				const currentURL = window.location.href;
+				sidebarLinks.forEach((link) => {
+					if (link.href === currentURL) {
+						link.closest('.sidebarItem').classList.add('bg-zinc-200/70', 'text-gray-900');
+					}
+				});
+			});
+
+			window.addEventListener('load', (event) => {
+				const iframes = document.querySelectorAll('iframe.rd-iframe');
+
+				iframes.forEach((iframe) => {
+					// Access the iframe's content document
+					const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+
+					// Access the body element inside the iframe and add a class
+					iframeDocument.body.style.background = '#000';
+				});
+
+				const setIframeHeight = (iframe) => {
+					const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+					const contentHeight = iframeDocument.body.scrollHeight + 40;
+					iframe.style.height = `${contentHeight}px`;
+				};
+
+				iframes.forEach((iframe) => {
+					// Set iframe height based on content
+					setIframeHeight(iframe);
+				});
 			});
 		</script>
 	</body>

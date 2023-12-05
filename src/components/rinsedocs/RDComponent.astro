@@ -1,87 +1,9 @@
 ---
 const { languages, src, height } = Astro.props;
-const alpineData = `{ 
-	mode: 'preview', 
-	languageSelection: 0, 
-	languages: ['${languages.join("','")}'],
-	showTooltip: false,
-	dragging: false,
-	cursorOffset: 0,
-	width: 20,
-
-	init: function () {
-		this.slideMoveHandler = this.slideMove.bind(this); // Save a reference to the bound slideMove function
-		window.addEventListener('resize', this.resetContainer.bind(this));
-	},
-	resetContainer(e) {
-		e.preventDefault();
-		this.width = this.$refs.componentPreviewerWrapper.offsetWidth;
-	},
-	slideReady(e) {
-		e.preventDefault();
-		this.dragging = true;
-		this.cursorOffset = e.clientX - this.$refs.componentPreviewerHandle.getBoundingClientRect().x;
-		document.body.style.pointerEvents = 'none';
-		document.documentElement.style.cursor = 'grabbing';
-
-		window.addEventListener('mousemove', this.slideMoveHandler);
-		window.addEventListener('mouseup', this.slideFinish.bind(this));
-
-		window.addEventListener('touchmove', this.slideMoveHandler);
-		window.addEventListener('touchend', this.slideFinish.bind(this));
-	},
-	slideFinish() {
-		document.body.style.pointerEvents = 'auto';
-		document.documentElement.style.cursor = 'default';
-		window.removeEventListener('mousemove', this.slideMoveHandler);
-		window.removeEventListener('touchmove', this.slideMoveHandler);
-	},
-	slideMove(e) {
-		let containerWidth = this.$refs.componentPreviewerWrapper.offsetWidth;
-
-		let slideWidth = this.$refs.componentPreviewerWrapper.getBoundingClientRect().right - e.clientX;
-
-		if (e.touches && e.touches[0]) {
-			slideWidth = this.$refs.componentPreviewerWrapper.getBoundingClientRect().right - e.touches[0].clientX;
-		} else if (e.clientX) {
-			slideWidth = this.$refs.componentPreviewerWrapper.getBoundingClientRect().right - e.clientX;
-		}
-
-		if (slideWidth >= containerWidth - this.cursorOffset) {
-			this.width = containerWidth + this.cursorOffset;
-		} else if (slideWidth <= 20) {
-			this.width = 20;
-		} else {
-			this.width = slideWidth + this.cursorOffset;
-		}
-	},
-	copyCode() {
-		// Use the Clipboard API to copy the current Code to the clipboard
-		const activeSlot = this.$refs.componentPreviewer.querySelector('.rd-frame-code.is-active');
-		const codeContent = activeSlot ? activeSlot.innerText : '';
-		navigator.clipboard
-			.writeText(codeContent)
-			.then(() => {
-				// Successfully copied to clipboard
-				this.showTooltip = true; // Show the tooltip
-
-				// Hide the tooltip after 2 seconds
-				setTimeout(() => {
-					this.showTooltip = false;
-				}, 2000);
-			})
-			.catch((err) => {
-				// Handle errors (such as user not granting clipboard permissions)
-				console.error('Failed to copy: ', err);
-			});
-	},
-	hideTooltip() {
-		this.showTooltip = false; // Hide the tooltip
-	},
-}`;
+const alpineData = `componentPreviewer(['${languages.join("','")}'])`;
 ---
 
-<div x-data={alpineData} x-ref="componentPreviewer" class="rounded-lg bg-gray-900">
+<div x-data={alpineData} class="rounded-lg bg-gray-900">
 	<div class="flex items-center justify-between border-b border-white/10 pl-4">
 		<div class="flex items-center gap-4 text-xs font-medium">
 			<button class="h-9" @click="mode = 'preview'" x-bind:class="mode === 'preview' ? 'text-white' : 'text-white/60 hover:text-white'">Preview</button>
@@ -114,7 +36,7 @@ const alpineData = `{
 
 		<div x-cloak x-show="mode == 'code'" class="flex items-center">
 			{
-				languages.length > 2 && (
+				languages.length > 1 && (
 					<div class="flex items-center pr-2">
 						<div class="relative inline-block text-left" x-data="{open: false}" x-on:click.away="open = false">
 							<button
@@ -204,7 +126,7 @@ const alpineData = `{
 			<div class="flex-1">
 				<iframe src={src} class="rd-iframe w-full flex-1 items-center justify-center overflow-hidden"></iframe>
 			</div>
-			<div class="flex w-5 flex-none bg-white/10" :style="'width: ' + width + 'px;'">
+			<div class="flex w-5 flex-none bg-white/10" x-bind:style="'width: ' + width + 'px;'">
 				<div
 					class="relative z-10 flex w-[20px] flex-none cursor-grab items-center justify-center bg-white/[.06] hover:bg-white/[0.1]"
 					@mousedown="slideReady"
@@ -212,7 +134,7 @@ const alpineData = `{
 					x-ref="componentPreviewerHandle"
 				>
 					<div
-						class="after:contents-[''] before:contents-[''] flex
+						class="after:contents-[''] before:content-['']-[''] flex
 					w-[4] gap-0.5 before:block before:h-3.5 before:w-px
 					before:bg-gray-500 after:block after:h-3.5 after:w-px after:bg-gray-500"
 					>
@@ -256,25 +178,4 @@ const alpineData = `{
 	</div>
 </div>
 
-<script>
-	const iframes = document.querySelectorAll('iframe.rd-iframe');
-
-	iframes.forEach((iframe) => {
-		// Access the iframe's content document
-		const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
-
-		// Access the body element inside the iframe and add a class
-		iframeDocument.body.style.background = '#000';
-	});
-
-	const setIframeHeight = (iframe) => {
-		const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
-		const contentHeight = iframeDocument.body.scrollHeight + 40;
-		iframe.style.height = `${contentHeight}px`;
-	};
-
-	iframes.forEach((iframe) => {
-		// Set iframe height based on content
-		setIframeHeight(iframe);
-	});
-</script>
+<script></script>

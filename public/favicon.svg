@@ -1,5 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" width="20" height="20"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path fill-rule="evenodd" clip-rule="evenodd" d="M9.6511 0H0V9.6511C4.76968 8.52408 8.52408 4.76968 9.6511 0ZM9.6515 20H0V10.3472C4.77024 11.4744 8.52496 15.2295 9.6515 20ZM20 10.3492V20H10.3492C11.4763 15.2305 15.2305 11.4763 20 10.3492ZM20 9.6515V0H10.3472C11.4744 4.77024 15.2295 8.52496 20 9.6515Z" fill="black"></path>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" width="48" height="48"><svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M23 0H0V23C10.7502 19.2058 19.2058 10.7502 23 0Z" fill="black"></path>
+<path d="M48 23V0H25C28.7942 10.7502 37.2498 19.2058 48 23Z" fill="black"></path>
+<path d="M48 48L25 48C28.7942 37.2498 37.2498 28.7942 48 25L48 48Z" fill="black"></path>
+<path d="M0 25V48H23C19.2058 37.2498 10.7502 28.7942 0 25Z" fill="black"></path>
 </svg><style>@media (prefers-color-scheme: light) { :root { filter: none; } }
 @media (prefers-color-scheme: dark) { :root { filter: invert(100%); } }
 </style></svg>

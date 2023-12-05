@@ -4,12 +4,12 @@ import SidebarListItem from '@components/rinsedocs/SidebarListItem.astro';
 const { data } = Astro.props;
 ---
 
-<ul class="" transition:persist>
+<ul class="sidebarNav">
 	{
 		data.map((group) => {
 			return (
 				<li x-data="{open: true}">
-					<button class="text-slate-[#424d6a] text-[10px] font-bold uppercase leading-[32px] tracking-wide" x-on:click="open = !open, active = !active">
+					<button class="text-[10px] font-bold uppercase leading-[32px] tracking-wide text-gray-500 dark:text-gray-500" x-on:click="open = !open, active = !active">
 						<div class="group/sidebarParent inline-flex items-center">
 							{group.label}
 							<svg
@@ -28,7 +28,7 @@ const { data } = Astro.props;
 						</div>
 					</button>
 					<div x-cloak x-show="open == true">
-						<ul>
+						<ul class="mb-4 space-y-px">
 							{group.pages.map((page) => (
 								<SidebarListItem page={page} />
 							))}
@@ -39,3 +39,14 @@ const { data } = Astro.props;
 		})
 	}
 </ul>
+
+<script>
+	// const nav = document.querySelector('.navbar');
+	// const navLinks = nav.querySelectorAll('a');
+	// const currentURL = window.location.href;
+	// navLinks.forEach((link) => {
+	// 	if (link.href === currentURL) {
+	// 		link.classList.add('bg-red-500');
+	// 	}
+	// });
+</script>
