@@ -1,11 +1,17 @@
 ---
 import { ViewTransitions } from 'astro:transitions';
-const { title } = Astro.props;
+const { title, pageSettings, frontmatter } = Astro.props;
 import '@styles/rinsedocs.css';
+let sidebarSetting, tocSetting, fluidWidthSetting;
+sidebarSetting = pageSettings?.showSidebar ?? true;
+tocSetting = pageSettings?.showTOC ?? true;
+fluidWidthSetting = pageSettings?.enableFluidWidth ?? true;
+
+const alpineData = `app(${[sidebarSetting]}, ${[tocSetting]}, ${[fluidWidthSetting]})`;
 ---
 
 <!doctype html>
-<html lang="en" x-data="app" x-bind:class="$store.GLOBAL.darkMode ? 'dark' : ''" transition:animate="none">
+<html lang="en" x-data={alpineData} x-bind:class="$store.GLOBAL.darkMode ? 'dark' : ''" transition:animate="none">
 	<head>
 		<title>{title}</title>
 
@@ -18,6 +24,9 @@ import '@styles/rinsedocs.css';
 
 		<!-- Favicon -->
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+		<!-- Preload font -->
+		<link rel="preload" href="/fonts/InterVariable.woff2" as="font" type="font/woff2" crossorigin />
 
 		<!-- Alpine JS -->
 		<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.2/dist/cdn.min.js"></script>
@@ -32,14 +41,21 @@ import '@styles/rinsedocs.css';
 			document.addEventListener('alpine:init', () => {
 				Alpine.store('GLOBAL', {
 					darkMode: false,
-					toc: true,
-					sidebarVisible: true,
+					showSidebar: true,
+					showTOC: true,
+					enableFluidWidth: true,
 					sidebarListScrollPos: 0,
 				});
 
-				Alpine.data('app', () => ({
+				Alpine.data('app', (sidebarSetting = true, tocSetting = true, fluidWidthSetting = true) => ({
 					init() {
-						// this.darkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+						Alpine.store('GLOBAL').showSidebar = sidebarSetting;
+						Alpine.store('GLOBAL').showTOC = tocSetting;
+						Alpine.store('GLOBAL').enableFluidWidth = fluidWidthSetting;
+						if (Alpine.store('GLOBAL').showSidebar == false) {
+							const sidebar = document.querySelector('.app');
+							sidebar.style.setProperty('--sidebarWidth', 12 + 'px');
+						}
 					},
 					APP: {
 						toggleDarkMode() {
@@ -58,10 +74,10 @@ import '@styles/rinsedocs.css';
 							});
 						},
 						toggleTOC() {
-							Alpine.store('GLOBAL').toc = !Alpine.store('GLOBAL').toc;
+							Alpine.store('GLOBAL').showTOC = !Alpine.store('GLOBAL').showTOC;
 						},
 						toggleSidebar() {
-							Alpine.store('GLOBAL').sidebarVisible = true;
+							Alpine.store('GLOBAL').showSidebar = true;
 							const sidebar = document.querySelector('.app');
 							sidebar.style.setProperty('--sidebarWidth', '300px');
 						},
@@ -88,14 +104,20 @@ import '@styles/rinsedocs.css';
 							this.$refs.slideHandle.style.opacity = 1;
 
 							if (sidebarWidth >= 100 + this.cursorOffset) {
-								sidebar.style.setProperty('--sidebarWidth', sidebarWidth - this.cursorOffset + 'px');
-								Alpine.store('GLOBAL').sidebarVisible = true;
+								if (sidebarWidth >= 500 + this.cursorOffset) {
+									sidebar.style.setProperty('--sidebarWidth', 500 - 48 - this.cursorOffset + 'px');
+									Alpine.store('GLOBAL').showSidebar = false;
+								} else {
+									sidebar.style.setProperty('--sidebarWidth', sidebarWidth - 48 - this.cursorOffset + 'px');
+								}
+
+								Alpine.store('GLOBAL').showSidebar = true;
 							} else if (sidebarWidth <= 80 + this.cursorOffset) {
-								sidebar.style.setProperty('--sidebarWidth', 60 + 'px');
-								Alpine.store('GLOBAL').sidebarVisible = false;
+								sidebar.style.setProperty('--sidebarWidth', 12 + 'px');
+								Alpine.store('GLOBAL').showSidebar = false;
 							} else {
-								sidebar.style.setProperty('--sidebarWidth', sidebarWidth - this.cursorOffset + 'px');
-								Alpine.store('GLOBAL').sidebarVisible = true;
+								sidebar.style.setProperty('--sidebarWidth', sidebarWidth - 48 - this.cursorOffset + 'px');
+								Alpine.store('GLOBAL').showSidebar = true;
 							}
 						},
 					},
@@ -141,12 +163,13 @@ import '@styles/rinsedocs.css';
 					},
 				}));
 
-				Alpine.data('componentPreviewer', (langs = '') => ({
+				Alpine.data('componentPreviewer', (langs = '', height = 200) => ({
 					mode: 'preview',
 					languageSelection: 0,
 					showTooltip: false,
 					cursorOffset: 0,
-					width: 20,
+					width: null,
+					iframeHeight: height,
 					languages: langs,
 					init: function () {
 						document.addEventListener('resize', this.resetContainer.bind(this));
@@ -246,30 +269,15 @@ import '@styles/rinsedocs.css';
 				const sidebar = document.querySelector('.sidebar');
 				sidebar.scrollTop = Alpine.store('GLOBAL').sidebarListScrollPos;
 
-				const sidebarList = document.querySelector('.sidebar-list');
-				const sidebarListItems = sidebarList.querySelectorAll('.sidebar-item');
+				// const sidebarList = document.querySelector('.sidebar-list');
+				// const sidebarListItems = sidebarList.querySelectorAll('.sidebar-item');
 
-				const currentURL = window.location.href;
-				sidebarListItems.forEach((link) => {
-					if (link.href === currentURL) {
-						link.classList.add('is-active');
-					}
-				});
-			});
-
-			window.addEventListener('load', (event) => {
-				const iframes = document.querySelectorAll('iframe.rd-iframe');
-
-				const setIframeHeight = (iframe) => {
-					const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
-					const contentHeight = iframeDocument.body.scrollHeight + 40;
-					iframe.style.height = `${contentHeight}px`;
-				};
-
-				iframes.forEach((iframe) => {
-					// Set iframe height based on content
-					setIframeHeight(iframe);
-				});
+				// const currentURL = window.location.href;
+				// sidebarListItems.forEach((link) => {
+				// 	if (link.href === currentURL) {
+				// 		link.classList.add('is-active');
+				// 	}
+				// });
 			});
 		</script>
 	</body>

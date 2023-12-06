@@ -14,15 +14,6 @@
 	src: url('/fonts/InterVariable.woff2?v=4.0') format('woff2');
 }
 
-@font-face {
-	font-family: 'Mona Sans';
-	src:
-		url('/fonts/Mona-Sans.woff2') format('woff2 supports variations'),
-		url('/fonts/Mona-Sans.woff2') format('woff2-variations');
-	font-weight: 200 900;
-	font-stretch: 75% 125%;
-}
-
 /* Alpine JS - https://alpinejs.dev/directives/cloak */
 [x-cloak] {
 	display: none !important;

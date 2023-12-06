@@ -19,206 +19,206 @@ const navigation = helper.buildNavigation(allPages, Astro.url.pathname, SITE.sid
 const breadcrumb = helper.buildBreadcrumb(entry.slug);
 ---
 
-<Layout title={frontmatter.title}>
-	<div class="app grid grid-cols-[var(--sidebarWidth),1fr]" style="--sidebarWidth: 280px">
-		<aside class="sticky top-0 flex h-[100dvh] min-w-[280px] flex-none" transition:persist>
-			<nav class="flex w-[48px] flex-none flex-col items-center border-r border-gray-300 py-4 dark:border-gray-800">
-				<div class="flex flex-col gap-3.5">
-					<a
-						href="#"
-						x-data="tooltip"
-						x-on:mouseenter="showTooltip"
-						x-on:mouseleave="hideTooltip"
-						class="relative flex h-8 w-8 items-center justify-center rounded-full bg-zinc-200 text-gray-600 hover:bg-zinc-300 dark:bg-zinc-800 dark:text-gray-200 hover:dark:bg-zinc-700"
+<Layout title={frontmatter.title} pageSettings={frontmatter.pageSettings} frontmatter={frontmatter}>
+	<div class="app grid grid-cols-[48px,var(--sidebarWidth),1fr]" style="--sidebarWidth: 280px">
+		<nav class="relative z-30 flex w-[48px] flex-none flex-col items-center border-r border-gray-300 dark:border-gray-800">
+			<div class="sticky top-0 flex flex-col gap-3.5 py-4">
+				<a
+					href="#"
+					x-data="tooltip"
+					x-on:mouseenter="showTooltip"
+					x-on:mouseleave="hideTooltip"
+					class="relative flex h-8 w-8 items-center justify-center rounded-full bg-zinc-200 text-gray-600 hover:bg-zinc-300 dark:bg-zinc-800 dark:text-gray-200 hover:dark:bg-zinc-700"
+				>
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4">
+						<path
+							d="M10.75 16.82A7.462 7.462 0 0115 15.5c.71 0 1.396.098 2.046.282A.75.75 0 0018 15.06v-11a.75.75 0 00-.546-.721A9.006 9.006 0 0015 3a8.963 8.963 0 00-4.25 1.065V16.82zM9.25 4.065A8.963 8.963 0 005 3c-.85 0-1.673.118-2.454.339A.75.75 0 002 4.06v11a.75.75 0 00.954.721A7.506 7.506 0 015 15.5c1.579 0 3.042.487 4.25 1.32V4.065z"
+						></path>
+					</svg>
+
+					<div
+						x-cloak
+						x-show="tooltipVisible"
+						x-transition:enter="transition ease-out duration-200"
+						x-transition:enter-start="opacity-0 translate-x-2"
+						x-transition:enter-end="opacity-100 translate-x-0"
+						x-transition:leave="transition ease-in duration-200"
+						x-transition:leave-start="opacity-100 translate-x-0"
+						x-transition:leave-end="opacity-0 translate-x-2"
+						class="pointer-events-none absolute left-full top-1/2 ml-2 flex h-6 -translate-y-1/2 items-center whitespace-nowrap rounded-md bg-zinc-800 px-1.5 text-[11px] font-semibold text-white dark:bg-zinc-200 dark:text-gray-900"
 					>
-						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4">
-							<path
-								d="M10.75 16.82A7.462 7.462 0 0115 15.5c.71 0 1.396.098 2.046.282A.75.75 0 0018 15.06v-11a.75.75 0 00-.546-.721A9.006 9.006 0 0015 3a8.963 8.963 0 00-4.25 1.065V16.82zM9.25 4.065A8.963 8.963 0 005 3c-.85 0-1.673.118-2.454.339A.75.75 0 002 4.06v11a.75.75 0 00.954.721A7.506 7.506 0 015 15.5c1.579 0 3.042.487 4.25 1.32V4.065z"
-							></path>
-						</svg>
+						Docs
+					</div>
+				</a>
+				<a
+					href="#"
+					x-data="tooltip"
+					x-on:mouseenter="showTooltip"
+					x-on:mouseleave="hideTooltip"
+					class="relative flex h-8 w-8 items-center justify-center rounded-full bg-zinc-200 text-gray-600 hover:bg-zinc-300 dark:bg-zinc-800 dark:text-gray-200 hover:dark:bg-zinc-700"
+				>
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4">
+						<path
+							fill-rule="evenodd"
+							d="M3.5 2A1.5 1.5 0 002 3.5V15a3 3 0 106 0V3.5A1.5 1.5 0 006.5 2h-3zm11.753 6.99L9.5 14.743V6.257l1.51-1.51a1.5 1.5 0 012.122 0l2.121 2.121a1.5 1.5 0 010 2.122zM8.364 18H16.5a1.5 1.5 0 001.5-1.5v-3a1.5 1.5 0 00-1.5-1.5h-2.136l-6 6zM5 16a1 1 0 100-2 1 1 0 000 2z"
+							clip-rule="evenodd"></path>
+					</svg>
 
-						<div
-							x-cloak
-							x-show="tooltipVisible"
-							x-transition:enter="transition ease-out duration-200"
-							x-transition:enter-start="opacity-0 translate-x-2"
-							x-transition:enter-end="opacity-100 translate-x-0"
-							x-transition:leave="transition ease-in duration-200"
-							x-transition:leave-start="opacity-100 translate-x-0"
-							x-transition:leave-end="opacity-0 translate-x-2"
-							class="pointer-events-none absolute left-full top-1/2 ml-2 flex h-6 -translate-y-1/2 items-center whitespace-nowrap rounded-md bg-zinc-800 px-1.5 text-[11px] font-semibold text-white dark:bg-zinc-200 dark:text-gray-900"
-						>
-							Docs
-						</div>
-					</a>
-					<a
-						href="#"
-						x-data="tooltip"
-						x-on:mouseenter="showTooltip"
-						x-on:mouseleave="hideTooltip"
-						class="relative flex h-8 w-8 items-center justify-center rounded-full bg-zinc-200 text-gray-600 hover:bg-zinc-300 dark:bg-zinc-800 dark:text-gray-200 hover:dark:bg-zinc-700"
+					<div
+						x-cloak
+						x-show="tooltipVisible"
+						x-transition:enter="transition ease-out duration-200"
+						x-transition:enter-start="opacity-0 translate-x-2"
+						x-transition:enter-end="opacity-100 translate-x-0"
+						x-transition:leave="transition ease-in duration-200"
+						x-transition:leave-start="opacity-100 translate-x-0"
+						x-transition:leave-end="opacity-0 translate-x-2"
+						class="pointer-events-none absolute left-full top-1/2 ml-2 flex h-6 -translate-y-1/2 items-center whitespace-nowrap rounded-md bg-zinc-800 px-1.5 text-[11px] font-semibold text-white dark:bg-zinc-200 dark:text-gray-900"
 					>
-						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4">
-							<path
-								fill-rule="evenodd"
-								d="M3.5 2A1.5 1.5 0 002 3.5V15a3 3 0 106 0V3.5A1.5 1.5 0 006.5 2h-3zm11.753 6.99L9.5 14.743V6.257l1.51-1.51a1.5 1.5 0 012.122 0l2.121 2.121a1.5 1.5 0 010 2.122zM8.364 18H16.5a1.5 1.5 0 001.5-1.5v-3a1.5 1.5 0 00-1.5-1.5h-2.136l-6 6zM5 16a1 1 0 100-2 1 1 0 000 2z"
-								clip-rule="evenodd"></path>
-						</svg>
+						Colors
+					</div>
+				</a>
+				<a
+					href="#"
+					x-data="tooltip"
+					x-on:mouseenter="showTooltip"
+					x-on:mouseleave="hideTooltip"
+					class="relative flex h-8 w-8 items-center justify-center rounded-full bg-zinc-200 text-gray-600 hover:bg-zinc-300 dark:bg-zinc-800 dark:text-gray-200 hover:dark:bg-zinc-700"
+				>
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4">
+						<path
+							fill-rule="evenodd"
+							d="M1 5.25A2.25 2.25 0 013.25 3h13.5A2.25 2.25 0 0119 5.25v9.5A2.25 2.25 0 0116.75 17H3.25A2.25 2.25 0 011 14.75v-9.5zm1.5 5.81v3.69c0 .414.336.75.75.75h13.5a.75.75 0 00.75-.75v-2.69l-2.22-2.219a.75.75 0 00-1.06 0l-1.91 1.909.47.47a.75.75 0 11-1.06 1.06L6.53 8.091a.75.75 0 00-1.06 0l-2.97 2.97zM12 7a1 1 0 11-2 0 1 1 0 012 0z"
+							clip-rule="evenodd"></path>
+					</svg>
 
-						<div
-							x-cloak
-							x-show="tooltipVisible"
-							x-transition:enter="transition ease-out duration-200"
-							x-transition:enter-start="opacity-0 translate-x-2"
-							x-transition:enter-end="opacity-100 translate-x-0"
-							x-transition:leave="transition ease-in duration-200"
-							x-transition:leave-start="opacity-100 translate-x-0"
-							x-transition:leave-end="opacity-0 translate-x-2"
-							class="pointer-events-none absolute left-full top-1/2 ml-2 flex h-6 -translate-y-1/2 items-center whitespace-nowrap rounded-md bg-zinc-800 px-1.5 text-[11px] font-semibold text-white dark:bg-zinc-200 dark:text-gray-900"
-						>
-							Colors
-						</div>
-					</a>
-					<a
-						href="#"
-						x-data="tooltip"
-						x-on:mouseenter="showTooltip"
-						x-on:mouseleave="hideTooltip"
-						class="relative flex h-8 w-8 items-center justify-center rounded-full bg-zinc-200 text-gray-600 hover:bg-zinc-300 dark:bg-zinc-800 dark:text-gray-200 hover:dark:bg-zinc-700"
+					<div
+						x-cloak
+						x-show="tooltipVisible"
+						x-transition:enter="transition ease-out duration-200"
+						x-transition:enter-start="opacity-0 translate-x-2"
+						x-transition:enter-end="opacity-100 translate-x-0"
+						x-transition:leave="transition ease-in duration-200"
+						x-transition:leave-start="opacity-100 translate-x-0"
+						x-transition:leave-end="opacity-0 translate-x-2"
+						class="pointer-events-none absolute left-full top-1/2 ml-2 flex h-6 -translate-y-1/2 items-center whitespace-nowrap rounded-md bg-zinc-800 px-1.5 text-[11px] font-semibold text-white dark:bg-zinc-200 dark:text-gray-900"
 					>
-						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4">
-							<path
-								fill-rule="evenodd"
-								d="M1 5.25A2.25 2.25 0 013.25 3h13.5A2.25 2.25 0 0119 5.25v9.5A2.25 2.25 0 0116.75 17H3.25A2.25 2.25 0 011 14.75v-9.5zm1.5 5.81v3.69c0 .414.336.75.75.75h13.5a.75.75 0 00.75-.75v-2.69l-2.22-2.219a.75.75 0 00-1.06 0l-1.91 1.909.47.47a.75.75 0 11-1.06 1.06L6.53 8.091a.75.75 0 00-1.06 0l-2.97 2.97zM12 7a1 1 0 11-2 0 1 1 0 012 0z"
-								clip-rule="evenodd"></path>
-						</svg>
+						Images
+					</div>
+				</a>
+				<a
+					href="#"
+					x-data="tooltip"
+					x-on:mouseenter="showTooltip"
+					x-on:mouseleave="hideTooltip"
+					class="relative flex h-8 w-8 items-center justify-center rounded-full bg-zinc-200 text-gray-600 hover:bg-zinc-300 dark:bg-zinc-800 dark:text-gray-200 hover:dark:bg-zinc-700"
+				>
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4">
+						<path
+							fill-rule="evenodd"
+							d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.536-4.464a.75.75 0 10-1.061-1.061 3.5 3.5 0 01-4.95 0 .75.75 0 00-1.06 1.06 5 5 0 007.07 0zM9 8.5c0 .828-.448 1.5-1 1.5s-1-.672-1-1.5S7.448 7 8 7s1 .672 1 1.5zm3 1.5c.552 0 1-.672 1-1.5S12.552 7 12 7s-1 .672-1 1.5.448 1.5 1 1.5z"
+							clip-rule="evenodd"></path>
+					</svg>
 
-						<div
-							x-cloak
-							x-show="tooltipVisible"
-							x-transition:enter="transition ease-out duration-200"
-							x-transition:enter-start="opacity-0 translate-x-2"
-							x-transition:enter-end="opacity-100 translate-x-0"
-							x-transition:leave="transition ease-in duration-200"
-							x-transition:leave-start="opacity-100 translate-x-0"
-							x-transition:leave-end="opacity-0 translate-x-2"
-							class="pointer-events-none absolute left-full top-1/2 ml-2 flex h-6 -translate-y-1/2 items-center whitespace-nowrap rounded-md bg-zinc-800 px-1.5 text-[11px] font-semibold text-white dark:bg-zinc-200 dark:text-gray-900"
-						>
-							Images
-						</div>
-					</a>
-					<a
-						href="#"
-						x-data="tooltip"
-						x-on:mouseenter="showTooltip"
-						x-on:mouseleave="hideTooltip"
-						class="relative flex h-8 w-8 items-center justify-center rounded-full bg-zinc-200 text-gray-600 hover:bg-zinc-300 dark:bg-zinc-800 dark:text-gray-200 hover:dark:bg-zinc-700"
+					<div
+						x-cloak
+						x-show="tooltipVisible"
+						x-transition:enter="transition ease-out duration-200"
+						x-transition:enter-start="opacity-0 translate-x-2"
+						x-transition:enter-end="opacity-100 translate-x-0"
+						x-transition:leave="transition ease-in duration-200"
+						x-transition:leave-start="opacity-100 translate-x-0"
+						x-transition:leave-end="opacity-0 translate-x-2"
+						class="pointer-events-none absolute left-full top-1/2 ml-2 flex h-6 -translate-y-1/2 items-center whitespace-nowrap rounded-md bg-zinc-800 px-1.5 text-[11px] font-semibold text-white dark:bg-zinc-200 dark:text-gray-900"
 					>
-						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4">
-							<path
-								fill-rule="evenodd"
-								d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.536-4.464a.75.75 0 10-1.061-1.061 3.5 3.5 0 01-4.95 0 .75.75 0 00-1.06 1.06 5 5 0 007.07 0zM9 8.5c0 .828-.448 1.5-1 1.5s-1-.672-1-1.5S7.448 7 8 7s1 .672 1 1.5zm3 1.5c.552 0 1-.672 1-1.5S12.552 7 12 7s-1 .672-1 1.5.448 1.5 1 1.5z"
-								clip-rule="evenodd"></path>
-						</svg>
+						Icons
+					</div>
+				</a>
+				<a
+					href="#"
+					x-data="tooltip"
+					x-on:mouseenter="showTooltip"
+					x-on:mouseleave="hideTooltip"
+					class="relative flex h-8 w-8 items-center justify-center rounded-full bg-zinc-200 text-gray-600 hover:bg-zinc-300 dark:bg-zinc-800 dark:text-gray-200 hover:dark:bg-zinc-700"
+				>
+					<svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 32 32">
+						<path
+							fill-rule="evenodd"
+							d="M11 6C5.477 6 1 10.477 1 16s4.477 10 10 10h10c5.523 0 10-4.477 10-10S26.523 6 21 6H11Zm0 17.5a7.5 7.5 0 1 0 0-15 7.5 7.5 0 0 0 0 15Z"
+							clip-rule="evenodd"></path>
+					</svg>
 
-						<div
-							x-cloak
-							x-show="tooltipVisible"
-							x-transition:enter="transition ease-out duration-200"
-							x-transition:enter-start="opacity-0 translate-x-2"
-							x-transition:enter-end="opacity-100 translate-x-0"
-							x-transition:leave="transition ease-in duration-200"
-							x-transition:leave-start="opacity-100 translate-x-0"
-							x-transition:leave-end="opacity-0 translate-x-2"
-							class="pointer-events-none absolute left-full top-1/2 ml-2 flex h-6 -translate-y-1/2 items-center whitespace-nowrap rounded-md bg-zinc-800 px-1.5 text-[11px] font-semibold text-white dark:bg-zinc-200 dark:text-gray-900"
-						>
-							Icons
-						</div>
-					</a>
-					<a
-						href="#"
-						x-data="tooltip"
-						x-on:mouseenter="showTooltip"
-						x-on:mouseleave="hideTooltip"
-						class="relative flex h-8 w-8 items-center justify-center rounded-full bg-zinc-200 text-gray-600 hover:bg-zinc-300 dark:bg-zinc-800 dark:text-gray-200 hover:dark:bg-zinc-700"
+					<div
+						x-cloak
+						x-show="tooltipVisible"
+						x-transition:enter="transition ease-out duration-200"
+						x-transition:enter-start="opacity-0 translate-x-2"
+						x-transition:enter-end="opacity-100 translate-x-0"
+						x-transition:leave="transition ease-in duration-200"
+						x-transition:leave-start="opacity-100 translate-x-0"
+						x-transition:leave-end="opacity-0 translate-x-2"
+						class="pointer-events-none absolute left-full top-1/2 ml-2 flex h-6 -translate-y-1/2 items-center whitespace-nowrap rounded-md bg-zinc-800 px-1.5 text-[11px] font-semibold text-white dark:bg-zinc-200 dark:text-gray-900"
 					>
-						<svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 32 32">
-							<path
-								fill-rule="evenodd"
-								d="M11 6C5.477 6 1 10.477 1 16s4.477 10 10 10h10c5.523 0 10-4.477 10-10S26.523 6 21 6H11Zm0 17.5a7.5 7.5 0 1 0 0-15 7.5 7.5 0 0 0 0 15Z"
-								clip-rule="evenodd"></path>
-						</svg>
+						Components
+					</div>
+				</a>
+				<a
+					href="#"
+					x-data="tooltip"
+					x-on:mouseenter="showTooltip"
+					x-on:mouseleave="hideTooltip"
+					class="relative flex h-8 w-8 items-center justify-center rounded-full bg-zinc-200 text-gray-600 hover:bg-zinc-300 dark:bg-zinc-800 dark:text-gray-200 hover:dark:bg-zinc-700"
+				>
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4">
+						<path
+							fill-rule="evenodd"
+							d="M4.25 2A2.25 2.25 0 002 4.25v2.5A2.25 2.25 0 004.25 9h2.5A2.25 2.25 0 009 6.75v-2.5A2.25 2.25 0 006.75 2h-2.5zm0 9A2.25 2.25 0 002 13.25v2.5A2.25 2.25 0 004.25 18h2.5A2.25 2.25 0 009 15.75v-2.5A2.25 2.25 0 006.75 11h-2.5zm9-9A2.25 2.25 0 0011 4.25v2.5A2.25 2.25 0 0013.25 9h2.5A2.25 2.25 0 0018 6.75v-2.5A2.25 2.25 0 0015.75 2h-2.5zm0 9A2.25 2.25 0 0011 13.25v2.5A2.25 2.25 0 0013.25 18h2.5A2.25 2.25 0 0018 15.75v-2.5A2.25 2.25 0 0015.75 11h-2.5z"
+							clip-rule="evenodd"></path>
+					</svg>
 
-						<div
-							x-cloak
-							x-show="tooltipVisible"
-							x-transition:enter="transition ease-out duration-200"
-							x-transition:enter-start="opacity-0 translate-x-2"
-							x-transition:enter-end="opacity-100 translate-x-0"
-							x-transition:leave="transition ease-in duration-200"
-							x-transition:leave-start="opacity-100 translate-x-0"
-							x-transition:leave-end="opacity-0 translate-x-2"
-							class="pointer-events-none absolute left-full top-1/2 ml-2 flex h-6 -translate-y-1/2 items-center whitespace-nowrap rounded-md bg-zinc-800 px-1.5 text-[11px] font-semibold text-white dark:bg-zinc-200 dark:text-gray-900"
-						>
-							Components
-						</div>
-					</a>
-					<a
-						href="#"
-						x-data="tooltip"
-						x-on:mouseenter="showTooltip"
-						x-on:mouseleave="hideTooltip"
-						class="relative flex h-8 w-8 items-center justify-center rounded-full bg-zinc-200 text-gray-600 hover:bg-zinc-300 dark:bg-zinc-800 dark:text-gray-200 hover:dark:bg-zinc-700"
+					<div
+						x-cloak
+						x-show="tooltipVisible"
+						x-transition:enter="transition ease-out duration-200"
+						x-transition:enter-start="opacity-0 translate-x-2"
+						x-transition:enter-end="opacity-100 translate-x-0"
+						x-transition:leave="transition ease-in duration-200"
+						x-transition:leave-start="opacity-100 translate-x-0"
+						x-transition:leave-end="opacity-0 translate-x-2"
+						class="pointer-events-none absolute left-full top-1/2 ml-2 flex h-6 -translate-y-1/2 items-center whitespace-nowrap rounded-md bg-zinc-800 px-1.5 text-[11px] font-semibold text-white dark:bg-zinc-200 dark:text-gray-900"
 					>
-						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4">
-							<path
-								fill-rule="evenodd"
-								d="M4.25 2A2.25 2.25 0 002 4.25v2.5A2.25 2.25 0 004.25 9h2.5A2.25 2.25 0 009 6.75v-2.5A2.25 2.25 0 006.75 2h-2.5zm0 9A2.25 2.25 0 002 13.25v2.5A2.25 2.25 0 004.25 18h2.5A2.25 2.25 0 009 15.75v-2.5A2.25 2.25 0 006.75 11h-2.5zm9-9A2.25 2.25 0 0011 4.25v2.5A2.25 2.25 0 0013.25 9h2.5A2.25 2.25 0 0018 6.75v-2.5A2.25 2.25 0 0015.75 2h-2.5zm0 9A2.25 2.25 0 0011 13.25v2.5A2.25 2.25 0 0013.25 18h2.5A2.25 2.25 0 0018 15.75v-2.5A2.25 2.25 0 0015.75 11h-2.5z"
-								clip-rule="evenodd"></path>
-						</svg>
+						Prototypes
+					</div>
+				</a>
 
-						<div
-							x-cloak
-							x-show="tooltipVisible"
-							x-transition:enter="transition ease-out duration-200"
-							x-transition:enter-start="opacity-0 translate-x-2"
-							x-transition:enter-end="opacity-100 translate-x-0"
-							x-transition:leave="transition ease-in duration-200"
-							x-transition:leave-start="opacity-100 translate-x-0"
-							x-transition:leave-end="opacity-0 translate-x-2"
-							class="pointer-events-none absolute left-full top-1/2 ml-2 flex h-6 -translate-y-1/2 items-center whitespace-nowrap rounded-md bg-zinc-800 px-1.5 text-[11px] font-semibold text-white dark:bg-zinc-200 dark:text-gray-900"
-						>
-							Prototypes
-						</div>
-					</a>
+				<a
+					href="#"
+					x-data="tooltip"
+					x-on:mouseenter="showTooltip"
+					x-on:mouseleave="hideTooltip"
+					class="relative flex h-8 w-8 items-center justify-center rounded-full bg-zinc-200 text-gray-600 hover:bg-zinc-300 dark:bg-zinc-800 dark:text-gray-200 hover:dark:bg-zinc-700"
+				>
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4">
+						<path d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z"></path>
+					</svg>
 
-					<a
-						href="#"
-						x-data="tooltip"
-						x-on:mouseenter="showTooltip"
-						x-on:mouseleave="hideTooltip"
-						class="relative flex h-8 w-8 items-center justify-center rounded-full bg-zinc-200 text-gray-600 hover:bg-zinc-300 dark:bg-zinc-800 dark:text-gray-200 hover:dark:bg-zinc-700"
+					<div
+						x-cloak
+						x-show="tooltipVisible"
+						x-transition:enter="transition ease-out duration-200"
+						x-transition:enter-start="opacity-0 translate-x-2"
+						x-transition:enter-end="opacity-100 translate-x-0"
+						x-transition:leave="transition ease-in duration-200"
+						x-transition:leave-start="opacity-100 translate-x-0"
+						x-transition:leave-end="opacity-0 translate-x-2"
+						class="pointer-events-none absolute left-full top-1/2 ml-2 flex h-6 -translate-y-1/2 items-center whitespace-nowrap rounded-md bg-zinc-800 px-1.5 text-[11px] font-semibold text-white dark:bg-zinc-200 dark:text-gray-900"
 					>
-						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4">
-							<path d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z"></path>
-						</svg>
-
-						<div
-							x-cloak
-							x-show="tooltipVisible"
-							x-transition:enter="transition ease-out duration-200"
-							x-transition:enter-start="opacity-0 translate-x-2"
-							x-transition:enter-end="opacity-100 translate-x-0"
-							x-transition:leave="transition ease-in duration-200"
-							x-transition:leave-start="opacity-100 translate-x-0"
-							x-transition:leave-end="opacity-0 translate-x-2"
-							class="pointer-events-none absolute left-full top-1/2 ml-2 flex h-6 -translate-y-1/2 items-center whitespace-nowrap rounded-md bg-zinc-800 px-1.5 text-[11px] font-semibold text-white dark:bg-zinc-200 dark:text-gray-900"
-						>
-							Add new library
-						</div>
-					</a>
-				</div>
-			</nav>
+						Add new library
+					</div>
+				</a>
+			</div>
+		</nav>
+		<aside class="sticky top-0 flex h-[100dvh] min-w-[280px] max-w-[500px] flex-none" transition:persist>
 			<div class="sidebar flex-1 overflow-auto">
 				<div class="flex items-center justify-between px-3 py-5">
 					<div class="truncate text-sm font-semibold text-gray-900 dark:text-gray-100">Component Library</div>
@@ -272,14 +272,14 @@ const breadcrumb = helper.buildBreadcrumb(entry.slug);
 			<div class="bg-zinc-50 py-3 dark:bg-zinc-900">
 				<div
 					class="grid min-h-[100dvh] grid-cols-1 rounded-l-lg bg-white shadow-xl ring-1 ring-zinc-200 dark:bg-zinc-900 dark:ring-zinc-800"
-					x-bind:class="$store.GLOBAL.toc ? 'lg:grid-cols-[1fr,260px]' : 'lg:grid-cols-[1fr]'"
+					x-bind:class="$store.GLOBAL.showTOC ? 'lg:grid-cols-[1fr,260px]' : 'lg:grid-cols-[1fr]'"
 				>
 					<div class="grid grid-rows-[auto,1fr]">
 						<div class="sticky top-0 z-20 flex items-center justify-between rounded-tl-lg border-b border-gray-200 bg-white px-2 py-2 dark:border-gray-800 dark:bg-zinc-900">
 							<div class="flex items-center">
 								<button
 									x-cloak
-									x-show="!$store.GLOBAL.sidebarVisible"
+									x-show="!$store.GLOBAL.showSidebar"
 									x-on:click="APP.toggleSidebar"
 									class="flex h-8 w-8 items-center justify-center rounded-md text-gray-400 hover:bg-zinc-100 hover:text-gray-600 dark:hover:bg-zinc-800 dark:hover:text-gray-100"
 								>
@@ -398,7 +398,7 @@ const breadcrumb = helper.buildBreadcrumb(entry.slug);
 									class="flex h-8 w-8 items-center justify-center rounded-md text-gray-400 hover:bg-zinc-100 hover:text-gray-600 dark:hover:bg-zinc-800 dark:hover:text-gray-100"
 								>
 									<svg
-										x-show="$store.GLOBAL.toc"
+										x-show="$store.GLOBAL.showTOC"
 										xmlns="http://www.w3.org/2000/svg"
 										width="16"
 										height="16"
@@ -413,7 +413,7 @@ const breadcrumb = helper.buildBreadcrumb(entry.slug);
 									>
 									<svg
 										x-cloak
-										x-show="!$store.GLOBAL.toc"
+										x-show="!$store.GLOBAL.showTOC"
 										xmlns="http://www.w3.org/2000/svg"
 										width="16"
 										height="16"
@@ -449,10 +449,10 @@ const breadcrumb = helper.buildBreadcrumb(entry.slug);
 							</article>
 						</div>
 					</div>
-					<div x-show="$store.GLOBAL.toc" class="relative z-20 hidden border-l border-gray-200 dark:border-gray-800 lg:block">
+					<div x-show="$store.GLOBAL.showTOC" class="relative z-20 hidden border-l border-gray-200 dark:border-gray-800 lg:block">
 						<nav class="sticky top-0 px-5 py-2">
 							<button
-								x-on:click="$store.GLOBAL.toc = false"
+								x-on:click="$store.GLOBAL.showTOC = false"
 								class="absolute right-0 top-0 mr-2 mt-2 flex h-8 w-8 items-center justify-center rounded-md text-gray-400 hover:bg-zinc-100 hover:text-gray-600 dark:hover:bg-zinc-800 dark:hover:text-gray-100"
 							>
 								<svg

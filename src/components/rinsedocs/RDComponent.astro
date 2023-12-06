@@ -1,6 +1,35 @@
 ---
 const { languages, src, height } = Astro.props;
-const alpineData = `componentPreviewer(['${languages.join("','")}'])`;
+let iframeHeight;
+if (typeof height === 'string') {
+	switch (height) {
+		case 'sm':
+			iframeHeight = 200;
+			break;
+		case 'md':
+			iframeHeight = 300;
+			break;
+		case 'lg':
+			iframeHeight = 500;
+			break;
+		case 'xl':
+			iframeHeight = 800;
+			break;
+		case '2xl':
+			iframeHeight = 600;
+			break;
+		default:
+			// Handle other string values or set a default height
+			iframeHeight = 300;
+			break;
+	}
+} else if (typeof height === 'number') {
+	iframeHeight = height;
+} else {
+	// Handle other types or set a default height
+	iframeHeight = 300;
+}
+const alpineData = `componentPreviewer(['${languages.join("','")}'], ${iframeHeight})`;
 ---
 
 <div x-data={alpineData} class="rounded-lg bg-zinc-50 dark:bg-zinc-800">
@@ -139,7 +168,7 @@ const alpineData = `componentPreviewer(['${languages.join("','")}'])`;
 	<div class="overflow-hidden rounded-b-lg">
 		<div x-show="mode == 'preview'" class="relative flex" x-ref="componentPreviewerWrapper">
 			<div class="flex-1">
-				<iframe src={src} class="rd-iframe w-full flex-1 items-center justify-center overflow-hidden"></iframe>
+				<iframe src={src} class="rd-iframe w-full flex-1 items-center justify-center overflow-hidden" :style="'height: ' + iframeHeight + 'px'"></iframe>
 			</div>
 			<div class="flex w-5 flex-none bg-zinc-200 dark:bg-white/10" x-bind:style="'width: ' + width + 'px;'">
 				<div

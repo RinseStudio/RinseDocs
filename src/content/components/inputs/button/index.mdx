@@ -4,7 +4,6 @@ date: 2023-05-12
 author: Jin Su Park,
 thumbnail: '@assets/runboy-01.jpg'
 description: Buttons allow users to take actions, and make choices, with a single tap.
-group: Getting Started
 draft: false
 weight: 0
 meta:
@@ -14,6 +13,10 @@ meta:
   - label: View on GitHub
     url: '#'
     icon: github
+pageSettings:
+  showSidebar: true
+  showTOC: true
+  enableFluidWidth: true
 ---
 
 import RDComponent from '@components/rinsedocs/RDComponent.astro';
@@ -25,7 +28,7 @@ In need of a button, but not the hefty background colors they bring? Replace the
 <RDComponent 
 	languages={['HTML', 'JavaScript', 'JSX']} 
 	src="/components/general/button/default-button" 
-	height="small"
+	height="xl"
 >	
   <slot slot="0">
 		```js
@@ -76,7 +79,7 @@ In need of a button, but not the hefty background colors they bring? Replace the
 <RDComponent 
 	languages={['HTML', 'JSX']} 
 	src="/components/general/button/default-button" 
-	height="small"
+	height="sm"
 >	
   <slot slot="0">
 		```js
@@ -127,7 +130,7 @@ In need of a button, but not the hefty background colors they bring? Replace the
 <RDComponent 
 	languages={['HTML', 'JavaScript']} 
 	src="/components/general/button/default-button" 
-	height="small"
+	height="md"
 >	
   <slot slot="0">
 		```js
