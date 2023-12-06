@@ -3,15 +3,27 @@ const { languages, src, height } = Astro.props;
 const alpineData = `componentPreviewer(['${languages.join("','")}'])`;
 ---
 
-<div x-data={alpineData} class="rounded-lg bg-gray-900">
-	<div class="flex items-center justify-between border-b border-white/10 pl-4">
+<div x-data={alpineData} class="rounded-lg bg-zinc-50 dark:bg-zinc-800">
+	<div class="flex items-center justify-between border-b border-black/10 pl-4 dark:border-white/10">
 		<div class="flex items-center gap-4 text-xs font-medium">
-			<button class="h-9" @click="mode = 'preview'" x-bind:class="mode === 'preview' ? 'text-white' : 'text-white/60 hover:text-white'">Preview</button>
-			<button class="h-9" @click="mode = 'code'" x-bind:class="mode === 'code' ? 'text-white' : 'text-white/60 hover:text-white'">Code</button>
+			<button
+				class="h-9"
+				@click="mode = 'preview'"
+				x-bind:class="mode === 'preview' ? 'text-gray-900 dark:text-gray-100' : 'text-gray-400 hover:text-gray-500 dark:text-gray-400 dark:hover:text-gray-300'">Preview</button
+			>
+			<button
+				class="h-9"
+				@click="mode = 'code'"
+				x-bind:class="mode === 'code' ? 'text-gray-900 dark:text-gray-100' : 'text-gray-400 hover:text-gray-500 dark:text-gray-400 dark:hover:text-gray-300'">Code</button
+			>
 		</div>
 
 		<div x-cloak x-show="mode == 'preview'">
-			<a href={src} target="_blank" class="flex h-9 w-9 items-center justify-center border-l border-white/10 text-white/60 hover:text-white">
+			<a
+				href={src}
+				target="_blank"
+				class="hover:text-gray=900 relative flex h-9 w-9 items-center justify-center border-l border-black/10 text-gray-600 hover:text-gray-900 dark:border-white/10 dark:text-gray-300 dark:hover:text-gray-100"
+			>
 				<svg
 					class="h-3.5 w-3.5"
 					xmlns="http://www.w3.org/2000/svg"
@@ -42,14 +54,14 @@ const alpineData = `componentPreviewer(['${languages.join("','")}'])`;
 							<button
 								x-on:click="open = !open"
 								type="button"
-								class="inline-flex w-full items-center justify-center gap-1.5 text-xs font-medium text-white"
+								class="inline-flex w-full items-center justify-center gap-1.5 text-xs font-medium text-gray-900 dark:text-gray-100"
 								id="menu-button"
 								aria-expanded="true"
 								aria-haspopup="true"
 							>
 								<div x-text="languages[languageSelection]" />
 								<svg
-									class="h-3 w-3 text-white"
+									class="h-3 w-3"
 									xmlns="http://www.w3.org/2000/svg"
 									width="24"
 									height="24"
@@ -96,7 +108,10 @@ const alpineData = `componentPreviewer(['${languages.join("','")}'])`;
 					</div>
 				)
 			}
-			<button @click="copyCode" class="relative flex h-9 w-9 items-center justify-center border-l border-white/10 text-white/60 hover:text-white">
+			<button
+				@click="copyCode"
+				class="hover:text-gray=900 relative flex h-9 w-9 items-center justify-center border-l border-black/10 text-gray-600 hover:text-gray-900 dark:border-white/10 dark:text-gray-300 dark:hover:text-gray-100"
+			>
 				<svg
 					class="h-3.5 w-3.5"
 					xmlns="http://www.w3.org/2000/svg"
@@ -126,9 +141,9 @@ const alpineData = `componentPreviewer(['${languages.join("','")}'])`;
 			<div class="flex-1">
 				<iframe src={src} class="rd-iframe w-full flex-1 items-center justify-center overflow-hidden"></iframe>
 			</div>
-			<div class="flex w-5 flex-none bg-white/10" x-bind:style="'width: ' + width + 'px;'">
+			<div class="flex w-5 flex-none bg-zinc-200 dark:bg-white/10" x-bind:style="'width: ' + width + 'px;'">
 				<div
-					class="relative z-10 flex w-[20px] flex-none cursor-grab items-center justify-center bg-white/[.06] hover:bg-white/[0.1]"
+					class="relative z-10 flex w-[20px] flex-none cursor-grab items-center justify-center bg-zinc-50 shadow-[-1px_0_0_0_rgba(0,0,0,0.1)] dark:bg-zinc-800 dark:shadow-[-1px_0_0_0_rgba(255,255,255,0.1)]"
 					@mousedown="slideReady"
 					@touchstart="slideReady"
 					x-ref="componentPreviewerHandle"

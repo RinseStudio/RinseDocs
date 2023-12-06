@@ -5,7 +5,7 @@ import '@styles/rinsedocs.css';
 ---
 
 <!doctype html>
-<html lang="en" x-data="app" x-bind:class="$store.app.darkMode ? 'dark' : ''" transition:animate="none">
+<html lang="en" x-data="app" x-bind:class="$store.GLOBAL.darkMode ? 'dark' : ''" transition:animate="none">
 	<head>
 		<title>{title}</title>
 
@@ -30,60 +30,76 @@ import '@styles/rinsedocs.css';
 
 			// Initialize Alpine
 			document.addEventListener('alpine:init', () => {
-				Alpine.data('app', {
-					app: {
-						darkMode: false,
-						toc: true,
-						sidebarNavScrollPos: 0,
+				Alpine.store('GLOBAL', {
+					darkMode: false,
+					toc: true,
+					sidebarVisible: true,
+					sidebarListScrollPos: 0,
+				});
 
-						cursorOffset: 0,
-						sidebarWidth: 300,
-					},
+				Alpine.data('app', () => ({
 					init() {
 						// this.darkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
 					},
-					toggleDarkMode() {
-						this.darkMode = !this.darkMode;
-					},
-					toggleTOC() {
-						this.toc = !this.toc;
-					},
+					APP: {
+						toggleDarkMode() {
+							Alpine.store('GLOBAL').darkMode = !Alpine.store('GLOBAL').darkMode;
+							const iframes = document.querySelectorAll('iframe.rd-iframe');
 
-					slideReady() {
-						$event.preventDefault();
-						console.log('takeoff!');
-						console.log('darkMode is' + this.darkMode);
-						console.log(this.sidebarWidth);
-						console.log(Alpine.store('viewSettings').sidebarWidth);
-						this.slideMoveHandler = this.slideMove.bind(this); // Save a reference to the bound slideMove function
-						this.cursorOffset = e.clientX - this.$refs.slideHandle.getBoundingClientRect().x;
-						document.body.style.pointerEvents = 'none';
-						document.documentElement.style.cursor = 'grabbing';
+							iframes.forEach((iframe) => {
+								// Access the iframe's content document
+								const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
 
-						document.addEventListener('mousemove', this.slideMoveHandler);
-						document.addEventListener('mouseup', this.slideFinish.bind(this));
-					},
-					slideFinish() {
-						document.body.style.pointerEvents = 'auto';
-						document.documentElement.style.cursor = 'default';
-						document.removeEventListener('mousemove', this.slideMoveHandler);
-					},
-					slideMove(e) {
-						console.log('moving');
-						// let containerWidth = this.$refs.componentPreviewerWrapper.offsetWidth;
+								// Access the <html> element inside the iframe
+								const htmlElement = iframeDocument.documentElement;
 
-						// let slideWidth = this.$refs.componentPreviewerWrapper.getBoundingClientRect().right - e.clientX;
+								// Toggle the 'dark-mode' class on the <html> element
+								htmlElement.classList.toggle('dark');
+							});
+						},
+						toggleTOC() {
+							Alpine.store('GLOBAL').toc = !Alpine.store('GLOBAL').toc;
+						},
+						toggleSidebar() {
+							Alpine.store('GLOBAL').sidebarVisible = true;
+							const sidebar = document.querySelector('.app');
+							sidebar.style.setProperty('--sidebarWidth', '300px');
+						},
+						slideReady(e) {
+							e.preventDefault();
+							this.APP.slideMoveHandler = this.APP.slideMove.bind(this); // Save a reference to the bound slideMove function
 
-						// console.log(slideWidth);
-						// if (slideWidth >= containerWidth - this.cursorOffset) {
-						// 	this.width = containerWidth;
-						// } else if (slideWidth <= 20 - this.cursorOffset) {
-						// 	this.width = 20;
-						// } else {
-						// 	this.width = slideWidth + this.cursorOffset;
-						// }
+							this.cursorOffset = e.clientX - this.$refs.slideHandle.getBoundingClientRect().x;
+							document.body.style.pointerEvents = 'none';
+							document.documentElement.style.cursor = 'grabbing';
+
+							document.addEventListener('mousemove', this.APP.slideMoveHandler);
+							document.addEventListener('mouseup', this.APP.slideFinish.bind(this));
+						},
+						slideFinish() {
+							document.body.style.pointerEvents = 'auto';
+							document.documentElement.style.cursor = 'default';
+							document.removeEventListener('mousemove', this.APP.slideMoveHandler);
+							this.$refs.slideHandle.style.opacity = '';
+						},
+						slideMove(e) {
+							let sidebarWidth = e.clientX;
+							const sidebar = document.querySelector('.app');
+							this.$refs.slideHandle.style.opacity = 1;
+
+							if (sidebarWidth >= 100 + this.cursorOffset) {
+								sidebar.style.setProperty('--sidebarWidth', sidebarWidth - this.cursorOffset + 'px');
+								Alpine.store('GLOBAL').sidebarVisible = true;
+							} else if (sidebarWidth <= 80 + this.cursorOffset) {
+								sidebar.style.setProperty('--sidebarWidth', 60 + 'px');
+								Alpine.store('GLOBAL').sidebarVisible = false;
+							} else {
+								sidebar.style.setProperty('--sidebarWidth', sidebarWidth - this.cursorOffset + 'px');
+								Alpine.store('GLOBAL').sidebarVisible = true;
+							}
+						},
 					},
-				});
+				}));
 
 				Alpine.data('sidebarLinkState', ($el) => ({
 					activeSlug: $el.dataset.currentSlug,
@@ -118,7 +134,6 @@ import '@styles/rinsedocs.css';
 				Alpine.data('tooltip', () => ({
 					tooltipVisible: false,
 					showTooltip() {
-						console.log('tooltip-loaded');
 						this.tooltipVisible = true; // Show the tooltip
 					},
 					hideTooltip() {
@@ -170,7 +185,6 @@ import '@styles/rinsedocs.css';
 							slideWidth = this.$refs.componentPreviewerWrapper.getBoundingClientRect().right - e.clientX;
 						}
 
-						console.log(slideWidth);
 						if (slideWidth >= containerWidth - this.cursorOffset) {
 							this.width = containerWidth;
 						} else if (slideWidth <= 20 - this.cursorOffset) {
@@ -205,54 +219,46 @@ import '@styles/rinsedocs.css';
 				}));
 			});
 
-			const sidebarNav = document.querySelector('.sidebarNav');
-			const sidebarLinks = sidebarNav.querySelectorAll('.sidebarItem a');
+			const sidebarList = document.querySelector('.sidebar-list');
+			const sidebarListItems = sidebarList.querySelectorAll('.sidebar-item');
 			const currentURL = window.location.href;
 
-			sidebarLinks.forEach((link) => {
+			sidebarListItems.forEach((link) => {
 				if (link.href === currentURL) {
-					link.closest('.sidebarItem').classList.add('bg-zinc-200/70', 'text-gray-900');
+					link.classList.add('is-active');
 				}
 			});
 
 			document.addEventListener('astro:before-preparation', (ev) => {
-				const sidebarWrapper = document.querySelector('.sidebarWrapper');
-				Alpine.store('viewSettings').sidebarNavScrollPos = sidebarWrapper.scrollTop;
+				const sidebar = document.querySelector('.sidebar');
+				Alpine.store('GLOBAL').sidebarListScrollPos = sidebar.scrollTop;
 
-				const sidebarNav = document.querySelector('.sidebarNav');
-				const sidebarLinks = sidebarNav.querySelectorAll('.sidebarItem a');
+				const sidebarList = document.querySelector('.sidebar-list');
+				const sidebarListItems = sidebarList.querySelectorAll('.sidebar-item');
 
 				const currentURL = window.location.href;
-				sidebarLinks.forEach((link) => {
-					link.closest('.sidebarItem').classList.remove('bg-zinc-200/70', 'text-gray-900');
+				sidebarListItems.forEach((link) => {
+					link.classList.remove('is-active');
 				});
 			});
 
 			document.addEventListener('astro:after-swap', () => {
-				const sidebarWrapper = document.querySelector('.sidebarWrapper');
-				sidebarWrapper.scrollTop = Alpine.store('viewSettings').sidebarNavScrollPos;
+				const sidebar = document.querySelector('.sidebar');
+				sidebar.scrollTop = Alpine.store('GLOBAL').sidebarListScrollPos;
 
-				const sidebarNav = document.querySelector('.sidebarNav');
-				const sidebarLinks = sidebarNav.querySelectorAll('.sidebarItem a');
+				const sidebarList = document.querySelector('.sidebar-list');
+				const sidebarListItems = sidebarList.querySelectorAll('.sidebar-item');
 
 				const currentURL = window.location.href;
-				sidebarLinks.forEach((link) => {
+				sidebarListItems.forEach((link) => {
 					if (link.href === currentURL) {
-						link.closest('.sidebarItem').classList.add('bg-zinc-200/70', 'text-gray-900');
+						link.classList.add('is-active');
 					}
 				});
 			});
 
 			window.addEventListener('load', (event) => {
 				const iframes = document.querySelectorAll('iframe.rd-iframe');
-
-				iframes.forEach((iframe) => {
-					// Access the iframe's content document
-					const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
-
-					// Access the body element inside the iframe and add a class
-					iframeDocument.body.style.background = '#000';
-				});
 
 				const setIframeHeight = (iframe) => {
 					const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;

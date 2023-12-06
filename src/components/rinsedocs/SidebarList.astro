@@ -4,20 +4,23 @@ import SidebarListItem from '@components/rinsedocs/SidebarListItem.astro';
 const { data } = Astro.props;
 ---
 
-<ul class="sidebarNav">
+<ul class="sidebar-list">
 	{
 		data.map((group) => {
 			return (
 				<li x-data="{open: true}">
-					<button class="text-[10px] font-bold uppercase leading-[32px] tracking-wide text-gray-500 dark:text-gray-500" x-on:click="open = !open, active = !active">
-						<div class="group/sidebarParent inline-flex items-center">
-							{group.label}
+					<button
+						class="group/sidebar-parent flex w-full overflow-hidden whitespace-nowrap text-left text-[10px] font-bold uppercase leading-[32px] tracking-wide text-gray-500 dark:text-gray-500"
+						x-on:click="open = !open, active = !active"
+					>
+						<div class="inline-flex items-center overflow-hidden">
+							<div class="truncate">{group.label}</div>
 							<svg
 								x-bind:class="open ? '' : '-rotate-90'"
 								xmlns="http://www.w3.org/2000/svg"
 								viewBox="0 0 20 20"
 								fill="currentColor"
-								class="h-4 w-4 opacity-0 duration-200 group-hover/sidebarParent:opacity-100"
+								class="h-4 w-4 flex-none opacity-0 duration-200 group-hover/sidebar-parent:opacity-100"
 							>
 								<path
 									fill-rule="evenodd"

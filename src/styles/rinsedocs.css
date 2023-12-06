@@ -28,12 +28,27 @@
 	display: none !important;
 }
 
+/* Shiki syntax highlighter with light & dark support - https://github.com/antfu/shikiji#lightdark-dual-themes */
 .astro-code {
-	@apply !bg-gray-900 !px-5 !py-3;
+	@apply !bg-zinc-50 !px-5 !py-3;
+}
+
+html.dark .astro-code,
+html.dark .astro-code span {
+	color: var(--shiki-dark) !important;
+	/* background-color: var(--shiki-dark-bg) !important; */
+	@apply !bg-zinc-800;
+}
+
+.sidebar-item {
+	@apply flex items-center justify-between truncate rounded-md pl-2.5 pr-1 text-[13px] leading-[28px]  text-gray-600 hover:bg-zinc-200/70 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-zinc-800/70 hover:dark:text-gray-400;
+}
+.sidebar-item.is-active {
+	@apply bg-zinc-200/70 text-gray-900 dark:bg-zinc-800/70 dark:text-gray-100;
 }
 
 .rinsedown {
-	@apply text-[15px] leading-relaxed text-slate-600;
+	@apply text-[15px] leading-relaxed text-gray-600 dark:text-gray-400;
 }
 
 .rinsedown > h1,
@@ -55,11 +70,11 @@
 .rinsedown > h1,
 .rinsedown > h2,
 .rinsedown > h3 {
-	@apply font-semibold tracking-tight text-slate-900;
+	@apply font-semibold tracking-tight text-gray-900 dark:text-gray-100;
 }
 
 .rinsedown > hr {
-	@apply my-10 border-t border-slate-200;
+	@apply my-10 border-t border-zinc-200;
 }
 
 .rinsedown > h1 {

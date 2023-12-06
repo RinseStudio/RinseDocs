@@ -5,7 +5,7 @@ const { heading } = Astro.props;
 <li class="text-[13px] leading-[28px]" class:list={heading.depth !== 2 ? 'ml-2 font-normal' : 'font-semibold'}>
 	{
 		heading.depth !== 2 ? (
-			<a class="flex items-center gap-0.5 text-slate-600 hover:text-slate-900" href={'#' + heading.slug}>
+			<a class="flex items-center gap-0.5 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100" href={'#' + heading.slug}>
 				<svg
 					class="h-3 w-3"
 					xmlns="http://www.w3.org/2000/svg"
@@ -24,7 +24,7 @@ const { heading } = Astro.props;
 				{heading.text}
 			</a>
 		) : (
-			<a class="flex items-center gap-0.5 text-slate-600 hover:text-slate-900" href={'#' + heading.slug}>
+			<a class="flex items-center gap-0.5 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100" href={'#' + heading.slug}>
 				{heading.text}
 			</a>
 		)
