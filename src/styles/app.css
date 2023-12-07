@@ -6,21 +6,13 @@
 @tailwind utilities;
 
 /* Register your custom font family and tell the browser where to find it. */
+/* Register your custom font family and tell the browser where to find it. */
 @font-face {
-	font-family: 'Inter var';
-	font-weight: 100 900;
-	font-display: swap;
+	font-family: InterVariable;
 	font-style: normal;
-	font-named-instance: 'Regular';
-	src: url('/fonts/Inter-roman.var.woff2?v=3.19') format('woff2');
-}
-@font-face {
-	font-family: 'Inter var';
 	font-weight: 100 900;
 	font-display: swap;
-	font-style: italic;
-	font-named-instance: 'Italic';
-	src: url('/fonts/Inter-italic.var.woff2?v=3.19') format('woff2');
+	src: url('/fonts/InterVariable.woff2?v=4.0') format('woff2');
 }
 
 /* Alpine JS - https://alpinejs.dev/directives/cloak */

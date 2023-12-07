@@ -20,8 +20,8 @@ const breadcrumb = helper.buildBreadcrumb(entry.slug);
 ---
 
 <Layout title={frontmatter.title} pageSettings={frontmatter.pageSettings} frontmatter={frontmatter}>
-	<div class="app grid grid-cols-[48px,var(--sidebarWidth),1fr]" style="--sidebarWidth: 280px">
-		<nav class="relative z-30 flex w-[48px] flex-none flex-col items-center border-r border-gray-300 dark:border-gray-800">
+	<div class="app grid grid-cols-[48px,var(--sidebar-width),1fr]" style="--sidebar-width: 240px">
+		<nav class="relative z-30 flex w-[48px] flex-none flex-col items-center border-r border-zinc-300 dark:border-zinc-800">
 			<div class="sticky top-0 flex flex-col gap-3.5 py-4">
 				<a
 					href="#"
@@ -218,7 +218,7 @@ const breadcrumb = helper.buildBreadcrumb(entry.slug);
 				</a>
 			</div>
 		</nav>
-		<aside class="sticky top-0 flex h-[100dvh] min-w-[280px] max-w-[500px] flex-none" transition:persist>
+		<aside class="sticky top-0 flex h-[100dvh] min-w-[200px] max-w-[500px] flex-none" transition:persist>
 			<div class="sidebar flex-1 overflow-auto">
 				<div class="flex items-center justify-between px-3 py-5">
 					<div class="truncate text-sm font-semibold text-gray-900 dark:text-gray-100">Component Library</div>
@@ -255,7 +255,7 @@ const breadcrumb = helper.buildBreadcrumb(entry.slug);
 
 				<!-- <h4 class="mb-2 px-3 text-sm font-semibold text-gray-500">Your library</h4> -->
 
-				<nav class="mx-3" data-current-slug={Astro.url.pathname} x-data="sidebarLinkState($el)">
+				<nav class="mx-3">
 					<SidebarList data={navigation} />
 				</nav>
 			</div>
@@ -275,7 +275,7 @@ const breadcrumb = helper.buildBreadcrumb(entry.slug);
 					x-bind:class="$store.GLOBAL.showTOC ? 'lg:grid-cols-[1fr,260px]' : 'lg:grid-cols-[1fr]'"
 				>
 					<div class="grid grid-rows-[auto,1fr]">
-						<div class="sticky top-0 z-20 flex items-center justify-between rounded-tl-lg border-b border-gray-200 bg-white px-2 py-2 dark:border-gray-800 dark:bg-zinc-900">
+						<div class="sticky top-0 z-20 flex items-center justify-between rounded-tl-lg border-b border-zinc-200 bg-white px-2 py-2 dark:border-zinc-800 dark:bg-zinc-900">
 							<div class="flex items-center">
 								<button
 									x-cloak
@@ -449,7 +449,7 @@ const breadcrumb = helper.buildBreadcrumb(entry.slug);
 							</article>
 						</div>
 					</div>
-					<div x-show="$store.GLOBAL.showTOC" class="relative z-20 hidden border-l border-gray-200 dark:border-gray-800 lg:block">
+					<div x-show="$store.GLOBAL.showTOC" class="relative z-20 hidden border-l border-zinc-200 dark:border-zinc-800 lg:block">
 						<nav class="sticky top-0 px-5 py-2">
 							<button
 								x-on:click="$store.GLOBAL.showTOC = false"

@@ -11,6 +11,9 @@ export const SITE = {
 	sidebarOverrides: {
 		components: [
 			{
+				label: ['general', 'General'],
+			},
+			{
 				label: ['inputs', 'Inputs'],
 			},
 			{

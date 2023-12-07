@@ -1,8 +1,12 @@
 ---
-const { languages, src, height } = Astro.props;
+const { languages, src, height, iframeClass } = Astro.props;
+let iframeClassModified = iframeClass + ' rd-iframe w-full';
 let iframeHeight;
-if (typeof height === 'string') {
+if (height !== undefined) {
 	switch (height) {
+		case 'xs':
+			iframeHeight = 100;
+			break;
 		case 'sm':
 			iframeHeight = 200;
 			break;
@@ -10,29 +14,26 @@ if (typeof height === 'string') {
 			iframeHeight = 300;
 			break;
 		case 'lg':
-			iframeHeight = 500;
+			iframeHeight = 400;
 			break;
 		case 'xl':
-			iframeHeight = 800;
+			iframeHeight = 500;
 			break;
 		case '2xl':
 			iframeHeight = 600;
 			break;
 		default:
 			// Handle other string values or set a default height
-			iframeHeight = 300;
+			iframeHeight = height;
 			break;
 	}
-} else if (typeof height === 'number') {
-	iframeHeight = height;
 } else {
-	// Handle other types or set a default height
 	iframeHeight = 300;
 }
-const alpineData = `componentPreviewer(['${languages.join("','")}'], ${iframeHeight})`;
+const alpineData = `RDComponent(['${languages.join("','")}'], ${iframeHeight})`;
 ---
 
-<div x-data={alpineData} class="rounded-lg bg-zinc-50 dark:bg-zinc-800">
+<div x-data={alpineData} class="rd-component rounded-lg border border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-800">
 	<div class="flex items-center justify-between border-b border-black/10 pl-4 dark:border-white/10">
 		<div class="flex items-center gap-4 text-xs font-medium">
 			<button
@@ -166,16 +167,16 @@ const alpineData = `componentPreviewer(['${languages.join("','")}'], ${iframeHei
 	</div>
 
 	<div class="overflow-hidden rounded-b-lg">
-		<div x-show="mode == 'preview'" class="relative flex" x-ref="componentPreviewerWrapper">
+		<div x-show="mode == 'preview'" class="relative flex" x-ref="RDComponentWrapper">
 			<div class="flex-1">
-				<iframe src={src} class="rd-iframe w-full flex-1 items-center justify-center overflow-hidden" :style="'height: ' + iframeHeight + 'px'"></iframe>
+				<iframe src={src} class={iframeClassModified} :style="'height: ' + iframeHeight + 'px'"></iframe>
 			</div>
 			<div class="flex w-5 flex-none bg-zinc-200 dark:bg-white/10" x-bind:style="'width: ' + width + 'px;'">
 				<div
 					class="relative z-10 flex w-[20px] flex-none cursor-grab items-center justify-center bg-zinc-50 shadow-[-1px_0_0_0_rgba(0,0,0,0.1)] dark:bg-zinc-800 dark:shadow-[-1px_0_0_0_rgba(255,255,255,0.1)]"
 					@mousedown="slideReady"
 					@touchstart="slideReady"
-					x-ref="componentPreviewerHandle"
+					x-ref="RDComponentHandle"
 				>
 					<div
 						class="after:contents-[''] before:content-['']-[''] flex

@@ -1,0 +1,344 @@
+---
+title: Tables
+date: 2023-05-12
+author: Jin Su Park,
+thumbnail: '@assets/runboy-01.jpg'
+description: Buttons enable effortless navigation and actions with a single tap.
+draft: false
+weight: 0
+meta:
+  - label: Edit this page
+    url: '#'
+    icon: pencil
+  - label: View on GitHub
+    url: '#'
+    icon: github
+pageSettings:
+  showSidebar: true
+  showTOC: true
+  enableFluidWidth: true
+---
+
+import RDComponent from '@components/rinsedocs/RDComponent.astro';
+
+## Introduction
+
+Buttons are essential interactive elements in user interfaces, designed for easy clicks or taps.
+
+<RDComponent 
+	languages={['HTML', 'Astro']} 
+	src="/components/general/buttons/introduction" 
+	height="xs"
+>	
+  <slot slot="0">
+		```js
+		export default defineConfig({
+			integrations: [
+				tailwind({
+					applyBaseStyles: false,
+				}),
+				mdx(),
+				alpinejs(),
+			],
+			markdown: {
+				remarkPlugins: [[remarkToc, { heading: 'contents' }]],
+				rehypePlugins: [rehypeSlug, [rehypeAutolinkHeadings, { behavior: 'append' }]],
+			},
+		});
+		```
+	</slot>
+	<slot slot="1">
+		```html
+		<button class="w-full text-sm leading-[32px] text-slate-200/60 hover:text-white" x-data="{active: false}" x-on:click="open = !open, active = !active">
+			<div
+				class="group/sidebarParent inline-flex w-full items-center justify-between pl-[12px]"
+				x-bind:class="active == true ? 'text-white' : 'text-slate-200/60 hover:text-white'"
+			>
+				{sectionData.label}
+				<svg
+					x-bind:class="open ? '' : '-rotate-90'"
+					xmlns="http://www.w3.org/2000/svg"
+					viewBox="0 0 20 20"
+					fill="currentColor"
+					class="group-hov2er/sidebarParent:opacity-100 h-4 w-4 opacity-100 duration-200"
+				>
+					<path
+						fill-rule="evenodd"
+						d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+						clip-rule="evenodd"
+					/>
+				</svg>
+			</div>
+		</button>
+		```
+	</slot>
+</RDComponent>
+
+## Button Sizes
+
+There are a total of 5 button sizes to choose from ranging from `xs` to `xl`.
+
+<RDComponent 
+	languages={['HTML', 'Astro']} 
+	src="/components/general/buttons/button-sizes" 
+	height="108"
+>	
+  <slot slot="0">
+		```js
+		export default defineConfig({
+			integrations: [
+				tailwind({
+					applyBaseStyles: false,
+				}),
+				mdx(),
+				alpinejs(),
+			],
+			markdown: {
+				remarkPlugins: [[remarkToc, { heading: 'contents' }]],
+				rehypePlugins: [rehypeSlug, [rehypeAutolinkHeadings, { behavior: 'append' }]],
+			},
+		});
+		```
+	</slot>
+	<slot slot="1">
+		```html
+		<button class="w-full text-sm leading-[32px] text-slate-200/60 hover:text-white" x-data="{active: false}" x-on:click="open = !open, active = !active">
+			<div
+				class="group/sidebarParent inline-flex w-full items-center justify-between pl-[12px]"
+				x-bind:class="active == true ? 'text-white' : 'text-slate-200/60 hover:text-white'"
+			>
+				{sectionData.label}
+				<svg
+					x-bind:class="open ? '' : '-rotate-90'"
+					xmlns="http://www.w3.org/2000/svg"
+					viewBox="0 0 20 20"
+					fill="currentColor"
+					class="group-hov2er/sidebarParent:opacity-100 h-4 w-4 opacity-100 duration-200"
+				>
+					<path
+						fill-rule="evenodd"
+						d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+						clip-rule="evenodd"
+					/>
+				</svg>
+			</div>
+		</button>
+		```
+	</slot>
+</RDComponent>
+
+---
+
+## Button Styles
+
+There are 4 different types of button styles.
+
+### Primary buttons
+
+<RDComponent 
+	languages={['HTML', 'Astro']} 
+	src="/components/general/buttons/primary-buttons" 
+	height="204"
+>	
+  <slot slot="0">
+		```js
+		export default defineConfig({
+			integrations: [
+				tailwind({
+					applyBaseStyles: false,
+				}),
+				mdx(),
+				alpinejs(),
+			],
+			markdown: {
+				remarkPlugins: [[remarkToc, { heading: 'contents' }]],
+				rehypePlugins: [rehypeSlug, [rehypeAutolinkHeadings, { behavior: 'append' }]],
+			},
+		});
+		```
+	</slot>
+	<slot slot="1">
+		```html
+		<button class="w-full text-sm leading-[32px] text-slate-200/60 hover:text-white" x-data="{active: false}" x-on:click="open = !open, active = !active">
+			<div
+				class="group/sidebarParent inline-flex w-full items-center justify-between pl-[12px]"
+				x-bind:class="active == true ? 'text-white' : 'text-slate-200/60 hover:text-white'"
+			>
+				{sectionData.label}
+				<svg
+					x-bind:class="open ? '' : '-rotate-90'"
+					xmlns="http://www.w3.org/2000/svg"
+					viewBox="0 0 20 20"
+					fill="currentColor"
+					class="group-hov2er/sidebarParent:opacity-100 h-4 w-4 opacity-100 duration-200"
+				>
+					<path
+						fill-rule="evenodd"
+						d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+						clip-rule="evenodd"
+					/>
+				</svg>
+			</div>
+		</button>
+		```
+	</slot>
+</RDComponent>
+
+### Secondary buttons
+
+<RDComponent 
+	languages={['HTML', 'Astro']} 
+	src="/components/general/buttons/secondary-buttons" 
+	height="204"
+	iframeClass="bg-white dark:bg-zinc-800"
+>	
+  <slot slot="0">
+		```js
+		export default defineConfig({
+			integrations: [
+				tailwind({
+					applyBaseStyles: false,
+				}),
+				mdx(),
+				alpinejs(),
+			],
+			markdown: {
+				remarkPlugins: [[remarkToc, { heading: 'contents' }]],
+				rehypePlugins: [rehypeSlug, [rehypeAutolinkHeadings, { behavior: 'append' }]],
+			},
+		});
+		```
+	</slot>
+	<slot slot="1">
+		```html
+		<button class="w-full text-sm leading-[32px] text-slate-200/60 hover:text-white" x-data="{active: false}" x-on:click="open = !open, active = !active">
+			<div
+				class="group/sidebarParent inline-flex w-full items-center justify-between pl-[12px]"
+				x-bind:class="active == true ? 'text-white' : 'text-slate-200/60 hover:text-white'"
+			>
+				{sectionData.label}
+				<svg
+					x-bind:class="open ? '' : '-rotate-90'"
+					xmlns="http://www.w3.org/2000/svg"
+					viewBox="0 0 20 20"
+					fill="currentColor"
+					class="group-hov2er/sidebarParent:opacity-100 h-4 w-4 opacity-100 duration-200"
+				>
+					<path
+						fill-rule="evenodd"
+						d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+						clip-rule="evenodd"
+					/>
+				</svg>
+			</div>
+		</button>
+		```
+	</slot>
+</RDComponent>
+
+### Outline buttons
+
+<RDComponent 
+	languages={['HTML', 'Astro']} 
+	src="/components/general/buttons/outline-buttons" 
+	height="204"
+	iframeClass="bg-white dark:bg-zinc-800"
+>	
+  <slot slot="0">
+		```js
+		export default defineConfig({
+			integrations: [
+				tailwind({
+					applyBaseStyles: false,
+				}),
+				mdx(),
+				alpinejs(),
+			],
+			markdown: {
+				remarkPlugins: [[remarkToc, { heading: 'contents' }]],
+				rehypePlugins: [rehypeSlug, [rehypeAutolinkHeadings, { behavior: 'append' }]],
+			},
+		});
+		```
+	</slot>
+	<slot slot="1">
+		```html
+		<button class="w-full text-sm leading-[32px] text-slate-200/60 hover:text-white" x-data="{active: false}" x-on:click="open = !open, active = !active">
+			<div
+				class="group/sidebarParent inline-flex w-full items-center justify-between pl-[12px]"
+				x-bind:class="active == true ? 'text-white' : 'text-slate-200/60 hover:text-white'"
+			>
+				{sectionData.label}
+				<svg
+					x-bind:class="open ? '' : '-rotate-90'"
+					xmlns="http://www.w3.org/2000/svg"
+					viewBox="0 0 20 20"
+					fill="currentColor"
+					class="group-hov2er/sidebarParent:opacity-100 h-4 w-4 opacity-100 duration-200"
+				>
+					<path
+						fill-rule="evenodd"
+						d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+						clip-rule="evenodd"
+					/>
+				</svg>
+			</div>
+		</button>
+		```
+	</slot>
+</RDComponent>
+
+### Ghost buttons
+
+<RDComponent 
+	languages={['HTML', 'Astro']} 
+	src="/components/general/buttons/ghost-buttons" 
+	height="204"
+	iframeClass="bg-white dark:bg-zinc-800"
+>	
+  <slot slot="0">
+		```js
+		export default defineConfig({
+			integrations: [
+				tailwind({
+					applyBaseStyles: false,
+				}),
+				mdx(),
+				alpinejs(),
+			],
+			markdown: {
+				remarkPlugins: [[remarkToc, { heading: 'contents' }]],
+				rehypePlugins: [rehypeSlug, [rehypeAutolinkHeadings, { behavior: 'append' }]],
+			},
+		});
+		```
+	</slot>
+	<slot slot="1">
+		```html
+		<button class="w-full text-sm leading-[32px] text-slate-200/60 hover:text-white" x-data="{active: false}" x-on:click="open = !open, active = !active">
+			<div
+				class="group/sidebarParent inline-flex w-full items-center justify-between pl-[12px]"
+				x-bind:class="active == true ? 'text-white' : 'text-slate-200/60 hover:text-white'"
+			>
+				{sectionData.label}
+				<svg
+					x-bind:class="open ? '' : '-rotate-90'"
+					xmlns="http://www.w3.org/2000/svg"
+					viewBox="0 0 20 20"
+					fill="currentColor"
+					class="group-hov2er/sidebarParent:opacity-100 h-4 w-4 opacity-100 duration-200"
+				>
+					<path
+						fill-rule="evenodd"
+						d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+						clip-rule="evenodd"
+					/>
+				</svg>
+			</div>
+		</button>
+		```
+	</slot>
+</RDComponent>
+
+
+

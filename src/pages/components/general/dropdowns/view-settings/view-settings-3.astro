@@ -1,0 +1,108 @@
+---
+import Layout from '@layouts/rinsedocs/Raw.astro';
+---
+
+<Layout layoutClass="flex items-center justify-center px-4 py-10">
+	<div class="flex min-w-[320px] justify-end">
+		<div class="relative" x-data="{open: true}">
+			<button
+				@click="open = !open"
+				class="h-[28px] min-w-[28px]
+		rounded-md bg-transparent bg-white px-2 text-[12px] font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+			>
+				View settings
+			</button>
+
+			<div x-cloak x-show="open" x-transition class="absolute right-0 top-full mt-2 rounded-md bg-white shadow-lg">
+				<div class="mb-2 w-[320px] border-b border-gray-200 px-3 py-3">
+					<button class="flex items-center gap-1 text-xs font-medium text-gray-500 hover:text-gray-700">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="16"
+							height="16"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							class="lucide lucide-chevron-left"><path d="m15 18-6-6 6-6"></path></svg
+						>
+						 Event Name
+					</button>
+				</div>
+				<div class="mb-3 grid grid-cols-1 gap-5 px-3 py-1">
+					<div>
+						<label class="text-medium mb-1 block text-[13px] text-gray-900">Column Type</label>
+						<div class="relative" x-data="{open: false}" @click.away="open = false">
+							<button
+								@click="open = !open"
+								class="flex h-9 w-full items-center justify-between rounded-md border-0 py-1.5 pl-3 text-[13px] text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+							>
+								Select option
+								<div class="pointer-events-none flex h-9 w-9 items-center justify-center">
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										width="16"
+										height="16"
+										viewBox="0 0 24 24"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										class="lucide lucide-chevron-down"><path d="m6 9 6 6 6-6"></path></svg
+									>
+								</div>
+							</button>
+
+							<div x-cloak x-show="open" x-transition class="absolute right-0 top-full z-10 mt-2 w-full overflow-hidden rounded-md bg-white shadow-lg">
+								<ul class="space-y-px px-1 py-1">
+									<li>
+										<button class="flex h-8 w-full items-center rounded px-2 text-[13px] text-gray-900 hover:bg-gray-100"> Most recent</button>
+									</li>
+									<li>
+										<button class="flex h-8 w-full items-center rounded px-2 text-[13px] text-gray-900 hover:bg-gray-100"> Top 20</button>
+									</li>
+									<li>
+										<button class="flex h-8 w-full items-center rounded px-2 text-[13px] text-gray-900 hover:bg-gray-100"> Count</button>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div>
+						<label class="text-medium mb-1 block text-[13px] text-gray-900">Column Label</label>
+						<div class="relative rounded-md shadow-sm">
+							<input
+								type="text"
+								class="flex h-9 w-full items-center rounded-md border-0 px-3 text-[13px] text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400"
+								placeholder="e.g. Most recent event"
+								value="Most recent event"
+							/>
+						</div>
+					</div>
+				</div>
+				<div class="flex justify-end gap-2 border-t border-gray-200 px-3 py-3">
+					<button
+						class="h-[32px]
+			min-w-[36px]
+			rounded-md bg-gray-100 px-2.5 text-[13px]
+      font-semibold text-gray-700 hover:bg-gray-200 disabled:bg-gray-50 disabled:text-gray-400 dark:bg-gray-100/10 dark:text-gray-100 dark:disabled:bg-blue-300/30"
+					>
+						Cancel
+					</button>
+					<button
+						class="h-[32px]
+      min-w-[32px]
+			rounded-md
+			bg-blue-500 px-2.5 text-[13px] font-semibold
+      text-white hover:bg-blue-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 disabled:bg-blue-300 dark:bg-blue-500 dark:disabled:bg-blue-300/30"
+					>
+						Add column
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</Layout>

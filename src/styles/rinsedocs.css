@@ -32,7 +32,7 @@ html.dark .astro-code span {
 }
 
 .sidebar-item {
-	@apply flex items-center justify-between truncate rounded-md pl-2.5 pr-1 text-[13px] leading-[28px]  text-gray-600 hover:bg-zinc-200/70 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-zinc-800/70 hover:dark:text-gray-400;
+	@apply flex items-center justify-between truncate rounded-md pl-2.5 pr-1 text-[13px] leading-[28px]  text-gray-600 hover:bg-zinc-200/70 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-zinc-800/70 hover:dark:text-gray-100;
 }
 .sidebar-item.is-active {
 	@apply bg-zinc-200/70 text-gray-900 dark:bg-zinc-800/70 dark:text-gray-100;
@@ -65,7 +65,7 @@ html.dark .astro-code span {
 }
 
 .rinsedown > hr {
-	@apply my-10 border-t border-zinc-200;
+	@apply my-10 border-t border-zinc-200 dark:border-zinc-700;
 }
 
 .rinsedown > h1 {
@@ -73,11 +73,11 @@ html.dark .astro-code span {
 }
 
 .rinsedown > h2 {
-	@apply mb-3 mt-10 text-lg font-semibold;
+	@apply mb-3 mt-10 text-lg font-[650];
 }
 
 .rinsedown > h3 {
-	font-size: 1.25em;
+	@apply mb-3 mt-6 text-[15px] font-[650];
 }
 
 .rinsedown > p {
@@ -100,11 +100,7 @@ html.dark .astro-code span {
 }
 
 .rinsedown > p code {
-	padding: 0.2em 0.5em;
-	margin: 0;
-	font-size: 85%;
-	background-color: #f6f6f6;
-	border-radius: 3px;
+	@apply mx-1 select-all rounded-md bg-zinc-100 px-1.5 py-0.5 text-xs font-semibold dark:bg-zinc-700 dark:text-gray-100;
 }
 
 .rinsedown > ul,

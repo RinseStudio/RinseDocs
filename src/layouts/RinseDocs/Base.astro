@@ -44,22 +44,33 @@ const alpineData = `app(${[sidebarSetting]}, ${[tocSetting]}, ${[fluidWidthSetti
 					showSidebar: true,
 					showTOC: true,
 					enableFluidWidth: true,
-					sidebarListScrollPos: 0,
+					sidebarScrollPos: 0,
+					sidebarWidth: 240,
 				});
 
 				Alpine.data('app', (sidebarSetting = true, tocSetting = true, fluidWidthSetting = true) => ({
 					init() {
+						const darkMode = localStorage.getItem('darkMode');
+						if (darkMode == 'true') {
+							// Do something specific for dark mode
+							Alpine.store('GLOBAL').darkMode = true;
+						} else {
+							Alpine.store('GLOBAL').darkMode = false;
+						}
 						Alpine.store('GLOBAL').showSidebar = sidebarSetting;
 						Alpine.store('GLOBAL').showTOC = tocSetting;
 						Alpine.store('GLOBAL').enableFluidWidth = fluidWidthSetting;
 						if (Alpine.store('GLOBAL').showSidebar == false) {
 							const sidebar = document.querySelector('.app');
-							sidebar.style.setProperty('--sidebarWidth', 12 + 'px');
+							sidebar.style.setProperty('--sidebar-width', 12 + 'px');
 						}
 					},
 					APP: {
 						toggleDarkMode() {
 							Alpine.store('GLOBAL').darkMode = !Alpine.store('GLOBAL').darkMode;
+
+							localStorage.setItem('darkMode', Alpine.store('GLOBAL').darkMode);
+
 							const iframes = document.querySelectorAll('iframe.rd-iframe');
 
 							iframes.forEach((iframe) => {
@@ -79,7 +90,7 @@ const alpineData = `app(${[sidebarSetting]}, ${[tocSetting]}, ${[fluidWidthSetti
 						toggleSidebar() {
 							Alpine.store('GLOBAL').showSidebar = true;
 							const sidebar = document.querySelector('.app');
-							sidebar.style.setProperty('--sidebarWidth', '300px');
+							sidebar.style.setProperty('--sidebar-width', '300px');
 						},
 						slideReady(e) {
 							e.preventDefault();
@@ -105,29 +116,21 @@ const alpineData = `app(${[sidebarSetting]}, ${[tocSetting]}, ${[fluidWidthSetti
 
 							if (sidebarWidth >= 100 + this.cursorOffset) {
 								if (sidebarWidth >= 500 + this.cursorOffset) {
-									sidebar.style.setProperty('--sidebarWidth', 500 - 48 - this.cursorOffset + 'px');
+									sidebar.style.setProperty('--sidebar-width', 500 - 48 - this.cursorOffset + 'px');
 									Alpine.store('GLOBAL').showSidebar = false;
 								} else {
-									sidebar.style.setProperty('--sidebarWidth', sidebarWidth - 48 - this.cursorOffset + 'px');
+									sidebar.style.setProperty('--sidebar-width', sidebarWidth - 48 - this.cursorOffset + 'px');
 								}
 
 								Alpine.store('GLOBAL').showSidebar = true;
 							} else if (sidebarWidth <= 80 + this.cursorOffset) {
-								sidebar.style.setProperty('--sidebarWidth', 12 + 'px');
+								sidebar.style.setProperty('--sidebar-width', 12 + 'px');
 								Alpine.store('GLOBAL').showSidebar = false;
 							} else {
-								sidebar.style.setProperty('--sidebarWidth', sidebarWidth - 48 - this.cursorOffset + 'px');
+								sidebar.style.setProperty('--sidebar-width', sidebarWidth - 48 - this.cursorOffset + 'px');
 								Alpine.store('GLOBAL').showSidebar = true;
 							}
 						},
-					},
-				}));
-
-				Alpine.data('sidebarLinkState', ($el) => ({
-					activeSlug: $el.dataset.currentSlug,
-					init() {},
-					updateLinks(el) {
-						this.activeSlug = el.dataset.slug;
 					},
 				}));
 
@@ -163,7 +166,7 @@ const alpineData = `app(${[sidebarSetting]}, ${[tocSetting]}, ${[fluidWidthSetti
 					},
 				}));
 
-				Alpine.data('componentPreviewer', (langs = '', height = 200) => ({
+				Alpine.data('RDComponent', (langs = '', height = 200) => ({
 					mode: 'preview',
 					languageSelection: 0,
 					showTooltip: false,
@@ -176,12 +179,12 @@ const alpineData = `app(${[sidebarSetting]}, ${[tocSetting]}, ${[fluidWidthSetti
 					},
 					resetContainer(e) {
 						e.preventDefault();
-						this.width = this.$refs.componentPreviewerWrapper.offsetWidth;
+						this.width = this.$refs.RDComponentWrapper.offsetWidth;
 					},
 					slideReady(e) {
 						e.preventDefault();
 						this.slideMoveHandler = this.slideMove.bind(this); // Save a reference to the bound slideMove function
-						this.cursorOffset = e.clientX - this.$refs.componentPreviewerHandle.getBoundingClientRect().x;
+						this.cursorOffset = e.clientX - this.$refs.RDComponentHandle.getBoundingClientRect().x;
 						document.body.style.pointerEvents = 'none';
 						document.documentElement.style.cursor = 'grabbing';
 
@@ -198,14 +201,14 @@ const alpineData = `app(${[sidebarSetting]}, ${[tocSetting]}, ${[fluidWidthSetti
 						document.removeEventListener('touchmove', this.slideMoveHandler);
 					},
 					slideMove(e) {
-						let containerWidth = this.$refs.componentPreviewerWrapper.offsetWidth;
+						let containerWidth = this.$refs.RDComponentWrapper.offsetWidth;
 
-						let slideWidth = this.$refs.componentPreviewerWrapper.getBoundingClientRect().right - e.clientX;
+						let slideWidth = this.$refs.RDComponentWrapper.getBoundingClientRect().right - e.clientX;
 
 						if (e.touches && e.touches[0]) {
-							slideWidth = this.$refs.componentPreviewerWrapper.getBoundingClientRect().right - e.touches[0].clientX;
+							slideWidth = this.$refs.RDComponentWrapper.getBoundingClientRect().right - e.touches[0].clientX;
 						} else if (e.clientX) {
-							slideWidth = this.$refs.componentPreviewerWrapper.getBoundingClientRect().right - e.clientX;
+							slideWidth = this.$refs.RDComponentWrapper.getBoundingClientRect().right - e.clientX;
 						}
 
 						if (slideWidth >= containerWidth - this.cursorOffset) {
@@ -218,7 +221,7 @@ const alpineData = `app(${[sidebarSetting]}, ${[tocSetting]}, ${[fluidWidthSetti
 					},
 					copyCode() {
 						// Use the Clipboard API to copy the current Code to the clipboard
-						const activeSlot = this.$refs.componentPreviewer.querySelector('.rd-frame-code.is-active');
+						const activeSlot = this.$refs.RDComponent.querySelector('.rd-frame-code.is-active');
 						const codeContent = activeSlot ? activeSlot.innerText : '';
 						navigator.clipboard
 							.writeText(codeContent)
@@ -253,8 +256,12 @@ const alpineData = `app(${[sidebarSetting]}, ${[tocSetting]}, ${[fluidWidthSetti
 			});
 
 			document.addEventListener('astro:before-preparation', (ev) => {
+				const app = document.querySelector('.app');
+				const sidebarWidth = app.style.getPropertyValue('--sidebar-width');
+				Alpine.store('GLOBAL').sidebarWidth = sidebarWidth;
+
 				const sidebar = document.querySelector('.sidebar');
-				Alpine.store('GLOBAL').sidebarListScrollPos = sidebar.scrollTop;
+				Alpine.store('GLOBAL').sidebarScrollPos = sidebar.scrollTop;
 
 				const sidebarList = document.querySelector('.sidebar-list');
 				const sidebarListItems = sidebarList.querySelectorAll('.sidebar-item');
@@ -266,18 +273,21 @@ const alpineData = `app(${[sidebarSetting]}, ${[tocSetting]}, ${[fluidWidthSetti
 			});
 
 			document.addEventListener('astro:after-swap', () => {
+				const app = document.querySelector('.app');
+				app.style.setProperty('--sidebar-width', Alpine.store('GLOBAL').sidebarWidth);
+
 				const sidebar = document.querySelector('.sidebar');
-				sidebar.scrollTop = Alpine.store('GLOBAL').sidebarListScrollPos;
+				sidebar.scrollTop = Alpine.store('GLOBAL').sidebarScrollPos;
 
-				// const sidebarList = document.querySelector('.sidebar-list');
-				// const sidebarListItems = sidebarList.querySelectorAll('.sidebar-item');
+				const sidebarList = document.querySelector('.sidebar-list');
+				const sidebarListItems = sidebarList.querySelectorAll('.sidebar-item');
 
-				// const currentURL = window.location.href;
-				// sidebarListItems.forEach((link) => {
-				// 	if (link.href === currentURL) {
-				// 		link.classList.add('is-active');
-				// 	}
-				// });
+				const currentURL = window.location.href;
+				sidebarListItems.forEach((link) => {
+					if (link.href === currentURL) {
+						link.classList.add('is-active');
+					}
+				});
 			});
 		</script>
 	</body>

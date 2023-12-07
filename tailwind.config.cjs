@@ -1,17 +1,15 @@
 /** @type {import('tailwindcss').Config} */
+
 module.exports = {
 	content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
+	darkMode: 'class',
 	theme: {
 		container: {
 			center: true,
 		},
 		extend: {
 			fontFamily: {
-				sans: ['Saans', 'system-ui', 'sans-serif'],
-			},
-			fontWeight: {
-				light: '400',
-				normal: '450',
+				sans: ['InterVariable, sans-serif'],
 			},
 		},
 	},
