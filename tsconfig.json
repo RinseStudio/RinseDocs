@@ -10,9 +10,9 @@
 			"@assets/*": ["src/assets/*"],
 			"@layouts/*": ["src/layouts/*"],
 			"@styles/*": ["src/styles/*"],
-			"@data/*": ["src/data/*"]
+			"@data/*": ["src/data/*"],
+			"@rinseui/*": ["src/components/rinseui/*"]
 		},
-		"strictNullChecks": true,
-		"allowJs": true
+		"strictNullChecks": true
 	}
 }

@@ -1,0 +1,14 @@
+---
+const { checked = false } = Astro.props;
+---
+
+<div
+	class="relative flex items-center gap-3 border-b border-gray-200 px-3 before:absolute before:bottom-0 before:left-[var(--tab-indicator)] before:block before:h-[2px] before:w-[var(--indicator-width)] before:bg-blue-500 before:content-[''] dark:border-zinc-700 dark:before:bg-blue-400"
+	style="--tab-indicator: 12px; --indicator-width: 38px;"
+>
+	<button class="py-3 text-[13px] font-medium text-blue-500 dark:text-blue-400"> Fields</button>
+	<button class="py-3 text-[13px] font-medium text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"> Lists</button>
+	<button class="py-3 text-[13px] font-medium text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"> Signals</button>
+	<button class="py-3 text-[13px] font-medium text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"> Policies</button>
+	<button class="py-3 text-[13px] font-medium text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"> Metrics</button>
+</div>

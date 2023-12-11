@@ -1,0 +1,187 @@
+---
+import Layout from '@layouts/rinsedocs/Raw.astro';
+import Button from '@rinseui/elements/Button/index.astro';
+import Dropdown from '@rinseui/modules/Dropdown/index.astro';
+import DropdownGroup from '@rinseui/modules/Dropdown/DropdownGroup.astro';
+import DropdownItems from '@rinseui/modules/Dropdown/DropdownItems.astro';
+import DropdownItem from '@rinseui/modules/Dropdown/DropdownItem.astro';
+import DropdownMenuHeader from '@rinseui/modules/Dropdown/DropdownMenuHeader.astro';
+---
+
+<Layout layoutClass="flex items-center justify-center px-4 py-10">
+  <div class="flex min-w-[240px] justify-end">
+    <Dropdown direction="bottomLeft" widthClass="w-[240px]" isOpen>
+      <Button onClick={'isOpen = !isOpen'} size="sm" variant="outline">View settings</Button>
+
+      <slot slot="dropdown-content">
+        <DropdownGroup>
+          <DropdownMenuHeader>View settings</DropdownMenuHeader>
+          <ul>
+            <li>
+              <button
+                class="group/table-order flex h-9 w-full cursor-grab items-center justify-between rounded px-2 text-[13px] font-medium text-gray-900 hover:bg-zinc-100 active:cursor-grabbing dark:text-gray-300 dark:hover:bg-zinc-100/[0.06]"
+              >
+                <div class="flex flex-1 items-center overflow-hidden">
+                  <div class="mr-1.5 dark:text-gray-500">
+                    <i class="fa-solid fa-grip-dots fa-fw"></i>
+                  </div>
+                  <div class="flex-1 truncate text-left">Policy</div>
+                </div>
+                <div
+                  class="hidden h-6 w-6 items-center justify-center text-gray-400 hover:cursor-pointer hover:text-gray-600 group-hover/table-order:flex dark:text-gray-400 dark:hover:text-gray-100"
+                >
+                  <i class="fa-solid fa-times"></i>
+                </div>
+              </button>
+            </li>
+            <li>
+              <button
+                class="group/table-order flex h-9 w-full cursor-grab items-center justify-between rounded px-2 text-[13px] font-medium text-gray-900 hover:bg-zinc-100 active:cursor-grabbing dark:text-gray-300 dark:hover:bg-zinc-100/[0.06]"
+              >
+                <div class="flex flex-1 items-center overflow-hidden">
+                  <div class="mr-1.5 dark:text-gray-500">
+                    <i class="fa-solid fa-grip-dots fa-fw"></i>
+                  </div>
+                  <div class="flex-1 truncate text-left">Event</div>
+                </div>
+                <div
+                  class="hidden h-6 w-6 items-center justify-center text-gray-400 hover:cursor-pointer hover:text-gray-600 group-hover/table-order:flex dark:text-gray-400 dark:hover:text-gray-100"
+                >
+                  <i class="fa-solid fa-times"></i>
+                </div>
+              </button>
+            </li>
+            <li>
+              <button
+                class="group/table-order flex h-9 w-full cursor-grab items-center justify-between rounded px-2 text-[13px] font-medium text-gray-900 hover:bg-zinc-100 active:cursor-grabbing dark:text-gray-300 dark:hover:bg-zinc-100/[0.06]"
+              >
+                <div class="flex flex-1 items-center overflow-hidden">
+                  <div class="mr-1.5 dark:text-gray-500">
+                    <i class="fa-solid fa-grip-dots fa-fw"></i>
+                  </div>
+                  <div class="flex-1 truncate text-left">User</div>
+                </div>
+                <div
+                  class="hidden h-6 w-6 items-center justify-center text-gray-400 hover:cursor-pointer hover:text-gray-600 group-hover/table-order:flex dark:text-gray-400 dark:hover:text-gray-100"
+                >
+                  <i class="fa-solid fa-times"></i>
+                </div>
+              </button>
+            </li>
+            <li>
+              <button
+                class="group/table-order flex h-9 w-full cursor-grab items-center justify-between rounded px-2 text-[13px] font-medium text-gray-900 hover:bg-zinc-100 active:cursor-grabbing dark:text-gray-300 dark:hover:bg-zinc-100/[0.06]"
+              >
+                <div class="flex flex-1 items-center overflow-hidden">
+                  <div class="mr-1.5 dark:text-gray-500">
+                    <i class="fa-solid fa-grip-dots fa-fw"></i>
+                  </div>
+                  <div class="flex-1 truncate text-left">Location</div>
+                </div>
+                <div
+                  class="hidden h-6 w-6 items-center justify-center text-gray-400 hover:cursor-pointer hover:text-gray-600 group-hover/table-order:flex dark:text-gray-400 dark:hover:text-gray-100"
+                >
+                  <i class="fa-solid fa-times"></i>
+                </div>
+              </button>
+            </li>
+            <li>
+              <button
+                class="group/table-order flex h-9 w-full cursor-grab items-center justify-between rounded px-2 text-[13px] font-medium text-gray-900 hover:bg-zinc-100 active:cursor-grabbing dark:text-gray-300 dark:hover:bg-zinc-100/[0.06]"
+              >
+                <div class="flex flex-1 items-center overflow-hidden">
+                  <div class="mr-1.5 dark:text-gray-500">
+                    <i class="fa-solid fa-grip-dots fa-fw"></i>
+                  </div>
+                  <div class="flex-1 truncate text-left">Connection</div>
+                </div>
+                <div
+                  class="hidden h-6 w-6 items-center justify-center text-gray-400 hover:cursor-pointer hover:text-gray-600 group-hover/table-order:flex dark:text-gray-400 dark:hover:text-gray-100"
+                >
+                  <i class="fa-solid fa-times"></i>
+                </div>
+              </button>
+            </li>
+            <li>
+              <button
+                class="group/table-order flex h-9 w-full cursor-grab items-center justify-between rounded px-2 text-[13px] font-medium text-gray-900 hover:bg-zinc-100 active:cursor-grabbing dark:text-gray-300 dark:hover:bg-zinc-100/[0.06]"
+              >
+                <div class="flex flex-1 items-center overflow-hidden">
+                  <div class="mr-1.5 dark:text-gray-500">
+                    <i class="fa-solid fa-grip-dots fa-fw"></i>
+                  </div>
+                  <div class="flex-1 truncate text-left">Device</div>
+                </div>
+                <div
+                  class="hidden h-6 w-6 items-center justify-center text-gray-400 hover:cursor-pointer hover:text-gray-600 group-hover/table-order:flex dark:text-gray-400 dark:hover:text-gray-100"
+                >
+                  <i class="fa-solid fa-times"></i>
+                </div>
+              </button>
+            </li>
+            <li>
+              <button
+                class="group/table-order flex h-9 w-full cursor-grab items-center justify-between rounded px-2 text-[13px] font-medium text-gray-900 hover:bg-zinc-100 active:cursor-grabbing dark:text-gray-300 dark:hover:bg-zinc-100/[0.06]"
+              >
+                <div class="flex flex-1 items-center overflow-hidden">
+                  <div class="mr-1.5 dark:text-gray-500">
+                    <i class="fa-solid fa-grip-dots fa-fw"></i>
+                  </div>
+                  <div class="flex-1 truncate text-left">Device</div>
+                </div>
+                <div
+                  class="hidden h-6 w-6 items-center justify-center text-gray-400 hover:cursor-pointer hover:text-gray-600 group-hover/table-order:flex dark:text-gray-400 dark:hover:text-gray-100"
+                >
+                  <i class="fa-solid fa-times"></i>
+                </div>
+              </button>
+            </li>
+            <li>
+              <button
+                class="group/table-order flex h-9 w-full cursor-grab items-center justify-between rounded px-2 text-[13px] font-medium text-gray-900 hover:bg-zinc-100 active:cursor-grabbing dark:text-gray-300 dark:hover:bg-zinc-100/[0.06]"
+              >
+                <div class="flex flex-1 items-center overflow-hidden">
+                  <div class="mr-1.5 dark:text-gray-500">
+                    <i class="fa-solid fa-grip-dots fa-fw"></i>
+                  </div>
+                  <div class="flex-1 truncate text-left">Triggered signals</div>
+                </div>
+                <div
+                  class="hidden h-6 w-6 items-center justify-center text-gray-400 hover:cursor-pointer hover:text-gray-600 group-hover/table-order:flex dark:text-gray-400 dark:hover:text-gray-100"
+                >
+                  <i class="fa-solid fa-times"></i>
+                </div>
+              </button>
+            </li>
+            <li>
+              <button
+                class="group/table-order flex h-9 w-full cursor-grab items-center justify-between rounded px-2 text-[13px] font-medium text-gray-900 hover:bg-zinc-100 active:cursor-grabbing dark:text-gray-300 dark:hover:bg-zinc-100/[0.06]"
+              >
+                <div class="flex flex-1 items-center overflow-hidden">
+                  <div class="mr-1.5 dark:text-gray-500">
+                    <i class="fa-solid fa-grip-dots fa-fw"></i>
+                  </div>
+                  <div class="flex-1 truncate text-left">A really long custom column label goes here</div>
+                </div>
+                <div
+                  class="hidden h-6 w-6 items-center justify-center text-gray-400 hover:cursor-pointer hover:text-gray-600 group-hover/table-order:flex dark:text-gray-400 dark:hover:text-gray-100"
+                >
+                  <i class="fa-solid fa-times"></i>
+                </div>
+              </button>
+            </li>
+          </ul>
+        </DropdownGroup>
+        <DropdownGroup>
+          <DropdownItem>
+            <div class="mr-1.5 flex items-center justify-center">
+              <i class="fa-solid fa-plus"></i>
+            </div>
+
+             Add new column
+          </DropdownItem>
+        </DropdownGroup>
+      </slot>
+    </Dropdown>
+  </div>
+</Layout>

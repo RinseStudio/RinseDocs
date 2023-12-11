@@ -1,0 +1,19 @@
+---
+import Layout from '@layouts/rinsedocs/Raw.astro';
+import Button from '@rinseui/elements/Button/index.astro';
+---
+
+<Layout layoutClass="grid grid-cols-1 mx-auto px-4 max-w-[320px] py-10 gap-4 flex-wrap">
+	<div class="grid max-w-[320px] grid-cols-1 gap-2">
+		<div class="grid grid-cols-2 gap-2">
+			<Button variant="ghost">Default</Button>
+			<Button variant="ghost" disabled>Disabled</Button>
+		</div>
+		<div>
+			<Button variant="ghost" danger fluid>Danger</Button>
+		</div>
+		<div>
+			<Button variant="ghost" fluid>Fluid</Button>
+		</div>
+	</div>
+</Layout>

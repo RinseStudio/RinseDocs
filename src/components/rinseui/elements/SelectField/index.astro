@@ -1,0 +1,44 @@
+---
+const { value = 'Select option', validation = 'default', fluid = false, disabled = false } = Astro.props;
+
+const getRingClass = (validation) => {
+  const schema = {
+    default: `ring-1 ring-inset ring-zinc-300`,
+    success: `ring-2 ring-inset ring-green-500 dark:ring-green-500`,
+    error: `ring-2 ring-inset ring-red-400 dark:ring-red-400`,
+  };
+
+  return schema[validation] ? `${schema[validation]}` : `${schema['default']}`;
+};
+
+const getTextClass = (validation) => {
+  const schema = {
+    default: `text-gray-900 dark:text-gray-200 placeholder:text-gray-400`,
+    success: `text-green-800 dark:text-green-200 placeholder:text-green-500`,
+    error: `text-red-900 dark:text-red-200 placeholder:text-red-300`,
+  };
+
+  return schema[validation] ? `${schema[validation]}` : `${schema['default']}`;
+};
+---
+
+<div class="relative">
+  <button
+    @click="isOpen = !isOpen"
+    class={`relative flex h-9 items-center rounded-md border-0 pl-3 pr-9 text-[13px] shadow-sm   hover:bg-zinc-50 dark:hover:bg-zinc-100/[0.1] dark:ring-zinc-700 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500 dark:disabled:text-gray-400 disabled:ring-gray-200 dark:disabled:bg-zinc-100/[0.06] bg-white dark:bg-zinc-100/[0.06] 
+    ${getRingClass(validation)} 
+		${getTextClass(validation)} 
+    ${fluid ? 'w-full' : 'w-[320px]'}`}
+    disabled={disabled}
+  >
+    <div x-text={`'${value}'`}></div>
+    <div class="pointer-events-none absolute right-0 top-0 flex h-9 w-9 items-center justify-center">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4">
+        <path
+          fill-rule="evenodd"
+          d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+          clip-rule="evenodd"></path>
+      </svg>
+    </div>
+  </button>
+</div>

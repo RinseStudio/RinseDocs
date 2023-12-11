@@ -1,0 +1,287 @@
+---
+title: Button
+date: 2023-05-12
+author: Jin Su Park,
+thumbnail: '@assets/runboy-01.jpg'
+description: Buttons enable effortless navigation and actions with a single tap.
+draft: false
+weight: 0
+meta:
+  - label: Edit this page
+    url: '#'
+    icon: pencil
+  - label: View on GitHub
+    url: '#'
+    icon: github
+pageSettings:
+  showSidebar: true
+  showTOC: true
+  enableFluidWidth: true
+---
+
+import CodePreview from '@rinseui/CodePreview.astro';
+
+## Introduction
+
+Buttons are essential interactive elements in user interfaces, designed for easy clicks or taps.
+
+<CodePreview 
+  languages={['HTML']} 
+  src="/components/elements/buttons/simple-button" 
+  iframeClass="h-[100px]"
+>	
+  <slot slot="0">
+    ```html
+    <button
+      class="inline-flex items-center justify-center font-semibold whitespace-nowrap disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 dark:focus:ring-blue-500 rounded-md text-[15px] min-w-[40px] h-[40px] px-3.5 text-white dark:disabled:text-white/70 bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-500 disabled:bg-blue-500/60 dark:disabled:bg-blue-600/30 shadow-sm dark:shadow-none"
+      type="button"
+    >
+      Button
+    </button>
+    ```
+  </slot>
+
+</CodePreview>
+
+## Button Sizes
+
+There are a total of 5 button sizes to choose from ranging from `xs` to `xl`.
+
+<CodePreview languages={['HTML']} src="/components/elements/buttons/button-sizes" iframeClass="h-[308px] lg:h-[108px]">
+  <slot slot="0">
+    ```html
+    <button
+      class="inline-flex h-[28px] min-w-[28px] items-center justify-center whitespace-nowrap rounded-md bg-blue-500 px-2 text-[12px] font-semibold text-white shadow-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 disabled:cursor-not-allowed disabled:bg-blue-500/60 dark:bg-blue-600 dark:shadow-none dark:hover:bg-blue-500 dark:focus:ring-blue-500 dark:disabled:bg-blue-600/30 dark:disabled:text-white/70"
+      type="button"
+    >
+      Button
+    </button>
+    <button
+      class="inline-flex h-[32px] min-w-[32px] items-center justify-center whitespace-nowrap rounded-md bg-blue-500 px-2.5 text-[13px] font-semibold text-white shadow-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 disabled:cursor-not-allowed disabled:bg-blue-500/60 dark:bg-blue-600 dark:shadow-none dark:hover:bg-blue-500 dark:focus:ring-blue-500 dark:disabled:bg-blue-600/30 dark:disabled:text-white/70"
+      type="button"
+    >
+      Button
+    </button>
+    <button
+      class="inline-flex h-[36px] min-w-[36px] items-center justify-center whitespace-nowrap rounded-md bg-blue-500 px-3 text-[14px] font-semibold text-white shadow-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 disabled:cursor-not-allowed disabled:bg-blue-500/60 dark:bg-blue-600 dark:shadow-none dark:hover:bg-blue-500 dark:focus:ring-blue-500 dark:disabled:bg-blue-600/30 dark:disabled:text-white/70"
+      type="button"
+    >
+      Button
+    </button>
+    <button
+      class="inline-flex h-[40px] min-w-[40px] items-center justify-center whitespace-nowrap rounded-md bg-blue-500 px-3.5 text-[15px] font-semibold text-white shadow-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 disabled:cursor-not-allowed disabled:bg-blue-500/60 dark:bg-blue-600 dark:shadow-none dark:hover:bg-blue-500 dark:focus:ring-blue-500 dark:disabled:bg-blue-600/30 dark:disabled:text-white/70"
+      type="button"
+    >
+      Button
+    </button>
+    <button
+      class="inline-flex h-[44px] min-w-[44px] items-center justify-center whitespace-nowrap rounded-md bg-blue-500 px-4 text-[16px] font-semibold text-white shadow-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 disabled:cursor-not-allowed disabled:bg-blue-500/60 dark:bg-blue-600 dark:shadow-none dark:hover:bg-blue-500 dark:focus:ring-blue-500 dark:disabled:bg-blue-600/30 dark:disabled:text-white/70"
+      type="button"
+    >
+      Button
+    </button>
+    ```
+  </slot>
+</CodePreview>
+
+## Variants
+
+There are 5 different types of button style variants.
+
+### Primary buttons
+
+<CodePreview languages={['HTML']} src="/components/elements/buttons/primary-buttons" iframeClass="h-[204px]">
+  <slot slot="0">
+    ```html
+    <div class="grid max-w-[320px] grid-cols-1 gap-2">
+      <div class="grid grid-cols-2 gap-2">
+        <button class="inline-flex items-center justify-center font-semibold whitespace-nowrap disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 dark:focus:ring-blue-500 rounded-md text-[14px] min-w-[36px] h-[36px] px-3 text-white dark:disabled:text-white/70 bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-500 disabled:bg-blue-500/60 dark:disabled:bg-blue-600/30 shadow-sm dark:shadow-none" type="button">
+          Default
+        </button>
+        <button class="inline-flex items-center justify-center font-semibold whitespace-nowrap disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 dark:focus:ring-blue-500 rounded-md text-[14px] min-w-[36px] h-[36px] px-3 text-white dark:disabled:text-white/70 bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-500 disabled:bg-blue-500/60 dark:disabled:bg-blue-600/30 shadow-sm dark:shadow-none" disabled="" type="button">
+          Disabled
+        </button>
+      </div>
+      <div>
+        <button class="inline-flex items-center justify-center font-semibold whitespace-nowrap disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 dark:focus:ring-blue-500 w-full rounded-md text-[14px] min-w-[36px] h-[36px] px-3 text-white bg-red-500 hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-700 shadow-sm dark:shadow-none" type="button">
+          Danger
+        </button>
+      </div>
+      <div>
+        <button class="inline-flex items-center justify-center font-semibold whitespace-nowrap disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 dark:focus:ring-blue-500 w-full rounded-md text-[14px] min-w-[36px] h-[36px] px-3 text-white dark:disabled:text-white/70 bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-500 disabled:bg-blue-500/60 dark:disabled:bg-blue-600/30 shadow-sm dark:shadow-none" type="button">
+          Fluid
+        </button>
+      </div>
+    </div>
+    ```
+  </slot>
+
+</CodePreview>
+
+### Secondary buttons
+
+<CodePreview languages={['HTML']} src="/components/elements/buttons/secondary-buttons" iframeClass="h-[100px]" iframeClass="bg-white dark:bg-zinc-800 h-[204px]">
+  <slot slot="0">
+    ```html
+    <div class="grid max-w-[320px] grid-cols-1 gap-2">
+      <div class="grid grid-cols-2 gap-2">
+        <button
+          class="inline-flex h-[36px] min-w-[36px] items-center justify-center whitespace-nowrap rounded-md bg-zinc-100 px-3 text-[14px] font-semibold text-gray-700 hover:bg-zinc-200 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 disabled:cursor-not-allowed disabled:bg-zinc-200 disabled:text-gray-400 dark:bg-zinc-100/10 dark:text-gray-100 dark:hover:bg-zinc-100/20 dark:focus:ring-blue-500 dark:disabled:bg-zinc-600/10 dark:disabled:text-gray-600"
+          type="button"
+        >
+          Default
+        </button>
+        <button
+          class="inline-flex h-[36px] min-w-[36px] items-center justify-center whitespace-nowrap rounded-md bg-zinc-100 px-3 text-[14px] font-semibold text-gray-700 hover:bg-zinc-200 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 disabled:cursor-not-allowed disabled:bg-zinc-200 disabled:text-gray-400 dark:bg-zinc-100/10 dark:text-gray-100 dark:hover:bg-zinc-100/20 dark:focus:ring-blue-500 dark:disabled:bg-zinc-600/10 dark:disabled:text-gray-600"
+          disabled=""
+          type="button"
+        >
+          Disabled
+        </button>
+      </div>
+      <div>
+        <button
+          class="inline-flex h-[36px] w-full min-w-[36px] items-center justify-center whitespace-nowrap rounded-md bg-red-100 px-3 text-[14px] font-semibold text-red-700 hover:bg-red-200 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 disabled:cursor-not-allowed dark:bg-red-400/20 dark:text-red-300 dark:hover:bg-red-400/30 dark:focus:ring-blue-500"
+          type="button"
+        >
+          Danger
+        </button>
+      </div>
+      <div>
+        <button
+          class="inline-flex h-[36px] w-full min-w-[36px] items-center justify-center whitespace-nowrap rounded-md bg-zinc-100 px-3 text-[14px] font-semibold text-gray-700 hover:bg-zinc-200 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 disabled:cursor-not-allowed disabled:bg-zinc-200 disabled:text-gray-400 dark:bg-zinc-100/10 dark:text-gray-100 dark:hover:bg-zinc-100/20 dark:focus:ring-blue-500 dark:disabled:bg-zinc-600/10 dark:disabled:text-gray-600"
+          type="button"
+        >
+          Fluid
+        </button>
+      </div>
+    </div>
+    ```
+  </slot>
+</CodePreview>
+
+### Outline buttons
+
+<CodePreview languages={['HTML']} src="/components/elements/buttons/outline-buttons" iframeClass="bg-white dark:bg-zinc-800 h-[204px]">
+  <slot slot="0">
+    ```html
+    <div class="grid max-w-[320px] grid-cols-1 gap-2">
+      <div class="grid grid-cols-2 gap-2">
+        <button
+          class="inline-flex h-[36px] min-w-[36px] items-center justify-center whitespace-nowrap rounded-md px-3 text-[14px] font-semibold text-gray-600 hover:bg-zinc-100 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 disabled:cursor-not-allowed disabled:bg-transparent disabled:text-gray-400 dark:text-gray-300 dark:hover:bg-zinc-100/[0.08] dark:hover:text-gray-100 dark:focus:ring-blue-500 dark:disabled:bg-transparent dark:disabled:text-gray-600"
+          type="button"
+        >
+          Default
+        </button>
+        <button
+          class="inline-flex h-[36px] min-w-[36px] items-center justify-center whitespace-nowrap rounded-md px-3 text-[14px] font-semibold text-gray-600 hover:bg-zinc-100 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 disabled:cursor-not-allowed disabled:bg-transparent disabled:text-gray-400 dark:text-gray-300 dark:hover:bg-zinc-100/[0.08] dark:hover:text-gray-100 dark:focus:ring-blue-500 dark:disabled:bg-transparent dark:disabled:text-gray-600"
+          disabled=""
+          type="button"
+        >
+          Disabled
+        </button>
+      </div>
+      <div>
+        <button
+          class="inline-flex h-[36px] w-full min-w-[36px] items-center justify-center whitespace-nowrap rounded-md px-3 text-[14px] font-semibold text-red-700 hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 disabled:cursor-not-allowed dark:text-red-300 dark:hover:bg-red-400/10 dark:hover:text-red-200 dark:focus:ring-blue-500"
+          type="button"
+        >
+          Danger
+        </button>
+      </div>
+      <div>
+        <button
+          class="inline-flex h-[36px] w-full min-w-[36px] items-center justify-center whitespace-nowrap rounded-md px-3 text-[14px] font-semibold text-gray-600 hover:bg-zinc-100 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 disabled:cursor-not-allowed disabled:bg-transparent disabled:text-gray-400 dark:text-gray-300 dark:hover:bg-zinc-100/[0.08] dark:hover:text-gray-100 dark:focus:ring-blue-500 dark:disabled:bg-transparent dark:disabled:text-gray-600"
+          type="button"
+        >
+          Fluid
+        </button>
+      </div>
+    </div>
+    ```
+  </slot>
+</CodePreview>
+
+### Ghost buttons
+
+<CodePreview languages={['HTML']} src="/components/elements/buttons/ghost-buttons" iframeClass="bg-white dark:bg-zinc-900 h-[204px]">
+  <slot slot="0">
+    ```html
+    <div class="grid max-w-[320px] grid-cols-1 gap-2">
+      <div class="grid grid-cols-2 gap-2">
+        <button
+          class="inline-flex h-[36px] min-w-[36px] items-center justify-center whitespace-nowrap rounded-md px-3 text-[14px] font-semibold text-gray-600 hover:bg-zinc-100 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 disabled:cursor-not-allowed disabled:bg-transparent disabled:text-gray-400 dark:text-gray-300 dark:hover:bg-zinc-100/[0.08] dark:hover:text-gray-100 dark:focus:ring-blue-500 dark:disabled:bg-transparent dark:disabled:text-gray-600"
+          type="button"
+        >
+          Default
+        </button>
+        <button
+          class="inline-flex h-[36px] min-w-[36px] items-center justify-center whitespace-nowrap rounded-md px-3 text-[14px] font-semibold text-gray-600 hover:bg-zinc-100 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 disabled:cursor-not-allowed disabled:bg-transparent disabled:text-gray-400 dark:text-gray-300 dark:hover:bg-zinc-100/[0.08] dark:hover:text-gray-100 dark:focus:ring-blue-500 dark:disabled:bg-transparent dark:disabled:text-gray-600"
+          disabled=""
+          type="button"
+        >
+          Disabled
+        </button>
+      </div>
+      <div>
+        <button
+          class="inline-flex h-[36px] w-full min-w-[36px] items-center justify-center whitespace-nowrap rounded-md px-3 text-[14px] font-semibold text-red-700 hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 disabled:cursor-not-allowed dark:text-red-300 dark:hover:bg-red-400/10 dark:hover:text-red-200 dark:focus:ring-blue-500"
+          type="button"
+        >
+          Danger
+        </button>
+      </div>
+      <div>
+        <button
+          class="inline-flex h-[36px] w-full min-w-[36px] items-center justify-center whitespace-nowrap rounded-md px-3 text-[14px] font-semibold text-gray-600 hover:bg-zinc-100 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 disabled:cursor-not-allowed disabled:bg-transparent disabled:text-gray-400 dark:text-gray-300 dark:hover:bg-zinc-100/[0.08] dark:hover:text-gray-100 dark:focus:ring-blue-500 dark:disabled:bg-transparent dark:disabled:text-gray-600"
+          type="button"
+        >
+          Fluid
+        </button>
+      </div>
+    </div>
+    ```
+  </slot>
+</CodePreview>
+
+### Ghost Light buttons
+
+<CodePreview languages={['HTML']} src="/components/elements/buttons/ghost-light-buttons" iframeClass="bg-white dark:bg-zinc-900 h-[204px]">
+  <slot slot="0">
+    ```html
+    <div class="grid max-w-[320px] grid-cols-1 gap-2">
+      <div class="grid grid-cols-2 gap-2">
+        <button
+          class="inline-flex h-[36px] min-w-[36px] items-center justify-center whitespace-nowrap rounded-md px-3 text-[14px] font-semibold text-gray-400 hover:bg-zinc-100 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 disabled:cursor-not-allowed disabled:bg-transparent disabled:text-gray-300 dark:text-gray-500 dark:hover:bg-zinc-100/[0.06] dark:hover:text-gray-400 dark:focus:ring-blue-500 dark:disabled:bg-transparent dark:disabled:text-gray-700"
+          type="button"
+        >
+          Default
+        </button>
+        <button
+          class="inline-flex h-[36px] min-w-[36px] items-center justify-center whitespace-nowrap rounded-md px-3 text-[14px] font-semibold text-gray-400 hover:bg-zinc-100 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 disabled:cursor-not-allowed disabled:bg-transparent disabled:text-gray-300 dark:text-gray-500 dark:hover:bg-zinc-100/[0.06] dark:hover:text-gray-400 dark:focus:ring-blue-500 dark:disabled:bg-transparent dark:disabled:text-gray-700"
+          disabled=""
+          type="button"
+        >
+          Disabled
+        </button>
+      </div>
+      <div>
+        <button
+          class="inline-flex h-[36px] w-full min-w-[36px] items-center justify-center whitespace-nowrap rounded-md px-3 text-[14px] font-semibold text-red-700 hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 disabled:cursor-not-allowed dark:text-red-400 dark:hover:bg-red-400/10 dark:hover:text-red-300 dark:focus:ring-blue-500"
+          type="button"
+        >
+          Danger
+        </button>
+      </div>
+      <div>
+        <button
+          class="inline-flex h-[36px] w-full min-w-[36px] items-center justify-center whitespace-nowrap rounded-md px-3 text-[14px] font-semibold text-gray-400 hover:bg-zinc-100 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 disabled:cursor-not-allowed disabled:bg-transparent disabled:text-gray-300 dark:text-gray-500 dark:hover:bg-zinc-100/[0.06] dark:hover:text-gray-400 dark:focus:ring-blue-500 dark:disabled:bg-transparent dark:disabled:text-gray-700"
+          type="button"
+        >
+          Fluid
+        </button>
+      </div>
+    </div>
+    ```
+  </slot>
+</CodePreview>

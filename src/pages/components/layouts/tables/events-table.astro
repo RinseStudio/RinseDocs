@@ -1,0 +1,473 @@
+---
+import Layout from '@layouts/rinsedocs/Raw.astro';
+
+import Checkbox from '@rinseui/elements/Checkbox/index.astro';
+import Button from '@rinseui/elements/Button/index.astro';
+import Tooltip from '@rinseui/Tooltip/index.astro';
+import Dropdown from '@rinseui/modules/Dropdown/index.astro';
+import DropdownGroup from '@rinseui/modules/Dropdown/DropdownGroup.astro';
+import DropdownItems from '@rinseui/modules/Dropdown/DropdownItems.astro';
+import DropdownItem from '@rinseui/modules/Dropdown/DropdownItem.astro';
+---
+
+<Layout layoutClass="py-10">
+	<div class="mb-4 flex items-center justify-between px-5">
+		<h3 class="text-[14px] font-semibold text-gray-900 dark:text-gray-300">1,252 Events</h3>
+		<div class="flex gap-2">
+			<Button size="sm" variant="outline">View settings</Button>
+			<Button size="sm" variant="outline">Export</Button>
+			<div class="flex -space-x-px overflow-hidden rounded-md shadow-sm dark:shadow-none">
+				<div>
+					<Button size="sm" variant="outline" square noShadow rounded="left">
+						<i class="fa-solid fa-angle-left"></i>
+					</Button>
+				</div>
+				<div>
+					<Button size="sm" variant="outline" square noShadow rounded="right">
+						<i class="fa-solid fa-angle-right"></i>
+					</Button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="overflow-auto">
+		<table class="w-full bg-white text-left dark:bg-zinc-900" x-data="{ showPageViewEvents: false, collapseScore: true }">
+			<thead>
+				<tr class="border-b border-zinc-200 dark:border-zinc-800">
+					<th class="px-1 py-2 first:pl-5">
+						<Checkbox />
+					</th>
+					<th class="px-1 py-2 first:pl-5">
+						<Button size="sm" variant="ghost" square>
+							<i class="fa-solid fa-gauge"></i>
+						</Button>
+					</th>
+					<th class="px-1 py-2 first:pl-5">
+						<Button size="sm" variant="ghost" square>
+							<i class="fa-solid fa-shield"></i>
+						</Button>
+					</th>
+					<th class="px-1 py-2 first:pl-5">
+						<Button size="sm" variant="ghost" square>
+							<i class="fa-solid fa-robot"></i>
+						</Button>
+					</th>
+					<th class="px-1 py-2 first:pl-5">
+						<Dropdown direction="bottomLeft">
+							<Button size="sm" variant="ghost" onClick={'isOpen = !isOpen'}>
+								Policy
+								<Tooltip widthClass="w-[180px]" className="ml-2" position="bottom" enterClass="delay-1000">
+									<div class="flex h-8 items-center">
+										<i class="fa-solid fa-sparkles text-blue-500" x-on:mouseenter="showTooltip" x-on:mouseleave="hideTooltip"></i>
+									</div>
+									<slot slot="tooltip-content">This is a smart column. Castle automatically enriches content using event data.</slot>
+								</Tooltip>
+							</Button>
+							<slot slot="dropdown-content">
+								<DropdownGroup>
+									<DropdownItems>
+										<DropdownItem>
+											<div class="mr-1.5 flex items-center justify-center">
+												<i class="fa-solid fa-arrow-up fa-fw"></i>
+											</div>
+											 Sort ascending
+										</DropdownItem>
+										<DropdownItem>
+											<div class="mr-1.5 flex items-center justify-center">
+												<i class="fa-solid fa-arrow-down fa-fw"></i>
+											</div>
+											 Sort descending
+										</DropdownItem>
+										<DropdownItem>
+											<div class="mr-1.5 flex items-center justify-center">
+												<i class="fa-solid fa-arrow-left fa-fw"></i>
+											</div>
+											 Move left
+										</DropdownItem>
+										<DropdownItem>
+											<div class="mr-1.5 flex items-center justify-center">
+												<i class="fa-solid fa-arrow-right fa-fw"></i>
+											</div>
+											 Move right
+										</DropdownItem>
+									</DropdownItems>
+								</DropdownGroup>
+								<DropdownGroup>
+									<DropdownItem>
+										<div class="mr-1.5 flex items-center justify-center">
+											<i class="fa-solid fa-eye-slash fa-fw"></i>
+										</div>
+										 Hide from view
+									</DropdownItem>
+								</DropdownGroup>
+							</slot>
+						</Dropdown>
+					</th>
+					<th class="px-1 py-2 first:pl-5">
+						<Dropdown direction="bottomLeft">
+							<Button size="sm" variant="ghost" onClick={'isOpen = !isOpen'}>
+								Event
+								<Tooltip widthClass="w-[180px]" className="ml-2" position="bottom" enterClass="delay-1000">
+									<div class="flex h-8 items-center">
+										<i class="fa-solid fa-sparkles text-blue-500" x-on:mouseenter="showTooltip" x-on:mouseleave="hideTooltip"></i>
+									</div>
+									<slot slot="tooltip-content">This is a smart column. Castle automatically enriches content using event data.</slot>
+								</Tooltip>
+							</Button>
+							<slot slot="dropdown-content">
+								<DropdownGroup>
+									<DropdownItems>
+										<DropdownItem>
+											<div class="mr-1.5 flex items-center justify-center">
+												<i class="fa-solid fa-arrow-up fa-fw"></i>
+											</div>
+											 Sort ascending
+										</DropdownItem>
+										<DropdownItem>
+											<div class="mr-1.5 flex items-center justify-center">
+												<i class="fa-solid fa-arrow-down fa-fw"></i>
+											</div>
+											 Sort descending
+										</DropdownItem>
+										<DropdownItem>
+											<div class="mr-1.5 flex items-center justify-center">
+												<i class="fa-solid fa-arrow-left fa-fw"></i>
+											</div>
+											 Move left
+										</DropdownItem>
+										<DropdownItem>
+											<div class="mr-1.5 flex items-center justify-center">
+												<i class="fa-solid fa-arrow-right fa-fw"></i>
+											</div>
+											 Move right
+										</DropdownItem>
+									</DropdownItems>
+								</DropdownGroup>
+								<DropdownGroup>
+									<DropdownItem>
+										<div class="mr-1.5 flex items-center justify-center">
+											<i class="fa-solid fa-eye-slash fa-fw"></i>
+										</div>
+										 Hide from view
+									</DropdownItem>
+								</DropdownGroup>
+							</slot>
+						</Dropdown>
+					</th>
+					<th class="px-1 py-2 first:pl-5">
+						<Dropdown direction="bottomLeft">
+							<Button size="sm" variant="ghost" onClick={'isOpen = !isOpen'}>
+								User
+								<Tooltip widthClass="w-[180px]" className="ml-2" position="bottom" enterClass="delay-1000">
+									<div class="flex h-8 items-center">
+										<i class="fa-solid fa-sparkles text-blue-500" x-on:mouseenter="showTooltip" x-on:mouseleave="hideTooltip"></i>
+									</div>
+									<slot slot="tooltip-content">This is a smart column. Castle automatically enriches content using event data.</slot>
+								</Tooltip>
+							</Button>
+							<slot slot="dropdown-content">
+								<DropdownGroup>
+									<DropdownItems>
+										<DropdownItem>
+											<div class="mr-1.5 flex items-center justify-center">
+												<i class="fa-solid fa-arrow-up fa-fw"></i>
+											</div>
+											 Sort ascending
+										</DropdownItem>
+										<DropdownItem>
+											<div class="mr-1.5 flex items-center justify-center">
+												<i class="fa-solid fa-arrow-down fa-fw"></i>
+											</div>
+											 Sort descending
+										</DropdownItem>
+										<DropdownItem>
+											<div class="mr-1.5 flex items-center justify-center">
+												<i class="fa-solid fa-arrow-left fa-fw"></i>
+											</div>
+											 Move left
+										</DropdownItem>
+										<DropdownItem>
+											<div class="mr-1.5 flex items-center justify-center">
+												<i class="fa-solid fa-arrow-right fa-fw"></i>
+											</div>
+											 Move right
+										</DropdownItem>
+									</DropdownItems>
+								</DropdownGroup>
+								<DropdownGroup>
+									<DropdownItem>
+										<div class="mr-1.5 flex items-center justify-center">
+											<i class="fa-solid fa-eye-slash fa-fw"></i>
+										</div>
+										 Hide from view
+									</DropdownItem>
+								</DropdownGroup>
+							</slot>
+						</Dropdown>
+					</th>
+					<th class="px-1 py-2 first:pl-5">
+						<Dropdown direction="bottomLeft">
+							<Button size="sm" variant="ghost" onClick={'isOpen = !isOpen'}>
+								Location
+								<Tooltip widthClass="w-[180px]" className="ml-2" position="bottom" enterClass="delay-1000">
+									<div class="flex h-8 items-center">
+										<i class="fa-solid fa-sparkles text-blue-500" x-on:mouseenter="showTooltip" x-on:mouseleave="hideTooltip"></i>
+									</div>
+									<slot slot="tooltip-content">This is a smart column. Castle automatically enriches content using event data.</slot>
+								</Tooltip>
+							</Button>
+							<slot slot="dropdown-content">
+								<DropdownGroup>
+									<DropdownItems>
+										<DropdownItem>
+											<div class="mr-1.5 flex items-center justify-center">
+												<i class="fa-solid fa-arrow-up fa-fw"></i>
+											</div>
+											 Sort ascending
+										</DropdownItem>
+										<DropdownItem>
+											<div class="mr-1.5 flex items-center justify-center">
+												<i class="fa-solid fa-arrow-down fa-fw"></i>
+											</div>
+											 Sort descending
+										</DropdownItem>
+										<DropdownItem>
+											<div class="mr-1.5 flex items-center justify-center">
+												<i class="fa-solid fa-arrow-left fa-fw"></i>
+											</div>
+											 Move left
+										</DropdownItem>
+										<DropdownItem>
+											<div class="mr-1.5 flex items-center justify-center">
+												<i class="fa-solid fa-arrow-right fa-fw"></i>
+											</div>
+											 Move right
+										</DropdownItem>
+									</DropdownItems>
+								</DropdownGroup>
+								<DropdownGroup>
+									<DropdownItem>
+										<div class="mr-1.5 flex items-center justify-center">
+											<i class="fa-solid fa-eye-slash fa-fw"></i>
+										</div>
+										 Hide from view
+									</DropdownItem>
+								</DropdownGroup>
+							</slot>
+						</Dropdown>
+					</th>
+					<th class="px-1 py-2 first:pl-5">
+						<Dropdown direction="bottomLeft">
+							<Button size="sm" variant="ghost" onClick={'isOpen = !isOpen'}>
+								Connection
+								<Tooltip widthClass="w-[180px]" className="ml-2" position="bottom" enterClass="delay-1000">
+									<div class="flex h-8 items-center">
+										<i class="fa-solid fa-sparkles text-blue-500" x-on:mouseenter="showTooltip" x-on:mouseleave="hideTooltip"></i>
+									</div>
+									<slot slot="tooltip-content">This is a smart column. Castle automatically enriches content using event data.</slot>
+								</Tooltip>
+							</Button>
+							<slot slot="dropdown-content">
+								<DropdownGroup>
+									<DropdownItems>
+										<DropdownItem>
+											<div class="mr-1.5 flex items-center justify-center">
+												<i class="fa-solid fa-arrow-up fa-fw"></i>
+											</div>
+											 Sort ascending
+										</DropdownItem>
+										<DropdownItem>
+											<div class="mr-1.5 flex items-center justify-center">
+												<i class="fa-solid fa-arrow-down fa-fw"></i>
+											</div>
+											 Sort descending
+										</DropdownItem>
+										<DropdownItem>
+											<div class="mr-1.5 flex items-center justify-center">
+												<i class="fa-solid fa-arrow-left fa-fw"></i>
+											</div>
+											 Move left
+										</DropdownItem>
+										<DropdownItem>
+											<div class="mr-1.5 flex items-center justify-center">
+												<i class="fa-solid fa-arrow-right fa-fw"></i>
+											</div>
+											 Move right
+										</DropdownItem>
+									</DropdownItems>
+								</DropdownGroup>
+								<DropdownGroup>
+									<DropdownItem>
+										<div class="mr-1.5 flex items-center justify-center">
+											<i class="fa-solid fa-eye-slash fa-fw"></i>
+										</div>
+										 Hide from view
+									</DropdownItem>
+								</DropdownGroup>
+							</slot>
+						</Dropdown>
+					</th>
+					<th class="px-1 py-2 first:pl-5">
+						<Dropdown direction="bottomLeft">
+							<Button size="sm" variant="ghost" onClick={'isOpen = !isOpen'}>
+								Device
+								<Tooltip widthClass="w-[180px]" className="ml-2" position="bottom" enterClass="delay-1000">
+									<div class="flex h-8 items-center">
+										<i class="fa-solid fa-sparkles text-blue-500" x-on:mouseenter="showTooltip" x-on:mouseleave="hideTooltip"></i>
+									</div>
+									<slot slot="tooltip-content">This is a smart column. Castle automatically enriches content using event data.</slot>
+								</Tooltip>
+							</Button>
+							<slot slot="dropdown-content">
+								<DropdownGroup>
+									<DropdownItems>
+										<DropdownItem>
+											<div class="mr-1.5 flex items-center justify-center">
+												<i class="fa-solid fa-arrow-up fa-fw"></i>
+											</div>
+											 Sort ascending
+										</DropdownItem>
+										<DropdownItem>
+											<div class="mr-1.5 flex items-center justify-center">
+												<i class="fa-solid fa-arrow-down fa-fw"></i>
+											</div>
+											 Sort descending
+										</DropdownItem>
+										<DropdownItem>
+											<div class="mr-1.5 flex items-center justify-center">
+												<i class="fa-solid fa-arrow-left fa-fw"></i>
+											</div>
+											 Move left
+										</DropdownItem>
+										<DropdownItem>
+											<div class="mr-1.5 flex items-center justify-center">
+												<i class="fa-solid fa-arrow-right fa-fw"></i>
+											</div>
+											 Move right
+										</DropdownItem>
+									</DropdownItems>
+								</DropdownGroup>
+								<DropdownGroup>
+									<DropdownItem>
+										<div class="mr-1.5 flex items-center justify-center">
+											<i class="fa-solid fa-eye-slash fa-fw"></i>
+										</div>
+										 Hide from view
+									</DropdownItem>
+								</DropdownGroup>
+							</slot>
+						</Dropdown>
+					</th>
+					<th class="px-1 py-2 first:pl-5">
+						<Dropdown direction="bottomLeft">
+							<Button size="sm" variant="ghost" onClick={'isOpen = !isOpen'}>
+								Lists
+								<Tooltip widthClass="w-[180px]" className="ml-2" position="bottom" enterClass="delay-1000">
+									<div class="flex h-8 items-center">
+										<i class="fa-solid fa-sparkles text-blue-500" x-on:mouseenter="showTooltip" x-on:mouseleave="hideTooltip"></i>
+									</div>
+									<slot slot="tooltip-content">This is a smart column. Castle automatically enriches content using event data.</slot>
+								</Tooltip>
+							</Button>
+							<slot slot="dropdown-content">
+								<DropdownGroup>
+									<DropdownItems>
+										<DropdownItem>
+											<div class="mr-1.5 flex items-center justify-center">
+												<i class="fa-solid fa-arrow-up fa-fw"></i>
+											</div>
+											 Sort ascending
+										</DropdownItem>
+										<DropdownItem>
+											<div class="mr-1.5 flex items-center justify-center">
+												<i class="fa-solid fa-arrow-down fa-fw"></i>
+											</div>
+											 Sort descending
+										</DropdownItem>
+										<DropdownItem>
+											<div class="mr-1.5 flex items-center justify-center">
+												<i class="fa-solid fa-arrow-left fa-fw"></i>
+											</div>
+											 Move left
+										</DropdownItem>
+										<DropdownItem>
+											<div class="mr-1.5 flex items-center justify-center">
+												<i class="fa-solid fa-arrow-right fa-fw"></i>
+											</div>
+											 Move right
+										</DropdownItem>
+									</DropdownItems>
+								</DropdownGroup>
+								<DropdownGroup>
+									<DropdownItem>
+										<div class="mr-1.5 flex items-center justify-center">
+											<i class="fa-solid fa-eye-slash fa-fw"></i>
+										</div>
+										 Hide from view
+									</DropdownItem>
+								</DropdownGroup>
+							</slot>
+						</Dropdown>
+					</th>
+					<th class="px-1 py-2 first:pl-5">
+						<Dropdown direction="bottomLeft">
+							<Button size="sm" variant="ghost" onClick={'isOpen = !isOpen'}>
+								Triggered Signals
+								<Tooltip widthClass="w-[180px]" className="ml-2" position="bottom" enterClass="delay-1000">
+									<div class="flex h-8 items-center">
+										<i class="fa-solid fa-sparkles text-blue-500" x-on:mouseenter="showTooltip" x-on:mouseleave="hideTooltip"></i>
+									</div>
+									<slot slot="tooltip-content">This is a smart column. Castle automatically enriches content using event data.</slot>
+								</Tooltip>
+							</Button>
+							<slot slot="dropdown-content">
+								<DropdownGroup>
+									<DropdownItems>
+										<DropdownItem>
+											<div class="mr-1.5 flex items-center justify-center">
+												<i class="fa-solid fa-arrow-up fa-fw"></i>
+											</div>
+											 Sort ascending
+										</DropdownItem>
+										<DropdownItem>
+											<div class="mr-1.5 flex items-center justify-center">
+												<i class="fa-solid fa-arrow-down fa-fw"></i>
+											</div>
+											 Sort descending
+										</DropdownItem>
+										<DropdownItem>
+											<div class="mr-1.5 flex items-center justify-center">
+												<i class="fa-solid fa-arrow-left fa-fw"></i>
+											</div>
+											 Move left
+										</DropdownItem>
+										<DropdownItem>
+											<div class="mr-1.5 flex items-center justify-center">
+												<i class="fa-solid fa-arrow-right fa-fw"></i>
+											</div>
+											 Move right
+										</DropdownItem>
+									</DropdownItems>
+								</DropdownGroup>
+								<DropdownGroup>
+									<DropdownItem>
+										<div class="mr-1.5 flex items-center justify-center">
+											<i class="fa-solid fa-eye-slash fa-fw"></i>
+										</div>
+										 Hide from view
+									</DropdownItem>
+								</DropdownGroup>
+							</slot>
+						</Dropdown>
+					</th>
+					<th class="h-10 w-full px-1 first:pl-5"> </th>
+				</tr>
+			</thead>
+			<tbody class="medium color-cool-gray-600 text-xs">
+				<tr class="border-b border-zinc-200 dark:border-zinc-800">
+					<td class="h-[200px]"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</Layout>

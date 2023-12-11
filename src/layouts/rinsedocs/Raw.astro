@@ -12,6 +12,12 @@ import '@styles/app.css';
 		<meta name="robots" content="noindex, nofollow" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+		<!-- Font Awesome 6 -->
+		<link href="/vendors/fontawesome/css/fontawesome.css" rel="stylesheet" />
+		<link href="/vendors/fontawesome/css/brands.css" rel="stylesheet" />
+		<link href="/vendors/fontawesome/css/solid.css" rel="stylesheet" />
+		<link href="/vendors/fontawesome/css/regular.css" rel="stylesheet" />
+
 		<!-- Alpine JS -->
 		<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 	</head>
@@ -21,3 +27,23 @@ import '@styles/app.css';
 		</div>
 	</body>
 </html>
+
+<script is:inline>
+	'use strict';
+
+	// Initialize Alpine
+	document.addEventListener('alpine:init', () => {
+		Alpine.data('Tooltip', () => ({
+			tooltipVisible: false,
+			init() {
+				console.log('tooltip loaded');
+			},
+			showTooltip() {
+				this.tooltipVisible = true; // Show the tooltip
+			},
+			hideTooltip() {
+				this.tooltipVisible = false; // Hide the tooltip
+			},
+		}));
+	});
+</script>

@@ -1,0 +1,79 @@
+---
+const {
+  className = null,
+  widthClass = null,
+  position = 'top',
+  attract = false,
+  enterClass = null,
+  enterStartClass = null,
+  enterEndClass = null,
+  leaveClass = null,
+  leaveStartClass = null,
+  leaveEndClass = null,
+} = Astro.props;
+
+const getClass = (position, property) => {
+  const schema = {
+    top: {
+      class: `bottom-full left-1/2 mb-2 -translate-x-1/2`,
+      enter: `transition ease-out duration-200`,
+      enterStart: `opacity-0 ${attract ? '-translate-y-2' : 'translate-y-2'}`,
+      enterEnd: `opacity-100 translate-y-0`,
+      leave: `transition ease-in duration-200`,
+      leaveStart: `opacity-100 translate-y-0`,
+      leaveEnd: `opacity-0 ${attract ? '-translate-y-2' : 'translate-y-2'}`,
+    },
+    right: {
+      class: `left-full top-1/2 ml-2 -translate-y-1/2`,
+      enter: `transition ease-out duration-200`,
+      enterStart: `opacity-0 ${attract ? 'translate-x-2' : '-translate-x-2'}`,
+      enterEnd: `opacity-100 translate-x-0`,
+      leave: `transition ease-in duration-200`,
+      leaveStart: `opacity-100 translate-x-0`,
+      leaveEnd: `opacity-0 ${attract ? 'translate-x-2' : '-translate-x-2'}`,
+    },
+    bottom: {
+      class: `top-full left-1/2 mt-2 -translate-x-1/2`,
+      enter: `transition ease-out duration-200`,
+      enterStart: `opacity-0 ${attract ? 'translate-y-2' : '-translate-y-2'}`,
+      enterEnd: `opacity-100 translate-y-0`,
+      leave: `transition ease-in duration-200`,
+      leaveStart: `opacity-100 translate-y-0`,
+      leaveEnd: `opacity-0 ${attract ? 'translate-y-2' : '-translate-y-2'}`,
+    },
+    left: {
+      class: `right-full top-1/2 mr-2 -translate-y-1/2`,
+      enter: `transition ease-out duration-200`,
+      enterStart: `opacity-0 ${attract ? '-translate-x-2' : 'translate-x-2'}`,
+      enterEnd: `opacity-100 translate-x-0`,
+      leave: `transition ease-in duration-200`,
+      leaveStart: `opacity-100 translate-x-0`,
+      leaveEnd: `opacity-0 ${attract ? '-translate-x-2' : 'translate-x-2'}`,
+    },
+  };
+
+  return schema[position][property];
+};
+---
+
+<div class={`relative ${className ? className : ''}`} x-data="Tooltip">
+  <slot />
+  <div
+    x-cloak
+    x-show="tooltipVisible"
+    x-transition:enter={`${getClass(position, 'enter')} ${enterClass} `}
+    x-transition:enter-start={`${getClass(position, 'enterStart')} ${enterStartClass}`}
+    x-transition:enter-end={`${getClass(position, 'enterEnd')} ${enterEndClass}`}
+    x-transition:leave={`${getClass(position, 'leave')} ${leaveClass} `}
+    x-transition:leave-start={`${getClass(position, 'leaveStart')} ${leaveStartClass} `}
+    x-transition:leave-end={`${getClass(position, 'leaveEnd')} ${leaveEndClass} `}
+    class={`${
+      widthClass ? widthClass : 'whitespace-nowrap'
+    } whitespace-normal text-left pointer-events-none absolute z-10 rounded-md bg-zinc-800 px-2 py-1.5 text-[11px] font-medium text-gray-300 dark:ring-zinc-700 dark:bg-zinc-800 ${getClass(
+      position,
+      'class',
+    )} `}
+  >
+    <slot name="tooltip-content" />
+  </div>
+</div>

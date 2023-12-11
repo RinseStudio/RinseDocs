@@ -51,12 +51,24 @@ const alpineData = `app(${[sidebarSetting]}, ${[tocSetting]}, ${[fluidWidthSetti
 				Alpine.data('app', (sidebarSetting = true, tocSetting = true, fluidWidthSetting = true) => ({
 					init() {
 						const darkMode = localStorage.getItem('darkMode');
+						const iframes = document.querySelectorAll('iframe.rd-iframe');
+						console.log('darkmode is: ' + darkMode);
+						console.log('iframes are: ' + iframes);
 						if (darkMode == 'true') {
-							// Do something specific for dark mode
 							Alpine.store('GLOBAL').darkMode = true;
+							iframes.forEach((iframe) => {
+								iframe.addEventListener('load', () => {
+									const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+									const htmlElement = iframeDocument.documentElement;
+									console.log(htmlElement);
+									htmlElement.classList.add('dark');
+								});
+							});
+							console.log('is it initialized?');
 						} else {
 							Alpine.store('GLOBAL').darkMode = false;
 						}
+
 						Alpine.store('GLOBAL').showSidebar = sidebarSetting;
 						Alpine.store('GLOBAL').showTOC = tocSetting;
 						Alpine.store('GLOBAL').enableFluidWidth = fluidWidthSetting;
@@ -166,7 +178,7 @@ const alpineData = `app(${[sidebarSetting]}, ${[tocSetting]}, ${[fluidWidthSetti
 					},
 				}));
 
-				Alpine.data('RDComponent', (langs = '', height = 200) => ({
+				Alpine.data('CodePreview', (langs = '', height = 200) => ({
 					mode: 'preview',
 					languageSelection: 0,
 					showTooltip: false,
@@ -179,12 +191,12 @@ const alpineData = `app(${[sidebarSetting]}, ${[tocSetting]}, ${[fluidWidthSetti
 					},
 					resetContainer(e) {
 						e.preventDefault();
-						this.width = this.$refs.RDComponentWrapper.offsetWidth;
+						this.width = this.$refs.CodePreviewWrapper.offsetWidth;
 					},
 					slideReady(e) {
 						e.preventDefault();
 						this.slideMoveHandler = this.slideMove.bind(this); // Save a reference to the bound slideMove function
-						this.cursorOffset = e.clientX - this.$refs.RDComponentHandle.getBoundingClientRect().x;
+						this.cursorOffset = e.clientX - this.$refs.CodePreviewHandle.getBoundingClientRect().x;
 						document.body.style.pointerEvents = 'none';
 						document.documentElement.style.cursor = 'grabbing';
 
@@ -201,14 +213,14 @@ const alpineData = `app(${[sidebarSetting]}, ${[tocSetting]}, ${[fluidWidthSetti
 						document.removeEventListener('touchmove', this.slideMoveHandler);
 					},
 					slideMove(e) {
-						let containerWidth = this.$refs.RDComponentWrapper.offsetWidth;
+						let containerWidth = this.$refs.CodePreviewWrapper.offsetWidth;
 
-						let slideWidth = this.$refs.RDComponentWrapper.getBoundingClientRect().right - e.clientX;
+						let slideWidth = this.$refs.CodePreviewWrapper.getBoundingClientRect().right - e.clientX;
 
 						if (e.touches && e.touches[0]) {
-							slideWidth = this.$refs.RDComponentWrapper.getBoundingClientRect().right - e.touches[0].clientX;
+							slideWidth = this.$refs.CodePreviewWrapper.getBoundingClientRect().right - e.touches[0].clientX;
 						} else if (e.clientX) {
-							slideWidth = this.$refs.RDComponentWrapper.getBoundingClientRect().right - e.clientX;
+							slideWidth = this.$refs.CodePreviewWrapper.getBoundingClientRect().right - e.clientX;
 						}
 
 						if (slideWidth >= containerWidth - this.cursorOffset) {
@@ -221,7 +233,7 @@ const alpineData = `app(${[sidebarSetting]}, ${[tocSetting]}, ${[fluidWidthSetti
 					},
 					copyCode() {
 						// Use the Clipboard API to copy the current Code to the clipboard
-						const activeSlot = this.$refs.RDComponent.querySelector('.rd-frame-code.is-active');
+						const activeSlot = this.$refs.CodePreview.querySelector('.rd-frame-code.is-active');
 						const codeContent = activeSlot ? activeSlot.innerText : '';
 						navigator.clipboard
 							.writeText(codeContent)

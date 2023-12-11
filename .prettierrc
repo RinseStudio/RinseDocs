@@ -1,15 +1,15 @@
 {
-	"plugins": ["prettier-plugin-astro", "prettier-plugin-tailwindcss"],
-	"overrides": [
-		{
-			"files": "*.astro",
-			"options": {
-				"parser": "astro"
-			}
-		}
-	],
-	"useTabs": true,
-	"singleQuote": true,
-	"semi": true,
-	"printWidth": 180
+  "plugins": ["prettier-plugin-astro", "prettier-plugin-tailwindcss"],
+  "overrides": [
+    {
+      "files": "*.astro",
+      "options": {
+        "parser": "astro"
+      }
+    }
+  ],
+  "useTabs": false,
+  "singleQuote": true,
+  "semi": true,
+  "printWidth": 180
 }

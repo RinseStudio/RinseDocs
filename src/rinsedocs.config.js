@@ -11,16 +11,16 @@ export const SITE = {
 	sidebarOverrides: {
 		components: [
 			{
-				label: ['general', 'General'],
+				label: ['elements', 'Elements'],
 			},
 			{
-				label: ['inputs', 'Inputs'],
+				label: ['modules', 'Modules'],
 			},
 			{
-				label: ['getting-started', 'Getting Started'],
+				label: ['layouts', 'Layouts'],
 			},
 			{
-				label: ['data-display', 'Data Display'],
+				label: ['templates', 'Templates'],
 			},
 		], // Use the type for the array of overrides here
 	},

@@ -8,14 +8,40 @@
 /* Register your custom font family and tell the browser where to find it. */
 /* Register your custom font family and tell the browser where to find it. */
 @font-face {
-	font-family: InterVariable;
-	font-style: normal;
-	font-weight: 100 900;
-	font-display: swap;
-	src: url('/fonts/InterVariable.woff2?v=4.0') format('woff2');
+  font-family: InterVariable;
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('/fonts/InterVariable.woff2?v=4.0') format('woff2');
 }
 
 /* Alpine JS - https://alpinejs.dev/directives/cloak */
 [x-cloak] {
-	display: none !important;
+  display: none !important;
+}
+
+button,
+[type='button'],
+[type='reset'],
+[type='submit'] {
+  @apply focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 dark:focus:ring-blue-500;
+}
+
+[type='text']:focus,
+input:where(:not([type])):focus,
+[type='email']:focus,
+[type='url']:focus,
+[type='password']:focus,
+[type='number']:focus,
+[type='date']:focus,
+[type='datetime-local']:focus,
+[type='month']:focus,
+[type='search']:focus,
+[type='tel']:focus,
+[type='time']:focus,
+[type='week']:focus,
+[multiple]:focus,
+textarea:focus,
+select:focus {
+  @apply focus:ring-2 focus:ring-inset focus:ring-blue-500;
 }

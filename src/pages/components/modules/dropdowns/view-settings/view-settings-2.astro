@@ -1,0 +1,70 @@
+---
+import Layout from '@layouts/rinsedocs/Raw.astro';
+import Button from '@rinseui/elements/Button/index.astro';
+import Dropdown from '@rinseui/modules/Dropdown/index.astro';
+import DropdownGroup from '@rinseui/modules/Dropdown/DropdownGroup.astro';
+import DropdownItems from '@rinseui/modules/Dropdown/DropdownItems.astro';
+import DropdownItem from '@rinseui/modules/Dropdown/DropdownItem.astro';
+import DropdownMenuHeader from '@rinseui/modules/Dropdown/DropdownMenuHeader.astro';
+import SearchField from '@rinseui/elements/SearchField/index.astro';
+---
+
+<Layout layoutClass="flex items-center justify-center px-4 py-10">
+  <div class="flex min-w-[320px] justify-end">
+    <Dropdown direction="bottomLeft" widthClass="w-[320px]" isOpen>
+      <Button onClick={'isOpen = !isOpen'} size="sm" variant="outline">View settings</Button>
+
+      <slot slot="dropdown-content">
+        <DropdownGroup>
+          <DropdownMenuHeader>Add column</DropdownMenuHeader>
+          <div class="mb-3 px-2">
+            <SearchField placeholder="Search by field name" validation="default" fluid />
+          </div>
+          <div class="max-h-[300px] min-h-[200px] overflow-auto">
+            <ul class="space-y-px">
+              <li class="px-2 py-2">
+                <div class="border-b border-zinc-200 pb-1 text-[12px] font-medium text-gray-500 dark:border-zinc-700 dark:text-gray-400">Field group</div>
+              </li>
+              <li>
+                <button class="w-full rounded px-2 py-1 text-left hover:bg-gray-100 dark:hover:bg-zinc-100/[0.06]">
+                  <div class="text-[13px] font-medium text-gray-900 dark:text-gray-300">Lists</div>
+                  <div class="text-[11px] font-medium text-gray-400 dark:text-gray-500">lists</div>
+                </button>
+              </li>
+              <li>
+                <button class="w-full rounded px-2 py-1 text-left hover:bg-gray-100 dark:hover:bg-zinc-100/[0.06]">
+                  <div class="text-[13px] font-medium text-gray-900 dark:text-gray-300">Event Name</div>
+                  <div class="text-[11px] font-medium text-gray-400 dark:text-gray-500">name</div>
+                </button>
+              </li>
+              <li>
+                <button class="w-full rounded px-2 py-1 text-left hover:bg-gray-100 dark:hover:bg-zinc-100/[0.06]">
+                  <div class="text-[13px] font-medium text-gray-900 dark:text-gray-300">Endpoint</div>
+                  <div class="text-[11px] font-medium text-gray-400 dark:text-gray-500">endpoint</div>
+                </button>
+              </li>
+              <li>
+                <button class="w-full rounded px-2 py-1 text-left hover:bg-gray-100 dark:hover:bg-zinc-100/[0.06]">
+                  <div class="text-[13px] font-medium text-gray-900 dark:text-gray-300">Timestamp</div>
+                  <div class="text-[11px] font-medium text-gray-400 dark:text-gray-500">timestamp</div>
+                </button>
+              </li>
+              <li>
+                <button class="w-full rounded px-2 py-1 text-left hover:bg-gray-100 dark:hover:bg-zinc-100/[0.06]">
+                  <div class="text-[13px] font-medium text-gray-900 dark:text-gray-300">Authenticated</div>
+                  <div class="text-[11px] font-medium text-gray-400 dark:text-gray-500">authenticated</div>
+                </button>
+              </li>
+              <li>
+                <button class="w-full rounded px-2 py-1 text-left hover:bg-gray-100 dark:hover:bg-zinc-100/[0.06]">
+                  <div class="text-[13px] font-medium text-gray-900 dark:text-gray-300">Triggered Signals</div>
+                  <div class="text-[11px] font-medium text-gray-400 dark:text-gray-500">triggered_signals</div>
+                </button>
+              </li>
+            </ul>
+          </div>
+        </DropdownGroup>
+      </slot>
+    </Dropdown>
+  </div>
+</Layout>
