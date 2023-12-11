@@ -3,14 +3,8 @@ import { getCollection } from 'astro:content';
 import { SITE } from '@/rinsedocs.config';
 
 import Layout from '@layouts/rinsedocs/Base.astro';
-import * as helper from '@js/rinsedocs.model.js';
 
-const { frontmatter, headings, entry } = Astro.props;
-
-const collection = entry.collection;
-const allPages = await getCollection(collection, ({ data }) => {
-  return data.draft !== true;
-});
+const { frontmatter, entry } = Astro.props;
 ---
 
 <Layout title={frontmatter.title} pageSettings={frontmatter.pageSettings} frontmatter={frontmatter}>hello world</Layout>
