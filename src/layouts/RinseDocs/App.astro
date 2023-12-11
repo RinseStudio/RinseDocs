@@ -11,12 +11,6 @@ const collection = entry.collection;
 const allPages = await getCollection(collection, ({ data }) => {
   return data.draft !== true;
 });
-
-const navigation = helper.buildNavigation(allPages, Astro.url.pathname, SITE.sidebarOverrides.components);
-
-const breadcrumb = helper.buildBreadcrumb(entry.slug);
-
-import Button from '@rinseui/elements/Button/index.astro';
 ---
 
 <Layout title={frontmatter.title} pageSettings={frontmatter.pageSettings} frontmatter={frontmatter}>hello world</Layout>
