@@ -3,11 +3,11 @@ const { className = null, onClick = null, onMouseEnter = null, onMouseLeave = nu
 ---
 
 <button
-	x-on:click={onClick}
-	x-on:mouseEnter={onMouseEnter}
-	x-on:mouseLeave={onMouseLeave}
-	class="flex h-[32px] w-full items-center rounded-md px-2 text-[13px] font-medium text-gray-600 hover:bg-zinc-100 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500
-		dark:text-gray-300 dark:hover:bg-zinc-100/[0.06] dark:hover:text-gray-200 dark:focus:ring-blue-500"
+  x-on:click={onClick}
+  x-on:mouseEnter={onMouseEnter}
+  x-on:mouseLeave={onMouseLeave}
+  class="flex h-[32px] w-full items-center rounded-md px-2 text-[13px] font-medium text-gray-600 hover:bg-zinc-100 hover:text-gray-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500
+		dark:text-gray-300 dark:hover:bg-zinc-100/[0.06] dark:hover:text-gray-200 dark:focus-visible:ring-blue-500"
 >
-	<slot />
+  <slot />
 </button>
