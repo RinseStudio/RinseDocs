@@ -1,6 +1,5 @@
 ---
 import { getCollection } from 'astro:content';
-import Layout from '@layouts/rinsedocs/App.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('components', ({ data }) => {
@@ -18,6 +17,4 @@ const { entry } = Astro.props;
 const { Content, headings } = await entry.render();
 ---
 
-<Layout frontmatter={entry.data} headings={headings} entry={entry}>
-  <Content />
-</Layout>
+<Content />
