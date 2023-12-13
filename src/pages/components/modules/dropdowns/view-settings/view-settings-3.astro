@@ -1,11 +1,7 @@
 ---
 import Layout from '@layouts/rinsedocs/Raw.astro';
 import Button from '@rinseui/elements/Button/index.astro';
-import Dropdown from '@rinseui/modules/Dropdown/index.astro';
-import DropdownGroup from '@rinseui/modules/Dropdown/DropdownGroup.astro';
-import DropdownItems from '@rinseui/modules/Dropdown/DropdownItems.astro';
-import DropdownItem from '@rinseui/modules/Dropdown/DropdownItem.astro';
-import DropdownMenuHeader from '@rinseui/modules/Dropdown/DropdownMenuHeader.astro';
+import Dropdown from '@rinseui/modules/Dropdown';
 import SearchField from '@rinseui/elements/SearchField/index.astro';
 import TextField from '@rinseui/elements/TextField/index.astro';
 import SelectField from '@rinseui/elements/SelectField/index.astro';
@@ -18,8 +14,8 @@ import Link from '@rinseui/elements/Link/index.astro';
       <Button onClick={'isOpen = !isOpen'} size="sm" variant="outline">View settings</Button>
 
       <slot slot="dropdown-content">
-        <DropdownGroup>
-          <DropdownMenuHeader>
+        <Dropdown.Group>
+          <Dropdown.Header>
             <Link onClick={'isOpen = !isOpen'} size="xs">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -35,9 +31,9 @@ import Link from '@rinseui/elements/Link/index.astro';
               >
                Event Name
             </Link>
-          </DropdownMenuHeader>
-        </DropdownGroup>
-        <DropdownGroup>
+          </Dropdown.Header>
+        </Dropdown.Group>
+        <Dropdown.Group>
           <div class="grid grid-cols-1 gap-5 px-2 pb-4 pt-2">
             <div>
               <label class="text-medium mb-2 block text-[13px] text-gray-900 dark:text-gray-400">Column Type</label>
@@ -45,13 +41,13 @@ import Link from '@rinseui/elements/Link/index.astro';
               <Dropdown direction="bottomLeft" widthClass="w-full">
                 <SelectField placeholder="Most recent event" fluid />
                 <slot slot="dropdown-content">
-                  <DropdownGroup>
-                    <DropdownItems>
-                      <DropdownItem onClick={'isOpen = !isOpen'}>is</DropdownItem>
-                      <DropdownItem onClick={'isOpen = !isOpen'}>is not</DropdownItem>
-                      <DropdownItem onClick={'isOpen = !isOpen'}>is one of</DropdownItem>
-                    </DropdownItems>
-                  </DropdownGroup>
+                  <Dropdown.Group>
+                    <Dropdown.Items>
+                      <Dropdown.Item onClick={'isOpen = !isOpen'}>is</Dropdown.Item>
+                      <Dropdown.Item onClick={'isOpen = !isOpen'}>is not</Dropdown.Item>
+                      <Dropdown.Item onClick={'isOpen = !isOpen'}>is one of</Dropdown.Item>
+                    </Dropdown.Items>
+                  </Dropdown.Group>
                 </slot>
               </Dropdown>
             </div>
@@ -60,13 +56,13 @@ import Link from '@rinseui/elements/Link/index.astro';
               <TextField placeholder="Most recent event" fluid />
             </div>
           </div>
-        </DropdownGroup>
-        <DropdownGroup>
+        </Dropdown.Group>
+        <Dropdown.Group>
           <footer class="flex justify-end gap-2 px-2 py-2">
             <Button onClick={'isOpen = !isOpen'} size="sm" variant="secondary">Cancel</Button>
             <Button onClick={'isOpen = !isOpen'} size="sm" variant="primary">Add column</Button>
           </footer>
-        </DropdownGroup>
+        </Dropdown.Group>
       </slot>
     </Dropdown>
   </div>

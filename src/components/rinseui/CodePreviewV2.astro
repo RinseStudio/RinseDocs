@@ -1,8 +1,40 @@
 ---
 const { languages, src, iframeClass } = Astro.props;
 const alpineData = `CodePreview(['${languages.join("','")}'])`;
+const htmlContent = await Astro.slots.render('default');
+
+import { Code } from 'astro:components';
+
+import prettier from 'prettier';
+import parserHtml from 'prettier/parser-html';
+
+const getFormattedCode = async (content) => {
+  try {
+    const formattedCode = await prettier.format(content, {
+      parser: 'html',
+      plugins: [parserHtml],
+    });
+    return formattedCode;
+  } catch (error) {
+    console.error('Error formatting code:', error);
+    throw error; // Re-throw the error for the caller to handle
+  }
+};
+
+const shikiConfig = {
+  wrap: true,
+  experimentalThemes: {
+    light: 'github-light',
+    dark: 'github-dark',
+  },
+};
 ---
 
+Start oF Code PReview V2
+<Code code={`${await getFormattedCode(htmlContent)}`} lang="js" theme="github-dark-dimmed" />
+<slot name="raw" />
+
+gegeg
 <div x-data={alpineData} class="rd-code-preview rounded-lg border border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-800">
   <div class="flex items-center justify-between border-b border-black/10 pl-4 dark:border-white/10">
     <div class="flex items-center gap-4 text-xs font-medium">
@@ -160,7 +192,9 @@ const alpineData = `CodePreview(['${languages.join("','")}'])`;
 
     <div x-show="mode == 'code'" x-cloak class="max-h-[500px] overflow-auto text-sm">
       <div x-show="languageSelection == 0" class="rd-frame-code" x-bind:class="languageSelection == 0 ? 'is-active' : ''">
+        ```html
         <slot name="0" />
+         ````
       </div>
       <div x-cloak x-show="languageSelection == 1" class="rd-frame-code" x-bind:class="languageSelection == 1 ? 'is-active' : ''">
         <slot name="1" />

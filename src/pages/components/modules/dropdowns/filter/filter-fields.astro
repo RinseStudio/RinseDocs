@@ -1,11 +1,7 @@
 ---
 import Layout from '@layouts/rinsedocs/Raw.astro';
 import Button from '@rinseui/elements/Button/index.astro';
-import Dropdown from '@rinseui/modules/Dropdown/index.astro';
-import DropdownGroup from '@rinseui/modules/Dropdown/DropdownGroup.astro';
-import DropdownItems from '@rinseui/modules/Dropdown/DropdownItems.astro';
-import DropdownItem from '@rinseui/modules/Dropdown/DropdownItem.astro';
-import DropdownMenuHeader from '@rinseui/modules/Dropdown/DropdownMenuHeader.astro';
+import Dropdown from '@rinseui/modules/Dropdown';
 import SearchField from '@rinseui/elements/SearchField/index.astro';
 import Tabs from '@rinseui/modules/Tabs/index.astro';
 ---
@@ -17,7 +13,7 @@ import Tabs from '@rinseui/modules/Tabs/index.astro';
 
       <slot slot="dropdown-content">
         <Tabs />
-        <DropdownGroup>
+        <Dropdown.Group>
           <div class="my-3 px-2 pb-1">
             <SearchField placeholder="Search by field name" validation="default" fluid />
           </div>
@@ -76,7 +72,7 @@ import Tabs from '@rinseui/modules/Tabs/index.astro';
               </li>
             </ul>
           </div>
-        </DropdownGroup>
+        </Dropdown.Group>
       </slot>
     </Dropdown>
   </div>

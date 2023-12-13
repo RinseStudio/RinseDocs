@@ -1,11 +1,7 @@
 ---
 import Layout from '@layouts/rinsedocs/Raw.astro';
 import Button from '@rinseui/elements/Button/index.astro';
-import Dropdown from '@rinseui/modules/Dropdown/index.astro';
-import DropdownGroup from '@rinseui/modules/Dropdown/DropdownGroup.astro';
-import DropdownItems from '@rinseui/modules/Dropdown/DropdownItems.astro';
-import DropdownItem from '@rinseui/modules/Dropdown/DropdownItem.astro';
-import DropdownMenuHeader from '@rinseui/modules/Dropdown/DropdownMenuHeader.astro';
+import Dropdown from '@rinseui/modules/Dropdown';
 ---
 
 <Layout layoutClass="flex items-center justify-center px-4 py-10">
@@ -14,8 +10,8 @@ import DropdownMenuHeader from '@rinseui/modules/Dropdown/DropdownMenuHeader.ast
       <Button onClick={'isOpen = !isOpen'} size="sm" variant="outline">View settings</Button>
 
       <slot slot="dropdown-content">
-        <DropdownGroup>
-          <DropdownMenuHeader>View settings</DropdownMenuHeader>
+        <Dropdown.Group>
+          <Dropdown.Header>View settings</Dropdown.Header>
           <ul>
             <li>
               <button
@@ -171,16 +167,16 @@ import DropdownMenuHeader from '@rinseui/modules/Dropdown/DropdownMenuHeader.ast
               </button>
             </li>
           </ul>
-        </DropdownGroup>
-        <DropdownGroup>
-          <DropdownItem>
+        </Dropdown.Group>
+        <Dropdown.Group>
+          <Dropdown.Item>
             <div class="mr-1.5 flex items-center justify-center">
               <i class="fa-solid fa-plus"></i>
             </div>
 
              Add new column
-          </DropdownItem>
-        </DropdownGroup>
+          </Dropdown.Item>
+        </Dropdown.Group>
       </slot>
     </Dropdown>
   </div>

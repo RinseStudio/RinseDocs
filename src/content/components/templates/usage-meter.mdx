@@ -20,14 +20,48 @@ pageSettings:
 ---
 
 import CodePreview from '@rinseui/CodePreview.astro';
-
 import CodePreviewV2 from '@rinseui/CodePreviewV2.astro';
+import UsageMeter from '@rinseui/templates/UsageMeter.astro';
+
+<UsageMeter />
 
 ## Usage
 
 The API calls usage meter is a sidebar card component that provides information about how many API calls are left on the user's plan quota. The aim is to provide usage context but also to encourage users to upgrade their plan before hitting their limit.
 
 ### CTA accompanied meter
+
+<CodePreviewV2 languages={['HTML', 'Astro']} src="/components/templates/usage-meter" iframeClass="dark:bg-zinc-900 h-[340px]">
+  <UsageMeter />
+
+  <Fragment slot="raw">
+    ```astro
+    ---
+    import Layout from '@layouts/rinsedocs/Raw.astro';
+    import Button from '@rinseui/elements/Button/index.astro';
+    ---
+
+    <div astro-component class="w-[240px] rounded-lg bg-white shadow-md dark:bg-zinc-800">
+      <div class="border-b border-zinc-200 p-3 dark:border-zinc-700">
+        <h4 class="mb-3 text-[12px] font-medium text-gray-900 dark:text-gray-300">Free API usage</h4>
+        <div class="relative mb-2 h-1 overflow-hidden rounded-full bg-zinc-100 dark:bg-zinc-700">
+          <div class="h-1 bg-blue-500" style="width: 32%"></div>
+        </div>
+        <div class="text-[11px] font-medium text-gray-500 dark:text-gray-400">325/1,000 API Calls per month</div>
+      </div>
+      <div class="p-3">
+        <p class="mb-4 text-[11px] font-medium text-gray-500 dark:text-gray-300">Launch your project with unlimited calls and no contractual minimums</p>
+        <Button onClick={'isOpen = !isOpen'} size="sm" fluid>
+          Upgrade plan <i class="fa-solid fa-arrow-right fa-fw ml-2"></i>
+        </Button>
+      </div>
+    </div>
+    ```
+
+  </Fragment>
+</CodePreviewV2>
+
+gege
 
 <CodePreview languages={['HTML']} src="/components/templates/usage-meter" iframeClass="dark:bg-zinc-900 h-[340px]">
   <slot slot="0">

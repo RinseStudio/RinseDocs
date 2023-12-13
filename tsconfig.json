@@ -13,6 +13,7 @@
       "@data/*": ["src/data/*"],
       "@rinseui/*": ["src/components/rinseui/*"]
     },
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "jsx": "preserve"
   }
 }

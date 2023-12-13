@@ -1,11 +1,7 @@
 ---
 import Layout from '@layouts/rinsedocs/Raw.astro';
 import Button from '@rinseui/elements/Button/index.astro';
-import Dropdown from '@rinseui/modules/Dropdown/index.astro';
-import DropdownGroup from '@rinseui/modules/Dropdown/DropdownGroup.astro';
-import DropdownItems from '@rinseui/modules/Dropdown/DropdownItems.astro';
-import DropdownItem from '@rinseui/modules/Dropdown/DropdownItem.astro';
-import DropdownMenuHeader from '@rinseui/modules/Dropdown/DropdownMenuHeader.astro';
+import Dropdown from '@rinseui/modules/Dropdown';
 import SearchField from '@rinseui/elements/SearchField/index.astro';
 ---
 
@@ -15,8 +11,8 @@ import SearchField from '@rinseui/elements/SearchField/index.astro';
       <Button onClick={'isOpen = !isOpen'} size="sm" variant="outline">View settings</Button>
 
       <slot slot="dropdown-content">
-        <DropdownGroup>
-          <DropdownMenuHeader>Add column</DropdownMenuHeader>
+        <Dropdown.Group>
+          <Dropdown.Header>Add column</Dropdown.Header>
           <div class="mb-3 px-2">
             <SearchField placeholder="Search by field name" validation="default" fluid />
           </div>
@@ -75,7 +71,7 @@ import SearchField from '@rinseui/elements/SearchField/index.astro';
               </li>
             </ul>
           </div>
-        </DropdownGroup>
+        </Dropdown.Group>
       </slot>
     </Dropdown>
   </div>

@@ -1,12 +1,8 @@
 ---
 import Layout from '@layouts/rinsedocs/Raw.astro';
 import Button from '@rinseui/elements/Button/index.astro';
-import Dropdown from '@rinseui/modules/Dropdown/index.astro';
-import DropdownGroup from '@rinseui/modules/Dropdown/DropdownGroup.astro';
-import DropdownItem from '@rinseui/modules/Dropdown/DropdownItem.astro';
+import Dropdown from '@rinseui/modules/Dropdown';
 import SearchField from '@rinseui/elements/SearchField/index.astro';
-import SelectField from '@rinseui/elements/SelectField/index.astro';
-import Checkbox from '@rinseui/elements/Checkbox/index.astro';
 import Tabs from '@rinseui/modules/Tabs/index.astro';
 ---
 
@@ -16,7 +12,7 @@ import Tabs from '@rinseui/modules/Tabs/index.astro';
       <Button onClick={'isOpen = !isOpen'} size="sm" variant="outline">View settings</Button>
       <slot slot="dropdown-content">
         <Tabs />
-        <DropdownGroup>
+        <Dropdown.Group>
           <div class="mb-4 grid grid-cols-1 gap-2 px-2 pt-3">
             <div>
               <SearchField placeholder="Search policy by name" fluid />
@@ -70,16 +66,16 @@ import Tabs from '@rinseui/modules/Tabs/index.astro';
               </li>
             </ul>
           </div>
-        </DropdownGroup>
-        <DropdownGroup>
-          <DropdownItem>
+        </Dropdown.Group>
+        <Dropdown.Group>
+          <Dropdown.Item>
             <div class="mr-1.5 flex items-center justify-center">
               <i class="fa-solid fa-plus fa-fw"></i>
             </div>
 
              Add new metric
-          </DropdownItem>
-        </DropdownGroup>
+          </Dropdown.Item>
+        </Dropdown.Group>
       </slot>
     </Dropdown>
   </div>

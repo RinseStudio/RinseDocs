@@ -1,11 +1,7 @@
 ---
 import Layout from '@layouts/rinsedocs/Raw.astro';
 import Button from '@rinseui/elements/Button/index.astro';
-import Dropdown from '@rinseui/modules/Dropdown/index.astro';
-import DropdownGroup from '@rinseui/modules/Dropdown/DropdownGroup.astro';
-import DropdownItems from '@rinseui/modules/Dropdown/DropdownItems.astro';
-import DropdownItem from '@rinseui/modules/Dropdown/DropdownItem.astro';
-import DropdownMenuHeader from '@rinseui/modules/Dropdown/DropdownMenuHeader.astro';
+import Dropdown from '@rinseui/modules/Dropdown';
 import SelectField from '@rinseui/elements/SelectField/index.astro';
 import TextField from '@rinseui/elements/TextField/index.astro';
 import Tabs from '@rinseui/modules/Tabs/index.astro';
@@ -19,7 +15,7 @@ import Link from '@rinseui/elements/Link/index.astro';
 
       <slot slot="dropdown-content">
         <Tabs />
-        <DropdownGroup>
+        <Dropdown.Group>
           <div class="mt-3 px-2">
             <Link onClick={'isOpen = !isOpen'} size="xs">
               <svg
@@ -42,13 +38,13 @@ import Link from '@rinseui/elements/Link/index.astro';
               <Dropdown direction="bottomLeft" widthClass="w-full">
                 <SelectField value="is" fluid />
                 <slot slot="dropdown-content">
-                  <DropdownGroup>
-                    <DropdownItems>
-                      <DropdownItem onClick={'isOpen = !isOpen'}>is</DropdownItem>
-                      <DropdownItem onClick={'isOpen = !isOpen'}>is not</DropdownItem>
-                      <DropdownItem onClick={'isOpen = !isOpen'}>is one of</DropdownItem>
-                    </DropdownItems>
-                  </DropdownGroup>
+                  <Dropdown.Group>
+                    <Dropdown.Items>
+                      <Dropdown.Item onClick={'isOpen = !isOpen'}>is</Dropdown.Item>
+                      <Dropdown.Item onClick={'isOpen = !isOpen'}>is not</Dropdown.Item>
+                      <Dropdown.Item onClick={'isOpen = !isOpen'}>is one of</Dropdown.Item>
+                    </Dropdown.Items>
+                  </Dropdown.Group>
                 </slot>
               </Dropdown>
             </div>
@@ -56,13 +52,13 @@ import Link from '@rinseui/elements/Link/index.astro';
               <TextField placeholder="Value" fluid />
             </div>
           </div>
-        </DropdownGroup>
-        <DropdownGroup>
+        </Dropdown.Group>
+        <Dropdown.Group>
           <footer class="flex justify-end gap-2 px-2 py-2">
             <Button onClick={'isOpen = !isOpen'} size="sm" variant="secondary">Cancel</Button>
             <Button onClick={'isOpen = !isOpen'} size="sm" variant="primary">Add filter</Button>
           </footer>
-        </DropdownGroup>
+        </Dropdown.Group>
       </slot>
     </Dropdown>
   </div>

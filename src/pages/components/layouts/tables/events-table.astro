@@ -4,10 +4,10 @@ import Layout from '@layouts/rinsedocs/Raw.astro';
 import Checkbox from '@rinseui/elements/Checkbox/index.astro';
 import Button from '@rinseui/elements/Button/index.astro';
 import Tooltip from '@rinseui/Tooltip/index.astro';
-import Dropdown from '@rinseui/modules/Dropdown/index.astro';
-import DropdownGroup from '@rinseui/modules/Dropdown/DropdownGroup.astro';
-import DropdownItems from '@rinseui/modules/Dropdown/DropdownItems.astro';
-import DropdownItem from '@rinseui/modules/Dropdown/DropdownItem.astro';
+import Dropdown from '@rinseui/modules/Dropdown';
+import Dropdown.Group from '@/components/rinseui/modules/Dropdown/Group.astro';
+import Dropdown.Items from '@/components/rinseui/modules/Dropdown/Items.astro';
+import Dropdown.Item from '@/components/rinseui/modules/Dropdown/Item.astro';
 ---
 
 <Layout layoutClass="py-10">
@@ -64,42 +64,42 @@ import DropdownItem from '@rinseui/modules/Dropdown/DropdownItem.astro';
 								</Tooltip>
 							</Button>
 							<slot slot="dropdown-content">
-								<DropdownGroup>
-									<DropdownItems>
-										<DropdownItem>
+								<Dropdown.Group>
+									<Dropdown.Items>
+										<Dropdown.Item>
 											<div class="mr-1.5 flex items-center justify-center">
 												<i class="fa-solid fa-arrow-up fa-fw"></i>
 											</div>
 											 Sort ascending
-										</DropdownItem>
-										<DropdownItem>
+										</Dropdown.Item>
+										<Dropdown.Item>
 											<div class="mr-1.5 flex items-center justify-center">
 												<i class="fa-solid fa-arrow-down fa-fw"></i>
 											</div>
 											 Sort descending
-										</DropdownItem>
-										<DropdownItem>
+										</Dropdown.Item>
+										<Dropdown.Item>
 											<div class="mr-1.5 flex items-center justify-center">
 												<i class="fa-solid fa-arrow-left fa-fw"></i>
 											</div>
 											 Move left
-										</DropdownItem>
-										<DropdownItem>
+										</Dropdown.Item>
+										<Dropdown.Item>
 											<div class="mr-1.5 flex items-center justify-center">
 												<i class="fa-solid fa-arrow-right fa-fw"></i>
 											</div>
 											 Move right
-										</DropdownItem>
-									</DropdownItems>
-								</DropdownGroup>
-								<DropdownGroup>
-									<DropdownItem>
+										</Dropdown.Item>
+									</Dropdown.Items>
+								</Dropdown.Group>
+								<Dropdown.Group>
+									<Dropdown.Item>
 										<div class="mr-1.5 flex items-center justify-center">
 											<i class="fa-solid fa-eye-slash fa-fw"></i>
 										</div>
 										 Hide from view
-									</DropdownItem>
-								</DropdownGroup>
+									</Dropdown.Item>
+								</Dropdown.Group>
 							</slot>
 						</Dropdown>
 					</th>
@@ -115,42 +115,42 @@ import DropdownItem from '@rinseui/modules/Dropdown/DropdownItem.astro';
 								</Tooltip>
 							</Button>
 							<slot slot="dropdown-content">
-								<DropdownGroup>
-									<DropdownItems>
-										<DropdownItem>
+								<Dropdown.Group>
+									<Dropdown.Items>
+										<Dropdown.Item>
 											<div class="mr-1.5 flex items-center justify-center">
 												<i class="fa-solid fa-arrow-up fa-fw"></i>
 											</div>
 											 Sort ascending
-										</DropdownItem>
-										<DropdownItem>
+										</Dropdown.Item>
+										<Dropdown.Item>
 											<div class="mr-1.5 flex items-center justify-center">
 												<i class="fa-solid fa-arrow-down fa-fw"></i>
 											</div>
 											 Sort descending
-										</DropdownItem>
-										<DropdownItem>
+										</Dropdown.Item>
+										<Dropdown.Item>
 											<div class="mr-1.5 flex items-center justify-center">
 												<i class="fa-solid fa-arrow-left fa-fw"></i>
 											</div>
 											 Move left
-										</DropdownItem>
-										<DropdownItem>
+										</Dropdown.Item>
+										<Dropdown.Item>
 											<div class="mr-1.5 flex items-center justify-center">
 												<i class="fa-solid fa-arrow-right fa-fw"></i>
 											</div>
 											 Move right
-										</DropdownItem>
-									</DropdownItems>
-								</DropdownGroup>
-								<DropdownGroup>
-									<DropdownItem>
+										</Dropdown.Item>
+									</Dropdown.Items>
+								</Dropdown.Group>
+								<Dropdown.Group>
+									<Dropdown.Item>
 										<div class="mr-1.5 flex items-center justify-center">
 											<i class="fa-solid fa-eye-slash fa-fw"></i>
 										</div>
 										 Hide from view
-									</DropdownItem>
-								</DropdownGroup>
+									</Dropdown.Item>
+								</Dropdown.Group>
 							</slot>
 						</Dropdown>
 					</th>
@@ -166,42 +166,42 @@ import DropdownItem from '@rinseui/modules/Dropdown/DropdownItem.astro';
 								</Tooltip>
 							</Button>
 							<slot slot="dropdown-content">
-								<DropdownGroup>
-									<DropdownItems>
-										<DropdownItem>
+								<Dropdown.Group>
+									<Dropdown.Items>
+										<Dropdown.Item>
 											<div class="mr-1.5 flex items-center justify-center">
 												<i class="fa-solid fa-arrow-up fa-fw"></i>
 											</div>
 											 Sort ascending
-										</DropdownItem>
-										<DropdownItem>
+										</Dropdown.Item>
+										<Dropdown.Item>
 											<div class="mr-1.5 flex items-center justify-center">
 												<i class="fa-solid fa-arrow-down fa-fw"></i>
 											</div>
 											 Sort descending
-										</DropdownItem>
-										<DropdownItem>
+										</Dropdown.Item>
+										<Dropdown.Item>
 											<div class="mr-1.5 flex items-center justify-center">
 												<i class="fa-solid fa-arrow-left fa-fw"></i>
 											</div>
 											 Move left
-										</DropdownItem>
-										<DropdownItem>
+										</Dropdown.Item>
+										<Dropdown.Item>
 											<div class="mr-1.5 flex items-center justify-center">
 												<i class="fa-solid fa-arrow-right fa-fw"></i>
 											</div>
 											 Move right
-										</DropdownItem>
-									</DropdownItems>
-								</DropdownGroup>
-								<DropdownGroup>
-									<DropdownItem>
+										</Dropdown.Item>
+									</Dropdown.Items>
+								</Dropdown.Group>
+								<Dropdown.Group>
+									<Dropdown.Item>
 										<div class="mr-1.5 flex items-center justify-center">
 											<i class="fa-solid fa-eye-slash fa-fw"></i>
 										</div>
 										 Hide from view
-									</DropdownItem>
-								</DropdownGroup>
+									</Dropdown.Item>
+								</Dropdown.Group>
 							</slot>
 						</Dropdown>
 					</th>
@@ -217,42 +217,42 @@ import DropdownItem from '@rinseui/modules/Dropdown/DropdownItem.astro';
 								</Tooltip>
 							</Button>
 							<slot slot="dropdown-content">
-								<DropdownGroup>
-									<DropdownItems>
-										<DropdownItem>
+								<Dropdown.Group>
+									<Dropdown.Items>
+										<Dropdown.Item>
 											<div class="mr-1.5 flex items-center justify-center">
 												<i class="fa-solid fa-arrow-up fa-fw"></i>
 											</div>
 											 Sort ascending
-										</DropdownItem>
-										<DropdownItem>
+										</Dropdown.Item>
+										<Dropdown.Item>
 											<div class="mr-1.5 flex items-center justify-center">
 												<i class="fa-solid fa-arrow-down fa-fw"></i>
 											</div>
 											 Sort descending
-										</DropdownItem>
-										<DropdownItem>
+										</Dropdown.Item>
+										<Dropdown.Item>
 											<div class="mr-1.5 flex items-center justify-center">
 												<i class="fa-solid fa-arrow-left fa-fw"></i>
 											</div>
 											 Move left
-										</DropdownItem>
-										<DropdownItem>
+										</Dropdown.Item>
+										<Dropdown.Item>
 											<div class="mr-1.5 flex items-center justify-center">
 												<i class="fa-solid fa-arrow-right fa-fw"></i>
 											</div>
 											 Move right
-										</DropdownItem>
-									</DropdownItems>
-								</DropdownGroup>
-								<DropdownGroup>
-									<DropdownItem>
+										</Dropdown.Item>
+									</Dropdown.Items>
+								</Dropdown.Group>
+								<Dropdown.Group>
+									<Dropdown.Item>
 										<div class="mr-1.5 flex items-center justify-center">
 											<i class="fa-solid fa-eye-slash fa-fw"></i>
 										</div>
 										 Hide from view
-									</DropdownItem>
-								</DropdownGroup>
+									</Dropdown.Item>
+								</Dropdown.Group>
 							</slot>
 						</Dropdown>
 					</th>
@@ -268,42 +268,42 @@ import DropdownItem from '@rinseui/modules/Dropdown/DropdownItem.astro';
 								</Tooltip>
 							</Button>
 							<slot slot="dropdown-content">
-								<DropdownGroup>
-									<DropdownItems>
-										<DropdownItem>
+								<Dropdown.Group>
+									<Dropdown.Items>
+										<Dropdown.Item>
 											<div class="mr-1.5 flex items-center justify-center">
 												<i class="fa-solid fa-arrow-up fa-fw"></i>
 											</div>
 											 Sort ascending
-										</DropdownItem>
-										<DropdownItem>
+										</Dropdown.Item>
+										<Dropdown.Item>
 											<div class="mr-1.5 flex items-center justify-center">
 												<i class="fa-solid fa-arrow-down fa-fw"></i>
 											</div>
 											 Sort descending
-										</DropdownItem>
-										<DropdownItem>
+										</Dropdown.Item>
+										<Dropdown.Item>
 											<div class="mr-1.5 flex items-center justify-center">
 												<i class="fa-solid fa-arrow-left fa-fw"></i>
 											</div>
 											 Move left
-										</DropdownItem>
-										<DropdownItem>
+										</Dropdown.Item>
+										<Dropdown.Item>
 											<div class="mr-1.5 flex items-center justify-center">
 												<i class="fa-solid fa-arrow-right fa-fw"></i>
 											</div>
 											 Move right
-										</DropdownItem>
-									</DropdownItems>
-								</DropdownGroup>
-								<DropdownGroup>
-									<DropdownItem>
+										</Dropdown.Item>
+									</Dropdown.Items>
+								</Dropdown.Group>
+								<Dropdown.Group>
+									<Dropdown.Item>
 										<div class="mr-1.5 flex items-center justify-center">
 											<i class="fa-solid fa-eye-slash fa-fw"></i>
 										</div>
 										 Hide from view
-									</DropdownItem>
-								</DropdownGroup>
+									</Dropdown.Item>
+								</Dropdown.Group>
 							</slot>
 						</Dropdown>
 					</th>
@@ -319,42 +319,42 @@ import DropdownItem from '@rinseui/modules/Dropdown/DropdownItem.astro';
 								</Tooltip>
 							</Button>
 							<slot slot="dropdown-content">
-								<DropdownGroup>
-									<DropdownItems>
-										<DropdownItem>
+								<Dropdown.Group>
+									<Dropdown.Items>
+										<Dropdown.Item>
 											<div class="mr-1.5 flex items-center justify-center">
 												<i class="fa-solid fa-arrow-up fa-fw"></i>
 											</div>
 											 Sort ascending
-										</DropdownItem>
-										<DropdownItem>
+										</Dropdown.Item>
+										<Dropdown.Item>
 											<div class="mr-1.5 flex items-center justify-center">
 												<i class="fa-solid fa-arrow-down fa-fw"></i>
 											</div>
 											 Sort descending
-										</DropdownItem>
-										<DropdownItem>
+										</Dropdown.Item>
+										<Dropdown.Item>
 											<div class="mr-1.5 flex items-center justify-center">
 												<i class="fa-solid fa-arrow-left fa-fw"></i>
 											</div>
 											 Move left
-										</DropdownItem>
-										<DropdownItem>
+										</Dropdown.Item>
+										<Dropdown.Item>
 											<div class="mr-1.5 flex items-center justify-center">
 												<i class="fa-solid fa-arrow-right fa-fw"></i>
 											</div>
 											 Move right
-										</DropdownItem>
-									</DropdownItems>
-								</DropdownGroup>
-								<DropdownGroup>
-									<DropdownItem>
+										</Dropdown.Item>
+									</Dropdown.Items>
+								</Dropdown.Group>
+								<Dropdown.Group>
+									<Dropdown.Item>
 										<div class="mr-1.5 flex items-center justify-center">
 											<i class="fa-solid fa-eye-slash fa-fw"></i>
 										</div>
 										 Hide from view
-									</DropdownItem>
-								</DropdownGroup>
+									</Dropdown.Item>
+								</Dropdown.Group>
 							</slot>
 						</Dropdown>
 					</th>
@@ -370,42 +370,42 @@ import DropdownItem from '@rinseui/modules/Dropdown/DropdownItem.astro';
 								</Tooltip>
 							</Button>
 							<slot slot="dropdown-content">
-								<DropdownGroup>
-									<DropdownItems>
-										<DropdownItem>
+								<Dropdown.Group>
+									<Dropdown.Items>
+										<Dropdown.Item>
 											<div class="mr-1.5 flex items-center justify-center">
 												<i class="fa-solid fa-arrow-up fa-fw"></i>
 											</div>
 											 Sort ascending
-										</DropdownItem>
-										<DropdownItem>
+										</Dropdown.Item>
+										<Dropdown.Item>
 											<div class="mr-1.5 flex items-center justify-center">
 												<i class="fa-solid fa-arrow-down fa-fw"></i>
 											</div>
 											 Sort descending
-										</DropdownItem>
-										<DropdownItem>
+										</Dropdown.Item>
+										<Dropdown.Item>
 											<div class="mr-1.5 flex items-center justify-center">
 												<i class="fa-solid fa-arrow-left fa-fw"></i>
 											</div>
 											 Move left
-										</DropdownItem>
-										<DropdownItem>
+										</Dropdown.Item>
+										<Dropdown.Item>
 											<div class="mr-1.5 flex items-center justify-center">
 												<i class="fa-solid fa-arrow-right fa-fw"></i>
 											</div>
 											 Move right
-										</DropdownItem>
-									</DropdownItems>
-								</DropdownGroup>
-								<DropdownGroup>
-									<DropdownItem>
+										</Dropdown.Item>
+									</Dropdown.Items>
+								</Dropdown.Group>
+								<Dropdown.Group>
+									<Dropdown.Item>
 										<div class="mr-1.5 flex items-center justify-center">
 											<i class="fa-solid fa-eye-slash fa-fw"></i>
 										</div>
 										 Hide from view
-									</DropdownItem>
-								</DropdownGroup>
+									</Dropdown.Item>
+								</Dropdown.Group>
 							</slot>
 						</Dropdown>
 					</th>
@@ -421,42 +421,42 @@ import DropdownItem from '@rinseui/modules/Dropdown/DropdownItem.astro';
 								</Tooltip>
 							</Button>
 							<slot slot="dropdown-content">
-								<DropdownGroup>
-									<DropdownItems>
-										<DropdownItem>
+								<Dropdown.Group>
+									<Dropdown.Items>
+										<Dropdown.Item>
 											<div class="mr-1.5 flex items-center justify-center">
 												<i class="fa-solid fa-arrow-up fa-fw"></i>
 											</div>
 											 Sort ascending
-										</DropdownItem>
-										<DropdownItem>
+										</Dropdown.Item>
+										<Dropdown.Item>
 											<div class="mr-1.5 flex items-center justify-center">
 												<i class="fa-solid fa-arrow-down fa-fw"></i>
 											</div>
 											 Sort descending
-										</DropdownItem>
-										<DropdownItem>
+										</Dropdown.Item>
+										<Dropdown.Item>
 											<div class="mr-1.5 flex items-center justify-center">
 												<i class="fa-solid fa-arrow-left fa-fw"></i>
 											</div>
 											 Move left
-										</DropdownItem>
-										<DropdownItem>
+										</Dropdown.Item>
+										<Dropdown.Item>
 											<div class="mr-1.5 flex items-center justify-center">
 												<i class="fa-solid fa-arrow-right fa-fw"></i>
 											</div>
 											 Move right
-										</DropdownItem>
-									</DropdownItems>
-								</DropdownGroup>
-								<DropdownGroup>
-									<DropdownItem>
+										</Dropdown.Item>
+									</Dropdown.Items>
+								</Dropdown.Group>
+								<Dropdown.Group>
+									<Dropdown.Item>
 										<div class="mr-1.5 flex items-center justify-center">
 											<i class="fa-solid fa-eye-slash fa-fw"></i>
 										</div>
 										 Hide from view
-									</DropdownItem>
-								</DropdownGroup>
+									</Dropdown.Item>
+								</Dropdown.Group>
 							</slot>
 						</Dropdown>
 					</th>
