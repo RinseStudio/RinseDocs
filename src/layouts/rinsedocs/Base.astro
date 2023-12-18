@@ -1,7 +1,7 @@
 ---
 import { ViewTransitions } from 'astro:transitions';
 const { title, pageSettings, frontmatter } = Astro.props;
-import '@styles/rinsedocs.css';
+import '@/styles/rinsedocs.css';
 let sidebarSetting, tocSetting, fluidWidthSetting;
 sidebarSetting = pageSettings?.showSidebar ?? true;
 tocSetting = pageSettings?.showTOC ?? true;

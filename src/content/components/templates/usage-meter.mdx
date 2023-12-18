@@ -2,7 +2,7 @@
 title: Usage meter
 date: 2023-05-12
 author: Jin Su Park,
-thumbnail: '@assets/runboy-01.jpg'
+thumbnail: '@/assets/runboy-01.jpg'
 description: Meter to provides information about the users API call usage.
 draft: false
 weight: 0
@@ -37,7 +37,7 @@ The API calls usage meter is a sidebar card component that provides information 
   <Fragment slot="raw">
     ```astro
     ---
-    import Layout from '@layouts/rinsedocs/Raw.astro';
+    import Layout from '@/layouts/rinsedocs/Raw.astro';
     import Button from '@rinseui/elements/Button/index.astro';
     ---
 
@@ -47,7 +47,7 @@ The API calls usage meter is a sidebar card component that provides information 
         <div class="relative mb-2 h-1 overflow-hidden rounded-full bg-zinc-100 dark:bg-zinc-700">
           <div class="h-1 bg-blue-500" style="width: 32%"></div>
         </div>
-        <div class="text-[11px] font-medium text-gray-500 dark:text-gray-400">325/1,000 API Calls per month</div>
+        <div class="text-[11px] font-medium text-gray-500 dark:text-gray-400">325/1,000 API calls per month</div>
       </div>
       <div class="p-3">
         <p class="mb-4 text-[11px] font-medium text-gray-500 dark:text-gray-300">Launch your project with unlimited calls and no contractual minimums</p>
