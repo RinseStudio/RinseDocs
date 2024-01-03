@@ -13,8 +13,8 @@ import Tabs from '@rinseui/modules/Tabs/index.astro';
     <Dropdown direction="bottomLeft" widthClass="w-[320px]" isOpen>
       <Button onClick={'isOpen = !isOpen'} size="sm" variant="outline">View settings</Button>
       <slot slot="dropdown-content">
-        <Tabs />
         <Dropdown.Group>
+          <Tabs />
           <div class="mb-4 grid grid-cols-1 gap-2 px-2 pt-3">
             <div>
               <Dropdown direction="bottomLeft" widthClass="w-full">

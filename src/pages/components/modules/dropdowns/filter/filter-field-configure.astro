@@ -14,8 +14,8 @@ import Link from '@rinseui/elements/Link/index.astro';
       <Button onClick={'isOpen = !isOpen'} size="sm" variant="outline">View settings</Button>
 
       <slot slot="dropdown-content">
-        <Tabs />
         <Dropdown.Group>
+          <Tabs />
           <div class="mt-3 px-2">
             <Link onClick={'isOpen = !isOpen'} size="xs">
               <svg

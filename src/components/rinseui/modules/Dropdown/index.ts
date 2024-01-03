@@ -4,11 +4,11 @@ import Header from '@rinseui/modules/Dropdown/Header.astro';
 import Item from '@rinseui/modules/Dropdown/Item.astro';
 import Items from '@rinseui/modules/Dropdown/Item.astro';
 
-const ExtendedDropdown = Object.assign(Dropdown, {
+const Component = Object.assign(Dropdown, {
   Group,
   Header,
   Item,
   Items,
 });
 
-export default ExtendedDropdown;
+export default Component;

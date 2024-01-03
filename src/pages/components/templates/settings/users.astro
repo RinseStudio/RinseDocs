@@ -1,0 +1,84 @@
+---
+import Layout from '@/layouts/rinsedocs/Raw.astro';
+import Tab from '@rinseui/modules/Tab';
+import Button from '@rinseui/elements/Button/index.astro';
+---
+
+<Layout layoutClass="">
+  <div class="px-7 py-4">
+    <h1 class="mb-2 text-lg font-bold text-black">Organization Settings</h1>
+    <p class="text-sm text-gray-600">View or update your organization and billing settings.</p>
+  </div>
+  <div>
+    <Tab paddingClass="px-7">
+      <Tab.Item active>Users</Tab.Item>
+      <Tab.Item>Billing</Tab.Item>
+      <Tab.Item>Environment</Tab.Item>
+    </Tab>
+  </div>
+  <div class="px-7 py-10">
+    <div class="space-y-14">
+      <div>
+        <h3 class="mb-4 flex items-center gap-2 text-sm font-bold text-black">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-user-plus"
+            ><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><line x1="19" x2="19" y1="8" y2="14"></line><line
+              x1="22"
+              x2="16"
+              y1="11"
+              y2="11"></line></svg
+          >
+           Pending Invitations
+        </h3>
+
+        <div class="flex items-center justify-center rounded-lg border border-zinc-200 py-14 shadow-sm">
+          <div class="flex flex-col items-center text-center">
+            <i class="fa-solid fa-user-plus mb-2 text-[40px] text-teal-500"></i>
+            <h4 class="mb-3 text-lg font-bold text-teal-500">Invite team</h4>
+            <p class="mb-5 max-w-[280px] text-sm text-gray-600">There are no pending invitations to show.</p>
+            <Button size="md">
+              <i class="fa-regular fa-plus mr-1.5"></i> Add Team Member
+            </Button>
+          </div>
+        </div>
+
+        <div class="mt-4">
+          <Button size="sm" variant="secondary">
+            <i class="fa-regular fa-plus mr-1.5"></i> Add Team Member
+          </Button>
+        </div>
+      </div>
+
+      <div>
+        <h3 class="mb-4 flex items-center gap-2 text-sm font-bold text-black">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-users"
+            ><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path
+              d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg
+          >
+           Active Members
+        </h3>
+
+        <div class="flex h-[120px] items-center justify-center rounded-lg border border-zinc-200 shadow-sm"></div>
+      </div>
+    </div>
+  </div>
+</Layout>

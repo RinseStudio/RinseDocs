@@ -6,7 +6,6 @@
 @tailwind utilities;
 
 /* Register your custom font family and tell the browser where to find it. */
-/* Register your custom font family and tell the browser where to find it. */
 @font-face {
   font-family: InterVariable;
   font-style: normal;

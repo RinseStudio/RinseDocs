@@ -45,5 +45,48 @@ import '@/styles/app.css';
         this.tooltipVisible = false; // Hide the tooltip
       },
     }));
+
+    Alpine.data('Tab', () => ({
+      buttonWidth: 0, // Default width
+      buttonLeft: 0, // Default left position
+
+      init() {
+        document.addEventListener('DOMContentLoaded', (event) => {
+          const activeTab = this.$root.querySelector('[data-tab-active="true"]');
+
+          if (activeTab) {
+            // Set custom properties based on the first button's width and left position
+            const buttonWidth = activeTab.offsetWidth;
+            const buttonLeft = activeTab.offsetLeft;
+            console.log(activeTab.offsetWidth);
+
+            this.$root.style.setProperty('--indicator-width', `${buttonWidth}px`);
+            this.$root.style.setProperty('--tab-indicator', `${buttonLeft}px`);
+          }
+        });
+      },
+      updateIndicatorPosition() {
+        this.$root.style.setProperty('--indicator-width', `${this.buttonWidth}px`);
+        this.$root.style.setProperty('--tab-indicator', `${this.buttonLeft}px`);
+      },
+
+      tabOnClick() {
+        this.buttonWidth = this.$el.offsetWidth;
+        this.buttonLeft = this.$el.offsetLeft;
+
+        const tabs = this.$root.querySelectorAll('button');
+        tabs.forEach((tab) => {
+          tab.setAttribute('data-tab-active', 'false');
+          tab.classList.remove('text-blue-500', 'dark:text-blue-400');
+          tab.classList.add('text-gray-400', 'hover:text-gray-600', 'dark:hover:text-gray-300');
+        });
+        this.$el.setAttribute('data-tab-active', 'true');
+        this.$el.classList.remove('text-gray-400', 'hover:text-gray-600', 'dark:hover:text-gray-300');
+        this.$el.classList.add('text-blue-500', 'dark:text-blue-400');
+
+        // Update the custom properties
+        this.updateIndicatorPosition();
+      },
+    }));
   });
 </script>

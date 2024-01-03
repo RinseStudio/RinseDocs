@@ -12,8 +12,8 @@ import Tabs from '@rinseui/modules/Tabs/index.astro';
       <Button onClick={'isOpen = !isOpen'} size="sm" variant="outline">View settings</Button>
 
       <slot slot="dropdown-content">
-        <Tabs />
         <Dropdown.Group>
+          <Tabs />
           <div class="my-3 px-2 pb-1">
             <SearchField placeholder="Search by field name" validation="default" fluid />
           </div>
