@@ -113,7 +113,7 @@ import Dropdown from '@rinseui/modules/Dropdown';
         <div class="space-y-6">
           <Card>
             <Card.Group>
-              <div class="space-y-6">
+              <div class="mb-4 space-y-6">
                 <div>
                   <label class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400">User Cross-linking</label>
                   <p class="font-regular mb-4 text-xs text-gray-600">
@@ -125,16 +125,16 @@ import Dropdown from '@rinseui/modules/Dropdown';
                     {`{USER_ID}`} cannot be replaced by other variables.
                   </p>
                 </div>
-                <div class="flex justify-end">
-                  <Button onClick={'isOpen = !isOpen'} size="sm" variant="primary">Save settings</Button>
-                </div>
+              </div>
+              <div class="flex justify-end">
+                <Button onClick={'isOpen = !isOpen'} size="sm" variant="primary">Save settings</Button>
               </div>
             </Card.Group>
           </Card>
 
           <Card>
             <Card.Group>
-              <div class="space-y-6">
+              <div class="mb-4 space-y-6">
                 <div>
                   <label class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400">Secure mode</label>
                   <p class="font-regular mb-4 text-xs text-gray-600">
@@ -142,9 +142,9 @@ import Dropdown from '@rinseui/modules/Dropdown';
                   </p>
                   <p class="font-regular text-xs text-gray-600">Make sure you have changed your integration of Castle.js to support Secure Mode before turning this on.</p>
                 </div>
-                <div class="flex justify-end">
-                  <Button onClick={'isOpen = !isOpen'} size="sm" variant="primary">Enable secure mode</Button>
-                </div>
+              </div>
+              <div class="flex justify-end">
+                <Button onClick={'isOpen = !isOpen'} size="sm" variant="primary">Enable secure mode</Button>
               </div>
             </Card.Group>
           </Card>
