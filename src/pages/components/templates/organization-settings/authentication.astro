@@ -1,0 +1,189 @@
+---
+import Layout from '@/layouts/rinsedocs/Raw.astro';
+import Tab from '@rinseui/modules/Tab';
+import Button from '@rinseui/elements/Button/index.astro';
+import TextField from '@rinseui/elements/TextField/index.astro';
+import SelectField from '@rinseui/elements/SelectField/index.astro';
+import Card from '@rinseui/elements/Card';
+import Dropdown from '@rinseui/modules/Dropdown';
+---
+
+<Layout layoutClass="">
+  <div class="px-7 py-4">
+    <h1 class="mb-2 text-lg font-bold text-black">Organization Settings</h1>
+    <p class="text-sm text-gray-600">View or update your organization and billing settings.</p>
+  </div>
+  <div>
+    <Tab paddingClass="px-7">
+      <Tab.Item onClick="link('/components/templates/organization-settings/users')">Users</Tab.Item>
+      <Tab.Item onClick="link('/components/templates/organization-settings/billing')">Billing</Tab.Item>
+      <Tab.Item onClick="link('/components/templates/organization-settings/environment')">Environment</Tab.Item>
+      <Tab.Item onClick="link('/components/templates/organization-settings/authentication')" active>Authentication</Tab.Item>
+    </Tab>
+
+    <Tab paddingClass="px-7">
+      <Tab.Item>Users</Tab.Item>
+      <Tab.Item>Billing</Tab.Item>
+      <Tab.Item>Environment</Tab.Item>
+      <Tab.Item active>Authentication</Tab.Item>
+    </Tab>
+  </div>
+  <div class="px-7 py-10">
+    <div class="mx-auto max-w-xl space-y-14">
+      <div>
+        <h3 class="mb-4 flex items-center gap-2 text-sm font-bold text-black">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-circle-user"
+            ><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="10" r="3"></circle><path d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662"></path></svg
+          >
+           Authentication
+        </h3>
+
+        <Card>
+          <Card.Group>
+            <div class="mb-4 space-y-6">
+              <div>
+                <label class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400">Require 2FA</label>
+                <p class="font-regular mb-4 text-xs text-gray-600">
+                  Required Two-Factor Authentication adds an extra layer of security for your organization. When required, users that have Two-Factor Authentication disabled will
+                  be prompted to set this up on their next login.
+                </p>
+                <p class="font-regular text-xs text-gray-600">Make sure you have changed your integration of Castle.js to support Secure Mode before turning this on.</p>
+              </div>
+            </div>
+            <div class="flex justify-end">
+              <Button onClick={'isOpen = !isOpen'} size="sm" variant="primary">Enable secure mode</Button>
+            </div>
+          </Card.Group>
+        </Card>
+
+        <Card>
+          <Card.Group>
+            <div class="space-y-6">
+              <div>
+                <label class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400">First name</label>
+                <TextField value="Jane" fluid />
+              </div>
+              <div>
+                <label class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400">Last name</label>
+                <TextField value="Jane" fluid />
+              </div>
+              <div>
+                <label class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400">Phone</label>
+                <TextField value="+1 415 918 2944" fluid />
+              </div>
+              <div>
+                <label class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400">Email</label>
+                <TextField value="jane@pigibank.com" fluid />
+              </div>
+              <div>
+                <label class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400">Timezone</label>
+                <Dropdown direction="bottomLeft" widthClass="w-full">
+                  <SelectField value="Browser timezone" fluid />
+                  <slot slot="dropdown-content">
+                    <Dropdown.Group>
+                      <Dropdown.Items>
+                        <Dropdown.Item onClick={'isOpen = !isOpen'}>Africa/Abidjan</Dropdown.Item>
+                        <Dropdown.Item onClick={'isOpen = !isOpen'}>Africa/Abidjan</Dropdown.Item>
+                        <Dropdown.Item onClick={'isOpen = !isOpen'}>Africa/Abidjan</Dropdown.Item>
+                      </Dropdown.Items>
+                    </Dropdown.Group>
+                  </slot>
+                </Dropdown>
+              </div>
+              <div class="flex justify-end">
+                <Button onClick={'isOpen = !isOpen'} size="sm" variant="primary">Save settings</Button>
+              </div>
+            </div>
+          </Card.Group>
+        </Card>
+      </div>
+      <div>
+        <h3 class="mb-4 flex items-center gap-2 text-sm font-bold text-black">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-circle-user"
+            ><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="10" r="3"></circle><path d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662"></path></svg
+          >
+           Authentication
+        </h3>
+
+        <Card>
+          <Card.Group>
+            <div class="mb-4 space-y-6">
+              <div>
+                <label class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400">Require 2FA</label>
+                <p class="font-regular mb-4 text-xs text-gray-600">
+                  Required Two-Factor Authentication adds an extra layer of security for your organization. When required, users that have Two-Factor Authentication disabled will
+                  be prompted to set this up on their next login.
+                </p>
+                <p class="font-regular text-xs text-gray-600">Make sure you have changed your integration of Castle.js to support Secure Mode before turning this on.</p>
+              </div>
+            </div>
+            <div class="flex justify-end">
+              <Button onClick={'isOpen = !isOpen'} size="sm" variant="primary">Enable secure mode</Button>
+            </div>
+          </Card.Group>
+        </Card>
+
+        <Card>
+          <Card.Group>
+            <div class="space-y-6">
+              <div>
+                <label class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400">First name</label>
+                <TextField value="Jane" fluid />
+              </div>
+              <div>
+                <label class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400">Last name</label>
+                <TextField value="Jane" fluid />
+              </div>
+              <div>
+                <label class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400">Phone</label>
+                <TextField value="+1 415 918 2944" fluid />
+              </div>
+              <div>
+                <label class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400">Email</label>
+                <TextField value="jane@pigibank.com" fluid />
+              </div>
+              <div>
+                <label class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400">Timezone</label>
+                <Dropdown direction="bottomLeft" widthClass="w-full">
+                  <SelectField value="Browser timezone" fluid />
+                  <slot slot="dropdown-content">
+                    <Dropdown.Group>
+                      <Dropdown.Items>
+                        <Dropdown.Item onClick={'isOpen = !isOpen'}>Africa/Abidjan</Dropdown.Item>
+                        <Dropdown.Item onClick={'isOpen = !isOpen'}>Africa/Abidjan</Dropdown.Item>
+                        <Dropdown.Item onClick={'isOpen = !isOpen'}>Africa/Abidjan</Dropdown.Item>
+                      </Dropdown.Items>
+                    </Dropdown.Group>
+                  </slot>
+                </Dropdown>
+              </div>
+              <div class="flex justify-end">
+                <Button onClick={'isOpen = !isOpen'} size="sm" variant="primary">Save settings</Button>
+              </div>
+            </div>
+          </Card.Group>
+        </Card>
+      </div>
+    </div>
+  </div>
+</Layout>
