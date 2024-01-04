@@ -1,0 +1,73 @@
+---
+import Layout from '@/layouts/rinsedocs/Raw.astro';
+import Tab from '@rinseui/modules/Tab';
+import Button from '@rinseui/elements/Button/index.astro';
+import TextField from '@rinseui/elements/TextField/index.astro';
+import SelectField from '@rinseui/elements/SelectField/index.astro';
+import Card from '@rinseui/elements/Card';
+import Dropdown from '@rinseui/modules/Dropdown';
+---
+
+<Layout layoutClass="">
+  <div class="px-7 py-4">
+    <h1 class="mb-2 text-lg font-bold text-black">Current Environment</h1>
+    <p class="text-sm text-gray-600">View and configure your current environment settings.</p>
+  </div>
+  <div>
+    <Tab paddingClass="px-7">
+      <Tab.Item onClick="link('/components/templates/current-environment/configuration')">Configuration</Tab.Item>
+      <Tab.Item onClick="link('/components/templates/current-environment/integrations')" active>Integrations</Tab.Item>
+    </Tab>
+  </div>
+  <div class="px-7 py-10">
+    <div class="space-y-14">
+      <div>
+        <h3 class="mb-4 flex items-center gap-2 text-sm font-bold text-black">
+          <i class="fa-brands fa-slack"></i>
+           Slack Alerts
+        </h3>
+
+        <div class="flex items-center justify-center rounded-lg border border-zinc-200 py-14 shadow-sm">
+          <div class="flex flex-col items-center text-center">
+            <i class="fa-brands fa-slack mb-2 text-[40px] text-slate-300"></i>
+            <h4 class="mb-3 text-lg font-bold text-gray-900">No Slack alerts</h4>
+            <p class="mb-5 max-w-[280px] text-sm text-gray-600">There are no Slack integrations associated with your Lists.</p>
+            <Button size="md">
+              <i class="fa-regular fa-plus mr-1.5"></i> Create Slack alert
+            </Button>
+          </div>
+        </div>
+
+        <div class="mt-4">
+          <Button size="sm" variant="secondary">
+            <i class="fa-regular fa-plus mr-1.5"></i> Create Slack alert
+          </Button>
+        </div>
+      </div>
+
+      <div>
+        <h3 class="mb-4 flex items-center gap-2 text-sm font-bold text-black">
+          <i class="fa-solid fa-webhook"></i>
+           Webhooks
+        </h3>
+
+        <div class="flex items-center justify-center rounded-lg border border-zinc-200 py-14 shadow-sm">
+          <div class="flex flex-col items-center text-center">
+            <i class="fa-solid fa-webhook mb-2 text-[40px] text-slate-300"></i>
+            <h4 class="mb-3 text-lg font-bold text-gray-900">No webhooks</h4>
+            <p class="mb-5 max-w-[280px] text-sm text-gray-600">There are no Webhook integrations associated with your Policies.</p>
+            <Button size="md">
+              <i class="fa-regular fa-plus mr-1.5"></i> Create integration
+            </Button>
+          </div>
+        </div>
+
+        <div class="mt-4">
+          <Button size="sm" variant="secondary">
+            <i class="fa-regular fa-plus mr-1.5"></i> Create integration
+          </Button>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>

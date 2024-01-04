@@ -2,7 +2,6 @@
 import Layout from '@/layouts/rinsedocs/Raw.astro';
 import Button from '@rinseui/elements/Button/index.astro';
 import Dropdown from '@rinseui/modules/Dropdown';
-import SearchField from '@rinseui/elements/SearchField/index.astro';
 import TextField from '@rinseui/elements/TextField/index.astro';
 import SelectField from '@rinseui/elements/SelectField/index.astro';
 import Link from '@rinseui/elements/Link/index.astro';
@@ -33,10 +32,11 @@ import Link from '@rinseui/elements/Link/index.astro';
             </Link>
           </Dropdown.Header>
         </Dropdown.Group>
+        <Dropdown.Separator />
         <Dropdown.Group>
           <div class="grid grid-cols-1 gap-5 px-2 pb-4 pt-2">
             <div>
-              <label class="text-medium mb-2 block text-[13px] text-gray-900 dark:text-gray-400">Column Type</label>
+              <label class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400">Column Type</label>
 
               <Dropdown direction="bottomLeft" widthClass="w-full">
                 <SelectField placeholder="Most recent event" fluid />
@@ -52,11 +52,12 @@ import Link from '@rinseui/elements/Link/index.astro';
               </Dropdown>
             </div>
             <div>
-              <label class="text-medium mb-2 block text-[13px] text-gray-900 dark:text-gray-400">Column Label</label>
+              <label class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400">Column Label</label>
               <TextField placeholder="Most recent event" fluid />
             </div>
           </div>
         </Dropdown.Group>
+        <Dropdown.Separator />
         <Dropdown.Group>
           <footer class="flex justify-end gap-2 px-2 py-2">
             <Button onClick={'isOpen = !isOpen'} size="sm" variant="secondary">Cancel</Button>

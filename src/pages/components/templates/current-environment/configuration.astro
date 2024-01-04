@@ -1,0 +1,155 @@
+---
+import Layout from '@/layouts/rinsedocs/Raw.astro';
+import Tab from '@rinseui/modules/Tab';
+import Button from '@rinseui/elements/Button/index.astro';
+import TextField from '@rinseui/elements/TextField/index.astro';
+import SelectField from '@rinseui/elements/SelectField/index.astro';
+import Card from '@rinseui/elements/Card';
+import Dropdown from '@rinseui/modules/Dropdown';
+---
+
+<Layout layoutClass="">
+  <div class="px-7 py-4">
+    <h1 class="mb-2 text-lg font-bold text-black">Current Environment</h1>
+    <p class="text-sm text-gray-600">View and configure your current environment settings.</p>
+  </div>
+  <div>
+    <Tab paddingClass="px-7">
+      <Tab.Item onClick="link('/components/templates/current-environment/configuration')" active>Configuration</Tab.Item>
+      <Tab.Item onClick="link('/components/templates/current-environment/integrations')">Integrations</Tab.Item>
+    </Tab>
+  </div>
+  <div class="px-7 py-10">
+    <div class="mx-auto max-w-xl space-y-14">
+      <div>
+        <h3 class="mb-4 flex items-center gap-2 text-sm font-bold text-black">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-check-square"><path d="m9 11 3 3L22 4"></path><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg
+          >
+           General
+        </h3>
+
+        <div class="space-y-6">
+          <Card>
+            <Card.Group>
+              <div class="space-y-6">
+                <div>
+                  <label class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400">Publishable API Key</label>
+                  <p class="font-regular mb-4 text-xs text-gray-600">
+                    Use this when integrating Castle.js. <a
+                      href="https://docs.castle.io/docs/creating-a-policy"
+                      target="_blank"
+                      class="hover:color-primary-600 font-semibold text-blue-500">Learn more</a
+                    >
+                  </p>
+                  <div class="flex h-10 items-center justify-between rounded-lg bg-zinc-100 text-sm font-medium text-gray-900">
+                    <div class="flex-1 truncate px-3 font-mono">pk_zFueiaaapNgSs29t1BTFhfxNgbtc5ZBP</div>
+
+                    <div class="flex gap-4 px-3">
+                      <button class="flex h-10 items-center justify-center text-sm text-gray-500 hover:text-gray-600">
+                        <i class="fa-solid fa-clipboard"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </Card.Group>
+          </Card>
+
+          <Card>
+            <Card.Group>
+              <div class="space-y-6">
+                <div>
+                  <label class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400">API Secret</label>
+                  <p class="font-regular mb-4 text-xs text-gray-600">Make sure to not share it with anyone.</p>
+                  <div class="flex h-10 items-center justify-between rounded-lg bg-zinc-100 text-sm font-medium text-gray-900">
+                    <div class="flex-1 truncate px-3 font-mono">••••••••••••••••••••••••</div>
+
+                    <div class="flex gap-4 px-3">
+                      <button class="flex h-10 items-center justify-center text-sm text-gray-500 hover:text-gray-600">
+                        <i class="fa-solid fa-eye"></i>
+                      </button>
+                      <button class="flex h-10 items-center justify-center text-sm text-gray-500 hover:text-gray-600">
+                        <i class="fa-solid fa-clipboard"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </Card.Group>
+          </Card>
+        </div>
+      </div>
+
+      <div>
+        <h3 class="mb-4 flex items-center gap-2 text-sm font-bold text-black">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-cog"
+            ><path d="M12 20a8 8 0 1 0 0-16 8 8 0 0 0 0 16Z"></path><path d="M12 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"></path><path d="M12 2v2"></path><path d="M12 22v-2"></path><path
+              d="m17 20.66-1-1.73"></path><path d="M11 10.27 7 3.34"></path><path d="m20.66 17-1.73-1"></path><path d="m3.34 7 1.73 1"></path><path d="M14 12h8"></path><path
+              d="M2 12h2"></path><path d="m20.66 7-1.73 1"></path><path d="m3.34 17 1.73-1"></path><path d="m17 3.34-1 1.73"></path><path d="m11 13.73-4 6.93"></path></svg
+          >
+           Advanced
+        </h3>
+
+        <div class="space-y-6">
+          <Card>
+            <Card.Group>
+              <div class="space-y-6">
+                <div>
+                  <label class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400">User Cross-linking</label>
+                  <p class="font-regular mb-4 text-xs text-gray-600">
+                    Link a Castle user to a corresponding URL in an external tool. A cross-link will appear on user lists and details
+                  </p>
+
+                  <TextField placeholder="https://yoursite.com/admin/{USER_ID}" fluid />
+                  <p class="mt-2 text-[11px] font-medium text-gray-500">
+                    {`{USER_ID}`} cannot be replaced by other variables.
+                  </p>
+                </div>
+                <div class="flex justify-end">
+                  <Button onClick={'isOpen = !isOpen'} size="sm" variant="primary">Save settings</Button>
+                </div>
+              </div>
+            </Card.Group>
+          </Card>
+
+          <Card>
+            <Card.Group>
+              <div class="space-y-6">
+                <div>
+                  <label class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400">Secure mode</label>
+                  <p class="font-regular mb-4 text-xs text-gray-600">
+                    Secure Mode helps to make sure that one user can't tamper with another user's personal data, such as their identifier or email.
+                  </p>
+                  <p class="font-regular text-xs text-gray-600">Make sure you have changed your integration of Castle.js to support Secure Mode before turning this on.</p>
+                </div>
+                <div class="flex justify-end">
+                  <Button onClick={'isOpen = !isOpen'} size="sm" variant="primary">Enable secure mode</Button>
+                </div>
+              </div>
+            </Card.Group>
+          </Card>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>

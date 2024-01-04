@@ -1,14 +1,13 @@
 ---
-const { active = false } = Astro.props;
+const { active = null, onClick = null } = Astro.props;
 ---
 
 <button
-  @click="tabOnClick"
-  data-tab-active={active ? 'true' : 'false'}
+  x-on:click={onClick ? onClick : 'switchTab'}
+  data-tab-active={active ? '' : null}
   class={`${
     active ? 'text-blue-500 dark:text-blue-400' : 'text-gray-400 hover:text-gray-600 dark:hover:text-gray-300'
-  } py-3 text-[13px] font-medium  focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-500"
-  style="--tab-indicator: 12px; --indicator-width: 24px;`}
+  } py-3 text-[13px] font-medium  focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-500"`}
 >
   <slot />
 </button>

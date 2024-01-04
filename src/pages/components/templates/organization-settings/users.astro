@@ -11,9 +11,9 @@ import Button from '@rinseui/elements/Button/index.astro';
   </div>
   <div>
     <Tab paddingClass="px-7">
-      <Tab.Item active>Users</Tab.Item>
-      <Tab.Item>Billing</Tab.Item>
-      <Tab.Item>Environment</Tab.Item>
+      <Tab.Item onClick="link('/components/templates/organization-settings/users')" active>Users</Tab.Item>
+      <Tab.Item onClick="link('/components/templates/organization-settings/billing')">Billing</Tab.Item>
+      <Tab.Item onClick="link('/components/templates/organization-settings/environment')">Environment</Tab.Item>
     </Tab>
   </div>
   <div class="px-7 py-10">

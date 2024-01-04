@@ -6,8 +6,7 @@ const { paddingClass = null } = Astro.props;
   x-data="Tab"
   class={`relative flex items-center gap-3 border-b border-gray-200 ${
     paddingClass ? paddingClass : 'px-3'
-  } before:absolute before:-bottom-px before:left-[var(--tab-indicator)] before:block before:h-[2px] before:w-[var(--indicator-width)] before:bg-blue-500 before:duration-300 before:content-[''] dark:border-zinc-700 dark:before:bg-blue-400`}
-  style="--tab-indicator: 12px; --indicator-width: 38px;"
+  } before:absolute before:-bottom-px before:left-[var(--tab-offsetLeft)] before:h-[2px] before:w-[var(--tab-offsetWidth)] before:bg-blue-500 before:duration-300 dark:border-zinc-700 dark:before:bg-blue-400`}
 >
   <slot />
 </div>

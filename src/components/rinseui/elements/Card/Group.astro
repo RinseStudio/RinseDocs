@@ -1,0 +1,7 @@
+---
+const { paddingClass = null } = Astro.props;
+---
+
+<div class={`${paddingClass ? paddingClass : 'px-5 py-4'}`}>
+  <slot />
+</div>

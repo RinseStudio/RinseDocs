@@ -51,8 +51,8 @@ import '@/styles/app.css';
       buttonLeft: 0, // Default left position
 
       init() {
-        document.addEventListener('DOMContentLoaded', (event) => {
-          const activeTab = this.$root.querySelector('[data-tab-active="true"]');
+        window.addEventListener('load', () => {
+          const activeTab = this.$root.querySelector('[data-tab-active]');
 
           if (activeTab) {
             // Set custom properties based on the first button's width and left position
@@ -60,27 +60,29 @@ import '@/styles/app.css';
             const buttonLeft = activeTab.offsetLeft;
             console.log(activeTab.offsetWidth);
 
-            this.$root.style.setProperty('--indicator-width', `${buttonWidth}px`);
-            this.$root.style.setProperty('--tab-indicator', `${buttonLeft}px`);
+            this.$root.style.setProperty('--tab-offsetWidth', `${buttonWidth}px`);
+            this.$root.style.setProperty('--tab-offsetLeft', `${buttonLeft}px`);
           }
         });
       },
       updateIndicatorPosition() {
-        this.$root.style.setProperty('--indicator-width', `${this.buttonWidth}px`);
-        this.$root.style.setProperty('--tab-indicator', `${this.buttonLeft}px`);
+        this.$root.style.setProperty('--tab-offsetWidth', `${this.buttonWidth}px`);
+        this.$root.style.setProperty('--tab-offsetLeft', `${this.buttonLeft}px`);
       },
-
-      tabOnClick() {
+      link(url) {
+        window.location.href = url;
+      },
+      switchTab() {
         this.buttonWidth = this.$el.offsetWidth;
         this.buttonLeft = this.$el.offsetLeft;
 
         const tabs = this.$root.querySelectorAll('button');
         tabs.forEach((tab) => {
-          tab.setAttribute('data-tab-active', 'false');
+          tab.removeAttribute('data-tab-active');
           tab.classList.remove('text-blue-500', 'dark:text-blue-400');
           tab.classList.add('text-gray-400', 'hover:text-gray-600', 'dark:hover:text-gray-300');
         });
-        this.$el.setAttribute('data-tab-active', 'true');
+        this.$el.setAttribute('data-tab-active', null);
         this.$el.classList.remove('text-gray-400', 'hover:text-gray-600', 'dark:hover:text-gray-300');
         this.$el.classList.add('text-blue-500', 'dark:text-blue-400');
 

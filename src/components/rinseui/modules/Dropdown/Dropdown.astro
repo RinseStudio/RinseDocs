@@ -69,9 +69,7 @@ const getClass = (direction, property) => {
     x-transition:leave={`${getClass(direction, 'leave')} ${leaveClass} `}
     x-transition:leave-start={`${getClass(direction, 'leaveStart')} ${leaveStartClass} `}
     x-transition:leave-end={`${getClass(direction, 'leaveEnd')} ${leaveEndClass} `}
-    class={`${
-      widthClass ? widthClass : 'w-[200px]'
-    } ring-1 ring-zinc-200 dark:ring-zinc-700 absolute z-10 rounded-lg divide-y divide-zinc-200 dark:divide-zinc-700 shadow-md bg-white dark:bg-zinc-800 ${getClass(
+    class={`${widthClass ? widthClass : 'w-[200px]'} ring-1 ring-zinc-200 dark:ring-zinc-700 absolute z-10 rounded-lg shadow-md bg-white dark:bg-zinc-800 ${getClass(
       direction,
       'class',
     )} `}
