@@ -31,7 +31,7 @@ import Button from '@rinseui/elements/Button/index.astro';
             stroke-width="2"
             stroke-linecap="round"
             stroke-linejoin="round"
-            class="lucide lucide-gauge"><path d="m12 14 4-4"></path><path d="M3.34 19a10 10 0 1 1 17.32 0"></path></svg
+            class="lucide lucide-credit-card"><rect width="20" height="14" x="2" y="5" rx="2"></rect><line x1="2" x2="22" y1="10" y2="10"></line></svg
           >
            Current plan
         </h3>
@@ -50,7 +50,7 @@ import Button from '@rinseui/elements/Button/index.astro';
         </div>
         <div class="mt-4">
           <Button size="md" variant="secondary">
-            <i class="fa-regular fa-credit-card mr-1.5"></i> Manage billing
+            Manage billing <i class="fa-solid fa-external-link ml-2.5 text-xs"></i>
           </Button>
         </div>
       </div>
@@ -67,7 +67,7 @@ import Button from '@rinseui/elements/Button/index.astro';
             stroke-width="2"
             stroke-linecap="round"
             stroke-linejoin="round"
-            class="lucide lucide-credit-card"><rect width="20" height="14" x="2" y="5" rx="2"></rect><line x1="2" x2="22" y1="10" y2="10"></line></svg
+            class="lucide lucide-gauge"><path d="m12 14 4-4"></path><path d="M3.34 19a10 10 0 1 1 17.32 0"></path></svg
           >
            Current usage
         </h3>
@@ -147,7 +147,7 @@ import Button from '@rinseui/elements/Button/index.astro';
         },
         callbacks: {
           label: function (context) {
-            return context.parsed.y + ' ' + 'API Requests';
+            return context.parsed.y + ' ' + 'API requests';
           },
           title: function (tooltipItems) {
             // Customize the tooltip title
