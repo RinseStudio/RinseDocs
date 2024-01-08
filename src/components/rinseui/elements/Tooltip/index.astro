@@ -56,32 +56,27 @@ const getClass = (position, property) => {
 };
 ---
 
-<div class={`relative inline-flex ${className ? className : ''}`} x-data="Tooltip">
-  <div x-on:mouseover="showTooltip" x-on:mouseleave="hideTooltip">
+<div class={`inline-flex ${className ? className : ''}`} x-data="Tooltip">
+  <div x-ref="tooltipBtn" x-on:mouseover="showTooltip" x-on:mouseleave="hideTooltip">
     <slot />
   </div>
-  <div
-    x-cloak
-    x-show="tooltipVisible"
-    x-transition:enter={`${getClass(position, 'enter')} ${enterClass} `}
-    x-transition:enter-start={`${getClass(position, 'enterStart')} ${enterStartClass}`}
-    x-transition:enter-end={`${getClass(position, 'enterEnd')} ${enterEndClass}`}
-    x-transition:leave={`${getClass(position, 'leave')} ${leaveClass} `}
-    x-transition:leave-start={`${getClass(position, 'leaveStart')} ${leaveStartClass} `}
-    x-transition:leave-end={`${getClass(position, 'leaveEnd')} ${leaveEndClass} `}
-    class={`${
-      widthClass ? widthClass : 'whitespace-nowrap'
-    } whitespace-normal text-left pointer-events-none absolute z-10 rounded-md bg-zinc-800 px-2.5 py-1 text-[11px] font-medium text-gray-300 dark:ring-zinc-700 dark:bg-zinc-800 ${getClass(
-      position,
-      'class',
-    )} `}
-  >
-    <slot name="tooltip-content" />
+  <div x-cloak x-show="tooltipVisible" x-anchor.top="$refs.tooltipBtn">
+    <div
+      class={`${
+        widthClass ? widthClass : 'whitespace-nowrap'
+      } whitespace-normal text-left pointer-events-none z-10 m-2 rounded-md bg-zinc-800 px-2.5 py-1 text-[11px] font-medium text-gray-300 dark:ring-zinc-700 dark:bg-zinc-800`}
+    >
+      <slot name="tooltip-content" />
+    </div>
   </div>
 </div>
 
 <script>
   import Alpine from 'alpinejs';
+  import anchor from '@alpinejs/anchor';
+
+  Alpine.plugin(anchor);
+
   Alpine.data('Tooltip', () => ({
     tooltipVisible: false,
     init() {

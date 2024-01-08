@@ -13,9 +13,7 @@ const { paddingClass = null } = Astro.props;
 
 <script>
   import Alpine from 'alpinejs';
-  import anchor from '@alpinejs/anchor';
 
-  Alpine.plugin(anchor);
   Alpine.data('Tab', () => ({
     buttonWidth: 0, // Default width
     buttonLeft: 0, // Default left position
