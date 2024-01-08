@@ -77,3 +77,18 @@ const getClass = (position, property) => {
     <slot name="tooltip-content" />
   </div>
 </div>
+
+<script>
+  Alpine.data('Tooltip', () => ({
+    tooltipVisible: false,
+    init() {
+      console.log('tooltip loaded');
+    },
+    showTooltip() {
+      this.tooltipVisible = true; // Show the tooltip
+    },
+    hideTooltip() {
+      this.tooltipVisible = false; // Hide the tooltip
+    },
+  }));
+</script>

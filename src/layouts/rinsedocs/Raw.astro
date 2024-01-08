@@ -2,6 +2,7 @@
 import { ViewTransitions } from 'astro:transitions';
 const { layoutClass } = Astro.props;
 import '@/styles/app.css';
+import Alpine from '@components/Alpine.astro';
 ---
 
 <!doctype html>
@@ -18,8 +19,8 @@ import '@/styles/app.css';
     <link href="/vendors/fontawesome/css/solid.css" rel="stylesheet" />
     <link href="/vendors/fontawesome/css/regular.css" rel="stylesheet" />
 
-    <!-- Alpine JS -->
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <!-- Chart JS -->
+    <script defer src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
   <body class="font-sans font-normal text-slate-500 antialiased">
     <div class={layoutClass}>
@@ -27,68 +28,3 @@ import '@/styles/app.css';
     </div>
   </body>
 </html>
-
-<script is:inline>
-  'use strict';
-
-  // Initialize Alpine
-  document.addEventListener('alpine:init', () => {
-    Alpine.data('Tooltip', () => ({
-      tooltipVisible: false,
-      init() {
-        console.log('tooltip loaded');
-      },
-      showTooltip() {
-        this.tooltipVisible = true; // Show the tooltip
-      },
-      hideTooltip() {
-        this.tooltipVisible = false; // Hide the tooltip
-      },
-    }));
-
-    Alpine.data('Tab', () => ({
-      buttonWidth: 0, // Default width
-      buttonLeft: 0, // Default left position
-
-      init() {
-        window.addEventListener('load', () => {
-          const activeTab = this.$root.querySelector('[data-tab-active]');
-
-          if (activeTab) {
-            // Set custom properties based on the first button's width and left position
-            const buttonWidth = activeTab.offsetWidth;
-            const buttonLeft = activeTab.offsetLeft;
-            console.log(activeTab.offsetWidth);
-
-            this.$root.style.setProperty('--tab-offsetWidth', `${buttonWidth}px`);
-            this.$root.style.setProperty('--tab-offsetLeft', `${buttonLeft}px`);
-          }
-        });
-      },
-      updateIndicatorPosition() {
-        this.$root.style.setProperty('--tab-offsetWidth', `${this.buttonWidth}px`);
-        this.$root.style.setProperty('--tab-offsetLeft', `${this.buttonLeft}px`);
-      },
-      link(url) {
-        window.location.href = url;
-      },
-      switchTab() {
-        this.buttonWidth = this.$el.offsetWidth;
-        this.buttonLeft = this.$el.offsetLeft;
-
-        const tabs = this.$root.querySelectorAll('button');
-        tabs.forEach((tab) => {
-          tab.removeAttribute('data-tab-active');
-          tab.classList.remove('text-blue-500', 'dark:text-blue-400');
-          tab.classList.add('text-gray-400', 'hover:text-gray-600', 'dark:hover:text-gray-300');
-        });
-        this.$el.setAttribute('data-tab-active', null);
-        this.$el.classList.remove('text-gray-400', 'hover:text-gray-600', 'dark:hover:text-gray-300');
-        this.$el.classList.add('text-blue-500', 'dark:text-blue-400');
-
-        // Update the custom properties
-        this.updateIndicatorPosition();
-      },
-    }));
-  });
-</script>
