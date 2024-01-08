@@ -56,8 +56,10 @@ const getClass = (position, property) => {
 };
 ---
 
-<div class={`relative ${className ? className : ''}`} x-data="Tooltip">
-  <slot />
+<div class={`relative inline-flex ${className ? className : ''}`} x-data="Tooltip">
+  <div x-on:mouseover="showTooltip" x-on:mouseleave="hideTooltip">
+    <slot />
+  </div>
   <div
     x-cloak
     x-show="tooltipVisible"
@@ -69,7 +71,7 @@ const getClass = (position, property) => {
     x-transition:leave-end={`${getClass(position, 'leaveEnd')} ${leaveEndClass} `}
     class={`${
       widthClass ? widthClass : 'whitespace-nowrap'
-    } whitespace-normal text-left pointer-events-none absolute z-10 rounded-md bg-zinc-800 px-2 py-1.5 text-[11px] font-medium text-gray-300 dark:ring-zinc-700 dark:bg-zinc-800 ${getClass(
+    } whitespace-normal text-left pointer-events-none absolute z-10 rounded-md bg-zinc-800 px-2.5 py-1 text-[11px] font-medium text-gray-300 dark:ring-zinc-700 dark:bg-zinc-800 ${getClass(
       position,
       'class',
     )} `}
@@ -79,6 +81,7 @@ const getClass = (position, property) => {
 </div>
 
 <script>
+  import Alpine from 'alpinejs';
   Alpine.data('Tooltip', () => ({
     tooltipVisible: false,
     init() {
