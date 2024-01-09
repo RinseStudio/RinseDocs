@@ -1,15 +1,21 @@
 ---
 import Layout from '@/layouts/rinsedocs/Raw.astro';
 import Card from '@rinseui/elements/Card';
+import Button from '@rinseui/elements/Button/index.astro';
 ---
 
 <Layout layoutClass="">
-  <div class="flex items-center justify-center px-7 py-[100px]">
-    <Card className="text-center">
-      <Card.Group className="px-10 py-10 text-center">
-        <i class="fa-solid fa-timer mb-2 text-[40px] text-slate-300"></i>
+  <div class="flex items-center justify-center px-7 py-[120px]">
+    <Card className="w-full max-w-xl text-center">
+      <Card.Group className="px-5 py-16 text-center">
+        <i class="fa-solid fa-timer mb-4 text-[48px] text-slate-300"></i>
         <h1 class="mb-2 text-lg font-bold text-black">Your trial has expired</h1>
-        <p class="text-sm text-gray-600">Please update your your <a href="#" class="font-medium text-blue-500">billing information</a> to activate your account.</p>
+        <p class="text-sm text-gray-600">Please update your your <a href="#" class="font-medium text-blue-500">billing information</a> <br />to activate your account.</p>
+        <div class="mt-6">
+          <Button size="md" variant="primary">
+            Manage billing <i class="fa-solid fa-arrow-right ml-2.5 text-xs"></i>
+          </Button>
+        </div>
       </Card.Group>
     </Card>
   </div>
