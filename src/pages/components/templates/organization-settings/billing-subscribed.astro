@@ -47,10 +47,12 @@ import Tooltip from '@rinseui/elements/Tooltip/index.astro';
             <h4 class="mb-1 text-xs font-semibold text-gray-900">Next upcoming bill</h4>
             <div class="mb-2 flex items-center gap-2 text-lg font-bold text-gray-900">
               $310
-              <Tooltip>
-                <div class="flex h-4 w-4 items-center justify-center">
-                  <i class="fa-solid fa-fw fa-circle-question text-sm leading-none text-gray-400/70 hover:text-gray-400"></i>
-                </div>
+              <Tooltip position="top">
+                <slot slot="tooltip-trigger"
+                  ><div class="flex h-4 w-4 items-center justify-center">
+                    <i class="fa-solid fa-fw fa-circle-question text-sm leading-none text-gray-400/70 hover:text-gray-400"></i>
+                  </div></slot
+                >
                 <slot slot="tooltip-content">100k API calls included for $200/mo. Then $0.002 per each API call.</slot>
               </Tooltip>
             </div>

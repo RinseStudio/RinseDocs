@@ -15,7 +15,6 @@ const {
 const getClass = (position, property) => {
   const schema = {
     top: {
-      class: `bottom-full left-1/2 mb-2 -translate-x-1/2`,
       enter: `transition ease-out duration-200`,
       enterStart: `opacity-0 ${attract ? '-translate-y-2' : 'translate-y-2'}`,
       enterEnd: `opacity-100 translate-y-0`,
@@ -24,7 +23,6 @@ const getClass = (position, property) => {
       leaveEnd: `opacity-0 ${attract ? '-translate-y-2' : 'translate-y-2'}`,
     },
     right: {
-      class: `left-full top-1/2 ml-2 -translate-y-1/2`,
       enter: `transition ease-out duration-200`,
       enterStart: `opacity-0 ${attract ? 'translate-x-2' : '-translate-x-2'}`,
       enterEnd: `opacity-100 translate-x-0`,
@@ -33,7 +31,6 @@ const getClass = (position, property) => {
       leaveEnd: `opacity-0 ${attract ? 'translate-x-2' : '-translate-x-2'}`,
     },
     bottom: {
-      class: `top-full left-1/2 mt-2 -translate-x-1/2`,
       enter: `transition ease-out duration-200`,
       enterStart: `opacity-0 ${attract ? 'translate-y-2' : '-translate-y-2'}`,
       enterEnd: `opacity-100 translate-y-0`,
@@ -42,7 +39,6 @@ const getClass = (position, property) => {
       leaveEnd: `opacity-0 ${attract ? 'translate-y-2' : '-translate-y-2'}`,
     },
     left: {
-      class: `right-full top-1/2 mr-2 -translate-y-1/2`,
       enter: `transition ease-out duration-200`,
       enterStart: `opacity-0 ${attract ? '-translate-x-2' : 'translate-x-2'}`,
       enterEnd: `opacity-100 translate-x-0`,
@@ -56,15 +52,28 @@ const getClass = (position, property) => {
 };
 ---
 
-<div class={`inline-flex ${className ? className : ''}`} x-data="Tooltip">
+<div class={`inline-flex ${className ? className : null}`} x-data="Tooltip">
   <div x-ref="tooltipBtn" x-on:mouseover="showTooltip" x-on:mouseleave="hideTooltip">
-    <slot />
+    <slot name="tooltip-trigger" />
   </div>
-  <div x-cloak x-show="tooltipVisible" x-anchor.top="$refs.tooltipBtn">
+  <div
+    x-cloak
+    x-show="tooltipVisible"
+    x-anchor.top.offset.8={position === 'top' ? '$refs.tooltipBtn' : null}
+    x-anchor.right.offset.8={position === 'right' ? '$refs.tooltipBtn' : null}
+    x-anchor.bottom.offset.8={position === 'bottom' ? '$refs.tooltipBtn' : null}
+    x-anchor.left.offset.8={position === 'left' ? '$refs.tooltipBtn' : null}
+    x-transition:enter={`${getClass(position, 'enter')} ${enterClass} `}
+    x-transition:enter-start={`${getClass(position, 'enterStart')} ${enterStartClass}`}
+    x-transition:enter-end={`${getClass(position, 'enterEnd')} ${enterEndClass}`}
+    x-transition:leave={`${getClass(position, 'leave')} ${leaveClass} `}
+    x-transition:leave-start={`${getClass(position, 'leaveStart')} ${leaveStartClass} `}
+    x-transition:leave-end={`${getClass(position, 'leaveEnd')} ${leaveEndClass} `}
+  >
     <div
       class={`${
         widthClass ? widthClass : 'whitespace-nowrap'
-      } whitespace-normal text-left pointer-events-none z-10 m-2 rounded-md bg-zinc-800 px-2.5 py-1 text-[11px] font-medium text-gray-300 dark:ring-zinc-700 dark:bg-zinc-800`}
+      } whitespace-normal text-left pointer-events-none z-10 rounded-md bg-zinc-800 px-2.5 py-1 text-[11px] font-medium text-gray-300 dark:ring-zinc-700 dark:bg-zinc-800`}
     >
       <slot name="tooltip-content" />
     </div>
