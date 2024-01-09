@@ -1,7 +1,8 @@
 ---
-const {} = Astro.props;
+import { twMerge } from 'tailwind-merge';
+const { className = null } = Astro.props;
 ---
 
-<div class="rounded-lg border border-zinc-200 shadow-sm">
+<div class={twMerge('rounded-lg border border-zinc-200 shadow-sm', className)}>
   <slot />
 </div>
