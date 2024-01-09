@@ -1,4 +1,6 @@
 ---
+import { twMerge } from 'tailwind-merge';
+
 const {
   isOpen = false,
   className = null,
@@ -52,7 +54,7 @@ const getClass = (position, property) => {
 };
 ---
 
-<div class={`${className ? className : ''}`} x-data={`{isOpen: ${isOpen == true ? 'true}' : 'false}'}`}>
+<div class={`relative ${className ? className : ''}`} x-data={`{isOpen: ${isOpen == true ? 'true}' : 'false}'}`}>
   <div x-on:click="isOpen = !isOpen" x-ref="dropdownBtn">
     <slot name="dropdown-trigger" />
   </div>
@@ -71,10 +73,9 @@ const getClass = (position, property) => {
     x-transition:leave={`${getClass(position, 'leave')} ${leaveClass} `}
     x-transition:leave-start={`${getClass(position, 'leaveStart')} ${leaveStartClass} `}
     x-transition:leave-end={`${getClass(position, 'leaveEnd')} ${leaveEndClass} `}
+    class={twMerge('ring-1 ring-zinc-200 dark:ring-zinc-700 whitespace-nowrap rounded-md shadow-md bg-white dark:bg-zinc-800 z-10 w-[200px]"}', className ? className : null)}
   >
-    <div class={`${widthClass ? widthClass : 'w-[200px]'} ring-1 ring-zinc-200 dark:ring-zinc-700 z-10 rounded-lg shadow-md bg-white dark:bg-zinc-800`}>
-      <slot name="dropdown-content" />
-    </div>
+    <slot name="dropdown-content" />
   </div>
 </div>
 

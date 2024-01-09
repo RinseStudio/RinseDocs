@@ -1,5 +1,15 @@
 ---
-const { placeholder = 'Search field', value = '', validation = 'default', fluid = false, disabled = false } = Astro.props;
+const {
+  xData = null,
+  xType = null,
+  placeholder = 'Search field',
+  value = '',
+  type = 'text',
+  validation = 'default',
+  fluid = false,
+  disabled = false,
+  paddingClass = null,
+} = Astro.props;
 
 const getRingClass = (validation) => {
   const schema = {
@@ -22,15 +32,18 @@ const getTextClass = (validation) => {
 };
 ---
 
-<div class="relative">
+<div class="relative" x-data={xData ? xData : null}>
   <input
-    type="text"
+    type={type ? type : 'text'}
     class={`flex h-9 items-center ring-inset rounded-md border-0 text-[13px] shadow-sm dark:ring-zinc-700 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500 dark:disabled:text-gray-400 disabled:ring-gray-200 dark:disabled:bg-zinc-100/[0.06] bg-white dark:bg-zinc-100/[0.06] focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-500 
     ${getRingClass(validation)} 
 		${getTextClass(validation)} 
+    ${paddingClass ? paddingClass : null}
     ${fluid ? 'w-full' : 'w-[320px]'}`}
-    placeholder={placeholder}
-    value={value}
-    disabled={disabled}
+    placeholder={placeholder ? placeholder : null}
+    value={value ? value : null}
+    disabled={disabled ? disabled : null}
+    x-bind:type={xType ? xType : null}
   />
+  <slot name="text-field-content" />
 </div>
