@@ -7,10 +7,12 @@ import SearchField from '@rinseui/elements/SearchField/index.astro';
 
 <Layout layoutClass="flex items-center justify-center px-4 py-10">
   <div class="flex min-w-[320px] justify-end">
-    <Dropdown direction="bottomLeft" widthClass="w-[320px]" isOpen>
-      <Button onClick={'isOpen = !isOpen'} size="sm" variant="outline">View settings</Button>
+    <Dropdown position="bottomEnd" isOpen>
+      <Dropdown.Trigger>
+        <Button size="sm" variant="outline">View settings</Button>
+      </Dropdown.Trigger>
 
-      <slot slot="dropdown-content">
+      <Dropdown.Content position="bottomEnd" className="w-[320px]">
         <Dropdown.Group>
           <Dropdown.Header>Add column</Dropdown.Header>
           <div class="mb-3 px-2">
@@ -72,7 +74,7 @@ import SearchField from '@rinseui/elements/SearchField/index.astro';
             </ul>
           </div>
         </Dropdown.Group>
-      </slot>
+      </Dropdown.Content>
     </Dropdown>
   </div>
 </Layout>

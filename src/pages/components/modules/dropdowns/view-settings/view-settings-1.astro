@@ -6,10 +6,12 @@ import Dropdown from '@rinseui/modules/Dropdown';
 
 <Layout layoutClass="flex items-center justify-center px-4 py-10">
   <div class="flex min-w-[240px] justify-end">
-    <Dropdown direction="bottomLeft" widthClass="w-[240px]" isOpen>
-      <Button onClick={'isOpen = !isOpen'} size="sm" variant="outline">View settings</Button>
+    <Dropdown isOpen>
+      <Dropdown.Trigger>
+        <Button size="sm" variant="outline">View settings</Button>
+      </Dropdown.Trigger>
 
-      <slot slot="dropdown-content">
+      <Dropdown.Content position="bottomEnd">
         <Dropdown.Group>
           <Dropdown.Header>View settings</Dropdown.Header>
           <ul>
@@ -178,7 +180,7 @@ import Dropdown from '@rinseui/modules/Dropdown';
              Add new column
           </Dropdown.Item>
         </Dropdown.Group>
-      </slot>
+      </Dropdown.Content>
     </Dropdown>
   </div>
 </Layout>

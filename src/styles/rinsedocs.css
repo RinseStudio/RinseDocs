@@ -80,11 +80,11 @@
 }
 
 .rinsedown > pre {
-  padding: 16px;
+  padding: 14px;
   overflow: auto;
   font-family: monospace;
   background-color: #f6f6f6;
-  @apply rounded-lg;
+  @apply rounded-lg text-sm;
 }
 
 .rinsedown > p code {
