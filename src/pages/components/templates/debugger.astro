@@ -65,7 +65,12 @@ import SearchField from '@rinseui/elements/SearchField/index.astro';
               >
             </div>
           </div>
-          <SearchField placeholder="Filter by keyword" />
+          <div class="flex items-center gap-2">
+            <SearchField placeholder="Filter by keyword" />
+            <Button size="md" variant="outline">
+              <i class="fa-regular fa-sync mr-1.5"></i> Refresh
+            </Button>
+          </div>
         </div>
 
         <Card className="overflow-auto">
