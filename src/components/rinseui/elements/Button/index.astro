@@ -11,6 +11,7 @@ const {
   onClick = null,
   onMouseEnter = null,
   onMouseLeave = null,
+  ...props
 } = Astro.props;
 
 const getSizeClass = (size) => {
@@ -168,6 +169,7 @@ const getVariantClass = (variant, danger) => {
     ${getVariantClass(variant, danger)}`}
   disabled={disabled}
   type="button"
+  {...props}
 >
   <slot />
 </button>

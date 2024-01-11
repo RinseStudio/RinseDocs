@@ -2,6 +2,10 @@
 import Layout from '@/layouts/rinsedocs/Raw.astro';
 import Tab from '@rinseui/modules/Tab';
 import Button from '@rinseui/elements/Button/index.astro';
+import Card from '@rinseui/elements/Card';
+import Table from '@rinseui/elements/Table';
+import Dropdown from '@rinseui/modules/Dropdown';
+import Tooltip from '@rinseui/elements/Tooltip/index.astro';
 ---
 
 <Layout layoutClass="">
@@ -78,8 +82,136 @@ import Button from '@rinseui/elements/Button/index.astro';
            Active Members
         </h3>
 
-        <div class="flex h-[120px] items-center justify-center rounded-lg border border-zinc-200 shadow-sm"></div>
+        <Card className="overflow-auto">
+          <Table x-data="Table">
+            <Table.Header>
+              <Table.Row>
+                <Table.Head className="w-[180px]">
+                  <Button size="sm" variant="ghost" @click="updateHeaderState(0)">
+                    Member since
+                    <i x-cloak x-show="sortSelection == 0" class="fa-solid fa-fw ml-1 text-[11px]" :class="isAscending == true ? 'fa-angle-down' : 'fa-angle-up'"></i>
+                  </Button>
+                </Table.Head>
+                <Table.Head className="w-[180px]">
+                  <Button size="sm" variant="ghost" @click="updateHeaderState(1)">
+                    First name
+                    <i x-cloak x-show="sortSelection == 1" class="fa-solid fa-fw ml-1 text-[11px]" :class="isAscending == true ? 'fa-angle-down' : 'fa-angle-up'"></i>
+                  </Button>
+                </Table.Head>
+                <Table.Head className="w-[180px]">
+                  <Button size="sm" variant="ghost" @click="updateHeaderState(2)">
+                    Last name
+                    <i x-cloak x-show="sortSelection == 2" class="fa-solid fa-fw ml-1 text-[11px]" :class="isAscending == true ? 'fa-angle-down' : 'fa-angle-up'"></i>
+                  </Button>
+                </Table.Head>
+                <Table.Head className="w-[180px]">
+                  <Button size="sm" variant="ghost" @click="updateHeaderState(3)">
+                    Email
+                    <i x-cloak x-show="sortSelection == 3" class="fa-solid fa-fw ml-1 text-[11px]" :class="isAscending == true ? 'fa-angle-down' : 'fa-angle-up'"></i>
+                  </Button>
+                </Table.Head>
+                <Table.Head className="w-[180px]">
+                  <Button size="sm" variant="ghost" @click="updateHeaderState(4)">
+                    User role
+                    <i x-cloak x-show="sortSelection == 4" class="fa-solid fa-fw ml-1 text-[11px]" :class="isAscending == true ? 'fa-angle-down' : 'fa-angle-up'"></i>
+                  </Button>
+                </Table.Head>
+                <Table.Head className="w-[180px]">
+                  <Button size="sm" variant="ghost" @click="updateHeaderState(5)">
+                    2FA
+                    <i x-cloak x-show="sortSelection == 5" class="fa-solid fa-fw ml-1 text-[11px]" :class="isAscending == true ? 'fa-angle-down' : 'fa-angle-up'"></i>
+                  </Button>
+                </Table.Head>
+                <Table.Head />
+              </Table.Row>
+            </Table.Header>
+            <Table.Body>
+              <Table.Row>
+                <Table.Cell className="px-4">Mar 15, 2023</Table.Cell>
+                <Table.Cell className="px-4">Adam</Table.Cell>
+                <Table.Cell className="px-4">Zima</Table.Cell>
+                <Table.Cell className="px-4">adam.zima@castle.io</Table.Cell>
+                <Table.Cell className="px-4">Admin</Table.Cell>
+                <Table.Cell className="px-4">Enabled</Table.Cell>
+                <Table.Cell className="px-4 py-3">
+                  <div class="flex justify-end gap-1.5">
+                    <Button size="xs" variant="outline" @click="updateHeaderState(5)">
+                      Edit role
+                      <i x-cloak x-show="sortSelection == 5" class="fa-solid fa-fw ml-1 text-[11px]" :class="isAscending == true ? 'fa-angle-down' : 'fa-angle-up'"></i>
+                    </Button>
+                    <Button size="xs" variant="outline" @click="updateHeaderState(5)">
+                      Remove user
+                      <i x-cloak x-show="sortSelection == 5" class="fa-solid fa-fw ml-1 text-[11px]" :class="isAscending == true ? 'fa-angle-down' : 'fa-angle-up'"></i>
+                    </Button>
+                  </div>
+                </Table.Cell>
+              </Table.Row>
+              <Table.Row>
+                <Table.Cell className="px-4">Mar 15, 2023</Table.Cell>
+                <Table.Cell className="px-4">Adam</Table.Cell>
+                <Table.Cell className="px-4">Zima</Table.Cell>
+                <Table.Cell className="px-4">adam.zima@castle.io</Table.Cell>
+                <Table.Cell className="px-4">Admin</Table.Cell>
+                <Table.Cell className="px-4">Enabled</Table.Cell>
+                <Table.Cell className="px-4 py-3">
+                  <div class="flex justify-end gap-1.5">
+                    <Button size="xs" variant="outline" @click="updateHeaderState(5)">
+                      Edit role
+                      <i x-cloak x-show="sortSelection == 5" class="fa-solid fa-fw ml-1 text-[11px]" :class="isAscending == true ? 'fa-angle-down' : 'fa-angle-up'"></i>
+                    </Button>
+                    <Button size="xs" variant="outline" @click="updateHeaderState(5)">
+                      Remove user
+                      <i x-cloak x-show="sortSelection == 5" class="fa-solid fa-fw ml-1 text-[11px]" :class="isAscending == true ? 'fa-angle-down' : 'fa-angle-up'"></i>
+                    </Button>
+                  </div>
+                </Table.Cell>
+              </Table.Row>
+              <Table.Row>
+                <Table.Cell className="px-4">Mar 15, 2023</Table.Cell>
+                <Table.Cell className="px-4">Adam</Table.Cell>
+                <Table.Cell className="px-4">Zima</Table.Cell>
+                <Table.Cell className="px-4">adam.zima@castle.io</Table.Cell>
+                <Table.Cell className="px-4">Admin</Table.Cell>
+                <Table.Cell className="px-4">Enabled</Table.Cell>
+                <Table.Cell className="px-4 py-3">
+                  <div class="flex justify-end gap-1.5">
+                    <Button size="xs" variant="outline" @click="updateHeaderState(5)">
+                      Edit role
+                      <i x-cloak x-show="sortSelection == 5" class="fa-solid fa-fw ml-1 text-[11px]" :class="isAscending == true ? 'fa-angle-down' : 'fa-angle-up'"></i>
+                    </Button>
+                    <Button size="xs" variant="outline" @click="updateHeaderState(5)">
+                      Remove user
+                      <i x-cloak x-show="sortSelection == 5" class="fa-solid fa-fw ml-1 text-[11px]" :class="isAscending == true ? 'fa-angle-down' : 'fa-angle-up'"></i>
+                    </Button>
+                  </div>
+                </Table.Cell>
+              </Table.Row>
+            </Table.Body>
+            <Table.Footer>
+              <Table.Row className="bg-zinc-50">
+                <Table.Cell colspan="7" className="px-4 py-3 text-left font-medium text-gray-900">Total 3 users</Table.Cell>
+              </Table.Row>
+            </Table.Footer>
+          </Table>
+        </Card>
       </div>
     </div>
   </div>
 </Layout>
+
+<script>
+  import Alpine from 'alpinejs';
+
+  Alpine.data('Table', () => ({
+    sortSelection: 0,
+    isAscending: true,
+    updateHeaderState(selection) {
+      if (this.sortSelection == selection) {
+        this.isAscending = !this.isAscending;
+      } else {
+        this.isAscending = true;
+        this.sortSelection = selection;
+      }
+    },
+  }));
+</script>
