@@ -42,7 +42,7 @@ const {
     position === 'bottomEnd' && '-translate-y-2',
     leaveEndClassName,
   )}
-  class={twMerge('ring-1 ring-zinc-200 dark:ring-zinc-700 whitespace-nowrap rounded-md shadow-md bg-white dark:bg-zinc-800 z-10 w-[200px]', className ? className : null)}
+  class={twMerge('ring-1 ring-zinc-200 dark:ring-zinc-700 whitespace-nowrap rounded-md shadow-md bg-white dark:bg-zinc-800 z-10', className)}
   {...props}
 >
   <slot />

@@ -9,7 +9,7 @@ import Link from '@rinseui/elements/Link/index.astro';
 
 <Layout layoutClass="flex items-center justify-center px-4 py-10">
   <div class="flex min-w-[320px] justify-end">
-    <Dropdown direction="bottomLeft" widthClass="w-[320px]" isOpen>
+    <Dropdown position="bottomEnd" isOpen>
       <Dropdown.Trigger>
         <Button size="sm" variant="outline">View settings</Button>
       </Dropdown.Trigger>
@@ -40,9 +40,11 @@ import Link from '@rinseui/elements/Link/index.astro';
             <div>
               <label class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400">Column Type</label>
 
-              <Dropdown direction="bottomLeft" widthClass="w-full">
-                <SelectField placeholder="Most recent event" fluid />
-                <slot slot="dropdown-content">
+              <Dropdown position="bottomEnd" widthClass="w-full">
+                <Dropdown.Trigger>
+                  <SelectField placeholder="Most recent event" fluid />
+                </Dropdown.Trigger>
+                <Dropdown.Content className="w-full">
                   <Dropdown.Group>
                     <Dropdown.Items>
                       <Dropdown.Item onClick={'isOpen = !isOpen'}>is</Dropdown.Item>
@@ -50,7 +52,7 @@ import Link from '@rinseui/elements/Link/index.astro';
                       <Dropdown.Item onClick={'isOpen = !isOpen'}>is one of</Dropdown.Item>
                     </Dropdown.Items>
                   </Dropdown.Group>
-                </slot>
+                </Dropdown.Content>
               </Dropdown>
             </div>
             <div>

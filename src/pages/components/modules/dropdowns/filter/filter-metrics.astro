@@ -8,7 +8,7 @@ import Tabs from '@rinseui/modules/Tabs/index.astro';
 
 <Layout layoutClass="flex items-center justify-center px-4 py-10">
   <div class="flex min-w-[320px] justify-end">
-    <Dropdown direction="bottomLeft" widthClass="w-[320px]" isOpen>
+    <Dropdown position="bottomEnd" isOpen>
       <Button onClick={'isOpen = !isOpen'} size="sm" variant="outline">View settings</Button>
       <slot slot="dropdown-content">
         <Dropdown.Group>
