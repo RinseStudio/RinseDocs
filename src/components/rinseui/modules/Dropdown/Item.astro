@@ -1,14 +1,15 @@
 ---
-const { className = null, onClick = null, onMouseEnter = null, onMouseLeave = null } = Astro.props;
+import { twMerge } from 'tailwind-merge';
+const { className = null, onClick = null, onMouseEnter = null, onMouseLeave = null, ...props } = Astro.props;
 ---
 
 <button
   role="menuitem"
-  x-on:click={onClick ? onClick : null}
-  x-on:mouseEnter={onMouseEnter ? onMouseEnter : null}
-  x-on:mouseLeave={onMouseLeave ? onMouseLeave : null}
-  class="flex h-[32px] w-full cursor-default items-center rounded-md px-2 text-[13px] font-medium text-gray-800 hover:bg-zinc-100 hover:text-gray-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500
-		dark:text-gray-300 dark:hover:bg-zinc-100/[0.06] dark:hover:text-gray-200 dark:focus-visible:ring-blue-500"
+  class={twMerge(
+    'flex h-[32px] w-full cursor-default items-center rounded-md px-2 text-[13px] font-medium text-gray-800 hover:bg-zinc-100 hover:text-gray-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:text-gray-300 dark:hover:bg-zinc-100/[0.06] dark:hover:text-gray-200 dark:focus-visible:ring-blue-500',
+    className,
+  )}
+  {...props}
 >
   <slot />
 </button>

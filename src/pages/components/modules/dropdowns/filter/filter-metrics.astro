@@ -3,69 +3,73 @@ import Layout from '@/layouts/rinsedocs/Raw.astro';
 import Button from '@rinseui/elements/Button/index.astro';
 import Dropdown from '@rinseui/modules/Dropdown';
 import SearchField from '@rinseui/elements/SearchField/index.astro';
-import Tabs from '@rinseui/modules/Tabs/index.astro';
+import Tab from '@rinseui/modules/Tab';
 ---
 
 <Layout layoutClass="flex items-center justify-center px-4 py-10">
   <div class="flex min-w-[320px] justify-end">
-    <Dropdown position="bottomEnd" isOpen>
-      <Button onClick={'isOpen = !isOpen'} size="sm" variant="outline">View settings</Button>
-      <slot slot="dropdown-content">
-        <Dropdown.Group>
-          <Tabs />
-          <div class="mb-4 grid grid-cols-1 gap-2 px-2 pt-3">
-            <div>
-              <SearchField placeholder="Search policy by name" fluid />
-            </div>
-          </div>
-
-          <div class="max-h-[200px] min-h-[200px] overflow-auto">
-            <ul class="space-y-px">
-              <li class="mb-2 px-2 pt-4 first:pt-0">
-                <div class="border-b border-zinc-200 pb-1 text-[12px] font-medium text-gray-500 dark:border-zinc-700 dark:text-gray-400">Metric group</div>
-              </li>
-              <li>
-                <button
-                  class="w-full rounded px-2 py-1 text-left hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:hover:bg-zinc-100/[0.06] dark:focus-visible:ring-blue-500"
-                >
-                  <div class="text-[13px] font-medium text-gray-900 dark:text-gray-300">Users per Device Fingerprint</div>
-                  <div class="text-[11px] font-medium text-gray-400 dark:text-gray-500">metrics.users.per_device_fingerprint.value</div>
-                </button>
-              </li>
-              <li>
-                <button
-                  class="w-full rounded px-2 py-1 text-left hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:hover:bg-zinc-100/[0.06] dark:focus-visible:ring-blue-500"
-                >
-                  <div class="text-[13px] font-medium text-gray-900 dark:text-gray-300">Locations per account</div>
-                  <div class="text-[11px] font-medium text-gray-400 dark:text-gray-500">metrics.1.value</div>
-                </button>
-              </li>
-              <li>
-                <button
-                  class="w-full rounded px-2 py-1 text-left hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:hover:bg-zinc-100/[0.06] dark:focus-visible:ring-blue-500"
-                >
-                  <div class="text-[13px] font-medium text-gray-900 dark:text-gray-300">Device per account</div>
-                  <div class="text-[11px] font-medium text-gray-400 dark:text-gray-500">metrics.3.value</div>
-                </button>
-              </li>
-              <li>
-                <button
-                  class="w-full rounded px-2 py-1 text-left hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:hover:bg-zinc-100/[0.06] dark:focus-visible:ring-blue-500"
-                >
-                  <div class="text-[13px] font-medium text-gray-900 dark:text-gray-300">Authenticated</div>
-                  <div class="text-[11px] font-medium text-gray-400 dark:text-gray-500">authenticated</div>
-                </button>
-              </li>
-              <li>
-                <button
-                  class="w-full rounded px-2 py-1 text-left hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:hover:bg-zinc-100/[0.06] dark:focus-visible:ring-blue-500"
-                >
-                  <div class="text-[13px] font-medium text-gray-900 dark:text-gray-300">Metric name</div>
-                  <div class="text-[11px] font-medium text-gray-400 dark:text-gray-500">metric.id</div>
-                </button>
-              </li>
-            </ul>
-          </div>
+    <Dropdown isOpen>
+      <Dropdown.Trigger>
+        <Button size="sm" variant="outline">View settings</Button>
+      </Dropdown.Trigger>
+      <Dropdown.Content position="bottomEnd" className="w-[320px]">
+        <Tab className="px-4">
+          <Tab.Item onClick="">Fields</Tab.Item>
+          <Tab.Item onClick="">Lists</Tab.Item>
+          <Tab.Item onClick="">Signals</Tab.Item>
+          <Tab.Item onClick="">Policies</Tab.Item>
+          <Tab.Item onClick="" active>Metrics</Tab.Item>
+        </Tab>
+        <Dropdown.Group className="px-3 py-3">
+          <SearchField placeholder="Search policy by name" fluid />
+        </Dropdown.Group>
+        <Dropdown.Separator />
+        <Dropdown.Group className="max-h-[200px] min-h-[200px] overflow-auto">
+          <ul class="space-y-px">
+            <li class="px-2 pb-2 pt-4">
+              <div class="border-b border-zinc-200 pb-1 text-[12px] font-medium text-gray-500 dark:border-zinc-700 dark:text-gray-400">Metric group</div>
+            </li>
+            <li>
+              <button
+                class="w-full rounded px-2 py-1 text-left hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:hover:bg-zinc-100/[0.06] dark:focus-visible:ring-blue-500"
+              >
+                <div class="text-[13px] font-medium text-gray-900 dark:text-gray-300">Users per Device Fingerprint</div>
+                <div class="text-[11px] font-medium text-gray-400 dark:text-gray-500">metrics.users.per_device_fingerprint.value</div>
+              </button>
+            </li>
+            <li>
+              <button
+                class="w-full rounded px-2 py-1 text-left hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:hover:bg-zinc-100/[0.06] dark:focus-visible:ring-blue-500"
+              >
+                <div class="text-[13px] font-medium text-gray-900 dark:text-gray-300">Locations per account</div>
+                <div class="text-[11px] font-medium text-gray-400 dark:text-gray-500">metrics.1.value</div>
+              </button>
+            </li>
+            <li>
+              <button
+                class="w-full rounded px-2 py-1 text-left hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:hover:bg-zinc-100/[0.06] dark:focus-visible:ring-blue-500"
+              >
+                <div class="text-[13px] font-medium text-gray-900 dark:text-gray-300">Device per account</div>
+                <div class="text-[11px] font-medium text-gray-400 dark:text-gray-500">metrics.3.value</div>
+              </button>
+            </li>
+            <li>
+              <button
+                class="w-full rounded px-2 py-1 text-left hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:hover:bg-zinc-100/[0.06] dark:focus-visible:ring-blue-500"
+              >
+                <div class="text-[13px] font-medium text-gray-900 dark:text-gray-300">Authenticated</div>
+                <div class="text-[11px] font-medium text-gray-400 dark:text-gray-500">authenticated</div>
+              </button>
+            </li>
+            <li>
+              <button
+                class="w-full rounded px-2 py-1 text-left hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:hover:bg-zinc-100/[0.06] dark:focus-visible:ring-blue-500"
+              >
+                <div class="text-[13px] font-medium text-gray-900 dark:text-gray-300">Metric name</div>
+                <div class="text-[11px] font-medium text-gray-400 dark:text-gray-500">metric.id</div>
+              </button>
+            </li>
+          </ul>
         </Dropdown.Group>
         <Dropdown.Separator />
         <Dropdown.Group>
@@ -77,7 +81,7 @@ import Tabs from '@rinseui/modules/Tabs/index.astro';
              Add new metric
           </Dropdown.Item>
         </Dropdown.Group>
-      </slot>
+      </Dropdown.Content>
     </Dropdown>
   </div>
 </Layout>

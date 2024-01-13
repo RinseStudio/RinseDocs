@@ -3,7 +3,7 @@ import { twMerge } from 'tailwind-merge';
 
 const {
   className = null,
-  position = 'bottomStart',
+  position = 'top',
   enterClassName = null,
   enterStartClassName = null,
   enterEndClassName = null,
@@ -16,16 +16,15 @@ const {
 
 <div
   x-cloak
-  x-show="isOpen"
-  x-on:click.away="isOpen = false"
-  x-anchor.top.offset.8={position === 'top' ? '$refs.dropdownTrigger' : null}
-  x-anchor.right.offset.8={position === 'right' ? '$refs.dropdownTrigger' : null}
-  x-anchor.bottom.offset.8={position === 'bottom' ? '$refs.dropdownTrigger' : null}
-  x-anchor.left.offset.8={position === 'left' ? '$refs.dropdownTrigger' : null}
-  x-anchor.top-start.offset.8={position === 'topStart' ? '$refs.dropdownTrigger' : null}
-  x-anchor.top-end.offset.8={position === 'topEnd' ? '$refs.dropdownTrigger' : null}
-  x-anchor.bottom-start.offset.8={position === 'bottomStart' ? '$refs.dropdownTrigger' : null}
-  x-anchor.bottom-end.offset.8={position === 'bottomEnd' ? '$refs.dropdownTrigger' : null}
+  x-show="isVisible"
+  x-anchor.top.offset.8={position === 'top' ? '$refs.tooltipTrigger' : null}
+  x-anchor.right.offset.8={position === 'right' ? '$refs.tooltipTrigger' : null}
+  x-anchor.bottom.offset.8={position === 'bottom' ? '$refs.tooltipTrigger' : null}
+  x-anchor.left.offset.8={position === 'left' ? '$refs.tooltipTrigger' : null}
+  x-anchor.top-start.offset.8={position === 'topStart' ? '$refs.tooltipTrigger' : null}
+  x-anchor.top-end.offset.8={position === 'topEnd' ? '$refs.tooltipTrigger' : null}
+  x-anchor.bottom-start.offset.8={position === 'bottomStart' ? '$refs.tooltipTrigger' : null}
+  x-anchor.bottom-end.offset.8={position === 'bottomEnd' ? '$refs.tooltipTrigger' : null}
   x-transition:enter={twMerge('transition ease-out duration-200', enterClassName)}
   x-transition:enter-start={twMerge(
     'opacity-0',
@@ -54,7 +53,10 @@ const {
     position === 'bottomEnd' && '-translate-y-2',
     leaveEndClassName,
   )}
-  class={twMerge('ring-1 ring-zinc-200 dark:ring-zinc-700 whitespace-nowrap rounded-md shadow-md bg-white dark:bg-zinc-800 z-10', className)}
+  class={twMerge(
+    'whitespace-normal text-left pointer-events-none z-10 rounded-md bg-zinc-800 px-2.5 py-2 text-[11px] font-medium text-gray-300 dark:ring-zinc-700 dark:bg-zinc-800',
+    className,
+  )}
   {...props}
 >
   <slot />

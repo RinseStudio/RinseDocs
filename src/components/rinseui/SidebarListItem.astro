@@ -3,36 +3,36 @@ const { page } = Astro.props;
 ---
 
 {
-	page.isIndex ? (
-		<li class="last:mb-4" x-data="{open: false}">
-			{
-				<a href={'/' + page.url} class="sidebar-item" x-on:click="open = !open">
-					<div class="truncate">{page.title}</div>
-					<svg x-bind:class="open ? 'rotate-90' : ''" class="xduration-200 h-4 w-4 flex-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-						<path
-							fill-rule="evenodd"
-							d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z"
-							clip-rule="evenodd"
-						/>
-					</svg>
-				</a>
-			}
+  page.isIndex ? (
+    <li class="last:mb-4" x-data="{open: false}">
+      {
+        <a href={'/' + page.url} class="sidebar-item" x-on:click="open = !open">
+          <div class="truncate">{page.title}</div>
+          <svg x-bind:class="open ? 'rotate-90' : ''" class="xduration-200 h-4 w-4 flex-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+            <path
+              fill-rule="evenodd"
+              d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z"
+              clip-rule="evenodd"
+            />
+          </svg>
+        </a>
+      }
 
-			{page.pages.length > 0 && (
-				<div x-cloak class="xtransition-[grid-template-rows_0.2s] ml-4 grid overflow-hidden" x-bind:class="open ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'">
-					<ul class="min-h-0 space-y-px">
-						{page.pages.map((subpage) => (
-							<Astro.self page={subpage} />
-						))}
-					</ul>
-				</div>
-			)}
-		</li>
-	) : (
-		<li class="mt-px ">
-			<a href={'/' + page.url} class="sidebar-item" x-data={page.isIndex ? '{open: false}' : ''}>
-				<div class="truncate">{page.title}</div>
-			</a>
-		</li>
-	)
+      {page.pages.length > 0 && (
+        <div x-cloak class="xtransition-[grid-template-rows_0.2s] ml-4 grid overflow-hidden" x-bind:class="open ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'">
+          <ul class="min-h-0 space-y-px">
+            {page.pages.map((subpage) => (
+              <Astro.self page={subpage} />
+            ))}
+          </ul>
+        </div>
+      )}
+    </li>
+  ) : (
+    <li class="mt-px ">
+      <a href={'/' + page.url} class="sidebar-item" x-data={page.isIndex ? '{open: false}' : ''}>
+        <div class="truncate">{page.title}</div>
+      </a>
+    </li>
+  )
 }

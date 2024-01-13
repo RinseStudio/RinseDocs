@@ -3,22 +3,27 @@ import Layout from '@/layouts/rinsedocs/Raw.astro';
 import Button from '@rinseui/elements/Button/index.astro';
 import Dropdown from '@rinseui/modules/Dropdown';
 import SearchField from '@rinseui/elements/SearchField/index.astro';
-import Tabs from '@rinseui/modules/Tabs/index.astro';
+import Tab from '@rinseui/modules/Tab';
 ---
 
 <Layout layoutClass="flex items-center justify-center px-4 py-10">
   <div class="flex min-w-[320px] justify-end">
-    <Dropdown position="bottomEnd" isOpen>
-      <Button onClick={'isOpen = !isOpen'} size="sm" variant="outline">View settings</Button>
-      <slot slot="dropdown-content">
+    <Dropdown isOpen>
+      <Dropdown.Trigger>
+        <Button size="sm" variant="outline">View settings</Button>
+      </Dropdown.Trigger>
+      <Dropdown.Content position="bottomEnd" className="w-[320px]">
+        <Tab className="px-4">
+          <Tab.Item onClick="">Fields</Tab.Item>
+          <Tab.Item onClick="">Lists</Tab.Item>
+          <Tab.Item onClick="">Signals</Tab.Item>
+          <Tab.Item onClick="">Policies</Tab.Item>
+          <Tab.Item onClick="" active>Metrics</Tab.Item>
+        </Tab>
+        <Dropdown.Group className="px-3 py-3">
+          <SearchField value="Metric name" fluid />
+        </Dropdown.Group>
         <Dropdown.Group>
-          <Tabs />
-          <div class="mb-4 grid grid-cols-1 gap-2 px-2 pt-3">
-            <div>
-              <SearchField placeholder="Search policy by name" fluid />
-            </div>
-          </div>
-
           <div class="max-h-[200px] min-h-[100px] overflow-auto">
             <div class="flex h-[100px] w-full items-center justify-center pb-3">
               <div class="text-center">
@@ -38,7 +43,7 @@ import Tabs from '@rinseui/modules/Tabs/index.astro';
              Add new metric
           </Dropdown.Item>
         </Dropdown.Group>
-      </slot>
+      </Dropdown.Content>
     </Dropdown>
   </div>
 </Layout>

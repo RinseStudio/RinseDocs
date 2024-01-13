@@ -3,7 +3,7 @@ import Layout from '@/layouts/rinsedocs/Raw.astro';
 
 import Checkbox from '@rinseui/elements/Checkbox/index.astro';
 import Button from '@rinseui/elements/Button/index.astro';
-import Tooltip from '@rinseui/elements/Tooltip/index.astro';
+import Tooltip from '@rinseui/elements/Tooltip';
 import Dropdown from '@rinseui/modules/Dropdown';
 ---
 
@@ -51,16 +51,18 @@ import Dropdown from '@rinseui/modules/Dropdown';
           </th>
           <th class="px-1 py-2 first:pl-5">
             <Dropdown>
-              <Button size="sm" variant="ghost">
-                Policy
-                <Tooltip widthClass="w-[180px]" className="ml-2" position="top" enterClass="delay-1000">
-                  <div class="flex h-8 items-center">
-                    <i class="fa-solid fa-sparkles text-blue-500"></i>
-                  </div>
-                  <slot slot="tooltip-content">This is a smart column. Castle automatically enriches content using event data.</slot>
-                </Tooltip>
-              </Button>
-              <slot slot="dropdown-content">
+              <Dropdown.Trigger>
+                <Button size="sm" variant="ghost">
+                  Policy
+                  <Tooltip widthClass="w-[180px]" className="ml-2">
+                    <Tooltip.Trigger><i class="fa-solid fa-fw fa-sparkles text-blue-500"></i></Tooltip.Trigger>
+                    <Tooltip.Content className="w-[200px]" enterClassName="delay-1000">
+                      This is a smart column. Castle automatically enriches content using event data.
+                    </Tooltip.Content>
+                  </Tooltip>
+                </Button>
+              </Dropdown.Trigger>
+              <Dropdown.Content>
                 <Dropdown.Group>
                   <Dropdown.Items>
                     <Dropdown.Item onClick="isOpen = false">
@@ -98,26 +100,23 @@ import Dropdown from '@rinseui/modules/Dropdown';
                      Hide from view
                   </Dropdown.Item>
                 </Dropdown.Group>
-              </slot>
+              </Dropdown.Content>
             </Dropdown>
           </th>
           <th class="px-1 py-2 first:pl-5">
-            <Dropdown direction="topStart">
-              <slot slot="dropdown-trigger">
+            <Dropdown>
+              <Dropdown.Trigger>
                 <Button size="sm" variant="ghost">
                   Event
-                  <Tooltip widthClass="w-[180px]" className="ml-2" position="top" enterClass="delay-1000">
-                    <slot slot="tooltip-trigger">
-                      <div class="flex h-8 items-center">
-                        <i class="fa-solid fa-sparkles text-blue-500"></i>
-                      </div>
-                    </slot>
-                    <slot slot="tooltip-content">This is a smart column. Castle automatically enriches content using event data.</slot>
+                  <Tooltip widthClass="w-[180px]" className="ml-2">
+                    <Tooltip.Trigger><i class="fa-solid fa-fw fa-sparkles text-blue-500"></i></Tooltip.Trigger>
+                    <Tooltip.Content className="w-[200px]" enterClassName="delay-1000">
+                      This is a smart column. Castle automatically enriches content using event data.
+                    </Tooltip.Content>
                   </Tooltip>
                 </Button>
-              </slot>
-
-              <slot slot="dropdown-content">
+              </Dropdown.Trigger>
+              <Dropdown.Content>
                 <Dropdown.Group>
                   <Dropdown.Items>
                     <Dropdown.Item onClick="isOpen = false">
@@ -155,25 +154,23 @@ import Dropdown from '@rinseui/modules/Dropdown';
                      Hide from view
                   </Dropdown.Item>
                 </Dropdown.Group>
-              </slot>
+              </Dropdown.Content>
             </Dropdown>
           </th>
           <th class="px-1 py-2 first:pl-5">
             <Dropdown>
-              <slot slot="dropdown-trigger">
+              <Dropdown.Trigger>
                 <Button size="sm" variant="ghost">
                   User
-                  <Tooltip widthClass="w-[180px]" className="ml-2" position="top" enterClass="delay-1000">
-                    <slot slot="tooltip-trigger">
-                      <div class="flex h-8 items-center">
-                        <i class="fa-solid fa-sparkles text-blue-500"></i>
-                      </div>
-                    </slot>
-                    <slot slot="tooltip-content">This is a smart column. Castle automatically enriches content using event data.</slot>
+                  <Tooltip widthClass="w-[180px]" className="ml-2">
+                    <Tooltip.Trigger><i class="fa-solid fa-fw fa-sparkles text-blue-500"></i></Tooltip.Trigger>
+                    <Tooltip.Content className="w-[200px]" enterClassName="delay-1000">
+                      This is a smart column. Castle automatically enriches content using event data.
+                    </Tooltip.Content>
                   </Tooltip>
                 </Button>
-              </slot>
-              <slot slot="dropdown-content">
+              </Dropdown.Trigger>
+              <Dropdown.Content>
                 <Dropdown.Group>
                   <Dropdown.Items>
                     <Dropdown.Item onClick="isOpen = false">
@@ -211,25 +208,23 @@ import Dropdown from '@rinseui/modules/Dropdown';
                      Hide from view
                   </Dropdown.Item>
                 </Dropdown.Group>
-              </slot>
+              </Dropdown.Content>
             </Dropdown>
           </th>
           <th class="px-1 py-2 first:pl-5">
             <Dropdown>
-              <slot slot="dropdown-trigger">
+              <Dropdown.Trigger>
                 <Button size="sm" variant="ghost">
                   Location
-                  <Tooltip widthClass="w-[180px]" className="ml-2" position="top" enterClass="delay-1000">
-                    <slot slot="tooltip-trigger">
-                      <div class="flex h-8 items-center">
-                        <i class="fa-solid fa-sparkles text-blue-500"></i>
-                      </div>
-                    </slot>
-                    <slot slot="tooltip-content">This is a smart column. Castle automatically enriches content using event data.</slot>
+                  <Tooltip widthClass="w-[180px]" className="ml-2">
+                    <Tooltip.Trigger><i class="fa-solid fa-fw fa-sparkles text-blue-500"></i></Tooltip.Trigger>
+                    <Tooltip.Content className="w-[200px]" enterClassName="delay-1000">
+                      This is a smart column. Castle automatically enriches content using event data.
+                    </Tooltip.Content>
                   </Tooltip>
                 </Button>
-              </slot>
-              <slot slot="dropdown-content">
+              </Dropdown.Trigger>
+              <Dropdown.Content>
                 <Dropdown.Group>
                   <Dropdown.Items>
                     <Dropdown.Item onClick="isOpen = false">
@@ -267,25 +262,23 @@ import Dropdown from '@rinseui/modules/Dropdown';
                      Hide from view
                   </Dropdown.Item>
                 </Dropdown.Group>
-              </slot>
+              </Dropdown.Content>
             </Dropdown>
           </th>
           <th class="px-1 py-2 first:pl-5">
             <Dropdown>
-              <slot slot="dropdown-trigger">
+              <Dropdown.Trigger>
                 <Button size="sm" variant="ghost">
                   Connection
-                  <Tooltip widthClass="w-[180px]" className="ml-2" position="top" enterClass="delay-1000">
-                    <slot slot="tooltip-trigger">
-                      <div class="flex h-8 items-center">
-                        <i class="fa-solid fa-sparkles text-blue-500"></i>
-                      </div>
-                    </slot>
-                    <slot slot="tooltip-content">This is a smart column. Castle automatically enriches content using event data.</slot>
+                  <Tooltip widthClass="w-[180px]" className="ml-2">
+                    <Tooltip.Trigger><i class="fa-solid fa-fw fa-sparkles text-blue-500"></i></Tooltip.Trigger>
+                    <Tooltip.Content className="w-[200px]" enterClassName="delay-1000">
+                      This is a smart column. Castle automatically enriches content using event data.
+                    </Tooltip.Content>
                   </Tooltip>
                 </Button>
-              </slot>
-              <slot slot="dropdown-content">
+              </Dropdown.Trigger>
+              <Dropdown.Content>
                 <Dropdown.Group>
                   <Dropdown.Items>
                     <Dropdown.Item onClick="isOpen = false">
@@ -323,25 +316,23 @@ import Dropdown from '@rinseui/modules/Dropdown';
                      Hide from view
                   </Dropdown.Item>
                 </Dropdown.Group>
-              </slot>
+              </Dropdown.Content>
             </Dropdown>
           </th>
           <th class="px-1 py-2 first:pl-5">
             <Dropdown>
-              <slot slot="dropdown-trigger">
+              <Dropdown.Trigger>
                 <Button size="sm" variant="ghost">
                   Device
-                  <Tooltip widthClass="w-[180px]" className="ml-2" position="top" enterClass="delay-1000">
-                    <slot slot="tooltip-trigger">
-                      <div class="flex h-8 items-center">
-                        <i class="fa-solid fa-sparkles text-blue-500"></i>
-                      </div>
-                    </slot>
-                    <slot slot="tooltip-content">This is a smart column. Castle automatically enriches content using event data.</slot>
+                  <Tooltip widthClass="w-[180px]" className="ml-2">
+                    <Tooltip.Trigger><i class="fa-solid fa-fw fa-sparkles text-blue-500"></i></Tooltip.Trigger>
+                    <Tooltip.Content className="w-[200px]" enterClassName="delay-1000">
+                      This is a smart column. Castle automatically enriches content using event data.
+                    </Tooltip.Content>
                   </Tooltip>
                 </Button>
-              </slot>
-              <slot slot="dropdown-content">
+              </Dropdown.Trigger>
+              <Dropdown.Content>
                 <Dropdown.Group>
                   <Dropdown.Items>
                     <Dropdown.Item onClick="isOpen = false">
@@ -379,25 +370,23 @@ import Dropdown from '@rinseui/modules/Dropdown';
                      Hide from view
                   </Dropdown.Item>
                 </Dropdown.Group>
-              </slot>
+              </Dropdown.Content>
             </Dropdown>
           </th>
           <th class="px-1 py-2 first:pl-5">
             <Dropdown>
-              <slot slot="dropdown-trigger">
+              <Dropdown.Trigger>
                 <Button size="sm" variant="ghost">
-                  Lists
-                  <Tooltip widthClass="w-[180px]" className="ml-2" position="top" enterClass="delay-1000">
-                    <slot slot="tooltip-trigger">
-                      <div class="flex h-8 items-center">
-                        <i class="fa-solid fa-sparkles text-blue-500"></i>
-                      </div>
-                    </slot>
-                    <slot slot="tooltip-content">This is a smart column. Castle automatically enriches content using event data.</slot>
+                  List
+                  <Tooltip widthClass="w-[180px]" className="ml-2">
+                    <Tooltip.Trigger><i class="fa-solid fa-fw fa-sparkles text-blue-500"></i></Tooltip.Trigger>
+                    <Tooltip.Content className="w-[200px]" enterClassName="delay-1000">
+                      This is a smart column. Castle automatically enriches content using event data.
+                    </Tooltip.Content>
                   </Tooltip>
                 </Button>
-              </slot>
-              <slot slot="dropdown-content">
+              </Dropdown.Trigger>
+              <Dropdown.Content>
                 <Dropdown.Group>
                   <Dropdown.Items>
                     <Dropdown.Item onClick="isOpen = false">
@@ -435,25 +424,23 @@ import Dropdown from '@rinseui/modules/Dropdown';
                      Hide from view
                   </Dropdown.Item>
                 </Dropdown.Group>
-              </slot>
+              </Dropdown.Content>
             </Dropdown>
           </th>
           <th class="px-1 py-2 first:pl-5">
             <Dropdown>
-              <slot slot="dropdown-trigger">
+              <Dropdown.Trigger>
                 <Button size="sm" variant="ghost">
-                  Triggered Signals
-                  <Tooltip widthClass="w-[180px]" className="ml-2" position="top" enterClass="delay-1000">
-                    <slot slot="tooltip-trigger">
-                      <div class="flex h-8 items-center">
-                        <i class="fa-solid fa-sparkles text-blue-500"></i>
-                      </div>
-                    </slot>
-                    <slot slot="tooltip-content">This is a smart column. Castle automatically enriches content using event data.</slot>
+                  Triggered Signal
+                  <Tooltip widthClass="w-[180px]" className="ml-2">
+                    <Tooltip.Trigger><i class="fa-solid fa-fw fa-sparkles text-blue-500"></i></Tooltip.Trigger>
+                    <Tooltip.Content className="w-[200px]" enterClassName="delay-1000">
+                      This is a smart column. Castle automatically enriches content using event data.
+                    </Tooltip.Content>
                   </Tooltip>
                 </Button>
-              </slot>
-              <slot slot="dropdown-content">
+              </Dropdown.Trigger>
+              <Dropdown.Content>
                 <Dropdown.Group>
                   <Dropdown.Items>
                     <Dropdown.Item onClick="isOpen = false">
@@ -491,7 +478,7 @@ import Dropdown from '@rinseui/modules/Dropdown';
                      Hide from view
                   </Dropdown.Item>
                 </Dropdown.Group>
-              </slot>
+              </Dropdown.Content>
             </Dropdown>
           </th>
           <th class="h-10 w-full px-1 first:pl-5"> </th>

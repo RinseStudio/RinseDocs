@@ -1,5 +1,6 @@
 ---
-const {} = Astro.props;
+import { twMerge } from 'tailwind-merge';
+const { className = null, ...props } = Astro.props;
 ---
 
-<div class="h-px bg-zinc-200 dark:bg-zinc-700"></div>
+<div class={twMerge('h-px bg-zinc-200 dark:bg-zinc-700', className)} {...props}></div>
