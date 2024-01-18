@@ -7,19 +7,92 @@ import Table from '@rinseui/elements/Table';
 import Dropdown from '@rinseui/modules/Dropdown';
 import Tooltip from '@rinseui/elements/Tooltip';
 import SearchField from '@rinseui/elements/SearchField/index.astro';
+import TextField from '@rinseui/elements/TextField/index.astro';
+import SelectField from '@rinseui/elements/SelectField';
 ---
 
-<Layout layoutClass="">
+<Layout layoutClass="" x-data="{dialog: true}">
+  <div
+    class="fixed right-0 top-0 z-10"
+    x-cloak
+    x-show="dialog"
+    x-transition:enter="duration-200 transform"
+    x-transition:enter-start="opacity-0 translate-x-40"
+    x-transition:enter-end="opacity-100 translate-x-0"
+    x-transition:leave="duration-200 transform"
+    x-transition:leave-start="opacity-100 translate-x-0"
+    x-transition:leave-end="opacity-0 translate-x-40"
+  >
+    <div class="max-h-100vh relative h-[100dvh] w-[480px] max-w-3xl flex-1 overflow-auto rounded-l-xl bg-white shadow-xl">
+      <header class="flex items-center justify-between border-b border-zinc-200 px-4 py-4 pl-6">
+        <div>
+          <h3 class="text-base font-bold text-black">Invite Team Member</h3>
+        </div>
+        <!-- <Button size="md" variant="secondary" square @click="dialog = false">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-x"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg
+          >
+        </Button> -->
+        <div class="flex justify-end gap-2">
+          <Button size="sm" variant="secondary" @click="dialog = false">Cancel</Button>
+          <Button size="sm" variant="primary">Invite user</Button>
+        </div>
+      </header>
+      <div class="space-y-6 px-6 py-8">
+        <div>
+          <label class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400">First name</label>
+          <TextField placeholder="Jane" fluid />
+        </div>
+
+        <div>
+          <label class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400">Last name</label>
+          <TextField placeholder="Doe" fluid />
+        </div>
+
+        <div>
+          <label class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400">Email</label>
+          <TextField placeholder="example@comapny.com" type="email" fluid />
+        </div>
+
+        <div>
+          <label class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400">User role</label>
+          <fieldset class="flex">
+            <div class="space-y-4 sm:flex sm:items-center sm:space-x-6 sm:space-y-0">
+              <div class="flex items-center">
+                <input id="email" name="user-role" type="radio" checked class="h-4 w-4 border-gray-300 text-blue-500 focus:ring-blue-500" />
+                <label for="email" class="ml-3 block text-sm font-medium leading-6 text-gray-900">Admin</label>
+              </div>
+              <div class="flex items-center">
+                <input id="sms" name="user-role" type="radio" class="h-4 w-4 border-gray-300 text-blue-500 focus:ring-blue-500" />
+                <label for="sms" class="ml-3 block text-sm font-medium leading-6 text-gray-900">User</label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="px-7 py-4">
     <h1 class="mb-2 text-lg font-bold text-black">Organization Settings</h1>
     <p class="text-sm text-gray-600">View or update your organization and billing settings.</p>
   </div>
   <div>
     <Tab paddingClass="px-7">
+      <Tab.Item onClick="link('/components/templates/organization-settings/general')">General</Tab.Item>
       <Tab.Item onClick="link('/components/templates/organization-settings/users')" active>Users</Tab.Item>
       <Tab.Item onClick="link('/components/templates/organization-settings/billing')">Billing</Tab.Item>
       <Tab.Item onClick="link('/components/templates/organization-settings/environment')">Environment</Tab.Item>
-      <Tab.Item onClick="link('/components/templates/organization-settings/authentication')">Authentication</Tab.Item>
+      <!-- <Tab.Item onClick="link('/components/templates/organization-settings/authentication')">Authentication</Tab.Item> -->
     </Tab>
   </div>
   <div class="px-7 py-10">
@@ -51,14 +124,14 @@ import SearchField from '@rinseui/elements/SearchField/index.astro';
             <i class="fa-solid fa-user-plus mb-2 text-[40px] text-teal-500"></i>
             <h4 class="mb-3 text-lg font-bold text-teal-500">Invite team</h4>
             <p class="mb-5 max-w-[280px] text-sm text-gray-600">There are no pending invitations to show.</p>
-            <Button size="md">
+            <Button size="md" @click="dialog = true">
               <i class="fa-regular fa-plus mr-1.5"></i> Add Team Member
             </Button>
           </div>
         </div>
 
         <div class="mt-4">
-          <Button size="sm" variant="secondary">
+          <Button size="sm" variant="secondary" @click="dialog = true">
             <i class="fa-regular fa-plus mr-1.5"></i> Add Team Member
           </Button>
         </div>

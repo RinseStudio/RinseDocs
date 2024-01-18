@@ -2,9 +2,9 @@
 import Layout from '@/layouts/rinsedocs/Raw.astro';
 import Tab from '@rinseui/modules/Tab';
 import Button from '@rinseui/elements/Button/index.astro';
+import Card from '@rinseui/elements/Card';
 import TextField from '@rinseui/elements/TextField/index.astro';
 import SelectField from '@rinseui/elements/SelectField';
-import Card from '@rinseui/elements/Card';
 import Dropdown from '@rinseui/modules/Dropdown';
 ---
 
@@ -15,22 +15,50 @@ import Dropdown from '@rinseui/modules/Dropdown';
   </div>
   <div>
     <Tab paddingClass="px-7">
-      <Tab.Item onClick="link('/components/templates/organization-settings/general')">General</Tab.Item>
+      <Tab.Item onClick="link('/components/templates/organization-settings/general')" active>General</Tab.Item>
       <Tab.Item onClick="link('/components/templates/organization-settings/users')">Users</Tab.Item>
       <Tab.Item onClick="link('/components/templates/organization-settings/billing')">Billing</Tab.Item>
       <Tab.Item onClick="link('/components/templates/organization-settings/environment')">Environment</Tab.Item>
-      <!-- <Tab.Item onClick="link('/components/templates/organization-settings/authentication')" active>Authentication</Tab.Item> -->
+      <!-- <Tab.Item onClick="link('/components/templates/organization-settings/authentication')">Authentication</Tab.Item> -->
     </Tab>
-
-    <!-- <Tab paddingClass="px-7">
-      <Tab.Item>Users</Tab.Item>
-      <Tab.Item>Billing</Tab.Item>
-      <Tab.Item>Environment</Tab.Item>
-      <Tab.Item active>Authentication</Tab.Item>
-    </Tab> -->
   </div>
   <div class="px-7 py-10">
     <div class="mx-auto max-w-xl space-y-14">
+      <div>
+        <h3 class="mb-4 flex items-center gap-2 text-sm font-bold text-black">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-building"
+            ><rect width="16" height="20" x="4" y="2" rx="2" ry="2"></rect><path d="M9 22v-4h6v4"></path><path d="M8 6h.01"></path><path d="M16 6h.01"></path><path d="M12 6h.01"
+            ></path><path d="M12 10h.01"></path><path d="M12 14h.01"></path><path d="M16 10h.01"></path><path d="M16 14h.01"></path><path d="M8 10h.01"></path><path d="M8 14h.01"
+            ></path></svg
+          >
+           Orgnization Details
+        </h3>
+
+        <Card>
+          <Card.Group>
+            <div class="space-y-6">
+              <div>
+                <label class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400">Orgnization name</label>
+                <TextField value="Castle" fluid />
+              </div>
+              <div class="flex justify-end">
+                <Button onClick={'isOpen = !isOpen'} size="sm" variant="primary">Save settings</Button>
+              </div>
+            </div>
+          </Card.Group>
+        </Card>
+      </div>
+
       <div class="">
         <h3 class="mb-4 flex items-center gap-2 text-sm font-bold text-black">
           <svg
@@ -71,23 +99,6 @@ import Dropdown from '@rinseui/modules/Dropdown';
             <Card.Group>
               <div class="mb-4 space-y-6">
                 <div>
-                  <label class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400">SSO enabled</label>
-                  <p class="font-regular mb-4 text-xs text-gray-600">
-                    Single sign-on (SSO) is an authentication method that enables users to securely authenticate with multiple applications and websites by using just one set of
-                    credentials.
-                  </p>
-                </div>
-              </div>
-              <div class="flex justify-end">
-                <Button onClick={'isOpen = !isOpen'} size="sm" variant="primary">Enable single sign-on</Button>
-              </div>
-            </Card.Group>
-          </Card>
-
-          <Card>
-            <Card.Group>
-              <div class="mb-4 space-y-6">
-                <div>
                   <label class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400">Google Login enabled</label>
                   <p class="font-regular mb-4 text-xs text-gray-600">Allows users to sign in using their Google account credentials.</p>
                 </div>
@@ -120,6 +131,34 @@ import Dropdown from '@rinseui/modules/Dropdown';
         <div class="space-y-4">
           <Card>
             <Card.Group>
+              <div class="mb-4 space-y-6">
+                <div>
+                  <label class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400">SSO enabled</label>
+                  <p class="font-regular mb-4 text-xs text-gray-600">
+                    Single sign-on (SSO) is an authentication method that enables users to securely authenticate with multiple applications and websites by using just one set of
+                    credentials.
+                  </p>
+                </div>
+              </div>
+              <div class="flex justify-end">
+                <Button onClick={'isOpen = !isOpen'} size="sm" variant="primary">Enable single sign-on</Button>
+              </div>
+            </Card.Group>
+          </Card>
+
+          <Card>
+            <Card.Group>
+              <div class="space-y-6">
+                <div>
+                  <label class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400">SSO enabled</label>
+                  <p class="font-regular text-xs text-gray-600">
+                    Single sign-on (SSO) is an authentication method that enables users to securely authenticate with multiple applications and websites by using just one set of
+                    credentials.
+                  </p>
+                </div>
+              </div>
+            </Card.Group>
+            <Card.Group>
               <div class="space-y-6">
                 <div>
                   <label class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400">Client ID</label>
@@ -140,44 +179,63 @@ import Dropdown from '@rinseui/modules/Dropdown';
                 </div>
                 <div>
                   <label class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400">Auto create users</label>
-                  <Dropdown position="bottomEnd" className="w-full">
-                    <Fragment slot="dropdown-trigger">
+                  <Dropdown>
+                    <Dropdown.Trigger>
                       <SelectField value="True" fluid />
-                    </Fragment>
-                    <Fragment slot="dropdown-content">
+                    </Dropdown.Trigger>
+                    <Dropdown.Content position="bottomEnd" className="w-full">
                       <Dropdown.Group>
                         <Dropdown.Items>
                           <Dropdown.Item onClick={'isOpen = !isOpen'}>False</Dropdown.Item>
                           <Dropdown.Item onClick={'isOpen = !isOpen'}>True</Dropdown.Item>
                         </Dropdown.Items>
                       </Dropdown.Group>
-                    </Fragment>
+                    </Dropdown.Content>
                   </Dropdown>
                 </div>
                 <div>
                   <label class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400">Default user role</label>
-                  <Dropdown position="bottomEnd" className="w-full">
-                    <Fragment slot="dropdown-trigger">
-                      <SelectField value="Admin" fluid />
-                    </Fragment>
-                    <Fragment slot="dropdown-content">
+                  <Dropdown>
+                    <Dropdown.Trigger>
+                      <SelectField value="admin" fluid />
+                    </Dropdown.Trigger>
+                    <Dropdown.Content position="bottomEnd" className="w-full">
                       <Dropdown.Group>
                         <Dropdown.Items>
                           <Dropdown.Item onClick={'isOpen = !isOpen'}>Admin</Dropdown.Item>
                           <Dropdown.Item onClick={'isOpen = !isOpen'}>User</Dropdown.Item>
                         </Dropdown.Items>
                       </Dropdown.Group>
-                    </Fragment>
+                    </Dropdown.Content>
                   </Dropdown>
                 </div>
                 <div>
                   <label class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400">Email domains</label>
                   <TextField value="castle.io" fluid />
                 </div>
+                <div>
+                  <label class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400">Castle Login Redirect Url</label>
+                  <p class="font-regular mb-4 text-xs text-gray-600">The Login Redirect URL that you must set in your Identity Provider settings.</p>
+                  <div class="flex items-center justify-between rounded-lg bg-zinc-100 text-sm font-medium text-gray-900">
+                    <div class="flex h-10 flex-1 items-center overflow-auto whitespace-nowrap pl-3 font-mono">
+                      https://dashboard.castle.io/auth/openid_connect/callback?pid=55da25ee-bdea-4635-a2b0-99a6e5f987fc
+                    </div>
+
+                    <div class="flex gap-4">
+                      <button class="flex aspect-square h-10 items-center justify-center text-sm text-gray-500 hover:text-gray-600">
+                        <i class="fa-solid fa-clipboard"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="flex justify-end gap-2">
+                  <Button size="sm" variant="secondary">Disable single sign-on</Button>
+                  <Button size="sm" variant="primary">Save SSO</Button>
+                </div>
               </div>
             </Card.Group>
           </Card>
-          <Card>
+          <!-- <Card>
             <Card.Group>
               <div class="space-y-6">
                 <div>
@@ -197,7 +255,7 @@ import Dropdown from '@rinseui/modules/Dropdown';
                 </div>
               </div>
             </Card.Group>
-          </Card>
+          </Card> -->
         </div>
       </div>
     </div>

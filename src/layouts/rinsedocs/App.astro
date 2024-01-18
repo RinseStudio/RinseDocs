@@ -366,7 +366,7 @@ import Button from '@rinseui/elements/Button/index.astro';
               </div>
               <div class="flex items-center gap-1">
                 <div class="relative" x-data="tooltip">
-                  <Button onClick="APP.toggleTOC" onMouseEnter="showTooltip" onMouseLeave="hideTooltip" size="sm" variant="ghostLight" square>
+                  <Button @click="APP.toggleTOC" x-on:mouseenter="showTooltip" x-on:mouseleave="hideTooltip" size="sm" variant="ghost" className="text-gray-400" square>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="16"
@@ -394,7 +394,7 @@ import Button from '@rinseui/elements/Button/index.astro';
                     </div>
                   </Button>
                 </div>
-                <Button onClick="APP.toggleTOC" size="sm" variant="ghostLight" square>
+                <Button @click="APP.toggleTOC" size="sm" variant="ghost" className="text-gray-400" square>
                   <svg
                     x-show="$store.GLOBAL.showTOC"
                     xmlns="http://www.w3.org/2000/svg"
@@ -448,7 +448,7 @@ import Button from '@rinseui/elements/Button/index.astro';
           <div x-show="$store.GLOBAL.showTOC" class="relative z-20 hidden border-l border-zinc-200 dark:border-zinc-800 lg:block">
             <nav class="sticky top-0 px-5 py-2">
               <div class="absolute right-0 top-0 mr-2 mt-2">
-                <Button onClick="$store.GLOBAL.showTOC = false" onMouseEnter="showTooltip" onMouseLeave="hideTooltip" size="sm" variant="ghostLight" square>
+                <Button @click="$store.GLOBAL.showTOC = false" size="sm" variant="ghost" className="text-gray-400" square>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="16"

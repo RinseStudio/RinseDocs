@@ -1,0 +1,37 @@
+---
+const { languages, src, iframeClass } = Astro.props;
+
+const htmlContent = await Astro.slots.render('default');
+
+import { Code } from 'astro:components';
+
+import prettier from 'prettier';
+import parserHtml from 'prettier/parser-html';
+
+const getFormattedCode = async (content) => {
+  try {
+    const formattedCode = await prettier.format(content, {
+      parser: 'html',
+      plugins: [parserHtml],
+    });
+    return formattedCode;
+  } catch (error) {
+    console.error('Error formatting code:', error);
+    throw error; // Re-throw the error for the caller to handle
+  }
+};
+
+const shikiConfig = {
+  wrap: true,
+  experimentalThemes: {
+    light: 'github-light',
+    dark: 'github-dark',
+  },
+};
+---
+
+<div x-show="mode == 'code'" x-cloak class="max-h-[500px] overflow-auto text-sm">
+  <div x-show="languageSelection == 0" class="rd-frame-code" x-bind:class="languageSelection == 0 ? 'is-active' : ''">
+    <slot />
+  </div>
+</div>

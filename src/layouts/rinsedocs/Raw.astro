@@ -1,12 +1,11 @@
 ---
 import { ViewTransitions } from 'astro:transitions';
-const { layoutClass } = Astro.props;
+const { layoutClass, ...props } = Astro.props;
 import '@/styles/app.css';
-import Alpine from '@components/Alpine.astro';
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" x-data="app">
   <head>
     <!-- Meta -->
     <meta charset="UTF-8" />
@@ -23,8 +22,56 @@ import Alpine from '@components/Alpine.astro';
     <script defer src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
   <body class="font-sans font-normal text-slate-500 antialiased">
-    <div class={layoutClass}>
+    <div class={layoutClass} {...props}>
       <slot />
     </div>
   </body>
 </html>
+
+<script>
+  document.addEventListener('alpine:init', () => {
+    Alpine.data('app', (sidebarSetting = true, tocSetting = true, fluidWidthSetting = true) => ({
+      APP: {
+        slideReady(e) {
+          e.preventDefault();
+          this.APP.slideMoveHandler = this.APP.slideMove.bind(this); // Save a reference to the bound slideMove function
+
+          this.cursorOffset = e.clientX - this.$refs.slideHandle.getBoundingClientRect().x;
+          document.body.style.pointerEvents = 'none';
+          document.documentElement.style.cursor = 'grabbing';
+
+          document.addEventListener('mousemove', this.APP.slideMoveHandler);
+          document.addEventListener('mouseup', this.APP.slideFinish.bind(this));
+        },
+        slideFinish() {
+          document.body.style.pointerEvents = 'auto';
+          document.documentElement.style.cursor = 'default';
+          document.removeEventListener('mousemove', this.APP.slideMoveHandler);
+          this.$refs.slideHandle.style.opacity = '';
+        },
+        slideMove(e) {
+          let sidebarWidth = e.clientX;
+          const sidebar = document.querySelector('.app');
+          this.$refs.slideHandle.style.opacity = 1;
+
+          if (sidebarWidth >= 100 + this.cursorOffset) {
+            if (sidebarWidth >= 500 + this.cursorOffset) {
+              sidebar.style.setProperty('--sidebar-width', 500 - this.cursorOffset + 'px');
+              Alpine.store('GLOBAL').showSidebar = false;
+            } else {
+              sidebar.style.setProperty('--sidebar-width', sidebarWidth - this.cursorOffset + 'px');
+            }
+
+            Alpine.store('GLOBAL').showSidebar = true;
+          } else if (sidebarWidth <= 80 + this.cursorOffset) {
+            sidebar.style.setProperty('--sidebar-width', 12 + 'px');
+            Alpine.store('GLOBAL').showSidebar = false;
+          } else {
+            sidebar.style.setProperty('--sidebar-width', sidebarWidth - this.cursorOffset + 'px');
+            Alpine.store('GLOBAL').showSidebar = true;
+          }
+        },
+      },
+    }));
+  });
+</script>
