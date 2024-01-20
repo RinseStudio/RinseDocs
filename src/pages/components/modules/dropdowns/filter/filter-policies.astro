@@ -19,14 +19,14 @@ import Tab from '@rinseui/modules/Tab';
           <Tab.Item onClick="">Fields</Tab.Item>
           <Tab.Item onClick="">Lists</Tab.Item>
           <Tab.Item onClick="">Signals</Tab.Item>
-          <Tab.Item onClick="" active>Policies</Tab.Item>
+          <Tab.Item onClick="" isActive>Policies</Tab.Item>
           <Tab.Item onClick="">Metrics</Tab.Item>
         </Tab>
         <Dropdown.Group className="px-3 py-3">
           <div class="space-y-2">
             <div>
               <Dropdown position="bottomEnd" widthClass="w-full">
-                <SelectField value="is" fluid />
+                <SelectField value="is" isFluid />
                 <slot slot="dropdown-content">
                   <Dropdown.Group>
                     <Dropdown.Items>
@@ -39,7 +39,7 @@ import Tab from '@rinseui/modules/Tab';
               </Dropdown>
             </div>
             <div>
-              <SearchField placeholder="Search policy by name" fluid />
+              <SearchField placeholder="Search policy by name" isFluid />
             </div>
           </div>
         </Dropdown.Group>

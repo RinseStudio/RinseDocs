@@ -15,7 +15,7 @@ import Dropdown from '@rinseui/modules/Dropdown';
   </div>
   <div>
     <Tab paddingClass="px-7">
-      <Tab.Item onClick="link('/components/templates/account-settings/personal')" active>Personal Details</Tab.Item>
+      <Tab.Item onClick="link('/components/templates/account-settings/personal')" isActive>Personal Details</Tab.Item>
       <Tab.Item onClick="link('/components/templates/account-settings/security')">Security</Tab.Item>
     </Tab>
   </div>
@@ -44,24 +44,24 @@ import Dropdown from '@rinseui/modules/Dropdown';
             <div class="space-y-6">
               <div>
                 <label class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400">First name</label>
-                <TextField value="Jane" fluid />
+                <TextField value="Jane" isFluid />
               </div>
               <div>
                 <label class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400">Last name</label>
-                <TextField value="Jane" fluid />
+                <TextField value="Jane" isFluid />
               </div>
               <div>
                 <label class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400">Phone</label>
-                <TextField value="+1 415 918 2944" fluid />
+                <TextField value="+1 415 918 2944" isFluid />
               </div>
               <div>
                 <label class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400">Email</label>
-                <TextField value="jane@pigibank.com" fluid />
+                <TextField value="jane@pigibank.com" isFluid />
               </div>
               <div>
                 <label class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400">Timezone</label>
                 <Dropdown position="bottomEnd" widthClass="w-full">
-                  <SelectField value="Browser timezone" fluid />
+                  <SelectField value="Browser timezone" isFluid />
                   <slot slot="dropdown-content">
                     <Dropdown.Group>
                       <Dropdown.Items>

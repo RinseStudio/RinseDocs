@@ -19,14 +19,14 @@ import Dropdown from '@rinseui/modules/Dropdown';
       <Tab.Item onClick="link('/components/templates/organization-settings/users')">Users</Tab.Item>
       <Tab.Item onClick="link('/components/templates/organization-settings/billing')">Billing</Tab.Item>
       <Tab.Item onClick="link('/components/templates/organization-settings/environment')">Environment</Tab.Item>
-      <!-- <Tab.Item onClick="link('/components/templates/organization-settings/authentication')" active>Authentication</Tab.Item> -->
+      <!-- <Tab.Item onClick="link('/components/templates/organization-settings/authentication')" isActive>Authentication</Tab.Item> -->
     </Tab>
 
     <!-- <Tab paddingClass="px-7">
       <Tab.Item>Users</Tab.Item>
       <Tab.Item>Billing</Tab.Item>
       <Tab.Item>Environment</Tab.Item>
-      <Tab.Item active>Authentication</Tab.Item>
+      <Tab.Item isActive>Authentication</Tab.Item>
     </Tab> -->
   </div>
   <div class="px-7 py-10">
@@ -123,11 +123,11 @@ import Dropdown from '@rinseui/modules/Dropdown';
               <div class="space-y-6">
                 <div>
                   <label class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400">Client ID</label>
-                  <TextField value="12345" fluid />
+                  <TextField value="12345" isFluid />
                 </div>
                 <div>
                   <label class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400">Client secret</label>
-                  <TextField xData="{isVisible: false}" xType="isVisible ? 'text' : 'password'" type="password" value="5919592012" fluid>
+                  <TextField xData="{isVisible: false}" xType="isVisible ? 'text' : 'password'" type="password" value="5919592012" isFluid>
                     <Fragment slot="text-field-content">
                       <button
                         @click="isVisible = !isVisible"
@@ -142,7 +142,7 @@ import Dropdown from '@rinseui/modules/Dropdown';
                   <label class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400">Auto create users</label>
                   <Dropdown position="bottomEnd" className="w-full">
                     <Fragment slot="dropdown-trigger">
-                      <SelectField value="True" fluid />
+                      <SelectField value="True" isFluid />
                     </Fragment>
                     <Fragment slot="dropdown-content">
                       <Dropdown.Group>
@@ -158,7 +158,7 @@ import Dropdown from '@rinseui/modules/Dropdown';
                   <label class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400">Default user role</label>
                   <Dropdown position="bottomEnd" className="w-full">
                     <Fragment slot="dropdown-trigger">
-                      <SelectField value="Admin" fluid />
+                      <SelectField value="Admin" isFluid />
                     </Fragment>
                     <Fragment slot="dropdown-content">
                       <Dropdown.Group>
@@ -172,7 +172,7 @@ import Dropdown from '@rinseui/modules/Dropdown';
                 </div>
                 <div>
                   <label class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400">Email domains</label>
-                  <TextField value="castle.io" fluid />
+                  <TextField value="castle.io" isFluid />
                 </div>
               </div>
             </Card.Group>

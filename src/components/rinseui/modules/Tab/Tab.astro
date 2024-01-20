@@ -11,50 +11,50 @@ const { paddingClass = null } = Astro.props;
   <slot />
 </div>
 
-<script>
-  import Alpine from 'alpinejs';
+<script is:inline>
+  document.addEventListener('alpine:init', () => {
+    Alpine.data('Tab', () => ({
+      buttonWidth: 0, // Default width
+      buttonLeft: 0, // Default left position
 
-  Alpine.data('Tab', () => ({
-    buttonWidth: 0, // Default width
-    buttonLeft: 0, // Default left position
+      init() {
+        window.addEventListener('load', () => {
+          const activeTab = this.$root.querySelector('[data-tab-active]');
 
-    init() {
-      window.addEventListener('load', () => {
-        const activeTab = this.$root.querySelector('[data-tab-active]');
+          if (activeTab) {
+            // Set custom properties based on the first button's width and left position
+            const buttonWidth = activeTab.offsetWidth;
+            const buttonLeft = activeTab.offsetLeft;
 
-        if (activeTab) {
-          // Set custom properties based on the first button's width and left position
-          const buttonWidth = activeTab.offsetWidth;
-          const buttonLeft = activeTab.offsetLeft;
+            this.$root.style.setProperty('--tab-offsetWidth', `${buttonWidth}px`);
+            this.$root.style.setProperty('--tab-offsetLeft', `${buttonLeft}px`);
+          }
+        });
+      },
+      updateIndicatorPosition() {
+        this.$root.style.setProperty('--tab-offsetWidth', `${this.buttonWidth}px`);
+        this.$root.style.setProperty('--tab-offsetLeft', `${this.buttonLeft}px`);
+      },
+      link(url) {
+        window.location.href = url;
+      },
+      switchTab() {
+        this.buttonWidth = this.$el.offsetWidth;
+        this.buttonLeft = this.$el.offsetLeft;
 
-          this.$root.style.setProperty('--tab-offsetWidth', `${buttonWidth}px`);
-          this.$root.style.setProperty('--tab-offsetLeft', `${buttonLeft}px`);
-        }
-      });
-    },
-    updateIndicatorPosition() {
-      this.$root.style.setProperty('--tab-offsetWidth', `${this.buttonWidth}px`);
-      this.$root.style.setProperty('--tab-offsetLeft', `${this.buttonLeft}px`);
-    },
-    link(url) {
-      window.location.href = url;
-    },
-    switchTab() {
-      this.buttonWidth = this.$el.offsetWidth;
-      this.buttonLeft = this.$el.offsetLeft;
+        const tabs = this.$root.querySelectorAll('button');
+        tabs.forEach((tab) => {
+          tab.removeAttribute('data-tab-active');
+          tab.classList.remove('text-blue-500', 'dark:text-blue-400');
+          tab.classList.add('text-gray-400', 'hover:text-gray-600', 'dark:hover:text-gray-300');
+        });
+        this.$el.setAttribute('data-tab-active', null);
+        this.$el.classList.remove('text-gray-400', 'hover:text-gray-600', 'dark:hover:text-gray-300');
+        this.$el.classList.add('text-blue-500', 'dark:text-blue-400');
 
-      const tabs = this.$root.querySelectorAll('button');
-      tabs.forEach((tab) => {
-        tab.removeAttribute('data-tab-active');
-        tab.classList.remove('text-blue-500', 'dark:text-blue-400');
-        tab.classList.add('text-gray-400', 'hover:text-gray-600', 'dark:hover:text-gray-300');
-      });
-      this.$el.setAttribute('data-tab-active', null);
-      this.$el.classList.remove('text-gray-400', 'hover:text-gray-600', 'dark:hover:text-gray-300');
-      this.$el.classList.add('text-blue-500', 'dark:text-blue-400');
-
-      // Update the custom properties
-      this.updateIndicatorPosition();
-    },
-  }));
+        // Update the custom properties
+        this.updateIndicatorPosition();
+      },
+    }));
+  });
 </script>

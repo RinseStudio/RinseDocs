@@ -18,6 +18,13 @@ import '@/styles/app.css';
     <link href="/vendors/fontawesome/css/solid.css" rel="stylesheet" />
     <link href="/vendors/fontawesome/css/regular.css" rel="stylesheet" />
 
+    <!-- Alpine Plugins -->
+    <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/anchor@3.x.x/dist/cdn.min.js"></script>
+
+    <!-- Alpine Core -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
     <!-- Chart JS -->
     <script defer src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
@@ -28,7 +35,7 @@ import '@/styles/app.css';
   </body>
 </html>
 
-<script>
+<script is:inline>
   document.addEventListener('alpine:init', () => {
     Alpine.data('app', (sidebarSetting = true, tocSetting = true, fluidWidthSetting = true) => ({
       APP: {

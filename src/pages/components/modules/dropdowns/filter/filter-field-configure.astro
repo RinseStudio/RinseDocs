@@ -17,7 +17,7 @@ import Link from '@rinseui/elements/Link/index.astro';
 
       <Dropdown.Content position="bottomEnd" className="w-[320px]">
         <Tab className="px-4">
-          <Tab.Item onClick="" active>Fields</Tab.Item>
+          <Tab.Item onClick="" isActive>Fields</Tab.Item>
           <Tab.Item onClick="">Lists</Tab.Item>
           <Tab.Item onClick="">Signals</Tab.Item>
           <Tab.Item onClick="">Policies</Tab.Item>
@@ -45,7 +45,7 @@ import Link from '@rinseui/elements/Link/index.astro';
             <div>
               <Dropdown position="bottomEnd" widthClass="w-full">
                 <Dropdown.Trigger>
-                  <SelectField value="is" fluid />
+                  <SelectField value="is" isFluid />
                 </Dropdown.Trigger>
                 <Dropdown.Content className="w-full">
                   <Dropdown.Group>
@@ -59,7 +59,7 @@ import Link from '@rinseui/elements/Link/index.astro';
               </Dropdown>
             </div>
             <div>
-              <TextField placeholder="Value" fluid />
+              <TextField placeholder="Value" isFluid />
             </div>
           </div>
         </Dropdown.Group>

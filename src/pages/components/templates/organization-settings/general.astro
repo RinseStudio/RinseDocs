@@ -15,7 +15,7 @@ import Dropdown from '@rinseui/modules/Dropdown';
   </div>
   <div>
     <Tab paddingClass="px-7">
-      <Tab.Item onClick="link('/components/templates/organization-settings/general')" active>General</Tab.Item>
+      <Tab.Item onClick="link('/components/templates/organization-settings/general')" isActive>General</Tab.Item>
       <Tab.Item onClick="link('/components/templates/organization-settings/users')">Users</Tab.Item>
       <Tab.Item onClick="link('/components/templates/organization-settings/billing')">Billing</Tab.Item>
       <Tab.Item onClick="link('/components/templates/organization-settings/environment')">Environment</Tab.Item>
@@ -49,7 +49,7 @@ import Dropdown from '@rinseui/modules/Dropdown';
             <div class="space-y-6">
               <div>
                 <label class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400">Orgnization name</label>
-                <TextField value="Castle" fluid />
+                <TextField value="Castle" isFluid />
               </div>
               <div class="flex justify-end">
                 <Button onClick={'isOpen = !isOpen'} size="sm" variant="primary">Save settings</Button>
@@ -162,11 +162,11 @@ import Dropdown from '@rinseui/modules/Dropdown';
               <div class="space-y-6">
                 <div>
                   <label class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400">Client ID</label>
-                  <TextField value="12345" fluid />
+                  <TextField value="12345" isFluid />
                 </div>
                 <div>
                   <label class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400">Client secret</label>
-                  <TextField xData="{isVisible: false}" xType="isVisible ? 'text' : 'password'" type="password" value="5919592012" fluid>
+                  <TextField xData="{isVisible: false}" xType="isVisible ? 'text' : 'password'" type="password" value="5919592012" isFluid>
                     <Fragment slot="text-field-content">
                       <button
                         @click="isVisible = !isVisible"
@@ -181,7 +181,7 @@ import Dropdown from '@rinseui/modules/Dropdown';
                   <label class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400">Auto create users</label>
                   <Dropdown>
                     <Dropdown.Trigger>
-                      <SelectField value="True" fluid />
+                      <SelectField value="True" isFluid />
                     </Dropdown.Trigger>
                     <Dropdown.Content position="bottomEnd" className="w-full">
                       <Dropdown.Group>
@@ -197,7 +197,7 @@ import Dropdown from '@rinseui/modules/Dropdown';
                   <label class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400">Default user role</label>
                   <Dropdown>
                     <Dropdown.Trigger>
-                      <SelectField value="admin" fluid />
+                      <SelectField value="admin" isFluid />
                     </Dropdown.Trigger>
                     <Dropdown.Content position="bottomEnd" className="w-full">
                       <Dropdown.Group>
@@ -211,7 +211,7 @@ import Dropdown from '@rinseui/modules/Dropdown';
                 </div>
                 <div>
                   <label class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400">Email domains</label>
-                  <TextField value="castle.io" fluid />
+                  <TextField value="castle.io" isFluid />
                 </div>
                 <div>
                   <label class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400">Castle Login Redirect Url</label>

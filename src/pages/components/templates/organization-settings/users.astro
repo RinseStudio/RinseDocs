@@ -28,7 +28,7 @@ import SelectField from '@rinseui/elements/SelectField';
         <div>
           <h3 class="text-base font-bold text-black">Invite Team Member</h3>
         </div>
-        <!-- <Button size="md" variant="secondary" square @click="dialog = false">
+        <!-- <Button size="md" variant="secondary" isSquare @click="dialog = false">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="16"
@@ -50,17 +50,17 @@ import SelectField from '@rinseui/elements/SelectField';
       <div class="space-y-6 px-6 py-8">
         <div>
           <label class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400">First name</label>
-          <TextField placeholder="Jane" fluid />
+          <TextField placeholder="Jane" isFluid />
         </div>
 
         <div>
           <label class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400">Last name</label>
-          <TextField placeholder="Doe" fluid />
+          <TextField placeholder="Doe" isFluid />
         </div>
 
         <div>
           <label class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400">Email</label>
-          <TextField placeholder="example@comapny.com" type="email" fluid />
+          <TextField placeholder="example@comapny.com" type="email" isFluid />
         </div>
 
         <div>
@@ -89,7 +89,7 @@ import SelectField from '@rinseui/elements/SelectField';
   <div>
     <Tab paddingClass="px-7">
       <Tab.Item onClick="link('/components/templates/organization-settings/general')">General</Tab.Item>
-      <Tab.Item onClick="link('/components/templates/organization-settings/users')" active>Users</Tab.Item>
+      <Tab.Item onClick="link('/components/templates/organization-settings/users')" isActive>Users</Tab.Item>
       <Tab.Item onClick="link('/components/templates/organization-settings/billing')">Billing</Tab.Item>
       <Tab.Item onClick="link('/components/templates/organization-settings/environment')">Environment</Tab.Item>
       <!-- <Tab.Item onClick="link('/components/templates/organization-settings/authentication')">Authentication</Tab.Item> -->

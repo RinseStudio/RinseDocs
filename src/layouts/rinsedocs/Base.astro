@@ -28,11 +28,18 @@ const alpineData = `app(${[sidebarSetting]}, ${[tocSetting]}, ${[fluidWidthSetti
     <!-- Preload font -->
     <link rel="preload" href="/fonts/InterVariable.woff2" as="font" type="font/woff2" crossorigin />
 
+    <!-- Alpine Plugins -->
+    <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/anchor@3.x.x/dist/cdn.min.js"></script>
+
+    <!-- Alpine Core -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
     <ViewTransitions />
   </head>
   <body class="bg-zinc-50 font-sans font-normal text-slate-500 antialiased dark:bg-zinc-950">
     <slot />
-    <script>
+    <script is:inline>
       // Initialize Alpine
       document.addEventListener('alpine:init', () => {
         Alpine.store('GLOBAL', {
@@ -48,8 +55,7 @@ const alpineData = `app(${[sidebarSetting]}, ${[tocSetting]}, ${[fluidWidthSetti
           init() {
             const darkMode = localStorage.getItem('darkMode');
             const iframes = document.querySelectorAll('iframe.rd-iframe');
-            console.log('darkmode is: ' + darkMode);
-            console.log('iframes are: ' + iframes);
+
             if (darkMode == 'true') {
               Alpine.store('GLOBAL').darkMode = true;
               iframes.forEach((iframe) => {

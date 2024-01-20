@@ -16,7 +16,7 @@ import Dropdown from '@rinseui/modules/Dropdown';
   <div>
     <Tab paddingClass="px-7">
       <Tab.Item onClick="link('/components/templates/account-settings/personal')">Personal Details</Tab.Item>
-      <Tab.Item onClick="link('/components/templates/account-settings/security')" active>Security</Tab.Item>
+      <Tab.Item onClick="link('/components/templates/account-settings/security')" isActive>Security</Tab.Item>
     </Tab>
   </div>
   <div class="px-7 py-10">
@@ -43,15 +43,15 @@ import Dropdown from '@rinseui/modules/Dropdown';
             <div class="space-y-6">
               <div>
                 <label class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400">Current password</label>
-                <TextField value=" " fluid />
+                <TextField value=" " isFluid />
               </div>
               <div>
                 <label class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400">New password</label>
-                <TextField value=" " fluid />
+                <TextField value=" " isFluid />
               </div>
               <div>
                 <label class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400">Confirm new password</label>
-                <TextField value=" " fluid />
+                <TextField value=" " isFluid />
               </div>
               <div class="flex justify-end">
                 <Button size="sm" variant="primary">Save settings</Button>

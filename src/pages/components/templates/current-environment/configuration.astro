@@ -15,7 +15,7 @@ import Dropdown from '@rinseui/modules/Dropdown';
   </div>
   <div>
     <Tab paddingClass="px-7">
-      <Tab.Item onClick="link('/components/templates/current-environment/configuration')" active>Configuration</Tab.Item>
+      <Tab.Item onClick="link('/components/templates/current-environment/configuration')" isActive>Configuration</Tab.Item>
       <Tab.Item onClick="link('/components/templates/current-environment/integrations')">Integrations</Tab.Item>
     </Tab>
   </div>
@@ -120,7 +120,7 @@ import Dropdown from '@rinseui/modules/Dropdown';
                     Link a Castle user to a corresponding URL in an external tool. A cross-link will appear on user lists and details
                   </p>
 
-                  <TextField placeholder="https://yoursite.com/admin/{USER_ID}" fluid />
+                  <TextField placeholder="https://yoursite.com/admin/{USER_ID}" isFluid />
                   <p class="mt-2 text-[11px] font-medium text-gray-500">
                     {`{USER_ID}`} cannot be replaced by other variables.
                   </p>

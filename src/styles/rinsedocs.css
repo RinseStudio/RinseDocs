@@ -147,8 +147,3 @@
   max-width: 100%;
   display: block;
 }
-
-/* RD Component */
-.rd-code-preview {
-  @apply mb-6 mt-6;
-}

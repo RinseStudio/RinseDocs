@@ -30,7 +30,7 @@ import SearchField from '@rinseui/elements/SearchField/index.astro';
         <div class="mb-4 flex items-end justify-between">
           <Dropdown position="bottomEnd" widthClass="w-full">
             <Dropdown.Trigger>
-              <SelectField className="min-w-[220px]" value="All Events" fluid />
+              <SelectField className="min-w-[220px]" value="All Events" isFluid />
             </Dropdown.Trigger>
             <Dropdown.Content className="w-full">
               <Dropdown.Group>
@@ -179,7 +179,7 @@ import SearchField from '@rinseui/elements/SearchField/index.astro';
                 </h3>
                 <div class="h-4 w-px bg-zinc-200"></div>
                 <Tab className="px-4">
-                  <Tab.Item onClick="" active>Policy Action</Tab.Item>
+                  <Tab.Item onClick="" isActive>Policy Action</Tab.Item>
                   <Tab.Item onClick="">Policies Triggered</Tab.Item>
                   <Tab.Item onClick="">Signals Triggered</Tab.Item>
                 </Tab>

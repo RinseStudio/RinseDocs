@@ -1,5 +1,5 @@
 ---
-const { placeholder = 'Search field', value = '', validation = 'default', fluid = false, disabled = false } = Astro.props;
+const { placeholder = 'Search field', value = '', validation = 'default', isFluid = false, disabled = false } = Astro.props;
 
 const getRingClass = (validation) => {
   const schema = {
@@ -37,7 +37,7 @@ const getTextClass = (validation) => {
     class={`flex h-9 items-center rounded-md border-0 pl-9 text-[13px] shadow-sm dark:ring-zinc-700 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500 dark:disabled:text-gray-400 disabled:ring-gray-200 dark:disabled:bg-zinc-100/[0.06] bg-white dark:bg-zinc-100/[0.06] focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-500  
     ${getRingClass(validation)} 
 		${getTextClass(validation)} 
-    ${fluid ? 'w-full' : 'w-[320px]'}`}
+    ${isFluid ? 'w-full' : 'w-[320px]'}`}
     placeholder={placeholder}
     value={value}
     disabled={disabled}

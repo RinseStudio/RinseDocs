@@ -6,7 +6,7 @@ const {
   value = '',
   type = 'text',
   validation = 'default',
-  fluid = false,
+  isFluid = false,
   disabled = false,
   paddingClass = null,
 } = Astro.props;
@@ -39,7 +39,7 @@ const getTextClass = (validation) => {
     ${getRingClass(validation)} 
 		${getTextClass(validation)} 
     ${paddingClass ? paddingClass : null}
-    ${fluid ? 'w-full' : 'w-[320px]'}`}
+    ${isFluid ? 'w-full' : 'w-[320px]'}`}
     placeholder={placeholder ? placeholder : null}
     value={value ? value : null}
     disabled={disabled ? disabled : null}
