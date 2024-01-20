@@ -42,6 +42,8 @@ const alpineData = `app(${[sidebarSetting]}, ${[tocSetting]}, ${[fluidWidthSetti
     <script is:inline>
       // Initialize Alpine
       document.addEventListener('alpine:init', () => {
+        console.log('base commence');
+
         Alpine.store('GLOBAL', {
           darkMode: false,
           showSidebar: true,
@@ -54,7 +56,7 @@ const alpineData = `app(${[sidebarSetting]}, ${[tocSetting]}, ${[fluidWidthSetti
         Alpine.data('app', (sidebarSetting = true, tocSetting = true, fluidWidthSetting = true) => ({
           init() {
             const darkMode = localStorage.getItem('darkMode');
-            const iframes = document.querySelectorAll('iframe.rd-iframe');
+            const iframes = document.querySelectorAll('[data-rinse-ui] iframe');
 
             if (darkMode == 'true') {
               Alpine.store('GLOBAL').darkMode = true;
@@ -66,7 +68,6 @@ const alpineData = `app(${[sidebarSetting]}, ${[tocSetting]}, ${[fluidWidthSetti
                   htmlElement.classList.add('dark');
                 });
               });
-              console.log('is it initialized?');
             } else {
               Alpine.store('GLOBAL').darkMode = false;
             }

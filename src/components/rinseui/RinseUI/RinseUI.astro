@@ -32,14 +32,6 @@ const getFormattedCode = async (content, fileType) => {
   }
 };
 
-const shikiConfig = {
-  wrap: true,
-  experimentalThemes: {
-    light: 'github-light',
-    dark: 'github-dark',
-  },
-};
-
 async function loadAndLogFile(srcPath) {
   try {
     // Using /* @vite-ignore */ to bypass static analysis
@@ -50,12 +42,15 @@ async function loadAndLogFile(srcPath) {
   }
 }
 
-// Usage example
-const srcPath = '/src' + src;
-const srcCode = await loadAndLogFile(srcPath);
+const srcCode = await loadAndLogFile('/src' + src);
 ---
 
-<div x-data="RinseUI" class="overflow-hidden rounded-lg" :class="tab == 'preview' ? 'bg-zinc-50 dark:bg-black/20 ring-1 ring-zinc-200 dark:ring-zinc-800' : 'bg-black'">
+<div
+  x-data="RinseUI"
+  class="overflow-hidden rounded-lg"
+  :class="tab == 'preview' ? 'bg-zinc-50 dark:bg-black/20 ring-1 ring-zinc-200 dark:ring-zinc-800' : 'bg-black'"
+  data-rinse-ui
+>
   <header class="flex items-center justify-between border-b pl-4" :class="tab == 'preview' ? 'border-zinc-300 dark:border-zinc-100/10' : 'border-zinc-100/10'">
     <div class="flex items-center gap-4">
       <button class="h-10 text-xs font-semibold" @click="tab = 'preview'" x-bind:class="tab == 'preview' ? 'text-gray-900 dark:text-gray-100' : 'text-gray-400 hover:text-white'"
@@ -130,7 +125,7 @@ const srcCode = await loadAndLogFile(srcPath);
   <div class="rounded-b-lg" x-ref="tabContent">
     <div x-show="tab == 'preview'" class="relative flex">
       <div class="flex-1">
-        <iframe src={url} class={`rd-iframe w-full`}></iframe>
+        <iframe src={url} class="w-full" x-bind:style="'height:' + iframeHeight + 'px;'"></iframe>
       </div>
       <div class="flex w-5 flex-none bg-zinc-200 dark:bg-white/10" x-bind:style="'width: ' + width + 'px;'">
         <div
@@ -149,11 +144,11 @@ const srcCode = await loadAndLogFile(srcPath);
       </div>
     </div>
 
-    <div x-show="tab == 'code'" x-cloak class="max-h-[500px] overflow-auto text-sm" x-ref="codeContainer" data-tab-content="code">
+    <div x-show="tab == 'code'" x-cloak class="max-h-[500px] overflow-auto text-sm" x-ref="codeContainer" data-tab-name="code">
       <Code code={await getFormattedCode(srcCode, 'code')} lang="astro" theme="css-variables" wrap />
     </div>
 
-    <div x-show="tab == 'output'" x-cloak class="max-h-[500px] overflow-auto text-sm" x-ref="codeContainer" data-tab-content="output">
+    <div x-show="tab == 'output'" x-cloak class="max-h-[500px] overflow-auto text-sm" x-ref="codeContainer" data-tab-name="output">
       <Code code={await getFormattedCode(outputCode)} lang="astro" theme="css-variables" wrap />
     </div>
   </div>
@@ -161,17 +156,38 @@ const srcCode = await loadAndLogFile(srcPath);
 
 <script is:inline>
   document.addEventListener('alpine:init', () => {
-    Alpine.data('RinseUI', (langs = '', height = 200) => ({
+    console.log('component commence');
+    Alpine.data('RinseUI', () => ({
       tab: 'preview',
-      languageSelection: 0,
+      iframeHeight: 100,
       showTooltip: false,
       cursorOffset: 0,
       width: null,
-      iframeHeight: height,
-      languages: langs,
-      // init: function () {
-      //   document.addEventListener('resize', this.resetContainer.bind(this));
-      // },
+
+      init() {
+        console.log('init commence');
+        const tabContent = this.$refs.tabContent;
+        const iframe = tabContent.querySelector('iframe');
+
+        iframe.onload = () => {
+          try {
+            const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+            const body = iframeDocument.body;
+
+            const resizeObserver = new ResizeObserver((entries) => {
+              for (let entry of entries) {
+                this.iframeHeight = entry.target.scrollHeight;
+              }
+            });
+
+            resizeObserver.observe(body);
+          } catch (error) {
+            console.error('Error accessing iframe content:', error);
+          }
+        };
+
+        // document.addEventListener('resize', this.resetContainer.bind(this));
+      },
       // resetContainer(e) {
       //   e.preventDefault();
       //   this.width = this.$refs.tabContent.offsetWidth;
@@ -216,7 +232,7 @@ const srcCode = await loadAndLogFile(srcPath);
       },
       copyCode() {
         // Use the Clipboard API to copy the current Code to the clipboard
-        const activeSlot = this.$refs.tabContent.querySelector(`[data-tab-content="${this.tab}"] pre`);
+        const activeSlot = this.$refs.tabContent.querySelector(`[data-tab-name="${this.tab}"] pre`);
 
         const codeContent = activeSlot ? activeSlot.innerText : '';
         navigator.clipboard
