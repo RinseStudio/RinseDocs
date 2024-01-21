@@ -1,35 +1,39 @@
 ---
-const { paddingClass = null } = Astro.props;
+import { twMerge } from 'tailwind-merge';
+const { className = null, ...props } = Astro.props;
 ---
 
 <div
   x-data="Tab"
-  class={`relative flex items-center gap-3 border-b border-gray-200 ${
-    paddingClass ? paddingClass : 'px-3'
-  } before:absolute before:-bottom-px before:left-[var(--tab-offsetLeft)] before:h-[2px] before:w-[var(--tab-offsetWidth)] before:bg-blue-500 before:duration-300 dark:border-zinc-700 dark:before:bg-blue-400`}
+  class={twMerge(
+    'relative flex items-center gap-3 px-3 border-b border-gray-200 before:absolute before:-bottom-px before:left-[var(--tab-offsetLeft)] before:h-[2px] before:w-[var(--tab-offsetWidth)] before:bg-blue-500 before:duration-300 dark:border-zinc-700 dark:before:bg-blue-400',
+    className,
+  )}
 >
   <slot />
 </div>
 
-<script is:inline>
+<script>
+  import Alpine from 'alpinejs';
+  import anchor from '@alpinejs/anchor';
+
   document.addEventListener('alpine:init', () => {
     Alpine.data('Tab', () => ({
-      buttonWidth: 0, // Default width
-      buttonLeft: 0, // Default left position
+      buttonWidth: 20, // Default width
+      buttonLeft: 20, // Default left position
 
       init() {
-        window.addEventListener('load', () => {
-          const activeTab = this.$root.querySelector('[data-tab-active]');
-
-          if (activeTab) {
-            // Set custom properties based on the first button's width and left position
-            const buttonWidth = activeTab.offsetWidth;
-            const buttonLeft = activeTab.offsetLeft;
-
-            this.$root.style.setProperty('--tab-offsetWidth', `${buttonWidth}px`);
-            this.$root.style.setProperty('--tab-offsetLeft', `${buttonLeft}px`);
-          }
-        });
+        const activeTab = this.$root.querySelector('[data-tab-active]');
+        // console.log(activeTab.offsetWidth);
+        if (activeTab) {
+          // Set custom properties based on the first button's width and left position
+          const buttonLeft = activeTab.offsetLeft;
+          const buttonWidth = activeTab;
+          console.log(activeTab.offsetWidth);
+          console.log('loaded');
+          this.$root.style.setProperty('--tab-offsetLeft', `${buttonLeft}px`);
+          this.$root.style.setProperty('--tab-offsetWidth', `${buttonWidth}px`);
+        }
       },
       updateIndicatorPosition() {
         this.$root.style.setProperty('--tab-offsetWidth', `${this.buttonWidth}px`);

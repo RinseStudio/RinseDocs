@@ -154,108 +154,106 @@ const srcCode = await loadAndLogFile('/src' + src);
   </div>
 </div>
 
-<script is:inline>
-  document.addEventListener('alpine:init', () => {
-    console.log('component commence');
-    Alpine.data('RinseUI', () => ({
-      tab: 'preview',
-      iframeHeight: 100,
-      showTooltip: false,
-      cursorOffset: 0,
-      width: null,
+<script>
+  import Alpine from 'alpinejs';
+  console.log('Rinse UI commence commence');
+  Alpine.data('RinseUI', () => ({
+    tab: 'preview',
+    iframeHeight: 100,
+    showTooltip: false,
+    cursorOffset: 0,
+    width: null,
 
-      init() {
-        console.log('init commence');
-        const tabContent = this.$refs.tabContent;
-        const iframe = tabContent.querySelector('iframe');
+    init() {
+      const tabContent = this.$refs.tabContent;
+      const iframe = tabContent.querySelector('iframe');
 
-        iframe.onload = () => {
-          try {
-            const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
-            const body = iframeDocument.body;
+      iframe.onload = () => {
+        try {
+          const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+          const body = iframeDocument.body;
 
-            const resizeObserver = new ResizeObserver((entries) => {
-              for (let entry of entries) {
-                this.iframeHeight = entry.target.scrollHeight;
-              }
-            });
-
-            resizeObserver.observe(body);
-          } catch (error) {
-            console.error('Error accessing iframe content:', error);
-          }
-        };
-
-        // document.addEventListener('resize', this.resetContainer.bind(this));
-      },
-      // resetContainer(e) {
-      //   e.preventDefault();
-      //   this.width = this.$refs.tabContent.offsetWidth;
-      // },
-      slideReady(e) {
-        e.preventDefault();
-        this.slideMoveHandler = this.slideMove.bind(this); // Save a reference to the bound slideMove function
-        this.cursorOffset = e.clientX - this.$refs.resizeHandle.getBoundingClientRect().x;
-        document.body.style.pointerEvents = 'none';
-        document.documentElement.style.cursor = 'grabbing';
-
-        document.addEventListener('mousemove', this.slideMoveHandler);
-        document.addEventListener('mouseup', this.slideFinish.bind(this));
-
-        document.addEventListener('touchmove', this.slideMoveHandler);
-        document.addEventListener('touchend', this.slideFinish.bind(this));
-      },
-      slideFinish() {
-        document.body.style.pointerEvents = 'auto';
-        document.documentElement.style.cursor = 'default';
-        document.removeEventListener('mousemove', this.slideMoveHandler);
-        document.removeEventListener('touchmove', this.slideMoveHandler);
-      },
-      slideMove(e) {
-        let containerWidth = this.$refs.tabContent.offsetWidth;
-
-        let slideWidth = this.$refs.tabContent.getBoundingClientRect().right - e.clientX;
-
-        if (e.touches && e.touches[0]) {
-          slideWidth = this.$refs.tabContent.getBoundingClientRect().right - e.touches[0].clientX;
-        } else if (e.clientX) {
-          slideWidth = this.$refs.tabContent.getBoundingClientRect().right - e.clientX;
-        }
-
-        if (slideWidth >= containerWidth - this.cursorOffset) {
-          this.width = containerWidth;
-        } else if (slideWidth <= 20 - this.cursorOffset) {
-          this.width = 20;
-        } else {
-          this.width = slideWidth + this.cursorOffset;
-        }
-      },
-      copyCode() {
-        // Use the Clipboard API to copy the current Code to the clipboard
-        const activeSlot = this.$refs.tabContent.querySelector(`[data-tab-name="${this.tab}"] pre`);
-
-        const codeContent = activeSlot ? activeSlot.innerText : '';
-        navigator.clipboard
-          .writeText(codeContent)
-          .then(() => {
-            // Successfully copied to clipboard
-            this.showTooltip = true; // Show the tooltip
-
-            // Hide the tooltip after 2 seconds
-            setTimeout(() => {
-              this.showTooltip = false;
-            }, 2000);
-          })
-          .catch((err) => {
-            // Handle errors (such as user not granting clipboard permissions)
-            console.error('Failed to copy: ', err);
+          const resizeObserver = new ResizeObserver((entries) => {
+            for (let entry of entries) {
+              this.iframeHeight = entry.target.scrollHeight;
+            }
           });
-      },
-      hideTooltip() {
-        this.showTooltip = false; // Hide the tooltip
-      },
-    }));
-  });
+
+          resizeObserver.observe(body);
+        } catch (error) {
+          console.error('Error accessing iframe content:', error);
+        }
+      };
+
+      // document.addEventListener('resize', this.resetContainer.bind(this));
+    },
+    // resetContainer(e) {
+    //   e.preventDefault();
+    //   this.width = this.$refs.tabContent.offsetWidth;
+    // },
+    slideReady(e) {
+      e.preventDefault();
+      this.slideMoveHandler = this.slideMove.bind(this); // Save a reference to the bound slideMove function
+      this.cursorOffset = e.clientX - this.$refs.resizeHandle.getBoundingClientRect().x;
+      document.body.style.pointerEvents = 'none';
+      document.documentElement.style.cursor = 'grabbing';
+
+      document.addEventListener('mousemove', this.slideMoveHandler);
+      document.addEventListener('mouseup', this.slideFinish.bind(this));
+
+      document.addEventListener('touchmove', this.slideMoveHandler);
+      document.addEventListener('touchend', this.slideFinish.bind(this));
+    },
+    slideFinish() {
+      document.body.style.pointerEvents = 'auto';
+      document.documentElement.style.cursor = 'default';
+      document.removeEventListener('mousemove', this.slideMoveHandler);
+      document.removeEventListener('touchmove', this.slideMoveHandler);
+    },
+    slideMove(e) {
+      let containerWidth = this.$refs.tabContent.offsetWidth;
+
+      let slideWidth = this.$refs.tabContent.getBoundingClientRect().right - e.clientX;
+
+      if (e.touches && e.touches[0]) {
+        slideWidth = this.$refs.tabContent.getBoundingClientRect().right - e.touches[0].clientX;
+      } else if (e.clientX) {
+        slideWidth = this.$refs.tabContent.getBoundingClientRect().right - e.clientX;
+      }
+
+      if (slideWidth >= containerWidth - this.cursorOffset) {
+        this.width = containerWidth;
+      } else if (slideWidth <= 20 - this.cursorOffset) {
+        this.width = 20;
+      } else {
+        this.width = slideWidth + this.cursorOffset;
+      }
+    },
+    copyCode() {
+      // Use the Clipboard API to copy the current Code to the clipboard
+      const activeSlot = this.$refs.tabContent.querySelector(`[data-tab-name="${this.tab}"] pre`);
+
+      const codeContent = activeSlot ? activeSlot.innerText : '';
+      navigator.clipboard
+        .writeText(codeContent)
+        .then(() => {
+          // Successfully copied to clipboard
+          this.showTooltip = true; // Show the tooltip
+
+          // Hide the tooltip after 2 seconds
+          setTimeout(() => {
+            this.showTooltip = false;
+          }, 2000);
+        })
+        .catch((err) => {
+          // Handle errors (such as user not granting clipboard permissions)
+          console.error('Failed to copy: ', err);
+        });
+    },
+    hideTooltip() {
+      this.showTooltip = false; // Hide the tooltip
+    },
+  }));
 </script>
 
 <style is:global>

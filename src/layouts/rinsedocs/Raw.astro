@@ -18,13 +18,6 @@ import '@/styles/app.css';
     <link href="/vendors/fontawesome/css/solid.css" rel="stylesheet" />
     <link href="/vendors/fontawesome/css/regular.css" rel="stylesheet" />
 
-    <!-- Alpine Plugins -->
-    <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/anchor@3.x.x/dist/cdn.min.js"></script>
-
-    <!-- Alpine Core -->
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-
     <!-- Chart JS -->
     <script defer src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
@@ -32,10 +25,42 @@ import '@/styles/app.css';
     <div class={layoutClass} {...props}>
       <slot />
     </div>
+    <!-- <script is:inline>
+      window.onload = function () {
+        // Your code goes here
+        console.log('Everything is loaded');
+        // If you need to start Alpine.js or run other scripts, do it here
+        window.Alpine.start();
+      };
+    </script> -->
+
+    <script is:inline>
+      if (document.readyState === 'loading') {
+        // Still loading, wait for the event
+        document.addEventListener('DOMContentLoaded', function () {
+          // console.log('DOM fully loaded and parsed');
+
+          // console.log('Everything is loaded');
+          window.Alpine.start();
+        });
+      } else {
+        // `DOMContentLoaded` has already fired
+        // console.log('DOM fully loaded and parsed');
+      }
+    </script>
   </body>
 </html>
 
-<script is:inline>
+<script>
+  import Alpine from 'alpinejs';
+  import persist from '@alpinejs/persist';
+  import anchor from '@alpinejs/anchor';
+
+  Alpine.plugin(persist);
+  Alpine.plugin(anchor);
+
+  window.Alpine = Alpine;
+
   document.addEventListener('alpine:init', () => {
     Alpine.data('app', (sidebarSetting = true, tocSetting = true, fluidWidthSetting = true) => ({
       APP: {
