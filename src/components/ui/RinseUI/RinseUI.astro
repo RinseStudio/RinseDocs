@@ -33,7 +33,7 @@ async function loadAndLogFile(srcPath) {
   try {
     // Using /* @vite-ignore */ to bypass static analysis
     const fileContent = await import(/* @vite-ignore */ `${srcPath}?raw`);
-    return fileContent.default;
+    return fileContent.default.toString();
   } catch (error) {
     console.error('Error loading file:', error);
   }
@@ -181,7 +181,8 @@ const srcCode = await loadAndLogFile('/src' + src);
       x-ref="codeContainer"
       data-tab-name="code"
     >
-      <Code code={srcCode} lang="astro" theme="css-variables" wrap />
+      {srcCode}
+      <!-- <Code code={await srcCode} lang="astro" theme="css-variables" wrap /> -->
     </div>
 
     <div
