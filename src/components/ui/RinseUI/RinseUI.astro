@@ -181,12 +181,7 @@ const srcCode = await loadAndLogFile('/src' + src);
       x-ref="codeContainer"
       data-tab-name="code"
     >
-      <!-- <Code
-        code={await getFormattedCode(srcCode, 'mdx')}
-        lang="astro"
-        theme="css-variables"
-        wrap
-      /> -->
+      <Code code={srcCode} lang="astro" theme="css-variables" wrap />
     </div>
 
     <div
