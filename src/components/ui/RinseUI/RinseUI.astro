@@ -12,7 +12,7 @@ const getFormattedCode = async (content, fileType) => {
     // Determine the parser based on the file type
     let parser;
     switch (fileType) {
-      case 'code':
+      case 'mdx':
         parser = 'mdx';
         break;
       default:
@@ -181,12 +181,12 @@ const srcCode = await loadAndLogFile('/src' + src);
       x-ref="codeContainer"
       data-tab-name="code"
     >
-      <Code
-        code={await getFormattedCode(srcCode, 'code')}
+      <!-- <Code
+        code={await getFormattedCode(srcCode, 'mdx')}
         lang="astro"
         theme="css-variables"
         wrap
-      />
+      /> -->
     </div>
 
     <div
