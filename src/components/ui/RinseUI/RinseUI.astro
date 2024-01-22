@@ -182,6 +182,8 @@ const srcCode = await loadAndLogFile('/src' + src);
       data-tab-name="code"
     >
       {srcCode}
+      {await getFormattedCode(outputCode)}
+       ge
       <!-- <Code code={await srcCode} lang="astro" theme="css-variables" wrap /> -->
     </div>
 
