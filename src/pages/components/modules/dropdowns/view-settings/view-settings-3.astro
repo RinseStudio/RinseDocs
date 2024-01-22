@@ -3,7 +3,7 @@ import Layout from '@/layouts/rinsedocs/Raw.astro';
 import Button from '@/components/ui/elements/Button';
 import Dropdown from '@/components/ui/modules/Dropdown';
 import TextField from '@/components/ui/elements/TextField/index.astro';
-import SelectField from '@/components/rinseui/elements/SelectField';
+import SelectField from '@/components/ui/elements/SelectField';
 import Link from '@/components/ui/elements/Link/index.astro';
 ---
 
@@ -28,7 +28,8 @@ import Link from '@/components/ui/elements/Link/index.astro';
                 stroke-width="2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                class="lucide lucide-chevron-left mr-0.5"><path d="m15 18-6-6 6-6"></path></svg
+                class="lucide lucide-chevron-left mr-0.5"
+                ><path d="m15 18-6-6 6-6"></path></svg
               >
                Event Name
             </Link>
@@ -38,7 +39,10 @@ import Link from '@/components/ui/elements/Link/index.astro';
         <Dropdown.Group>
           <div class="grid grid-cols-1 gap-5 px-2 pb-4 pt-2">
             <div>
-              <label class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400">Column Type</label>
+              <label
+                class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400"
+                >Column Type</label
+              >
 
               <Dropdown position="bottomEnd" widthClass="w-full">
                 <Dropdown.Trigger>
@@ -47,16 +51,25 @@ import Link from '@/components/ui/elements/Link/index.astro';
                 <Dropdown.Content className="w-full">
                   <Dropdown.Group>
                     <Dropdown.Items>
-                      <Dropdown.Item onClick={'isOpen = !isOpen'}>is</Dropdown.Item>
-                      <Dropdown.Item onClick={'isOpen = !isOpen'}>is not</Dropdown.Item>
-                      <Dropdown.Item onClick={'isOpen = !isOpen'}>is one of</Dropdown.Item>
+                      <Dropdown.Item onClick={'isOpen = !isOpen'}>
+                        is
+                      </Dropdown.Item>
+                      <Dropdown.Item onClick={'isOpen = !isOpen'}>
+                        is not
+                      </Dropdown.Item>
+                      <Dropdown.Item onClick={'isOpen = !isOpen'}>
+                        is one of
+                      </Dropdown.Item>
                     </Dropdown.Items>
                   </Dropdown.Group>
                 </Dropdown.Content>
               </Dropdown>
             </div>
             <div>
-              <label class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400">Column Label</label>
+              <label
+                class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400"
+                >Column Label</label
+              >
               <TextField placeholder="Most recent event" isFluid />
             </div>
           </div>
@@ -64,8 +77,12 @@ import Link from '@/components/ui/elements/Link/index.astro';
         <Dropdown.Separator />
         <Dropdown.Group>
           <footer class="flex justify-end gap-2 px-2 py-2">
-            <Button onClick={'isOpen = !isOpen'} size="sm" variant="secondary">Cancel</Button>
-            <Button onClick={'isOpen = !isOpen'} size="sm" variant="primary">Add column</Button>
+            <Button onClick={'isOpen = !isOpen'} size="sm" variant="secondary">
+              Cancel
+            </Button>
+            <Button onClick={'isOpen = !isOpen'} size="sm" variant="primary">
+              Add column
+            </Button>
           </footer>
         </Dropdown.Group>
       </Dropdown.Content>
