@@ -1,6 +1,6 @@
 ---
 import { ViewTransitions } from 'astro:transitions';
-const { layoutClass, ...props } = Astro.props;
+const { className, ...props } = Astro.props;
 import '@/styles/app.css';
 ---
 
@@ -22,7 +22,7 @@ import '@/styles/app.css';
     <script defer src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
   <body class="font-sans font-normal text-slate-500 antialiased">
-    <div class={layoutClass} {...props}>
+    <div class={className} {...props}>
       <slot />
     </div>
 
@@ -45,48 +45,67 @@ import '@/styles/app.css';
   window.Alpine = Alpine;
 
   document.addEventListener('alpine:init', () => {
-    Alpine.data('app', (sidebarSetting = true, tocSetting = true, fluidWidthSetting = true) => ({
-      APP: {
-        slideReady(e) {
-          e.preventDefault();
-          this.APP.slideMoveHandler = this.APP.slideMove.bind(this); // Save a reference to the bound slideMove function
+    Alpine.data(
+      'app',
+      (sidebarSetting = true, tocSetting = true, fluidWidthSetting = true) => ({
+        APP: {
+          slideReady(e) {
+            e.preventDefault();
+            this.APP.slideMoveHandler = this.APP.slideMove.bind(this); // Save a reference to the bound slideMove function
 
-          this.cursorOffset = e.clientX - this.$refs.slideHandle.getBoundingClientRect().x;
-          document.body.style.pointerEvents = 'none';
-          document.documentElement.style.cursor = 'grabbing';
+            this.cursorOffset =
+              e.clientX - this.$refs.slideHandle.getBoundingClientRect().x;
+            document.body.style.pointerEvents = 'none';
+            document.documentElement.style.cursor = 'grabbing';
 
-          document.addEventListener('mousemove', this.APP.slideMoveHandler);
-          document.addEventListener('mouseup', this.APP.slideFinish.bind(this));
-        },
-        slideFinish() {
-          document.body.style.pointerEvents = 'auto';
-          document.documentElement.style.cursor = 'default';
-          document.removeEventListener('mousemove', this.APP.slideMoveHandler);
-          this.$refs.slideHandle.style.opacity = '';
-        },
-        slideMove(e) {
-          let sidebarWidth = e.clientX;
-          const sidebar = document.querySelector('.app');
-          this.$refs.slideHandle.style.opacity = 1;
+            document.addEventListener('mousemove', this.APP.slideMoveHandler);
+            document.addEventListener(
+              'mouseup',
+              this.APP.slideFinish.bind(this),
+            );
+          },
+          slideFinish() {
+            document.body.style.pointerEvents = 'auto';
+            document.documentElement.style.cursor = 'default';
+            document.removeEventListener(
+              'mousemove',
+              this.APP.slideMoveHandler,
+            );
+            this.$refs.slideHandle.style.opacity = '';
+          },
+          slideMove(e) {
+            let sidebarWidth = e.clientX;
+            const sidebar = document.querySelector('.app');
+            this.$refs.slideHandle.style.opacity = 1;
 
-          if (sidebarWidth >= 100 + this.cursorOffset) {
-            if (sidebarWidth >= 500 + this.cursorOffset) {
-              sidebar.style.setProperty('--sidebar-width', 500 - this.cursorOffset + 'px');
+            if (sidebarWidth >= 100 + this.cursorOffset) {
+              if (sidebarWidth >= 500 + this.cursorOffset) {
+                sidebar.style.setProperty(
+                  '--sidebar-width',
+                  500 - this.cursorOffset + 'px',
+                );
+                Alpine.store('GLOBAL').showSidebar = false;
+              } else {
+                sidebar.style.setProperty(
+                  '--sidebar-width',
+                  sidebarWidth - this.cursorOffset + 'px',
+                );
+              }
+
+              Alpine.store('GLOBAL').showSidebar = true;
+            } else if (sidebarWidth <= 80 + this.cursorOffset) {
+              sidebar.style.setProperty('--sidebar-width', 12 + 'px');
               Alpine.store('GLOBAL').showSidebar = false;
             } else {
-              sidebar.style.setProperty('--sidebar-width', sidebarWidth - this.cursorOffset + 'px');
+              sidebar.style.setProperty(
+                '--sidebar-width',
+                sidebarWidth - this.cursorOffset + 'px',
+              );
+              Alpine.store('GLOBAL').showSidebar = true;
             }
-
-            Alpine.store('GLOBAL').showSidebar = true;
-          } else if (sidebarWidth <= 80 + this.cursorOffset) {
-            sidebar.style.setProperty('--sidebar-width', 12 + 'px');
-            Alpine.store('GLOBAL').showSidebar = false;
-          } else {
-            sidebar.style.setProperty('--sidebar-width', sidebarWidth - this.cursorOffset + 'px');
-            Alpine.store('GLOBAL').showSidebar = true;
-          }
+          },
         },
-      },
-    }));
+      }),
+    );
   });
 </script>

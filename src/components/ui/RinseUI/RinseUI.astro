@@ -1,10 +1,11 @@
 ---
 import fs from 'node:fs/promises';
 import path from 'path';
-import { Code } from 'astro:components';
 import prettier from 'prettier';
+import { Code } from 'astro:components';
+import { twMerge } from 'tailwind-merge';
 
-const { url, src = null } = Astro.props;
+const { url, src = null, className = null } = Astro.props;
 
 const outputCode = await Astro.slots.render('default');
 
@@ -50,8 +51,8 @@ const fileContent = await loadFileContents('src' + src);
   data-rinse-ui
 >
   <header
-    class="flex items-center justify-between border-b border-zinc-300 pl-4 dark:border-zinc-100/10"
-    :class="{'border-zinc-300 dark:border-zinc-100/10': tab == 'preview',
+    class="flex items-center justify-between border-b border-zinc-200 pl-4 dark:border-zinc-100/10"
+    :class="{'border-zinc-200 dark:border-zinc-100/10': tab == 'preview',
       'border-zinc-100/20': tab != 'preview'
     }"
   >
@@ -149,7 +150,7 @@ const fileContent = await loadFileContents('src' + src);
       <div class="flex-1">
         <iframe
           src={url}
-          class="w-full"
+          class={twMerge('w-full', className)}
           x-bind:style="'height:' + iframeHeight + 'px;'"></iframe>
       </div>
       <div
