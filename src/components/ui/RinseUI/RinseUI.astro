@@ -3,9 +3,13 @@ const { url, src = null } = Astro.props;
 
 const outputCode = await Astro.slots.render('default');
 
+import TestButton from '@/components/ui/elements/Button?raw';
+
 import { Code } from 'astro:components';
 
 import prettier from 'prettier';
+import fs from 'node:fs/promises';
+import path from 'path';
 
 const getFormattedCode = async (content, fileType) => {
   try {
@@ -39,7 +43,27 @@ async function loadAndLogFile(srcPath) {
   }
 }
 
-const srcCode = await loadAndLogFile('/src' + src);
+// const srcCode = await loadFileContents('/src' + src);
+
+async function loadFileContents(relativeFilePath) {
+  // Resolve the path relative to the project root directory
+  const filePath = path.resolve(process.cwd(), relativeFilePath);
+
+  try {
+    const content = await fs.readFile(filePath, 'utf8');
+    return content;
+  } catch (error) {
+    console.error('Error reading file:', error);
+    return null; // Or handle the error as appropriate
+  }
+}
+
+// Example usage
+const fileContent = await loadFileContents(
+  'src/components/ui/elements/Button/sample/SimpleButton.astro',
+);
+
+// console.log(fileContent);
 ---
 
 <div
@@ -181,9 +205,11 @@ const srcCode = await loadAndLogFile('/src' + src);
       x-ref="codeContainer"
       data-tab-name="code"
     >
+      <Code code={fileContent} lang="astro" theme="css-variables" wrap />
+      <!-- <slot name="test" />
       {srcCode}
       {await getFormattedCode(outputCode)}
-       ge
+       ge -->
       <!-- <Code code={await srcCode} lang="astro" theme="css-variables" wrap /> -->
     </div>
 

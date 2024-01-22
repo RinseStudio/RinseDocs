@@ -28,8 +28,11 @@ Buttons are essential interactive elements in user interfaces, designed for easy
 
 import SimpleButton from '@/components/ui/elements/Button/sample/SimpleButton.astro';
 
+import Button from '@/components/ui/elements/Button?raw';
+
 <RinseUI url="/components/elements/button/sample/simple-button" src="/components/ui/elements/Button/sample/SimpleButton.astro">
   <SimpleButton />
+  <div slot="test"><Button>gege</Button></div>
 </RinseUI>
 
 ## Button Sizes
