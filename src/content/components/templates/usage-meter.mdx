@@ -19,9 +19,9 @@ pageSettings:
   enableFluidWidth: true
 ---
 
-import CodePreview from '@rinseui/CodePreview.astro';
-import CodePreviewV2 from '@rinseui/CodePreviewV2.astro';
-import UsageMeter from '@rinseui/templates/UsageMeter.astro';
+import CodePreview from '@/components/ui/CodePreview.astro';
+import CodePreviewV2 from '@/components/ui/CodePreviewV2.astro';
+import UsageMeter from '@/components/ui/templates/UsageMeter.astro';
 
 <UsageMeter />
 
@@ -38,7 +38,7 @@ The API calls usage meter is a sidebar card component that provides information 
     ```astro
     ---
     import Layout from '@/layouts/rinsedocs/Raw.astro';
-    import Button from '@rinseui/elements/Button/index.astro';
+    import Button from '@/components/ui/elements/Button';
     ---
 
     <div astro-component class="w-[240px] rounded-lg bg-white shadow-md dark:bg-zinc-800">

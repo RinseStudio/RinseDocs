@@ -4,8 +4,8 @@ import { SITE } from '@/rinsedocs.config';
 
 import Layout from '@/layouts/rinsedocs/Base.astro';
 import * as helper from '@js/rinsedocs.model.js';
-import SidebarList from '@rinseui/SidebarList.astro';
-import TOC from '@rinseui/TOC.astro';
+import SidebarList from '@/components/ui/SidebarList.astro';
+import TOC from '@/components/ui/TOC.astro';
 
 const { frontmatter, headings, entry } = Astro.props;
 
@@ -18,7 +18,7 @@ const navigation = helper.buildNavigation(allPages, Astro.url.pathname, SITE.sid
 
 const breadcrumb = helper.buildBreadcrumb(entry.slug);
 
-import Button from '@rinseui/elements/Button/index.astro';
+import Button from '@/components/ui/elements/Button';
 ---
 
 <Layout title={frontmatter.title} pageSettings={frontmatter.pageSettings} frontmatter={frontmatter}>

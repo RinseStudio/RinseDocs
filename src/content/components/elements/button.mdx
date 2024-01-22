@@ -19,29 +19,18 @@ pageSettings:
   enableFluidWidth: true
 ---
 
-import CodePreview from '@rinseui/CodePreview.astro';
+import RinseUI from '@/components/ui/RinseUI';
+import CodePreview from '@/components/ui/CodePreview.astro';
 
 ## Introduction
 
 Buttons are essential interactive elements in user interfaces, designed for easy clicks or taps.
 
-<CodePreview 
-  languages={['HTML']} 
-  src="/components/elements/buttons/simple-button" 
-  iframeClass="h-[100px]"
->	
-  <slot slot="0">
-    ```html
-    <button
-      class="inline-flex items-center justify-center font-semibold whitespace-nowrap disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-500 rounded-md text-[15px] min-w-[40px] h-[40px] px-3.5 text-white dark:disabled:text-white/70 bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-500 disabled:bg-blue-500/60 dark:disabled:bg-blue-600/30 shadow-sm dark:shadow-none"
-      type="button"
-    >
-      Button
-    </button>
-    ```
-  </slot>
+import SimpleButton from '@/components/ui/elements/Button/sample/SimpleButton.astro';
 
-</CodePreview>
+<RinseUI url="/components/elements/button/sample/simple-button" src="/components/ui/elements/Button/sample/SimpleButton.astro">
+  <SimpleButton />
+</RinseUI>
 
 ## Button Sizes
 
