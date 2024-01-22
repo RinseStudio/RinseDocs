@@ -180,12 +180,7 @@ const fileContent = await loadFileContents('src' + src);
       x-ref="codeContainer"
       data-tab-name="code"
     >
-      <Code
-        code={await getFormattedCode(fileContent, 'mdx')}
-        lang="astro"
-        theme="css-variables"
-        wrap
-      />
+      <Code code={fileContent} lang="astro" theme="css-variables" wrap />
     </div>
 
     <div

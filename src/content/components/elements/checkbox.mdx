@@ -3,7 +3,7 @@ title: Checkbox
 date: 2023-05-12
 author: Jin Su Park,
 thumbnail: '@/assets/runboy-01.jpg'
-description: Checkboxes allow the user to select one or more items from a set of options.
+description: Checkboxes enable users to choose single or multiple options from a group.
 draft: false
 weight: 0
 meta:
@@ -19,22 +19,46 @@ pageSettings:
   enableFluidWidth: true
 ---
 
-import CodePreview from '@/components/ui/CodePreview.astro';
+import RinseUI from '@/components/ui/RinseUI';
 
-## Introduction
+## Basic usage
 
-Checkboxes enable users to select one or more items with our Checkbox component for forms and enabling or disabling a feature.
+The following is an example of a basic checkbox.
 
-<CodePreview languages={['HTML']} src="/components/forms/simple-checkbox" height="xs">
-  <slot slot="0">
-    ```html
-    <div class="flex items-center justify-center gap-3 text-sm text-gray-900 dark:text-gray-300">
-      <input
-        type="checkbox"
-        class="h-4 w-4 rounded border-zinc-300 bg-zinc-50 dark:border-zinc-600 dark:bg-zinc-800 dark:ring-offset-zinc-800 dark:checked:border-blue-600 dark:checked:bg-blue-600"
-      />
-      A simple checkbox
-    </div>
-    ```
-  </slot>
-</CodePreview>
+import BasicCheckbox from '@/components/ui/elements/Checkbox/sample/BasicCheckbox.astro';
+
+<RinseUI
+  className="bg-white dark:bg-black"
+  url="/components/elements/checkbox/sample/basic-checkbox"
+  src="/components/ui/elements/Checkbox/sample/BasicCheckbox.astro"
+>
+  <BasicCheckbox />
+</RinseUI>
+
+## Checkbox states
+
+Checkboxes can be in a checked, unchecked, or disabled state.
+
+import CheckboxStates from '@/components/ui/elements/Checkbox/sample/CheckboxStates.astro';
+
+<RinseUI
+  className="bg-white dark:bg-black"
+  url="/components/elements/checkbox/sample/checkbox-states"
+  src="/components/ui/elements/Checkbox/sample/CheckboxStates.astro"
+>
+  <CheckboxStates />
+</RinseUI>
+
+## Multi-select form
+
+You can combine multiple checkboxes to create a multi-select field set.
+
+import MultiSelect from '@/components/ui/elements/Checkbox/sample/MultiSelect.astro';
+
+<RinseUI
+  className="bg-white dark:bg-black"
+  url="/components/elements/checkbox/sample/multi-select"
+  src="/components/ui/elements/Checkbox/sample/MultiSelect.astro"
+>
+  <MultiSelect />
+</RinseUI>
