@@ -5,51 +5,51 @@ const { data } = Astro.props;
 ---
 
 <ul class="sidebar-list">
-	{
-		data.map((group) => {
-			return (
-				<li x-data="{open: true}">
-					<button
-						class="group/sidebar-parent flex w-full overflow-hidden whitespace-nowrap text-left text-[10px] font-bold uppercase leading-[32px] tracking-wide text-gray-500 dark:text-gray-500"
-						x-on:click="open = !open, active = !active"
-					>
-						<div class="inline-flex items-center overflow-hidden">
-							<div class="truncate">{group.label}</div>
-							<svg
-								x-bind:class="open ? '' : '-rotate-90'"
-								xmlns="http://www.w3.org/2000/svg"
-								viewBox="0 0 20 20"
-								fill="currentColor"
-								class="h-4 w-4 flex-none opacity-0 duration-200 group-hover/sidebar-parent:opacity-100"
-							>
-								<path
-									fill-rule="evenodd"
-									d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
-									clip-rule="evenodd"
-								/>
-							</svg>
-						</div>
-					</button>
-					<div x-cloak x-show="open == true">
-						<ul class="mb-4 space-y-px">
-							{group.pages.map((page) => (
-								<SidebarListItem page={page} />
-							))}
-						</ul>
-					</div>
-				</li>
-			);
-		})
-	}
+  {
+    data.map((group) => {
+      return (
+        <li x-data="{open: true}">
+          <button
+            class="group/sidebar-parent flex w-full overflow-hidden whitespace-nowrap text-left text-[10px] font-bold uppercase leading-[32px] tracking-wide text-gray-500 dark:text-gray-500"
+            x-on:click="open = !open, active = !active"
+          >
+            <div class="inline-flex items-center overflow-hidden">
+              <div class="truncate">{group.label}</div>
+              <svg
+                x-bind:class="open ? '' : '-rotate-90'"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                class="h-4 w-4 flex-none opacity-0 duration-200 group-hover/sidebar-parent:opacity-100"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </div>
+          </button>
+          <div x-show="open == true">
+            <ul class="mb-4 space-y-px">
+              {group.pages.map((page) => (
+                <SidebarListItem page={page} />
+              ))}
+            </ul>
+          </div>
+        </li>
+      );
+    })
+  }
 </ul>
 
 <script>
-	// const nav = document.querySelector('.navbar');
-	// const navLinks = nav.querySelectorAll('a');
-	// const currentURL = window.location.href;
-	// navLinks.forEach((link) => {
-	// 	if (link.href === currentURL) {
-	// 		link.classList.add('bg-red-500');
-	// 	}
-	// });
+  // const nav = document.querySelector('.navbar');
+  // const navLinks = nav.querySelectorAll('a');
+  // const currentURL = window.location.href;
+  // navLinks.forEach((link) => {
+  // 	if (link.href === currentURL) {
+  // 		link.classList.add('bg-red-500');
+  // 	}
+  // });
 </script>

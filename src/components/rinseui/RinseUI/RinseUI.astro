@@ -47,11 +47,11 @@ const srcCode = await loadAndLogFile('/src' + src);
 
 <div
   x-data="RinseUI"
-  class="overflow-hidden rounded-lg"
+  class="rinse-ui overflow-hidden rounded-lg"
   :class="tab == 'preview' ? 'bg-zinc-50 dark:bg-black/20 ring-1 ring-zinc-200 dark:ring-zinc-800' : 'bg-black'"
   data-rinse-ui
 >
-  <header class="flex items-center justify-between border-b pl-4" :class="tab == 'preview' ? 'border-zinc-300 dark:border-zinc-100/10' : 'border-zinc-100/10'">
+  <header class="flex items-center justify-between border-b pl-4" :class="tab == 'preview' ? 'border-zinc-300 dark:border-zinc-100/10' : 'border-zinc-100/20'">
     <div class="flex items-center gap-4">
       <button class="h-10 text-xs font-semibold" @click="tab = 'preview'" x-bind:class="tab == 'preview' ? 'text-gray-900 dark:text-gray-100' : 'text-gray-400 hover:text-white'"
         >Preview</button
@@ -103,7 +103,7 @@ const srcCode = await loadAndLogFile('/src' + src);
       <button
         @click="copyCode"
         target="_blank"
-        class="flex aspect-square w-10 items-center justify-center border-l border-zinc-100/10 text-gray-400 hover:text-gray-200 dark:text-gray-300 dark:hover:text-gray-100"
+        class="flex aspect-square w-10 items-center justify-center border-l border-zinc-100/20 text-gray-400 hover:text-gray-200 dark:text-gray-300 dark:hover:text-gray-100"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -156,10 +156,7 @@ const srcCode = await loadAndLogFile('/src' + src);
 
 <script>
   import Alpine from 'alpinejs';
-  console.log('Rinse UI commence commence');
-  function reinitializeAlpineComponents() {
-    console.log('Reinitializing Alpine.js components');
-    // Your Alpine.js initialization logic here...
+  document.addEventListener('alpine:init', () => {
     Alpine.data('RinseUI', () => ({
       tab: 'preview',
       iframeHeight: 100,
@@ -168,7 +165,6 @@ const srcCode = await loadAndLogFile('/src' + src);
       width: null,
 
       init() {
-        console.log('init commence');
         const tabContent = this.$refs.tabContent;
         const iframe = tabContent.querySelector('iframe');
 
@@ -254,11 +250,7 @@ const srcCode = await loadAndLogFile('/src' + src);
         this.showTooltip = false; // Hide the tooltip
       },
     }));
-  }
-  document.addEventListener('astro:after-swap', () => {
-    reinitializeAlpineComponents();
   });
-  document.addEventListener('alpine:init', reinitializeAlpineComponents);
 </script>
 
 <style is:global>

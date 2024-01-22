@@ -6,7 +6,7 @@ const { className = null, ...props } = Astro.props;
 <div
   x-data="Tab"
   class={twMerge(
-    'relative flex items-center gap-3 px-3 border-b border-gray-200 before:absolute before:-bottom-px before:left-[var(--tab-offsetLeft)] before:h-[2px] before:w-[var(--tab-offsetWidth)] before:bg-blue-500 before:duration-300 dark:border-zinc-700 dark:before:bg-blue-400',
+    'relative flex items-center gap-3 px-3 border-b border-gray-200 before:absolute before:-bottom-px before:left-[var(--tab-offsetLeft)] before:h-[2px] before:w-[var(--tab-offsetWidth)] before:bg-blue-500 before:duration-300 dark:border-zinc-700 dark:before:bg-blue-400 .before:opacity-0',
     className,
   )}
 >
@@ -15,25 +15,23 @@ const { className = null, ...props } = Astro.props;
 
 <script>
   import Alpine from 'alpinejs';
-  import anchor from '@alpinejs/anchor';
 
   document.addEventListener('alpine:init', () => {
     Alpine.data('Tab', () => ({
-      buttonWidth: 20, // Default width
-      buttonLeft: 20, // Default left position
+      buttonWidth: 0, // Default width
+      buttonLeft: 0, // Default left position
 
       init() {
-        const activeTab = this.$root.querySelector('[data-tab-active]');
-        // console.log(activeTab.offsetWidth);
-        if (activeTab) {
-          // Set custom properties based on the first button's width and left position
-          const buttonLeft = activeTab.offsetLeft;
-          const buttonWidth = activeTab;
-          console.log(activeTab.offsetWidth);
-          console.log('loaded');
-          this.$root.style.setProperty('--tab-offsetLeft', `${buttonLeft}px`);
-          this.$root.style.setProperty('--tab-offsetWidth', `${buttonWidth}px`);
-        }
+        window.onload = (event) => {
+          const activeTab = this.$root.querySelector('[data-tab-active]');
+          if (activeTab) {
+            // Set custom properties based on the first button's width and left position
+            const buttonLeft = activeTab.offsetLeft;
+            const buttonWidth = activeTab.offsetWidth;
+            this.$root.style.setProperty('--tab-offsetLeft', `${buttonLeft}px`);
+            this.$root.style.setProperty('--tab-offsetWidth', `${buttonWidth}px`);
+          }
+        };
       },
       updateIndicatorPosition() {
         this.$root.style.setProperty('--tab-offsetWidth', `${this.buttonWidth}px`);
