@@ -6,8 +6,6 @@ const outputCode = await Astro.slots.render('default');
 import { Code } from 'astro:components';
 
 import prettier from 'prettier';
-import parserHtml from 'prettier/parser-html';
-import parserAstro from 'prettier-plugin-astro';
 
 const getFormattedCode = async (content, fileType) => {
   try {
@@ -15,7 +13,7 @@ const getFormattedCode = async (content, fileType) => {
     let parser;
     switch (fileType) {
       case 'code':
-        parser = 'astro';
+        parser = 'mdx';
         break;
       default:
         parser = 'html'; // Default parser
@@ -23,7 +21,6 @@ const getFormattedCode = async (content, fileType) => {
 
     const formattedCode = await prettier.format(content, {
       parser: parser,
-      plugins: [parserHtml, parserAstro],
     });
     return formattedCode;
   } catch (error) {
@@ -201,7 +198,7 @@ const srcCode = await loadAndLogFile('/src' + src);
     >
       <Code
         code={await getFormattedCode(outputCode)}
-        lang="astro"
+        lang="html"
         theme="css-variables"
         wrap
       />
@@ -329,7 +326,7 @@ const srcCode = await loadAndLogFile('/src' + src);
     --astro-code-token-keyword: #ffe775; /* Nord's Frost for keywords */
     --astro-code-token-parameter: #88c0d0; /* Nord's Frost, another shade for parameters */
     --astro-code-token-function: #31bfff; /* Nord's Frost, another shade for functions */
-    --astro-code-token-string-expression: #7be59d; /* Nord's Aurora, similar to strings */
+    --astro-code-token-string-expression: #76fba0; /* Nord's Aurora, similar to strings */
     --astro-code-token-punctuation: #eceff4; /* Nord's Snow Storm, for punctuation */
     --astro-code-token-link: #5e81ac; /* Nord's Frost for links */
   }
