@@ -1,28 +1,15 @@
 ---
+import fs from 'node:fs/promises';
+import path from 'path';
+import { Code } from 'astro:components';
+import prettier from 'prettier';
+
 const { url, src = null } = Astro.props;
 
 const outputCode = await Astro.slots.render('default');
 
-import TestButton from '@/components/ui/elements/Button?raw';
-
-import { Code } from 'astro:components';
-
-import prettier from 'prettier';
-import fs from 'node:fs/promises';
-import path from 'path';
-
-const getFormattedCode = async (content, fileType) => {
+const getFormattedCode = async (content, parser) => {
   try {
-    // Determine the parser based on the file type
-    let parser;
-    switch (fileType) {
-      case 'mdx':
-        parser = 'mdx';
-        break;
-      default:
-        parser = 'html'; // Default parser
-    }
-
     const formattedCode = await prettier.format(content, {
       parser: parser,
     });
@@ -32,18 +19,6 @@ const getFormattedCode = async (content, fileType) => {
     throw error; // Re-throw the error for the caller to handle
   }
 };
-
-async function loadAndLogFile(srcPath) {
-  try {
-    // Using /* @vite-ignore */ to bypass static analysis
-    const fileContent = await import(/* @vite-ignore */ `${srcPath}?raw`);
-    return fileContent.default.toString();
-  } catch (error) {
-    console.error('Error loading file:', error);
-  }
-}
-
-// const srcCode = await loadFileContents('/src' + src);
 
 async function loadFileContents(relativeFilePath) {
   // Resolve the path relative to the project root directory
@@ -58,10 +33,9 @@ async function loadFileContents(relativeFilePath) {
   }
 }
 
+console.log(src);
 // Example usage
-const fileContent = await loadFileContents(
-  'src/components/ui/elements/Button/sample/SimpleButton.astro',
-);
+const fileContent = await loadFileContents('src' + src);
 
 // console.log(fileContent);
 ---
@@ -205,12 +179,12 @@ const fileContent = await loadFileContents(
       x-ref="codeContainer"
       data-tab-name="code"
     >
-      <Code code={fileContent} lang="astro" theme="css-variables" wrap />
-      <!-- <slot name="test" />
-      {srcCode}
-      {await getFormattedCode(outputCode)}
-       ge -->
-      <!-- <Code code={await srcCode} lang="astro" theme="css-variables" wrap /> -->
+      <Code
+        code={await getFormattedCode(fileContent, 'mdx')}
+        lang="astro"
+        theme="css-variables"
+        wrap
+      />
     </div>
 
     <div
@@ -221,7 +195,7 @@ const fileContent = await loadFileContents(
       data-tab-name="output"
     >
       <Code
-        code={await getFormattedCode(outputCode)}
+        code={await getFormattedCode(outputCode, 'html')}
         lang="html"
         theme="css-variables"
         wrap

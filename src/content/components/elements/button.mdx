@@ -28,53 +28,19 @@ Buttons are essential interactive elements in user interfaces, designed for easy
 
 import SimpleButton from '@/components/ui/elements/Button/sample/SimpleButton.astro';
 
-import Button from '@/components/ui/elements/Button?raw';
-
 <RinseUI url="/components/elements/button/sample/simple-button" src="/components/ui/elements/Button/sample/SimpleButton.astro">
   <SimpleButton />
-  <div slot="test"><Button>gege</Button></div>
 </RinseUI>
 
 ## Button Sizes
 
-There are a total of 5 button sizes to choose from ranging from `xs` to `xl`.
+Here are 5 different button sizes ranging from `xs` to `xl`.
 
-<CodePreview languages={['HTML']} src="/components/elements/buttons/button-sizes" iframeClass="h-[308px] lg:h-[108px]">
-  <slot slot="0">
-    ```html
-    <button
-      class="inline-flex h-[28px] min-w-[28px] items-center justify-center whitespace-nowrap rounded-md bg-blue-500 px-2 text-[12px] font-semibold text-white shadow-sm hover:bg-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 disabled:cursor-not-allowed disabled:bg-blue-500/60 dark:bg-blue-600 dark:shadow-none dark:hover:bg-blue-500 dark:focus-visible:ring-blue-500 dark:disabled:bg-blue-600/30 dark:disabled:text-white/70"
-      type="button"
-    >
-      Button
-    </button>
-    <button
-      class="inline-flex h-[32px] min-w-[32px] items-center justify-center whitespace-nowrap rounded-md bg-blue-500 px-2.5 text-[13px] font-semibold text-white shadow-sm hover:bg-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 disabled:cursor-not-allowed disabled:bg-blue-500/60 dark:bg-blue-600 dark:shadow-none dark:hover:bg-blue-500 dark:focus-visible:ring-blue-500 dark:disabled:bg-blue-600/30 dark:disabled:text-white/70"
-      type="button"
-    >
-      Button
-    </button>
-    <button
-      class="inline-flex h-[36px] min-w-[36px] items-center justify-center whitespace-nowrap rounded-md bg-blue-500 px-3 text-[14px] font-semibold text-white shadow-sm hover:bg-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 disabled:cursor-not-allowed disabled:bg-blue-500/60 dark:bg-blue-600 dark:shadow-none dark:hover:bg-blue-500 dark:focus-visible:ring-blue-500 dark:disabled:bg-blue-600/30 dark:disabled:text-white/70"
-      type="button"
-    >
-      Button
-    </button>
-    <button
-      class="inline-flex h-[40px] min-w-[40px] items-center justify-center whitespace-nowrap rounded-md bg-blue-500 px-3.5 text-[15px] font-semibold text-white shadow-sm hover:bg-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 disabled:cursor-not-allowed disabled:bg-blue-500/60 dark:bg-blue-600 dark:shadow-none dark:hover:bg-blue-500 dark:focus-visible:ring-blue-500 dark:disabled:bg-blue-600/30 dark:disabled:text-white/70"
-      type="button"
-    >
-      Button
-    </button>
-    <button
-      class="inline-flex h-[44px] min-w-[44px] items-center justify-center whitespace-nowrap rounded-md bg-blue-500 px-4 text-[16px] font-semibold text-white shadow-sm hover:bg-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 disabled:cursor-not-allowed disabled:bg-blue-500/60 dark:bg-blue-600 dark:shadow-none dark:hover:bg-blue-500 dark:focus-visible:ring-blue-500 dark:disabled:bg-blue-600/30 dark:disabled:text-white/70"
-      type="button"
-    >
-      Button
-    </button>
-    ```
-  </slot>
-</CodePreview>
+import ButtonSizes from '@/components/ui/elements/Button/sample/ButtonSizes.astro';
+
+<RinseUI url="/components/elements/button/sample/button-sizes" src="/components/ui/elements/Button/sample/ButtonSizes.astro">
+  <ButtonSizes />
+</RinseUI>
 
 ## Variants
 

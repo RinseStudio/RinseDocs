@@ -7,11 +7,18 @@ sidebarSetting = pageSettings?.showSidebar ?? true;
 tocSetting = pageSettings?.showTOC ?? true;
 fluidWidthSetting = pageSettings?.enableFluidWidth ?? true;
 
-const alpineData = `app(${[sidebarSetting]}, ${[tocSetting]}, ${[fluidWidthSetting]})`;
+const alpineData = `app(${[sidebarSetting]}, ${[tocSetting]}, ${[
+  fluidWidthSetting,
+]})`;
 ---
 
 <!doctype html>
-<html lang="en" x-data={alpineData} x-bind:class="$store.GLOBAL.darkMode ? 'dark' : ''" transition:animate="none">
+<html
+  lang="en"
+  x-data={alpineData}
+  x-bind:class="$store.GLOBAL.darkMode ? 'dark' : ''"
+  transition:animate="none"
+>
   <head>
     <title>{title}</title>
 
@@ -26,11 +33,19 @@ const alpineData = `app(${[sidebarSetting]}, ${[tocSetting]}, ${[fluidWidthSetti
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
     <!-- Preload font -->
-    <link rel="preload" href="/fonts/InterVariable.woff2" as="font" type="font/woff2" crossorigin />
+    <link
+      rel="preload"
+      href="/fonts/InterVariable.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
 
     <!-- <ViewTransitions /> -->
   </head>
-  <body class="bg-zinc-50 font-sans font-normal text-slate-500 antialiased dark:bg-zinc-950">
+  <body
+    class="bg-zinc-200/60 font-sans font-normal text-slate-500 antialiased dark:bg-zinc-950"
+  >
     <slot />
     <script>
       import Alpine from 'alpinejs';
@@ -53,101 +68,136 @@ const alpineData = `app(${[sidebarSetting]}, ${[tocSetting]}, ${[fluidWidthSetti
           sidebarWidth: 240,
         });
 
-        Alpine.data('app', (sidebarSetting = true, tocSetting = true, fluidWidthSetting = true) => ({
-          init() {
-            const darkMode = localStorage.getItem('darkMode');
-            const iframes = document.querySelectorAll('[data-rinse-ui] iframe');
+        Alpine.data(
+          'app',
+          (
+            sidebarSetting = true,
+            tocSetting = true,
+            fluidWidthSetting = true,
+          ) => ({
+            init() {
+              const darkMode = localStorage.getItem('darkMode');
+              const iframes = document.querySelectorAll(
+                '[data-rinse-ui] iframe',
+              );
 
-            if (darkMode == 'true') {
-              Alpine.store('GLOBAL').darkMode = true;
-              iframes.forEach((iframe) => {
-                iframe.addEventListener('load', () => {
-                  const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
-                  const htmlElement = iframeDocument.documentElement;
-                  console.log(htmlElement);
-                  htmlElement.classList.add('dark');
+              if (darkMode == 'true') {
+                Alpine.store('GLOBAL').darkMode = true;
+                iframes.forEach((iframe) => {
+                  iframe.addEventListener('load', () => {
+                    const iframeDocument =
+                      iframe.contentDocument || iframe.contentWindow.document;
+                    const htmlElement = iframeDocument.documentElement;
+                    console.log(htmlElement);
+                    htmlElement.classList.add('dark');
+                  });
                 });
-              });
-            } else {
-              Alpine.store('GLOBAL').darkMode = false;
-            }
-
-            Alpine.store('GLOBAL').showSidebar = sidebarSetting;
-            Alpine.store('GLOBAL').showTOC = tocSetting;
-            Alpine.store('GLOBAL').enableFluidWidth = fluidWidthSetting;
-            if (Alpine.store('GLOBAL').showSidebar == false) {
-              const sidebar = document.querySelector('.app');
-              sidebar.style.setProperty('--sidebar-width', 12 + 'px');
-            }
-          },
-          APP: {
-            toggleDarkMode() {
-              Alpine.store('GLOBAL').darkMode = !Alpine.store('GLOBAL').darkMode;
-
-              localStorage.setItem('darkMode', Alpine.store('GLOBAL').darkMode);
-
-              const iframes = document.querySelectorAll('iframe.rd-iframe');
-
-              iframes.forEach((iframe) => {
-                // Access the iframe's content document
-                const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
-
-                // Access the <html> element inside the iframe
-                const htmlElement = iframeDocument.documentElement;
-
-                // Toggle the 'dark-mode' class on the <html> element
-                htmlElement.classList.toggle('dark');
-              });
-            },
-            toggleTOC() {
-              Alpine.store('GLOBAL').showTOC = !Alpine.store('GLOBAL').showTOC;
-            },
-            toggleSidebar() {
-              Alpine.store('GLOBAL').showSidebar = true;
-              const sidebar = document.querySelector('.app');
-              sidebar.style.setProperty('--sidebar-width', '300px');
-            },
-            slideReady(e) {
-              e.preventDefault();
-              this.APP.slideMoveHandler = this.APP.slideMove.bind(this); // Save a reference to the bound slideMove function
-
-              this.cursorOffset = e.clientX - this.$refs.slideHandle.getBoundingClientRect().x;
-              document.body.style.pointerEvents = 'none';
-              document.documentElement.style.cursor = 'grabbing';
-
-              document.addEventListener('mousemove', this.APP.slideMoveHandler);
-              document.addEventListener('mouseup', this.APP.slideFinish.bind(this));
-            },
-            slideFinish() {
-              document.body.style.pointerEvents = 'auto';
-              document.documentElement.style.cursor = 'default';
-              document.removeEventListener('mousemove', this.APP.slideMoveHandler);
-              this.$refs.slideHandle.style.opacity = '';
-            },
-            slideMove(e) {
-              let sidebarWidth = e.clientX;
-              const sidebar = document.querySelector('.app');
-              this.$refs.slideHandle.style.opacity = 1;
-
-              if (sidebarWidth >= 100 + this.cursorOffset) {
-                if (sidebarWidth >= 500 + this.cursorOffset) {
-                  sidebar.style.setProperty('--sidebar-width', 500 - 48 - this.cursorOffset + 'px');
-                  Alpine.store('GLOBAL').showSidebar = false;
-                } else {
-                  sidebar.style.setProperty('--sidebar-width', sidebarWidth - 48 - this.cursorOffset + 'px');
-                }
-
-                Alpine.store('GLOBAL').showSidebar = true;
-              } else if (sidebarWidth <= 80 + this.cursorOffset) {
-                sidebar.style.setProperty('--sidebar-width', 12 + 'px');
-                Alpine.store('GLOBAL').showSidebar = false;
               } else {
-                sidebar.style.setProperty('--sidebar-width', sidebarWidth - 48 - this.cursorOffset + 'px');
-                Alpine.store('GLOBAL').showSidebar = true;
+                Alpine.store('GLOBAL').darkMode = false;
+              }
+
+              Alpine.store('GLOBAL').showSidebar = sidebarSetting;
+              Alpine.store('GLOBAL').showTOC = tocSetting;
+              Alpine.store('GLOBAL').enableFluidWidth = fluidWidthSetting;
+              if (Alpine.store('GLOBAL').showSidebar == false) {
+                const sidebar = document.querySelector('.app');
+                sidebar.style.setProperty('--sidebar-width', 12 + 'px');
               }
             },
-          },
-        }));
+            APP: {
+              toggleDarkMode() {
+                Alpine.store('GLOBAL').darkMode =
+                  !Alpine.store('GLOBAL').darkMode;
+
+                localStorage.setItem(
+                  'darkMode',
+                  Alpine.store('GLOBAL').darkMode,
+                );
+
+                const iframes = document.querySelectorAll('iframe.rd-iframe');
+
+                iframes.forEach((iframe) => {
+                  // Access the iframe's content document
+                  const iframeDocument =
+                    iframe.contentDocument || iframe.contentWindow.document;
+
+                  // Access the <html> element inside the iframe
+                  const htmlElement = iframeDocument.documentElement;
+
+                  // Toggle the 'dark-mode' class on the <html> element
+                  htmlElement.classList.toggle('dark');
+                });
+              },
+              toggleTOC() {
+                Alpine.store('GLOBAL').showTOC =
+                  !Alpine.store('GLOBAL').showTOC;
+              },
+              toggleSidebar() {
+                Alpine.store('GLOBAL').showSidebar = true;
+                const sidebar = document.querySelector('.app');
+                sidebar.style.setProperty('--sidebar-width', '300px');
+              },
+              slideReady(e) {
+                e.preventDefault();
+                this.APP.slideMoveHandler = this.APP.slideMove.bind(this); // Save a reference to the bound slideMove function
+
+                this.cursorOffset =
+                  e.clientX - this.$refs.slideHandle.getBoundingClientRect().x;
+                document.body.style.pointerEvents = 'none';
+                document.documentElement.style.cursor = 'grabbing';
+
+                document.addEventListener(
+                  'mousemove',
+                  this.APP.slideMoveHandler,
+                );
+                document.addEventListener(
+                  'mouseup',
+                  this.APP.slideFinish.bind(this),
+                );
+              },
+              slideFinish() {
+                document.body.style.pointerEvents = 'auto';
+                document.documentElement.style.cursor = 'default';
+                document.removeEventListener(
+                  'mousemove',
+                  this.APP.slideMoveHandler,
+                );
+                this.$refs.slideHandle.style.opacity = '';
+              },
+              slideMove(e) {
+                let sidebarWidth = e.clientX;
+                const sidebar = document.querySelector('.app');
+                this.$refs.slideHandle.style.opacity = 1;
+
+                if (sidebarWidth >= 100 + this.cursorOffset) {
+                  if (sidebarWidth >= 500 + this.cursorOffset) {
+                    sidebar.style.setProperty(
+                      '--sidebar-width',
+                      500 - 48 - this.cursorOffset + 'px',
+                    );
+                    Alpine.store('GLOBAL').showSidebar = false;
+                  } else {
+                    sidebar.style.setProperty(
+                      '--sidebar-width',
+                      sidebarWidth - 48 - this.cursorOffset + 'px',
+                    );
+                  }
+
+                  Alpine.store('GLOBAL').showSidebar = true;
+                } else if (sidebarWidth <= 80 + this.cursorOffset) {
+                  sidebar.style.setProperty('--sidebar-width', 12 + 'px');
+                  Alpine.store('GLOBAL').showSidebar = false;
+                } else {
+                  sidebar.style.setProperty(
+                    '--sidebar-width',
+                    sidebarWidth - 48 - this.cursorOffset + 'px',
+                  );
+                  Alpine.store('GLOBAL').showSidebar = true;
+                }
+              },
+            },
+          }),
+        );
 
         Alpine.data('pageLink', () => ({
           showTooltip: false,
@@ -199,7 +249,9 @@ const alpineData = `app(${[sidebarSetting]}, ${[tocSetting]}, ${[fluidWidthSetti
           slideReady(e) {
             e.preventDefault();
             this.slideMoveHandler = this.slideMove.bind(this); // Save a reference to the bound slideMove function
-            this.cursorOffset = e.clientX - this.$refs.CodePreviewHandle.getBoundingClientRect().x;
+            this.cursorOffset =
+              e.clientX -
+              this.$refs.CodePreviewHandle.getBoundingClientRect().x;
             document.body.style.pointerEvents = 'none';
             document.documentElement.style.cursor = 'grabbing';
 
@@ -218,12 +270,18 @@ const alpineData = `app(${[sidebarSetting]}, ${[tocSetting]}, ${[fluidWidthSetti
           slideMove(e) {
             let containerWidth = this.$refs.CodePreviewWrapper.offsetWidth;
 
-            let slideWidth = this.$refs.CodePreviewWrapper.getBoundingClientRect().right - e.clientX;
+            let slideWidth =
+              this.$refs.CodePreviewWrapper.getBoundingClientRect().right -
+              e.clientX;
 
             if (e.touches && e.touches[0]) {
-              slideWidth = this.$refs.CodePreviewWrapper.getBoundingClientRect().right - e.touches[0].clientX;
+              slideWidth =
+                this.$refs.CodePreviewWrapper.getBoundingClientRect().right -
+                e.touches[0].clientX;
             } else if (e.clientX) {
-              slideWidth = this.$refs.CodePreviewWrapper.getBoundingClientRect().right - e.clientX;
+              slideWidth =
+                this.$refs.CodePreviewWrapper.getBoundingClientRect().right -
+                e.clientX;
             }
 
             if (slideWidth >= containerWidth - this.cursorOffset) {
@@ -236,7 +294,9 @@ const alpineData = `app(${[sidebarSetting]}, ${[tocSetting]}, ${[fluidWidthSetti
           },
           copyCode() {
             // Use the Clipboard API to copy the current Code to the clipboard
-            const activeSlot = this.$refs.CodePreview.querySelector('.rd-frame-code.is-active');
+            const activeSlot = this.$refs.CodePreview.querySelector(
+              '.rd-frame-code.is-active',
+            );
             const codeContent = activeSlot ? activeSlot.innerText : '';
             navigator.clipboard
               .writeText(codeContent)
@@ -289,7 +349,10 @@ const alpineData = `app(${[sidebarSetting]}, ${[tocSetting]}, ${[fluidWidthSetti
 
       document.addEventListener('astro:after-swap', () => {
         const app = document.querySelector('.app');
-        app.style.setProperty('--sidebar-width', Alpine.store('GLOBAL').sidebarWidth);
+        app.style.setProperty(
+          '--sidebar-width',
+          Alpine.store('GLOBAL').sidebarWidth,
+        );
 
         const sidebar = document.querySelector('.sidebar');
         sidebar.scrollTop = Alpine.store('GLOBAL').sidebarScrollPos;

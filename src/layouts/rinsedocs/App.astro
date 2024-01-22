@@ -14,25 +14,43 @@ const allPages = await getCollection(collection, ({ data }) => {
   return data.draft !== true;
 });
 
-const navigation = helper.buildNavigation(allPages, Astro.url.pathname, SITE.sidebarOverrides.components);
+const navigation = helper.buildNavigation(
+  allPages,
+  Astro.url.pathname,
+  SITE.sidebarOverrides.components,
+);
 
 const breadcrumb = helper.buildBreadcrumb(entry.slug);
 
 import Button from '@/components/ui/elements/Button';
 ---
 
-<Layout title={frontmatter.title} pageSettings={frontmatter.pageSettings} frontmatter={frontmatter}>
-  <div class="app grid grid-cols-[48px,var(--sidebar-width),1fr]" style="--sidebar-width: 240px">
-    <nav class="relative z-30 flex w-[48px] flex-none flex-col items-center border-r border-zinc-300 dark:border-zinc-800">
+<Layout
+  title={frontmatter.title}
+  pageSettings={frontmatter.pageSettings}
+  frontmatter={frontmatter}
+>
+  <div
+    class="app grid grid-cols-[48px,var(--sidebar-width),1fr]"
+    style="--sidebar-width: 240px"
+  >
+    <nav
+      class="relative z-30 flex w-[48px] flex-none flex-col items-center border-r border-zinc-300 dark:border-zinc-800"
+    >
       <div class="sticky top-0 flex flex-col gap-3.5 py-2.5">
         <a
           href="#"
           x-data="tooltip"
           x-on:mouseenter="showTooltip"
           x-on:mouseleave="hideTooltip"
-          class="relative flex h-8 w-8 items-center justify-center rounded-full bg-zinc-200 text-gray-600 hover:bg-zinc-300 dark:bg-zinc-800 dark:text-gray-200 hover:dark:bg-zinc-700"
+          class="relative flex h-8 w-8 items-center justify-center rounded-full bg-white text-gray-900 hover:bg-zinc-300 dark:bg-zinc-800 dark:text-gray-200 hover:dark:bg-zinc-700"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+            class="h-4 w-4"
+          >
             <path
               d="M10.75 16.82A7.462 7.462 0 0115 15.5c.71 0 1.396.098 2.046.282A.75.75 0 0018 15.06v-11a.75.75 0 00-.546-.721A9.006 9.006 0 0015 3a8.963 8.963 0 00-4.25 1.065V16.82zM9.25 4.065A8.963 8.963 0 005 3c-.85 0-1.673.118-2.454.339A.75.75 0 002 4.06v11a.75.75 0 00.954.721A7.506 7.506 0 015 15.5c1.579 0 3.042.487 4.25 1.32V4.065z"
             ></path>
@@ -57,9 +75,14 @@ import Button from '@/components/ui/elements/Button';
           x-data="tooltip"
           x-on:mouseenter="showTooltip"
           x-on:mouseleave="hideTooltip"
-          class="relative flex h-8 w-8 items-center justify-center rounded-full bg-zinc-200 text-gray-600 hover:bg-zinc-300 dark:bg-zinc-800 dark:text-gray-200 hover:dark:bg-zinc-700"
+          class="relative flex h-8 w-8 items-center justify-center rounded-full bg-white text-gray-900 hover:bg-zinc-300 dark:bg-zinc-800 dark:text-gray-200 hover:dark:bg-zinc-700"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+            class="h-4 w-4"
+          >
             <path
               fill-rule="evenodd"
               d="M3.5 2A1.5 1.5 0 002 3.5V15a3 3 0 106 0V3.5A1.5 1.5 0 006.5 2h-3zm11.753 6.99L9.5 14.743V6.257l1.51-1.51a1.5 1.5 0 012.122 0l2.121 2.121a1.5 1.5 0 010 2.122zM8.364 18H16.5a1.5 1.5 0 001.5-1.5v-3a1.5 1.5 0 00-1.5-1.5h-2.136l-6 6zM5 16a1 1 0 100-2 1 1 0 000 2z"
@@ -85,9 +108,14 @@ import Button from '@/components/ui/elements/Button';
           x-data="tooltip"
           x-on:mouseenter="showTooltip"
           x-on:mouseleave="hideTooltip"
-          class="relative flex h-8 w-8 items-center justify-center rounded-full bg-zinc-200 text-gray-600 hover:bg-zinc-300 dark:bg-zinc-800 dark:text-gray-200 hover:dark:bg-zinc-700"
+          class="relative flex h-8 w-8 items-center justify-center rounded-full bg-white text-gray-900 shadow-lg hover:bg-zinc-300 dark:bg-zinc-800 dark:text-gray-200 hover:dark:bg-zinc-700"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+            class="h-4 w-4"
+          >
             <path
               fill-rule="evenodd"
               d="M1 5.25A2.25 2.25 0 013.25 3h13.5A2.25 2.25 0 0119 5.25v9.5A2.25 2.25 0 0116.75 17H3.25A2.25 2.25 0 011 14.75v-9.5zm1.5 5.81v3.69c0 .414.336.75.75.75h13.5a.75.75 0 00.75-.75v-2.69l-2.22-2.219a.75.75 0 00-1.06 0l-1.91 1.909.47.47a.75.75 0 11-1.06 1.06L6.53 8.091a.75.75 0 00-1.06 0l-2.97 2.97zM12 7a1 1 0 11-2 0 1 1 0 012 0z"
@@ -113,9 +141,14 @@ import Button from '@/components/ui/elements/Button';
           x-data="tooltip"
           x-on:mouseenter="showTooltip"
           x-on:mouseleave="hideTooltip"
-          class="relative flex h-8 w-8 items-center justify-center rounded-full bg-zinc-200 text-gray-600 hover:bg-zinc-300 dark:bg-zinc-800 dark:text-gray-200 hover:dark:bg-zinc-700"
+          class="relative flex h-8 w-8 items-center justify-center rounded-full bg-white text-gray-900 shadow-lg hover:bg-zinc-300 dark:bg-zinc-800 dark:text-gray-200 hover:dark:bg-zinc-700"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+            class="h-4 w-4"
+          >
             <path
               fill-rule="evenodd"
               d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.536-4.464a.75.75 0 10-1.061-1.061 3.5 3.5 0 01-4.95 0 .75.75 0 00-1.06 1.06 5 5 0 007.07 0zM9 8.5c0 .828-.448 1.5-1 1.5s-1-.672-1-1.5S7.448 7 8 7s1 .672 1 1.5zm3 1.5c.552 0 1-.672 1-1.5S12.552 7 12 7s-1 .672-1 1.5.448 1.5 1 1.5z"
@@ -141,9 +174,16 @@ import Button from '@/components/ui/elements/Button';
           x-data="tooltip"
           x-on:mouseenter="showTooltip"
           x-on:mouseleave="hideTooltip"
-          class="relative flex h-8 w-8 items-center justify-center rounded-full bg-zinc-200 text-gray-600 hover:bg-zinc-300 dark:bg-zinc-800 dark:text-gray-200 hover:dark:bg-zinc-700"
+          class="relative flex h-8 w-8 items-center justify-center rounded-full bg-black text-white shadow-md dark:bg-white dark:text-gray-900 hover:dark:bg-zinc-700"
         >
-          <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 32 32">
+          <svg
+            class="h-4 w-4"
+            xmlns="http://www.w3.org/2000/svg"
+            width="32"
+            height="32"
+            fill="currentColor"
+            viewBox="0 0 32 32"
+          >
             <path
               fill-rule="evenodd"
               d="M11 6C5.477 6 1 10.477 1 16s4.477 10 10 10h10c5.523 0 10-4.477 10-10S26.523 6 21 6H11Zm0 17.5a7.5 7.5 0 1 0 0-15 7.5 7.5 0 0 0 0 15Z"
@@ -164,44 +204,23 @@ import Button from '@/components/ui/elements/Button';
             Components
           </div>
         </a>
+
         <a
           href="#"
           x-data="tooltip"
           x-on:mouseenter="showTooltip"
           x-on:mouseleave="hideTooltip"
-          class="relative flex h-8 w-8 items-center justify-center rounded-full bg-zinc-200 text-gray-600 hover:bg-zinc-300 dark:bg-zinc-800 dark:text-gray-200 hover:dark:bg-zinc-700"
+          class="relative flex h-8 w-8 items-center justify-center rounded-full bg-white text-gray-900 shadow-md hover:bg-zinc-300 dark:bg-zinc-800 dark:text-gray-200 hover:dark:bg-zinc-700"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4">
-            <path
-              fill-rule="evenodd"
-              d="M4.25 2A2.25 2.25 0 002 4.25v2.5A2.25 2.25 0 004.25 9h2.5A2.25 2.25 0 009 6.75v-2.5A2.25 2.25 0 006.75 2h-2.5zm0 9A2.25 2.25 0 002 13.25v2.5A2.25 2.25 0 004.25 18h2.5A2.25 2.25 0 009 15.75v-2.5A2.25 2.25 0 006.75 11h-2.5zm9-9A2.25 2.25 0 0011 4.25v2.5A2.25 2.25 0 0013.25 9h2.5A2.25 2.25 0 0018 6.75v-2.5A2.25 2.25 0 0015.75 2h-2.5zm0 9A2.25 2.25 0 0011 13.25v2.5A2.25 2.25 0 0013.25 18h2.5A2.25 2.25 0 0018 15.75v-2.5A2.25 2.25 0 0015.75 11h-2.5z"
-              clip-rule="evenodd"></path>
-          </svg>
-
-          <div
-            x-cloak
-            x-show="tooltipVisible"
-            x-transition:enter="transition ease-out duration-200"
-            x-transition:enter-start="opacity-0 translate-x-2"
-            x-transition:enter-end="opacity-100 translate-x-0"
-            x-transition:leave="transition ease-in duration-200"
-            x-transition:leave-start="opacity-100 translate-x-0"
-            x-transition:leave-end="opacity-0 translate-x-2"
-            class="pointer-events-none absolute left-full top-1/2 ml-2 flex h-6 -translate-y-1/2 items-center whitespace-nowrap rounded-md bg-zinc-800 px-1.5 text-[11px] font-semibold text-white dark:bg-zinc-200 dark:text-gray-900"
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+            class="h-5 w-5"
           >
-            Prototypes
-          </div>
-        </a>
-
-        <a
-          href="#"
-          x-data="tooltip"
-          x-on:mouseenter="showTooltip"
-          x-on:mouseleave="hideTooltip"
-          class="relative flex h-8 w-8 items-center justify-center rounded-full bg-zinc-200 text-gray-600 hover:bg-zinc-300 dark:bg-zinc-800 dark:text-gray-200 hover:dark:bg-zinc-700"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4">
-            <path d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z"></path>
+            <path
+              d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z"
+            ></path>
           </svg>
 
           <div
@@ -220,10 +239,22 @@ import Button from '@/components/ui/elements/Button';
         </a>
       </div>
     </nav>
-    <aside class="sticky top-0 flex h-[100dvh] min-w-[200px] max-w-[500px] flex-none" transition:persist>
+    <aside
+      class="sticky top-0 flex h-[100dvh] min-w-[200px] max-w-[500px] flex-none"
+      transition:persist
+    >
       <div class="sidebar flex-1 overflow-auto">
-        <div class="flex items-center justify-between px-3 py-4">
-          <div class="truncate text-sm font-semibold text-gray-900 dark:text-gray-100">Component Library</div>
+        <div class="flex items-end justify-between px-3 py-5">
+          <div
+            class="truncate text-sm font-semibold leading-none text-gray-900 dark:text-gray-100"
+          >
+            Component Library
+          </div>
+          <div
+            class="text-right text-[11px] font-medium leading-none text-gray-400"
+          >
+            v1.0.0
+          </div>
         </div>
 
         <div class="mb-5 px-3">
@@ -232,14 +263,21 @@ import Button from '@/components/ui/elements/Button';
             class="flex w-full items-center justify-between rounded-md bg-white px-2.5 py-2 text-left text-sm font-semibold text-gray-900 shadow outline-none ring-1 ring-zinc-200 hover:ring-zinc-300 dark:bg-zinc-900 dark:text-gray-100 dark:ring-zinc-800 hover:dark:ring-zinc-700"
           >
             <div class="flex items-center gap-2 overflow-hidden">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-3.5 w-3.5 flex-none">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                class="h-3.5 w-3.5 flex-none"
+              >
                 <path
                   fill-rule="evenodd"
                   d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z"
                   clip-rule="evenodd"></path>
               </svg>
 
-              <span class="truncate text-sm font-normal text-gray-400">Quick search</span>
+              <span class="truncate text-sm font-normal text-gray-400"
+                >Quick search</span
+              >
             </div>
             <span class="text-[11px] font-normal text-gray-400"> ⌘K</span>
           </button>
@@ -259,13 +297,15 @@ import Button from '@/components/ui/elements/Button';
       >
         <div class="w-[2px] bg-blue-400"></div>
       </div>
-      <div class="bg-zinc-50 py-2 dark:bg-zinc-950">
+      <div class="py-2">
         <div
-          class="grid min-h-[100dvh] grid-cols-1 rounded-l-lg bg-white shadow-xl ring-1 ring-zinc-200 dark:bg-zinc-900 dark:ring-zinc-800 lg:grid-cols-[1fr,260px]"
+          class="grid min-h-[100dvh] grid-cols-1 rounded-l-lg border border-zinc-200 bg-white shadow-xl dark:border-zinc-800 dark:bg-zinc-900 lg:grid-cols-[1fr,260px]"
           x-bind:class="$store.GLOBAL.showTOC ? 'lg:grid-cols-[1fr,260px]' : 'lg:grid-cols-[1fr]'"
         >
           <div class="grid grid-rows-[auto,1fr]">
-            <div class="sticky top-0 z-20 flex items-center justify-between rounded-tl-lg border-b border-zinc-200 bg-white px-2 py-2 dark:border-zinc-800 dark:bg-zinc-900">
+            <div
+              class="sticky top-0 z-20 flex items-center justify-between rounded-tl-lg border-b border-zinc-200 bg-white px-2 py-2 dark:border-zinc-800 dark:bg-zinc-900"
+            >
               <div class="flex items-center">
                 <button
                   x-cloak
@@ -284,10 +324,15 @@ import Button from '@/components/ui/elements/Button';
                     stroke-linecap="round"
                     stroke-linejoin="round"
                     class="lucide lucide-panel-right-open rotate-180"
-                    ><rect width="18" height="18" x="3" y="3" rx="2" ry="2"></rect><line x1="15" x2="15" y1="3" y2="21"></line><path d="m10 15-3-3 3-3"></path></svg
+                    ><rect width="18" height="18" x="3" y="3" rx="2" ry="2"
+                    ></rect><line x1="15" x2="15" y1="3" y2="21"></line><path
+                      d="m10 15-3-3 3-3"></path></svg
                   >
                 </button>
-                <ol role="list" class="group/breadcrumb ml-2 inline-flex items-center gap-2 text-xs">
+                <ol
+                  role="list"
+                  class="group/breadcrumb ml-2 inline-flex items-center gap-2 text-xs"
+                >
                   {
                     breadcrumb.map((crumb, index) => (
                       <li>
@@ -312,7 +357,11 @@ import Button from '@/components/ui/elements/Button';
 
                           <span
                             aria-current="page"
-                            class:list={index === breadcrumb.length - 1 ? 'font-semibold text-gray-900 dark:text-gray-200' : 'font-medium text-gray-500 dark:text-gray-200'}
+                            class:list={
+                              index === breadcrumb.length - 1
+                                ? 'font-semibold text-gray-900 dark:text-gray-200'
+                                : 'font-medium text-gray-500 dark:text-gray-200'
+                            }
                           >
                             {crumb}
                           </span>
@@ -338,7 +387,12 @@ import Button from '@/components/ui/elements/Button';
                         stroke-linecap="round"
                         stroke-linejoin="round"
                         class="lucide lucide-link-2"
-                        ><path d="M9 17H7A5 5 0 0 1 7 7h2"></path><path d="M15 7h2a5 5 0 1 1 0 10h-2"></path><line x1="8" x2="16" y1="12" y2="12"></line></svg
+                        ><path d="M9 17H7A5 5 0 0 1 7 7h2"></path><path
+                          d="M15 7h2a5 5 0 1 1 0 10h-2"></path><line
+                          x1="8"
+                          x2="16"
+                          y1="12"
+                          y2="12"></line></svg
                       >
                       <div
                         :class="showTooltip == true ? 'opacity-100' : 'opacity-0'"
@@ -351,7 +405,13 @@ import Button from '@/components/ui/elements/Button';
                 </ol>
               </div>
               <div class="flex items-center gap-1">
-                <Button size="sm" variant="ghost" className="text-gray-400" isSquare x-on:click="APP.toggleDarkMode">
+                <Button
+                  size="sm"
+                  variant="ghost"
+                  className="text-gray-400"
+                  isSquare
+                  x-on:click="APP.toggleDarkMode"
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="16"
@@ -362,11 +422,20 @@ import Button from '@/components/ui/elements/Button';
                     stroke-width="2.5"
                     stroke-linecap="round"
                     stroke-linejoin="round"
-                    class="lucide lucide-moon"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg
+                    class="lucide lucide-moon"
+                    ><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg
                   >
                 </Button>
                 <div class="relative" x-data="tooltip">
-                  <Button @click="APP.toggleTOC" x-on:mouseenter="showTooltip" x-on:mouseleave="hideTooltip" size="sm" variant="ghost" className="text-gray-400" isSquare>
+                  <Button
+                    @click="APP.toggleTOC"
+                    x-on:mouseenter="showTooltip"
+                    x-on:mouseleave="hideTooltip"
+                    size="sm"
+                    variant="ghost"
+                    className="text-gray-400"
+                    isSquare
+                  >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="16"
@@ -377,7 +446,10 @@ import Button from '@/components/ui/elements/Button';
                       stroke-width="2.5"
                       stroke-linecap="round"
                       stroke-linejoin="round"
-                      class="lucide lucide-message-square"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg
+                      class="lucide lucide-message-square"
+                      ><path
+                        d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+                      ></path></svg
                     >
                     <div
                       x-cloak
@@ -394,7 +466,13 @@ import Button from '@/components/ui/elements/Button';
                     </div>
                   </Button>
                 </div>
-                <Button @click="APP.toggleTOC" size="sm" variant="ghost" className="text-gray-400" isSquare>
+                <Button
+                  @click="APP.toggleTOC"
+                  size="sm"
+                  variant="ghost"
+                  className="text-gray-400"
+                  isSquare
+                >
                   <svg
                     x-show="$store.GLOBAL.showTOC"
                     xmlns="http://www.w3.org/2000/svg"
@@ -407,7 +485,9 @@ import Button from '@/components/ui/elements/Button';
                     stroke-linecap="round"
                     stroke-linejoin="round"
                     class="lucide lucide-panel-right-close"
-                    ><rect width="18" height="18" x="3" y="3" rx="2" ry="2"></rect><line x1="15" x2="15" y1="3" y2="21"></line><path d="m8 9 3 3-3 3"></path></svg
+                    ><rect width="18" height="18" x="3" y="3" rx="2" ry="2"
+                    ></rect><line x1="15" x2="15" y1="3" y2="21"></line><path
+                      d="m8 9 3 3-3 3"></path></svg
                   >
                   <svg
                     x-cloak
@@ -422,20 +502,28 @@ import Button from '@/components/ui/elements/Button';
                     stroke-linecap="round"
                     stroke-linejoin="round"
                     class="lucide lucide-panel-right-open"
-                    ><rect width="18" height="18" x="3" y="3" rx="2" ry="2"></rect><line x1="15" x2="15" y1="3" y2="21"></line><path d="m10 15-3-3 3-3"></path></svg
+                    ><rect width="18" height="18" x="3" y="3" rx="2" ry="2"
+                    ></rect><line x1="15" x2="15" y1="3" y2="21"></line><path
+                      d="m10 15-3-3 3-3"></path></svg
                   >
                 </Button>
               </div>
             </div>
-            <div class="overflow-auto px-16 py-10">
-              <header class="border-b border-zinc-200 pb-10 dark:border-zinc-700">
-                <h1 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100">
+            <div class="overflow-auto px-14 py-10">
+              <header
+                class="border-b border-zinc-200 pb-10 dark:border-zinc-700"
+              >
+                <h1
+                  class="text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100"
+                >
                   {frontmatter.title}
                 </h1>
                 {
                   frontmatter.description && (
                     <div class="mt-3 max-w-2xl">
-                      <h4 class="text-base font-normal text-gray-600 dark:text-gray-300">{frontmatter.description}</h4>
+                      <h4 class="text-base font-normal text-gray-600 dark:text-gray-300">
+                        {frontmatter.description}
+                      </h4>
                     </div>
                   )
                 }
@@ -445,10 +533,19 @@ import Button from '@/components/ui/elements/Button';
               </article>
             </div>
           </div>
-          <div x-show="$store.GLOBAL.showTOC" class="relative z-20 hidden border-l border-zinc-200 dark:border-zinc-800 lg:block">
+          <div
+            x-show="$store.GLOBAL.showTOC"
+            class="relative z-20 hidden border-l border-zinc-200 dark:border-zinc-800 lg:block"
+          >
             <nav class="sticky top-0 px-5 py-2">
               <div class="absolute right-0 top-0 mr-2 mt-2">
-                <Button @click="$store.GLOBAL.showTOC = false" size="sm" variant="ghost" className="text-gray-400" isSquare>
+                <Button
+                  @click="$store.GLOBAL.showTOC = false"
+                  size="sm"
+                  variant="ghost"
+                  className="text-gray-400"
+                  isSquare
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="16"
@@ -459,35 +556,62 @@ import Button from '@/components/ui/elements/Button';
                     stroke-width="2.5"
                     stroke-linecap="round"
                     stroke-linejoin="round"
-                    class="lucide lucide-x"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg
+                    class="lucide lucide-x"
+                    ><path d="M18 6 6 18"></path><path d="m6 6 12 12"
+                    ></path></svg
                   >
                 </Button>
               </div>
               <div>
-                <h3 class="mb-1.5 flex h-8 items-center text-[13px] font-semibold text-gray-900 dark:text-gray-100">On this page</h3>
+                <h3
+                  class="mb-1.5 flex h-8 items-center text-[13px] font-semibold text-gray-900 dark:text-gray-100"
+                >
+                  On this page
+                </h3>
                 <TOC data={headings} />
               </div>
               {
                 frontmatter.meta && (
                   <div class="mt-8">
-                    <h3 class="mb-1.5 flex h-8 items-center text-[13px] font-semibold text-gray-900 dark:text-gray-100">Contribute</h3>
+                    <h3 class="mb-1.5 flex h-8 items-center text-[13px] font-semibold text-gray-900 dark:text-gray-100">
+                      Contribute
+                    </h3>
                     <ul class="text-sm">
                       {frontmatter.meta.map((link) => (
                         <li class="text-[13px] font-semibold leading-[28px]">
-                          <a class="flex items-center gap-2 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100" href={link.url}>
+                          <a
+                            class="flex items-center gap-2 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100"
+                            href={link.url}
+                          >
                             {link.icon === 'pencil' ? (
                               // Pencil SVG
-                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-3.5 w-3.5">
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 20 20"
+                                fill="currentColor"
+                                class="h-3.5 w-3.5"
+                              >
                                 <path d="M2.695 14.763l-1.262 3.154a.5.5 0 00.65.65l3.155-1.262a4 4 0 001.343-.885L17.5 5.5a2.121 2.121 0 00-3-3L3.58 13.42a4 4 0 00-.885 1.343z" />
                               </svg>
                             ) : link.icon === 'github' ? (
                               // GitHub SVG
-                              <svg fill="currentColor" class="h-3.5 w-3.5" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 496 512">
+                              <svg
+                                fill="currentColor"
+                                class="h-3.5 w-3.5"
+                                xmlns="http://www.w3.org/2000/svg"
+                                height="1em"
+                                viewBox="0 0 496 512"
+                              >
                                 <path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z" />
                               </svg>
                             ) : (
                               // Default SVG
-                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-3.5 w-3.5">
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 20 20"
+                                fill="currentColor"
+                                class="h-3.5 w-3.5"
+                              >
                                 <path
                                   fill-rule="evenodd"
                                   d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z"
