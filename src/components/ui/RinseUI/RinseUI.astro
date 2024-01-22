@@ -62,28 +62,28 @@ const srcCode = await loadAndLogFile('/src' + src);
   >
     <div class="flex items-center gap-4">
       <button
-        class="h-10 text-xs font-semibold text-gray-900 dark:text-gray-100"
+        class="h-10 text-xs font-semibold text-gray-900 dark:text-white"
         :class="{
-          'text-gray-900 dark:text-gray-100': tab == 'preview', 
+          'text-gray-900 dark:text-white': tab == 'preview', 
           'text-gray-400 hover:text-white': tab != 'preview'
         }"
         @click="tab = 'preview'">Preview</button
       >
       <button
-        class="h-10 text-xs font-semibold text-gray-400 hover:text-gray-600"
+        class="h-10 text-xs font-semibold text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"
         :class="{
           'text-white': tab == 'code', 
           'text-gray-400 hover:text-white': tab != 'code' && tab != 'preview',
-          'text-gray-400 hover:text-gray-600': tab != 'code' && tab == 'preview',
+          'text-gray-400 hover:text-gray-600 dark:hover:text-gray-200': tab != 'code' && tab == 'preview',
         }"
         @click="tab = 'code'">Code</button
       >
       <button
-        class="h-10 text-xs font-semibold text-gray-400 hover:text-gray-600"
+        class="h-10 text-xs font-semibold text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"
         :class="{
           'text-white': tab == 'output', 
           'text-gray-400 hover:text-white': tab != 'output' && tab != 'preview',
-          'text-gray-400 hover:text-gray-600': tab != 'output' && tab == 'preview',
+          'text-gray-400 hover:text-gray-600 dark:hover:text-gray-200': tab != 'output' && tab == 'preview',
         }"
         @click="tab = 'output'">Output</button
       >
