@@ -4,6 +4,10 @@ import { twMerge } from 'tailwind-merge';
 const { className = null, ...props } = Astro.props;
 ---
 
-<div class={twMerge('relative', className)} {...props}>
+<div
+  x-data="{ isOpen: false }"
+  class={twMerge('relative', className)}
+  {...props}
+>
   <slot />
 </div>

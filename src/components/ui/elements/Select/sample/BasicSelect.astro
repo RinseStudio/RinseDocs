@@ -2,21 +2,19 @@
 import Select from '@/components/ui/elements/Select';
 ---
 
-<label
-  class="flex items-center text-sm font-medium text-gray-900 dark:text-gray-300"
->
-  <Select x-data="{isOpen: false}" position="bottomEnd">
+<div class="justify-content flex items-center">
+  <Select x-data="{ isOpen: false }" position="bottomEnd">
     <Select.Trigger isFluid>
       <Select.Value placeholder="Select a fruit" />
     </Select.Trigger>
     <Select.Content position="bottomEnd" className="w-full">
       <Select.Group>
         <Select.Items>
-          <Select.Item>is</Select.Item>
-          <Select.Item>is not</Select.Item>
-          <Select.Item>is one of</Select.Item>
+          <Select.Item>Apple</Select.Item>
+          <Select.Item>Cherry</Select.Item>
+          <Select.Item>Tomato</Select.Item>
         </Select.Items>
       </Select.Group>
     </Select.Content>
   </Select>
-</label>
+</div>
