@@ -2,12 +2,21 @@
 import { twMerge } from 'tailwind-merge';
 
 const { className = null, ...props } = Astro.props;
+
+function propMerge(defaultProps, props) {
+  return { ...defaultProps, ...props };
+}
+console.log(props);
+const defaultProps = {
+  '@click': '{isOpen = true}',
+  'x-data': '{isOpen: false}',
+};
+
+// const combinedProps = propMerge(defaultProps, Astro.props);
 ---
 
-<div
-  x-data="{ isOpen: false }"
-  class={twMerge('relative', className)}
-  {...props}
->
+<div {...propMerge(defaultProps, props)} class={twMerge('relative', className)}>
   <slot />
 </div>
+
+<!-- x-data={props['x-data'] == undefined ? '{isOpen: false}' : props['x-data']} -->

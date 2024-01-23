@@ -3,7 +3,7 @@ import Select from '@/components/ui/elements/Select';
 ---
 
 <div class="justify-content flex items-center">
-  <Select x-data="{ isOpen: false }" position="bottomEnd">
+  <Select x-data="{isOpen: true}" @click="isOpen = false">
     <Select.Trigger isFluid>
       <Select.Value placeholder="Select a fruit" />
     </Select.Trigger>
@@ -11,7 +11,7 @@ import Select from '@/components/ui/elements/Select';
       <Select.Group>
         <Select.Items>
           <Select.Item>Apple</Select.Item>
-          <Select.Item>Cherry</Select.Item>
+          <Select.Item @click="isOpen = false">Cherry</Select.Item>
           <Select.Item>Tomato</Select.Item>
         </Select.Items>
       </Select.Group>
