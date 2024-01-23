@@ -5,7 +5,7 @@ import Dropdown from '@/components/ui/modules/Dropdown';
 import SearchField from '@/components/ui/elements/SearchField/index.astro';
 import SelectField from '@/components/ui/elements/SelectField';
 import Checkbox from '@/components/ui/elements/Checkbox/index.astro';
-import Tab from '@/components/ui/modules/Tab';
+import Tab from '@/components/ui/elements/Tab';
 ---
 
 <Layout layoutClass="flex items-center justify-center px-4 py-10">
@@ -29,9 +29,15 @@ import Tab from '@/components/ui/modules/Tab';
               <slot slot="dropdown-content">
                 <Dropdown.Group>
                   <Dropdown.Items>
-                    <Dropdown.Item onClick={'isOpen = !isOpen'}>is</Dropdown.Item>
-                    <Dropdown.Item onClick={'isOpen = !isOpen'}>is not</Dropdown.Item>
-                    <Dropdown.Item onClick={'isOpen = !isOpen'}>is one of</Dropdown.Item>
+                    <Dropdown.Item onClick={'isOpen = !isOpen'}>
+                      is
+                    </Dropdown.Item>
+                    <Dropdown.Item onClick={'isOpen = !isOpen'}>
+                      is not
+                    </Dropdown.Item>
+                    <Dropdown.Item onClick={'isOpen = !isOpen'}>
+                      is one of
+                    </Dropdown.Item>
                   </Dropdown.Items>
                 </Dropdown.Group>
               </slot>
@@ -50,10 +56,17 @@ import Tab from '@/components/ui/modules/Tab';
                   class="flex cursor-pointer items-center gap-3 rounded px-2 py-2 hover:bg-gray-100 dark:hover:bg-zinc-100/[0.06] [&:has(input:checked)]:bg-gray-100 dark:[&:has(input:checked)]:bg-zinc-100/[0.06]"
                 >
                   <Checkbox />
-                  <div class="flex flex-1 items-center justify-between overflow-hidden">
+                  <div
+                    class="flex flex-1 items-center justify-between overflow-hidden"
+                  >
                     <div class="flex items-center gap-2 overflow-hidden">
-                      <div class="h-3 w-3 flex-none rounded-sm bg-red-500"></div>
-                      <div class="flex-1 truncate text-[13px] font-medium text-gray-900 dark:text-gray-300">Signal name</div>
+                      <div class="h-3 w-3 flex-none rounded-sm bg-red-500">
+                      </div>
+                      <div
+                        class="flex-1 truncate text-[13px] font-medium text-gray-900 dark:text-gray-300"
+                      >
+                        Signal name
+                      </div>
                     </div>
                   </div>
                 </label>
@@ -63,10 +76,17 @@ import Tab from '@/components/ui/modules/Tab';
                   class="flex cursor-pointer items-center gap-3 rounded px-2 py-2 hover:bg-gray-100 dark:hover:bg-zinc-100/[0.06] [&:has(input:checked)]:bg-gray-100 dark:[&:has(input:checked)]:bg-zinc-100/[0.06]"
                 >
                   <Checkbox />
-                  <div class="flex flex-1 items-center justify-between overflow-hidden">
+                  <div
+                    class="flex flex-1 items-center justify-between overflow-hidden"
+                  >
                     <div class="flex items-center gap-2 overflow-hidden">
-                      <div class="h-3 w-3 flex-none rounded-sm bg-red-500"></div>
-                      <div class="flex-1 truncate text-[13px] font-medium text-gray-900 dark:text-gray-300">Signal name</div>
+                      <div class="h-3 w-3 flex-none rounded-sm bg-red-500">
+                      </div>
+                      <div
+                        class="flex-1 truncate text-[13px] font-medium text-gray-900 dark:text-gray-300"
+                      >
+                        Signal name
+                      </div>
                     </div>
                   </div>
                 </label>
@@ -76,10 +96,17 @@ import Tab from '@/components/ui/modules/Tab';
                   class="flex cursor-pointer items-center gap-3 rounded px-2 py-2 hover:bg-gray-100 dark:hover:bg-zinc-100/[0.06] [&:has(input:checked)]:bg-gray-100 dark:[&:has(input:checked)]:bg-zinc-100/[0.06]"
                 >
                   <Checkbox />
-                  <div class="flex flex-1 items-center justify-between overflow-hidden">
+                  <div
+                    class="flex flex-1 items-center justify-between overflow-hidden"
+                  >
                     <div class="flex items-center gap-2 overflow-hidden">
-                      <div class="h-3 w-3 flex-none rounded-sm bg-red-500"></div>
-                      <div class="flex-1 truncate text-[13px] font-medium text-gray-900 dark:text-gray-300">Signal name</div>
+                      <div class="h-3 w-3 flex-none rounded-sm bg-red-500">
+                      </div>
+                      <div
+                        class="flex-1 truncate text-[13px] font-medium text-gray-900 dark:text-gray-300"
+                      >
+                        Signal name
+                      </div>
                     </div>
                   </div>
                 </label>
@@ -89,10 +116,17 @@ import Tab from '@/components/ui/modules/Tab';
                   class="flex cursor-pointer items-center gap-3 rounded px-2 py-2 hover:bg-gray-100 dark:hover:bg-zinc-100/[0.06] [&:has(input:checked)]:bg-gray-100 dark:[&:has(input:checked)]:bg-zinc-100/[0.06]"
                 >
                   <Checkbox />
-                  <div class="flex flex-1 items-center justify-between overflow-hidden">
+                  <div
+                    class="flex flex-1 items-center justify-between overflow-hidden"
+                  >
                     <div class="flex items-center gap-2 overflow-hidden">
-                      <div class="h-3 w-3 flex-none rounded-sm bg-red-500"></div>
-                      <div class="flex-1 truncate text-[13px] font-medium text-gray-900 dark:text-gray-300">Signal name</div>
+                      <div class="h-3 w-3 flex-none rounded-sm bg-red-500">
+                      </div>
+                      <div
+                        class="flex-1 truncate text-[13px] font-medium text-gray-900 dark:text-gray-300"
+                      >
+                        Signal name
+                      </div>
                     </div>
                   </div>
                 </label>
@@ -102,10 +136,17 @@ import Tab from '@/components/ui/modules/Tab';
                   class="flex cursor-pointer items-center gap-3 rounded px-2 py-2 hover:bg-gray-100 dark:hover:bg-zinc-100/[0.06] [&:has(input:checked)]:bg-gray-100 dark:[&:has(input:checked)]:bg-zinc-100/[0.06]"
                 >
                   <Checkbox />
-                  <div class="flex flex-1 items-center justify-between overflow-hidden">
+                  <div
+                    class="flex flex-1 items-center justify-between overflow-hidden"
+                  >
                     <div class="flex items-center gap-2 overflow-hidden">
-                      <div class="h-3 w-3 flex-none rounded-sm bg-red-500"></div>
-                      <div class="flex-1 truncate text-[13px] font-medium text-gray-900 dark:text-gray-300">Signal name</div>
+                      <div class="h-3 w-3 flex-none rounded-sm bg-red-500">
+                      </div>
+                      <div
+                        class="flex-1 truncate text-[13px] font-medium text-gray-900 dark:text-gray-300"
+                      >
+                        Signal name
+                      </div>
                     </div>
                   </div>
                 </label>
@@ -115,10 +156,17 @@ import Tab from '@/components/ui/modules/Tab';
                   class="flex cursor-pointer items-center gap-3 rounded px-2 py-2 hover:bg-gray-100 dark:hover:bg-zinc-100/[0.06] [&:has(input:checked)]:bg-gray-100 dark:[&:has(input:checked)]:bg-zinc-100/[0.06]"
                 >
                   <Checkbox />
-                  <div class="flex flex-1 items-center justify-between overflow-hidden">
+                  <div
+                    class="flex flex-1 items-center justify-between overflow-hidden"
+                  >
                     <div class="flex items-center gap-2 overflow-hidden">
-                      <div class="h-3 w-3 flex-none rounded-sm bg-red-500"></div>
-                      <div class="flex-1 truncate text-[13px] font-medium text-gray-900 dark:text-gray-300">Signal name</div>
+                      <div class="h-3 w-3 flex-none rounded-sm bg-red-500">
+                      </div>
+                      <div
+                        class="flex-1 truncate text-[13px] font-medium text-gray-900 dark:text-gray-300"
+                      >
+                        Signal name
+                      </div>
                     </div>
                   </div>
                 </label>
@@ -128,10 +176,17 @@ import Tab from '@/components/ui/modules/Tab';
                   class="flex cursor-pointer items-center gap-3 rounded px-2 py-2 hover:bg-gray-100 dark:hover:bg-zinc-100/[0.06] [&:has(input:checked)]:bg-gray-100 dark:[&:has(input:checked)]:bg-zinc-100/[0.06]"
                 >
                   <Checkbox />
-                  <div class="flex flex-1 items-center justify-between overflow-hidden">
+                  <div
+                    class="flex flex-1 items-center justify-between overflow-hidden"
+                  >
                     <div class="flex items-center gap-2 overflow-hidden">
-                      <div class="h-3 w-3 flex-none rounded-sm bg-red-500"></div>
-                      <div class="flex-1 truncate text-[13px] font-medium text-gray-900 dark:text-gray-300">Signal name</div>
+                      <div class="h-3 w-3 flex-none rounded-sm bg-red-500">
+                      </div>
+                      <div
+                        class="flex-1 truncate text-[13px] font-medium text-gray-900 dark:text-gray-300"
+                      >
+                        Signal name
+                      </div>
                     </div>
                   </div>
                 </label>
@@ -141,10 +196,17 @@ import Tab from '@/components/ui/modules/Tab';
                   class="flex cursor-pointer items-center gap-3 rounded px-2 py-2 hover:bg-gray-100 dark:hover:bg-zinc-100/[0.06] [&:has(input:checked)]:bg-gray-100 dark:[&:has(input:checked)]:bg-zinc-100/[0.06]"
                 >
                   <Checkbox />
-                  <div class="flex flex-1 items-center justify-between overflow-hidden">
+                  <div
+                    class="flex flex-1 items-center justify-between overflow-hidden"
+                  >
                     <div class="flex items-center gap-2 overflow-hidden">
-                      <div class="h-3 w-3 flex-none rounded-sm bg-red-500"></div>
-                      <div class="flex-1 truncate text-[13px] font-medium text-gray-900 dark:text-gray-300">Signal name</div>
+                      <div class="h-3 w-3 flex-none rounded-sm bg-red-500">
+                      </div>
+                      <div
+                        class="flex-1 truncate text-[13px] font-medium text-gray-900 dark:text-gray-300"
+                      >
+                        Signal name
+                      </div>
                     </div>
                   </div>
                 </label>
@@ -154,10 +216,17 @@ import Tab from '@/components/ui/modules/Tab';
                   class="flex cursor-pointer items-center gap-3 rounded px-2 py-2 hover:bg-gray-100 dark:hover:bg-zinc-100/[0.06] [&:has(input:checked)]:bg-gray-100 dark:[&:has(input:checked)]:bg-zinc-100/[0.06]"
                 >
                   <Checkbox />
-                  <div class="flex flex-1 items-center justify-between overflow-hidden">
+                  <div
+                    class="flex flex-1 items-center justify-between overflow-hidden"
+                  >
                     <div class="flex items-center gap-2 overflow-hidden">
-                      <div class="h-3 w-3 flex-none rounded-sm bg-red-500"></div>
-                      <div class="flex-1 truncate text-[13px] font-medium text-gray-900 dark:text-gray-300">Signal name</div>
+                      <div class="h-3 w-3 flex-none rounded-sm bg-red-500">
+                      </div>
+                      <div
+                        class="flex-1 truncate text-[13px] font-medium text-gray-900 dark:text-gray-300"
+                      >
+                        Signal name
+                      </div>
                     </div>
                   </div>
                 </label>
@@ -167,10 +236,17 @@ import Tab from '@/components/ui/modules/Tab';
                   class="flex cursor-pointer items-center gap-3 rounded px-2 py-2 hover:bg-gray-100 dark:hover:bg-zinc-100/[0.06] [&:has(input:checked)]:bg-gray-100 dark:[&:has(input:checked)]:bg-zinc-100/[0.06]"
                 >
                   <Checkbox />
-                  <div class="flex flex-1 items-center justify-between overflow-hidden">
+                  <div
+                    class="flex flex-1 items-center justify-between overflow-hidden"
+                  >
                     <div class="flex items-center gap-2 overflow-hidden">
-                      <div class="h-3 w-3 flex-none rounded-sm bg-red-500"></div>
-                      <div class="flex-1 truncate text-[13px] font-medium text-gray-900 dark:text-gray-300">Signal name</div>
+                      <div class="h-3 w-3 flex-none rounded-sm bg-red-500">
+                      </div>
+                      <div
+                        class="flex-1 truncate text-[13px] font-medium text-gray-900 dark:text-gray-300"
+                      >
+                        Signal name
+                      </div>
                     </div>
                   </div>
                 </label>
@@ -180,10 +256,17 @@ import Tab from '@/components/ui/modules/Tab';
                   class="flex cursor-pointer items-center gap-3 rounded px-2 py-2 hover:bg-gray-100 dark:hover:bg-zinc-100/[0.06] [&:has(input:checked)]:bg-gray-100 dark:[&:has(input:checked)]:bg-zinc-100/[0.06]"
                 >
                   <Checkbox />
-                  <div class="flex flex-1 items-center justify-between overflow-hidden">
+                  <div
+                    class="flex flex-1 items-center justify-between overflow-hidden"
+                  >
                     <div class="flex items-center gap-2 overflow-hidden">
-                      <div class="h-3 w-3 flex-none rounded-sm bg-red-500"></div>
-                      <div class="flex-1 truncate text-[13px] font-medium text-gray-900 dark:text-gray-300">Signal name</div>
+                      <div class="h-3 w-3 flex-none rounded-sm bg-red-500">
+                      </div>
+                      <div
+                        class="flex-1 truncate text-[13px] font-medium text-gray-900 dark:text-gray-300"
+                      >
+                        Signal name
+                      </div>
                     </div>
                   </div>
                 </label>

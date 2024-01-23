@@ -3,7 +3,7 @@ import Layout from '@/layouts/rinsedocs/Raw.astro';
 import Button from '@/components/ui/elements/Button';
 import Dropdown from '@/components/ui/modules/Dropdown';
 import SearchField from '@/components/ui/elements/SearchField/index.astro';
-import Tab from '@/components/ui/modules/Tab';
+import Tab from '@/components/ui/elements/Tab';
 ---
 
 <Layout layoutClass="flex items-center justify-center px-4 py-10">
@@ -27,8 +27,14 @@ import Tab from '@/components/ui/modules/Tab';
           <div class="max-h-[200px] min-h-[100px] overflow-auto">
             <div class="flex h-[100px] w-full items-center justify-center pb-3">
               <div class="text-center">
-                <div class="mb-1 text-[13px] font-semibold text-gray-900 dark:text-gray-300">No metrics found</div>
-                <div class="text-[12px] text-gray-500 dark:text-gray-400">Check your spelling or try again.</div>
+                <div
+                  class="mb-1 text-[13px] font-semibold text-gray-900 dark:text-gray-300"
+                >
+                  No metrics found
+                </div>
+                <div class="text-[12px] text-gray-500 dark:text-gray-400">
+                  Check your spelling or try again.
+                </div>
               </div>
             </div>
           </div>

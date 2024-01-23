@@ -10,7 +10,7 @@ const { data } = Astro.props;
       return (
         <li x-data="{open: true}">
           <button
-            class="group/sidebar-parent flex w-full overflow-hidden whitespace-nowrap text-left text-[10px] font-bold uppercase leading-[32px] tracking-wide text-gray-500 dark:text-gray-500"
+            class="group/sidebar-parent flex h-7 w-full overflow-hidden whitespace-nowrap text-left text-[10px] font-bold uppercase tracking-wide text-gray-500 dark:text-gray-500"
             x-on:click="open = !open, active = !active"
           >
             <div class="inline-flex items-center overflow-hidden">

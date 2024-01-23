@@ -1,6 +1,6 @@
 ---
 import Layout from '@/layouts/rinsedocs/Raw.astro';
-import Tab from '@/components/ui/modules/Tab';
+import Tab from '@/components/ui/elements/Tab';
 import Button from '@/components/ui/elements/Button';
 import TextField from '@/components/ui/elements/TextField/index.astro';
 import SelectField from '@/components/ui/elements/SelectField';
@@ -11,12 +11,23 @@ import Dropdown from '@/components/ui/modules/Dropdown';
 <Layout layoutClass="">
   <div class="px-7 py-4">
     <h1 class="mb-2 text-lg font-bold text-black">Account Settings</h1>
-    <p class="text-sm text-gray-600">View or update your personal details and security settings.</p>
+    <p class="text-sm text-gray-600">
+      View or update your personal details and security settings.
+    </p>
   </div>
   <div>
     <Tab paddingClass="px-7">
-      <Tab.Item onClick="link('/components/templates/account-settings/personal')">Personal Details</Tab.Item>
-      <Tab.Item onClick="link('/components/templates/account-settings/security')" isActive>Security</Tab.Item>
+      <Tab.Item
+        onClick="link('/components/templates/account-settings/personal')"
+      >
+        Personal Details
+      </Tab.Item>
+      <Tab.Item
+        onClick="link('/components/templates/account-settings/security')"
+        isActive
+      >
+        Security
+      </Tab.Item>
     </Tab>
   </div>
   <div class="px-7 py-10">
@@ -33,7 +44,9 @@ import Dropdown from '@/components/ui/modules/Dropdown';
             stroke-width="2"
             stroke-linecap="round"
             stroke-linejoin="round"
-            class="lucide lucide-shield-check"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"></path><path d="m9 12 2 2 4-4"></path></svg
+            class="lucide lucide-shield-check"
+            ><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"></path><path
+              d="m9 12 2 2 4-4"></path></svg
           >
            Account Security
         </h3>
@@ -42,15 +55,24 @@ import Dropdown from '@/components/ui/modules/Dropdown';
           <Card.Group>
             <div class="space-y-6">
               <div>
-                <label class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400">Current password</label>
+                <label
+                  class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400"
+                  >Current password</label
+                >
                 <TextField value=" " isFluid />
               </div>
               <div>
-                <label class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400">New password</label>
+                <label
+                  class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400"
+                  >New password</label
+                >
                 <TextField value=" " isFluid />
               </div>
               <div>
-                <label class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400">Confirm new password</label>
+                <label
+                  class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400"
+                  >Confirm new password</label
+                >
                 <TextField value=" " isFluid />
               </div>
               <div class="flex justify-end">
@@ -73,7 +95,10 @@ import Dropdown from '@/components/ui/modules/Dropdown';
             stroke-width="2"
             stroke-linecap="round"
             stroke-linejoin="round"
-            class="lucide lucide-key-round"><path d="M2 18v3c0 .6.4 1 1 1h4v-3h3v-3h2l1.4-1.4a6.5 6.5 0 1 0-4-4Z"></path><circle cx="16.5" cy="7.5" r=".5"></circle></svg
+            class="lucide lucide-key-round"
+            ><path
+              d="M2 18v3c0 .6.4 1 1 1h4v-3h3v-3h2l1.4-1.4a6.5 6.5 0 1 0-4-4Z"
+            ></path><circle cx="16.5" cy="7.5" r=".5"></circle></svg
           >
            Two-Factor Authentication
         </h3>
@@ -82,7 +107,12 @@ import Dropdown from '@/components/ui/modules/Dropdown';
           <Card.Group>
             <div class="space-y-6">
               <div>
-                <div class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400">Two-Factor Authentication is currently <strong>disabled</strong></div>
+                <div
+                  class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400"
+                >
+                  Two-Factor Authentication is currently <strong
+                    >disabled</strong>
+                </div>
               </div>
               <div class="flex justify-end">
                 <Button size="sm" variant="primary">Enable 2FA</Button>

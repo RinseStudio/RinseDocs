@@ -43,7 +43,7 @@ import Button from '@/components/ui/elements/Button';
           x-data="tooltip"
           x-on:mouseenter="showTooltip"
           x-on:mouseleave="hideTooltip"
-          class="relative flex h-8 w-8 items-center justify-center rounded-full bg-white text-gray-900 hover:bg-zinc-300 dark:bg-zinc-800 dark:text-gray-200 hover:dark:bg-zinc-700"
+          class="relative flex h-8 w-8 items-center justify-center rounded-full bg-white text-gray-900 shadow-md transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-lg dark:bg-zinc-800 dark:text-gray-200 hover:dark:bg-zinc-700"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -75,7 +75,7 @@ import Button from '@/components/ui/elements/Button';
           x-data="tooltip"
           x-on:mouseenter="showTooltip"
           x-on:mouseleave="hideTooltip"
-          class="relative flex h-8 w-8 items-center justify-center rounded-full bg-white text-gray-900 hover:bg-zinc-300 dark:bg-zinc-800 dark:text-gray-200 hover:dark:bg-zinc-700"
+          class="relative flex h-8 w-8 items-center justify-center rounded-full bg-white text-gray-900 shadow-md transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-lg dark:bg-zinc-800 dark:text-gray-200 hover:dark:bg-zinc-700"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -108,7 +108,7 @@ import Button from '@/components/ui/elements/Button';
           x-data="tooltip"
           x-on:mouseenter="showTooltip"
           x-on:mouseleave="hideTooltip"
-          class="relative flex h-8 w-8 items-center justify-center rounded-full bg-white text-gray-900 shadow-lg hover:bg-zinc-300 dark:bg-zinc-800 dark:text-gray-200 hover:dark:bg-zinc-700"
+          class="relative flex h-8 w-8 items-center justify-center rounded-full bg-white text-gray-900 shadow-md transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-lg dark:bg-zinc-800 dark:text-gray-200 hover:dark:bg-zinc-700"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -134,39 +134,6 @@ import Button from '@/components/ui/elements/Button';
             class="pointer-events-none absolute left-full top-1/2 ml-2 flex h-6 -translate-y-1/2 items-center whitespace-nowrap rounded-md bg-zinc-800 px-1.5 text-[11px] font-semibold text-white dark:bg-zinc-200 dark:text-gray-900"
           >
             Images
-          </div>
-        </a>
-        <a
-          href="#"
-          x-data="tooltip"
-          x-on:mouseenter="showTooltip"
-          x-on:mouseleave="hideTooltip"
-          class="relative flex h-8 w-8 items-center justify-center rounded-full bg-white text-gray-900 shadow-lg hover:bg-zinc-300 dark:bg-zinc-800 dark:text-gray-200 hover:dark:bg-zinc-700"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-            class="h-4 w-4"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.536-4.464a.75.75 0 10-1.061-1.061 3.5 3.5 0 01-4.95 0 .75.75 0 00-1.06 1.06 5 5 0 007.07 0zM9 8.5c0 .828-.448 1.5-1 1.5s-1-.672-1-1.5S7.448 7 8 7s1 .672 1 1.5zm3 1.5c.552 0 1-.672 1-1.5S12.552 7 12 7s-1 .672-1 1.5.448 1.5 1 1.5z"
-              clip-rule="evenodd"></path>
-          </svg>
-
-          <div
-            x-cloak
-            x-show="tooltipVisible"
-            x-transition:enter="transition ease-out duration-200"
-            x-transition:enter-start="opacity-0 translate-x-2"
-            x-transition:enter-end="opacity-100 translate-x-0"
-            x-transition:leave="transition ease-in duration-200"
-            x-transition:leave-start="opacity-100 translate-x-0"
-            x-transition:leave-end="opacity-0 translate-x-2"
-            class="pointer-events-none absolute left-full top-1/2 ml-2 flex h-6 -translate-y-1/2 items-center whitespace-nowrap rounded-md bg-zinc-800 px-1.5 text-[11px] font-semibold text-white dark:bg-zinc-200 dark:text-gray-900"
-          >
-            Icons
           </div>
         </a>
         <a
@@ -210,7 +177,7 @@ import Button from '@/components/ui/elements/Button';
           x-data="tooltip"
           x-on:mouseenter="showTooltip"
           x-on:mouseleave="hideTooltip"
-          class="relative flex h-8 w-8 items-center justify-center rounded-full bg-white text-gray-900 shadow-md hover:bg-zinc-300 dark:bg-zinc-800 dark:text-gray-200 hover:dark:bg-zinc-700"
+          class="relative flex h-8 w-8 items-center justify-center rounded-full border-2 border-white bg-zinc-50 text-gray-900 shadow-md hover:bg-zinc-300 dark:border-zinc-600 dark:bg-zinc-800 dark:text-gray-200 hover:dark:bg-zinc-700"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

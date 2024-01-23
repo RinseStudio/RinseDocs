@@ -1,0 +1,36 @@
+---
+title: Tab
+date: 2023-05-12
+author: Jin Su Park,
+thumbnail: '@/assets/runboy-01.jpg'
+description: Tabs provide a way to navigate between multiple views within the same context.
+draft: false
+weight: 0
+meta:
+  - label: Edit this page
+    url: '#'
+    icon: pencil
+  - label: View on GitHub
+    url: '#'
+    icon: github
+pageSettings:
+  showSidebar: true
+  showTOC: true
+  enableFluidWidth: true
+---
+
+import RinseUI from '@/components/ui/RinseUI';
+
+## Basic usage
+
+The following is an example of a basic tab.
+
+import BasicTab from '@/components/ui/elements/Tab/sample/BasicTab.astro';
+
+<RinseUI
+  className="bg-white dark:bg-transparent"
+  url="/components/elements/tab/sample/basic-tab"
+  src="/components/ui/elements/Tab/sample/BasicTab.astro"
+>
+  <BasicTab />
+</RinseUI>

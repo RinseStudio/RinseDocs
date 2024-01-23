@@ -1,0 +1,36 @@
+---
+title: Select
+date: 2023-05-12
+author: Jin Su Park,
+thumbnail: '@/assets/runboy-01.jpg'
+description: Select provides a space-efficient method for users to choose one option from a list
+draft: false
+weight: 0
+meta:
+  - label: Edit this page
+    url: '#'
+    icon: pencil
+  - label: View on GitHub
+    url: '#'
+    icon: github
+pageSettings:
+  showSidebar: true
+  showTOC: true
+  enableFluidWidth: true
+---
+
+import RinseUI from '@/components/ui/RinseUI';
+
+## Basic usage
+
+The following is an example of a basic select.
+
+import BasicSelect from '@/components/ui/elements/Select/sample/BasicSelect.astro';
+
+<RinseUI
+  className="!h-[300px] bg-white dark:bg-transparent"
+  url="/components/elements/select/sample/basic-select"
+  src="/components/ui/elements/Select/sample/BasicSelect.astro"
+>
+  <BasicSelect />
+</RinseUI>

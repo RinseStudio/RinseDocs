@@ -1,0 +1,15 @@
+---
+import { twMerge } from 'tailwind-merge';
+const {
+  className = null,
+  placeholder = 'Select a fruit',
+  ...props
+} = Astro.props;
+---
+
+<div
+  x-ref="dropdownTrigger"
+  class={twMerge(className)}
+  {...props}
+  set:html={placeholder}
+/>

@@ -3,7 +3,7 @@ import Layout from '@/layouts/rinsedocs/Raw.astro';
 import Button from '@/components/ui/elements/Button';
 import Dropdown from '@/components/ui/modules/Dropdown';
 import SearchField from '@/components/ui/elements/SearchField/index.astro';
-import Tab from '@/components/ui/modules/Tab';
+import Tab from '@/components/ui/elements/Tab';
 ---
 
 <Layout layoutClass="flex items-center justify-center px-4 py-10">
@@ -27,46 +27,90 @@ import Tab from '@/components/ui/modules/Tab';
         <Dropdown.Group className="max-h-[200px] min-h-[200px] overflow-auto">
           <ul class="space-y-px">
             <li class="px-2 pb-2 pt-4">
-              <div class="border-b border-zinc-200 pb-1 text-[12px] font-medium text-gray-500 dark:border-zinc-700 dark:text-gray-400">Metric group</div>
+              <div
+                class="border-b border-zinc-200 pb-1 text-[12px] font-medium text-gray-500 dark:border-zinc-700 dark:text-gray-400"
+              >
+                Metric group
+              </div>
             </li>
             <li>
               <button
                 class="w-full rounded px-2 py-1 text-left hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:hover:bg-zinc-100/[0.06] dark:focus-visible:ring-blue-500"
               >
-                <div class="text-[13px] font-medium text-gray-900 dark:text-gray-300">Users per Device Fingerprint</div>
-                <div class="text-[11px] font-medium text-gray-400 dark:text-gray-500">metrics.users.per_device_fingerprint.value</div>
+                <div
+                  class="text-[13px] font-medium text-gray-900 dark:text-gray-300"
+                >
+                  Users per Device Fingerprint
+                </div>
+                <div
+                  class="text-[11px] font-medium text-gray-400 dark:text-gray-500"
+                >
+                  metrics.users.per_device_fingerprint.value
+                </div>
               </button>
             </li>
             <li>
               <button
                 class="w-full rounded px-2 py-1 text-left hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:hover:bg-zinc-100/[0.06] dark:focus-visible:ring-blue-500"
               >
-                <div class="text-[13px] font-medium text-gray-900 dark:text-gray-300">Locations per account</div>
-                <div class="text-[11px] font-medium text-gray-400 dark:text-gray-500">metrics.1.value</div>
+                <div
+                  class="text-[13px] font-medium text-gray-900 dark:text-gray-300"
+                >
+                  Locations per account
+                </div>
+                <div
+                  class="text-[11px] font-medium text-gray-400 dark:text-gray-500"
+                >
+                  metrics.1.value
+                </div>
               </button>
             </li>
             <li>
               <button
                 class="w-full rounded px-2 py-1 text-left hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:hover:bg-zinc-100/[0.06] dark:focus-visible:ring-blue-500"
               >
-                <div class="text-[13px] font-medium text-gray-900 dark:text-gray-300">Device per account</div>
-                <div class="text-[11px] font-medium text-gray-400 dark:text-gray-500">metrics.3.value</div>
+                <div
+                  class="text-[13px] font-medium text-gray-900 dark:text-gray-300"
+                >
+                  Device per account
+                </div>
+                <div
+                  class="text-[11px] font-medium text-gray-400 dark:text-gray-500"
+                >
+                  metrics.3.value
+                </div>
               </button>
             </li>
             <li>
               <button
                 class="w-full rounded px-2 py-1 text-left hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:hover:bg-zinc-100/[0.06] dark:focus-visible:ring-blue-500"
               >
-                <div class="text-[13px] font-medium text-gray-900 dark:text-gray-300">Authenticated</div>
-                <div class="text-[11px] font-medium text-gray-400 dark:text-gray-500">authenticated</div>
+                <div
+                  class="text-[13px] font-medium text-gray-900 dark:text-gray-300"
+                >
+                  Authenticated
+                </div>
+                <div
+                  class="text-[11px] font-medium text-gray-400 dark:text-gray-500"
+                >
+                  authenticated
+                </div>
               </button>
             </li>
             <li>
               <button
                 class="w-full rounded px-2 py-1 text-left hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:hover:bg-zinc-100/[0.06] dark:focus-visible:ring-blue-500"
               >
-                <div class="text-[13px] font-medium text-gray-900 dark:text-gray-300">Metric name</div>
-                <div class="text-[11px] font-medium text-gray-400 dark:text-gray-500">metric.id</div>
+                <div
+                  class="text-[13px] font-medium text-gray-900 dark:text-gray-300"
+                >
+                  Metric name
+                </div>
+                <div
+                  class="text-[11px] font-medium text-gray-400 dark:text-gray-500"
+                >
+                  metric.id
+                </div>
               </button>
             </li>
           </ul>
