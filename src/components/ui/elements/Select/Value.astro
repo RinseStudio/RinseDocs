@@ -7,9 +7,4 @@ const {
 } = Astro.props;
 ---
 
-<div
-  x-ref="dropdownTrigger"
-  class={twMerge(className)}
-  {...props}
-  set:html={placeholder}
-/>
+<div class={twMerge(className)} {...props} set:html={placeholder} />

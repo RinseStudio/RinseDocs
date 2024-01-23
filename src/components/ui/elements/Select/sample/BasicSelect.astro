@@ -5,16 +5,16 @@ import Select from '@/components/ui/elements/Select';
 <label
   class="flex items-center text-sm font-medium text-gray-900 dark:text-gray-300"
 >
-  <Select position="bottomEnd">
+  <Select x-data="{isOpen: false}" position="bottomEnd">
     <Select.Trigger isFluid>
       <Select.Value placeholder="Select a fruit" />
     </Select.Trigger>
     <Select.Content position="bottomEnd" className="w-full">
       <Select.Group>
         <Select.Items>
-          <Select.Item onClick={'isOpen = !isOpen'}>is</Select.Item>
-          <Select.Item onClick={'isOpen = !isOpen'}>is not</Select.Item>
-          <Select.Item onClick={'isOpen = !isOpen'}>is one of</Select.Item>
+          <Select.Item>is</Select.Item>
+          <Select.Item>is not</Select.Item>
+          <Select.Item>is one of</Select.Item>
         </Select.Items>
       </Select.Group>
     </Select.Content>
