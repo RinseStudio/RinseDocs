@@ -6,13 +6,10 @@ const { className = null, ...props } = Astro.props;
 function propMerge(defaultProps, props) {
   return { ...defaultProps, ...props };
 }
-console.log(props);
+
 const defaultProps = {
-  '@click': '{isOpen = true}',
   'x-data': '{isOpen: false}',
 };
-
-// const combinedProps = propMerge(defaultProps, Astro.props);
 ---
 
 <div {...propMerge(defaultProps, props)} class={twMerge('relative', className)}>

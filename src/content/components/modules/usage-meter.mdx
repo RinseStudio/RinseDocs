@@ -1,0 +1,204 @@
+---
+title: Usage meter
+date: 2023-05-12
+author: Jin Su Park,
+thumbnail: '@/assets/runboy-01.jpg'
+description: Meter to provides information about the users API call usage.
+draft: false
+weight: 0
+meta:
+  - label: Edit this page
+    url: '#'
+    icon: pencil
+  - label: View on GitHub
+    url: '#'
+    icon: github
+pageSettings:
+  showSidebar: true
+  showTOC: true
+  enableFluidWidth: true
+---
+
+import CodePreview from '@/components/ui/CodePreview.astro';
+import CodePreviewV2 from '@/components/ui/CodePreviewV2.astro';
+import UsageMeter from '@/components/ui/templates/UsageMeter.astro';
+
+<UsageMeter />
+
+## Usage
+
+The API calls usage meter is a sidebar card component that provides information about how many API calls are left on the user's plan quota. The aim is to provide usage context but also to encourage users to upgrade their plan before hitting their limit.
+
+### CTA accompanied meter
+
+<CodePreviewV2 languages={['HTML', 'Astro']} src="/components/templates/usage-meter" iframeClass="dark:bg-zinc-900 h-[340px]">
+  <UsageMeter />
+
+  <Fragment slot="raw">
+    ```astro
+    ---
+    import Layout from '@/layouts/rinsedocs/Raw.astro';
+    import Button from '@/components/ui/elements/Button';
+    ---
+
+    <div astro-component class="w-[240px] rounded-lg bg-white shadow-md dark:bg-zinc-800">
+      <div class="border-b border-zinc-200 p-3 dark:border-zinc-700">
+        <h4 class="mb-3 text-[12px] font-medium text-gray-900 dark:text-gray-300">Free API usage</h4>
+        <div class="relative mb-2 h-1 overflow-hidden rounded-full bg-zinc-100 dark:bg-zinc-700">
+          <div class="h-1 bg-blue-500" style="width: 32%"></div>
+        </div>
+        <div class="text-[11px] font-medium text-gray-500 dark:text-gray-400">325/1,000 API calls per month</div>
+      </div>
+      <div class="p-3">
+        <p class="mb-4 text-[11px] font-medium text-gray-500 dark:text-gray-300">Launch your project with unlimited calls and no contractual minimums</p>
+        <Button onClick={'isOpen = !isOpen'} size="sm" isFluid>
+          Upgrade plan <i class="fa-solid fa-arrow-right fa-fw ml-2"></i>
+        </Button>
+      </div>
+    </div>
+    ```
+
+  </Fragment>
+</CodePreviewV2>
+
+gege
+
+<CodePreview languages={['HTML']} src="/components/templates/usage-meter" iframeClass="dark:bg-zinc-900 h-[340px]">
+  <slot slot="0">
+    ```html
+    <div class="relative" x-data="{isOpen: true}">
+      <button
+        x-on:click="isOpen = !isOpen"
+        class="inline-flex items-center justify-center font-semibold whitespace-nowrap disabled:cursor-not-allowed rounded-md text-[13px] min-w-[32px] h-[32px] px-2.5 text-gray-600 hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-100 disabled:text-gray-400 dark:disabled:text-gray-600 bg-white hover:bg-zinc-50 dark:bg-zinc-100/[0.04] dark:hover:bg-zinc-100/[0.08] disabled:bg-transparent dark:disabled:bg-transparent shadow-sm dark:shadow-none ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 disabled:ring-zinc-100 dark:disabled:ring-zinc-100/[0.06]"
+        type="button"
+      >
+        View settings
+      </button>
+      <div
+        x-show="isOpen"
+        x-on:click.away="isOpen = false"
+        x-transition:enter="transition ease-out duration-200 null "
+        x-transition:enter-start="opacity-0 -translate-y-2 null"
+        x-transition:enter-end="opacity-100 translate-y-0 null"
+        x-transition:leave="transition ease-in duration-200 null "
+        x-transition:leave-start="opacity-100 translate-y-0 null "
+        x-transition:leave-end="opacity-0 -translate-y-2 null "
+        class="w-[240px] ring-1 ring-zinc-200 dark:ring-zinc-700 absolute z-10 rounded-lg divide-y divide-zinc-200 dark:divide-zinc-700 shadow-md bg-white dark:bg-zinc-800 top-full right-0 mt-2"
+      >
+        <div class="p-1">
+          <div class="my-2 px-2 text-xs font-medium text-gray-500 dark:text-gray-400 flex items-center">View settings</div>
+          <ul>
+            <li>
+              <button
+                class="group/table-order flex h-9 w-full cursor-grab items-center justify-between rounded px-2 text-[13px] font-medium text-gray-900 hover:bg-zinc-100 active:cursor-grabbing dark:text-gray-300 dark:hover:bg-zinc-100/[0.06]"
+              >
+                <div class="flex flex-1 items-center overflow-hidden">
+                  <div class="mr-1.5 dark:text-gray-500"><i class="fa-solid fa-grip-dots fa-fw"></i></div>
+                  <div class="flex-1 truncate text-left">Policy</div>
+                </div>
+                <div class="hidden h-6 w-6 items-center justify-center text-gray-400 hover:cursor-pointer hover:text-gray-600 group-hover/table-order:flex dark:text-gray-400 dark:hover:text-gray-100"><i class="fa-solid fa-times"></i></div>
+              </button>
+            </li>
+            <li>
+              <button
+                class="group/table-order flex h-9 w-full cursor-grab items-center justify-between rounded px-2 text-[13px] font-medium text-gray-900 hover:bg-zinc-100 active:cursor-grabbing dark:text-gray-300 dark:hover:bg-zinc-100/[0.06]"
+              >
+                <div class="flex flex-1 items-center overflow-hidden">
+                  <div class="mr-1.5 dark:text-gray-500"><i class="fa-solid fa-grip-dots fa-fw"></i></div>
+                  <div class="flex-1 truncate text-left">Event</div>
+                </div>
+                <div class="hidden h-6 w-6 items-center justify-center text-gray-400 hover:cursor-pointer hover:text-gray-600 group-hover/table-order:flex dark:text-gray-400 dark:hover:text-gray-100"><i class="fa-solid fa-times"></i></div>
+              </button>
+            </li>
+            <li>
+              <button
+                class="group/table-order flex h-9 w-full cursor-grab items-center justify-between rounded px-2 text-[13px] font-medium text-gray-900 hover:bg-zinc-100 active:cursor-grabbing dark:text-gray-300 dark:hover:bg-zinc-100/[0.06]"
+              >
+                <div class="flex flex-1 items-center overflow-hidden">
+                  <div class="mr-1.5 dark:text-gray-500"><i class="fa-solid fa-grip-dots fa-fw"></i></div>
+                  <div class="flex-1 truncate text-left">User</div>
+                </div>
+                <div class="hidden h-6 w-6 items-center justify-center text-gray-400 hover:cursor-pointer hover:text-gray-600 group-hover/table-order:flex dark:text-gray-400 dark:hover:text-gray-100"><i class="fa-solid fa-times"></i></div>
+              </button>
+            </li>
+            <li>
+              <button
+                class="group/table-order flex h-9 w-full cursor-grab items-center justify-between rounded px-2 text-[13px] font-medium text-gray-900 hover:bg-zinc-100 active:cursor-grabbing dark:text-gray-300 dark:hover:bg-zinc-100/[0.06]"
+              >
+                <div class="flex flex-1 items-center overflow-hidden">
+                  <div class="mr-1.5 dark:text-gray-500"><i class="fa-solid fa-grip-dots fa-fw"></i></div>
+                  <div class="flex-1 truncate text-left">Location</div>
+                </div>
+                <div class="hidden h-6 w-6 items-center justify-center text-gray-400 hover:cursor-pointer hover:text-gray-600 group-hover/table-order:flex dark:text-gray-400 dark:hover:text-gray-100"><i class="fa-solid fa-times"></i></div>
+              </button>
+            </li>
+            <li>
+              <button
+                class="group/table-order flex h-9 w-full cursor-grab items-center justify-between rounded px-2 text-[13px] font-medium text-gray-900 hover:bg-zinc-100 active:cursor-grabbing dark:text-gray-300 dark:hover:bg-zinc-100/[0.06]"
+              >
+                <div class="flex flex-1 items-center overflow-hidden">
+                  <div class="mr-1.5 dark:text-gray-500"><i class="fa-solid fa-grip-dots fa-fw"></i></div>
+                  <div class="flex-1 truncate text-left">Connection</div>
+                </div>
+                <div class="hidden h-6 w-6 items-center justify-center text-gray-400 hover:cursor-pointer hover:text-gray-600 group-hover/table-order:flex dark:text-gray-400 dark:hover:text-gray-100"><i class="fa-solid fa-times"></i></div>
+              </button>
+            </li>
+            <li>
+              <button
+                class="group/table-order flex h-9 w-full cursor-grab items-center justify-between rounded px-2 text-[13px] font-medium text-gray-900 hover:bg-zinc-100 active:cursor-grabbing dark:text-gray-300 dark:hover:bg-zinc-100/[0.06]"
+              >
+                <div class="flex flex-1 items-center overflow-hidden">
+                  <div class="mr-1.5 dark:text-gray-500"><i class="fa-solid fa-grip-dots fa-fw"></i></div>
+                  <div class="flex-1 truncate text-left">Device</div>
+                </div>
+                <div class="hidden h-6 w-6 items-center justify-center text-gray-400 hover:cursor-pointer hover:text-gray-600 group-hover/table-order:flex dark:text-gray-400 dark:hover:text-gray-100"><i class="fa-solid fa-times"></i></div>
+              </button>
+            </li>
+            <li>
+              <button
+                class="group/table-order flex h-9 w-full cursor-grab items-center justify-between rounded px-2 text-[13px] font-medium text-gray-900 hover:bg-zinc-100 active:cursor-grabbing dark:text-gray-300 dark:hover:bg-zinc-100/[0.06]"
+              >
+                <div class="flex flex-1 items-center overflow-hidden">
+                  <div class="mr-1.5 dark:text-gray-500"><i class="fa-solid fa-grip-dots fa-fw"></i></div>
+                  <div class="flex-1 truncate text-left">Device</div>
+                </div>
+                <div class="hidden h-6 w-6 items-center justify-center text-gray-400 hover:cursor-pointer hover:text-gray-600 group-hover/table-order:flex dark:text-gray-400 dark:hover:text-gray-100"><i class="fa-solid fa-times"></i></div>
+              </button>
+            </li>
+            <li>
+              <button
+                class="group/table-order flex h-9 w-full cursor-grab items-center justify-between rounded px-2 text-[13px] font-medium text-gray-900 hover:bg-zinc-100 active:cursor-grabbing dark:text-gray-300 dark:hover:bg-zinc-100/[0.06]"
+              >
+                <div class="flex flex-1 items-center overflow-hidden">
+                  <div class="mr-1.5 dark:text-gray-500"><i class="fa-solid fa-grip-dots fa-fw"></i></div>
+                  <div class="flex-1 truncate text-left">Triggered signals</div>
+                </div>
+                <div class="hidden h-6 w-6 items-center justify-center text-gray-400 hover:cursor-pointer hover:text-gray-600 group-hover/table-order:flex dark:text-gray-400 dark:hover:text-gray-100"><i class="fa-solid fa-times"></i></div>
+              </button>
+            </li>
+            <li>
+              <button
+                class="group/table-order flex h-9 w-full cursor-grab items-center justify-between rounded px-2 text-[13px] font-medium text-gray-900 hover:bg-zinc-100 active:cursor-grabbing dark:text-gray-300 dark:hover:bg-zinc-100/[0.06]"
+              >
+                <div class="flex flex-1 items-center overflow-hidden">
+                  <div class="mr-1.5 dark:text-gray-500"><i class="fa-solid fa-grip-dots fa-fw"></i></div>
+                  <div class="flex-1 truncate text-left">A really long custom column label goes here</div>
+                </div>
+                <div class="hidden h-6 w-6 items-center justify-center text-gray-400 hover:cursor-pointer hover:text-gray-600 group-hover/table-order:flex dark:text-gray-400 dark:hover:text-gray-100"><i class="fa-solid fa-times"></i></div>
+              </button>
+            </li>
+          </ul>
+        </div>
+        <div class="p-1">
+          <button
+            class="flex h-[32px] w-full items-center rounded-md px-2 text-[13px] font-medium text-gray-600 hover:bg-zinc-100 hover:text-gray-700 focus-visible:outline-none dark:text-gray-300 dark:hover:bg-zinc-100/[0.06] dark:hover:text-gray-200"
+          >
+            <div class="mr-1.5 flex items-center justify-center"><i class="fa-solid fa-plus"></i></div>
+            Add new column
+          </button>
+        </div>
+      </div>
+    </div>
+    ```
+  </slot>
+</CodePreview>

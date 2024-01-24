@@ -1,0 +1,36 @@
+---
+title: Dialog
+date: 2023-05-12
+author: Jin Su Park,
+thumbnail: '@/assets/runboy-01.jpg'
+description: Interactive dialog boxes that present information over an overlay.
+draft: false
+weight: 0
+meta:
+  - label: Edit this page
+    url: '#'
+    icon: pencil
+  - label: View on GitHub
+    url: '#'
+    icon: github
+pageSettings:
+  showSidebar: true
+  showTOC: false
+  enableFluidWidth: true
+---
+
+import RinseUI from '@/components/ui/RinseUI';
+
+## Basic Usage
+
+The following is an example of a basic dialog.
+
+import BasicDialog from '@/components/ui/elements/Dialog/sample/BasicDialog.astro';
+
+<RinseUI
+  className="!h-[500px]"
+  url="/components/elements/dialog/sample/basic-dialog"
+  src="/components/ui/elements/Dialog/sample/BasicDialog.astro"
+>
+  <BasicDialog />
+</RinseUI>
