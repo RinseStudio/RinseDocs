@@ -6,7 +6,7 @@ const { isOpen = false, className = null, ...props } = Astro.props;
 
 <div
   x-data={`{isOpen: ${isOpen}}`}
-  class={twMerge('relative z-10', className)}
+  class={twMerge(className)}
   aria-labelledby="modal-title"
   role="dialog"
   aria-modal="true"
