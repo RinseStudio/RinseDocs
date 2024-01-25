@@ -1,11 +1,8 @@
 ---
 import { twMerge } from 'tailwind-merge';
+import propMerge from 'prop-merge';
 
 const { className = null, ...props } = Astro.props;
-
-function propMerge(defaultProps, props) {
-  return { ...defaultProps, ...props };
-}
 
 const defaultProps = {
   'x-data': '{isOpen: false}',
