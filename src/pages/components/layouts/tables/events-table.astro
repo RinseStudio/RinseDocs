@@ -1,7 +1,7 @@
 ---
 import Layout from '@/layouts/rinsedocs/Raw.astro';
 
-import Checkbox from '@/components/ui/elements/Checkbox/index.astro';
+import Checkbox from '@/components/ui/elements/Checkbox';
 import Button from '@/components/ui/elements/Button';
 import Tooltip from '@/components/ui/elements/Tooltip';
 import Dropdown from '@/components/ui/modules/Dropdown';
@@ -9,11 +9,15 @@ import Dropdown from '@/components/ui/modules/Dropdown';
 
 <Layout layoutClass="py-10">
   <div class="mb-4 flex items-center justify-between px-5">
-    <h3 class="text-[14px] font-semibold text-gray-900 dark:text-gray-300">1,252 Events</h3>
+    <h3 class="text-[14px] font-semibold text-gray-900 dark:text-gray-300">
+      1,252 Events
+    </h3>
     <div class="flex gap-2">
       <Button size="sm" variant="outline">View settings</Button>
       <Button size="sm" variant="outline">Export</Button>
-      <div class="flex -space-x-px overflow-hidden rounded-md shadow-sm dark:shadow-none">
+      <div
+        class="flex -space-x-px overflow-hidden rounded-md shadow-sm dark:shadow-none"
+      >
         <div>
           <Button size="sm" variant="outline" isSquare noShadow rounded="left">
             <i class="fa-solid fa-angle-left"></i>
@@ -28,7 +32,10 @@ import Dropdown from '@/components/ui/modules/Dropdown';
     </div>
   </div>
   <div class="overflow-auto">
-    <table class="w-full bg-white text-left dark:bg-zinc-900" x-data="{ showPageViewEvents: false, collapseScore: true }">
+    <table
+      class="w-full bg-white text-left dark:bg-zinc-900"
+      x-data="{ showPageViewEvents: false, collapseScore: true }"
+    >
       <thead>
         <tr class="border-b border-zinc-200 dark:border-zinc-800">
           <th class="px-1 py-2 first:pl-5">
@@ -55,9 +62,15 @@ import Dropdown from '@/components/ui/modules/Dropdown';
                 <Button size="sm" variant="ghost">
                   Policy
                   <Tooltip widthClass="w-[180px]" className="ml-2">
-                    <Tooltip.Trigger><i class="fa-solid fa-fw fa-sparkles text-blue-500"></i></Tooltip.Trigger>
-                    <Tooltip.Content className="w-[200px]" enterClassName="delay-1000">
-                      This is a smart column. Castle automatically enriches content using event data.
+                    <Tooltip.Trigger>
+                      <i class="fa-solid fa-fw fa-sparkles text-blue-500"></i>
+                    </Tooltip.Trigger>
+                    <Tooltip.Content
+                      className="w-[200px]"
+                      enterClassName="delay-1000"
+                    >
+                      This is a smart column. Castle automatically enriches
+                      content using event data.
                     </Tooltip.Content>
                   </Tooltip>
                 </Button>
@@ -109,9 +122,15 @@ import Dropdown from '@/components/ui/modules/Dropdown';
                 <Button size="sm" variant="ghost">
                   Event
                   <Tooltip widthClass="w-[180px]" className="ml-2">
-                    <Tooltip.Trigger><i class="fa-solid fa-fw fa-sparkles text-blue-500"></i></Tooltip.Trigger>
-                    <Tooltip.Content className="w-[200px]" enterClassName="delay-1000">
-                      This is a smart column. Castle automatically enriches content using event data.
+                    <Tooltip.Trigger>
+                      <i class="fa-solid fa-fw fa-sparkles text-blue-500"></i>
+                    </Tooltip.Trigger>
+                    <Tooltip.Content
+                      className="w-[200px]"
+                      enterClassName="delay-1000"
+                    >
+                      This is a smart column. Castle automatically enriches
+                      content using event data.
                     </Tooltip.Content>
                   </Tooltip>
                 </Button>
@@ -163,9 +182,15 @@ import Dropdown from '@/components/ui/modules/Dropdown';
                 <Button size="sm" variant="ghost">
                   User
                   <Tooltip widthClass="w-[180px]" className="ml-2">
-                    <Tooltip.Trigger><i class="fa-solid fa-fw fa-sparkles text-blue-500"></i></Tooltip.Trigger>
-                    <Tooltip.Content className="w-[200px]" enterClassName="delay-1000">
-                      This is a smart column. Castle automatically enriches content using event data.
+                    <Tooltip.Trigger>
+                      <i class="fa-solid fa-fw fa-sparkles text-blue-500"></i>
+                    </Tooltip.Trigger>
+                    <Tooltip.Content
+                      className="w-[200px]"
+                      enterClassName="delay-1000"
+                    >
+                      This is a smart column. Castle automatically enriches
+                      content using event data.
                     </Tooltip.Content>
                   </Tooltip>
                 </Button>
@@ -217,9 +242,15 @@ import Dropdown from '@/components/ui/modules/Dropdown';
                 <Button size="sm" variant="ghost">
                   Location
                   <Tooltip widthClass="w-[180px]" className="ml-2">
-                    <Tooltip.Trigger><i class="fa-solid fa-fw fa-sparkles text-blue-500"></i></Tooltip.Trigger>
-                    <Tooltip.Content className="w-[200px]" enterClassName="delay-1000">
-                      This is a smart column. Castle automatically enriches content using event data.
+                    <Tooltip.Trigger>
+                      <i class="fa-solid fa-fw fa-sparkles text-blue-500"></i>
+                    </Tooltip.Trigger>
+                    <Tooltip.Content
+                      className="w-[200px]"
+                      enterClassName="delay-1000"
+                    >
+                      This is a smart column. Castle automatically enriches
+                      content using event data.
                     </Tooltip.Content>
                   </Tooltip>
                 </Button>
@@ -271,9 +302,15 @@ import Dropdown from '@/components/ui/modules/Dropdown';
                 <Button size="sm" variant="ghost">
                   Connection
                   <Tooltip widthClass="w-[180px]" className="ml-2">
-                    <Tooltip.Trigger><i class="fa-solid fa-fw fa-sparkles text-blue-500"></i></Tooltip.Trigger>
-                    <Tooltip.Content className="w-[200px]" enterClassName="delay-1000">
-                      This is a smart column. Castle automatically enriches content using event data.
+                    <Tooltip.Trigger>
+                      <i class="fa-solid fa-fw fa-sparkles text-blue-500"></i>
+                    </Tooltip.Trigger>
+                    <Tooltip.Content
+                      className="w-[200px]"
+                      enterClassName="delay-1000"
+                    >
+                      This is a smart column. Castle automatically enriches
+                      content using event data.
                     </Tooltip.Content>
                   </Tooltip>
                 </Button>
@@ -325,9 +362,15 @@ import Dropdown from '@/components/ui/modules/Dropdown';
                 <Button size="sm" variant="ghost">
                   Device
                   <Tooltip widthClass="w-[180px]" className="ml-2">
-                    <Tooltip.Trigger><i class="fa-solid fa-fw fa-sparkles text-blue-500"></i></Tooltip.Trigger>
-                    <Tooltip.Content className="w-[200px]" enterClassName="delay-1000">
-                      This is a smart column. Castle automatically enriches content using event data.
+                    <Tooltip.Trigger>
+                      <i class="fa-solid fa-fw fa-sparkles text-blue-500"></i>
+                    </Tooltip.Trigger>
+                    <Tooltip.Content
+                      className="w-[200px]"
+                      enterClassName="delay-1000"
+                    >
+                      This is a smart column. Castle automatically enriches
+                      content using event data.
                     </Tooltip.Content>
                   </Tooltip>
                 </Button>
@@ -379,9 +422,15 @@ import Dropdown from '@/components/ui/modules/Dropdown';
                 <Button size="sm" variant="ghost">
                   List
                   <Tooltip widthClass="w-[180px]" className="ml-2">
-                    <Tooltip.Trigger><i class="fa-solid fa-fw fa-sparkles text-blue-500"></i></Tooltip.Trigger>
-                    <Tooltip.Content className="w-[200px]" enterClassName="delay-1000">
-                      This is a smart column. Castle automatically enriches content using event data.
+                    <Tooltip.Trigger>
+                      <i class="fa-solid fa-fw fa-sparkles text-blue-500"></i>
+                    </Tooltip.Trigger>
+                    <Tooltip.Content
+                      className="w-[200px]"
+                      enterClassName="delay-1000"
+                    >
+                      This is a smart column. Castle automatically enriches
+                      content using event data.
                     </Tooltip.Content>
                   </Tooltip>
                 </Button>
@@ -433,9 +482,15 @@ import Dropdown from '@/components/ui/modules/Dropdown';
                 <Button size="sm" variant="ghost">
                   Triggered Signal
                   <Tooltip widthClass="w-[180px]" className="ml-2">
-                    <Tooltip.Trigger><i class="fa-solid fa-fw fa-sparkles text-blue-500"></i></Tooltip.Trigger>
-                    <Tooltip.Content className="w-[200px]" enterClassName="delay-1000">
-                      This is a smart column. Castle automatically enriches content using event data.
+                    <Tooltip.Trigger>
+                      <i class="fa-solid fa-fw fa-sparkles text-blue-500"></i>
+                    </Tooltip.Trigger>
+                    <Tooltip.Content
+                      className="w-[200px]"
+                      enterClassName="delay-1000"
+                    >
+                      This is a smart column. Castle automatically enriches
+                      content using event data.
                     </Tooltip.Content>
                   </Tooltip>
                 </Button>
