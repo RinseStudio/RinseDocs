@@ -8,31 +8,18 @@ import Tooltip from '@/components/ui/elements/Tooltip';
 <Layout layoutClass="">
   <div class="px-7 py-4">
     <h1 class="mb-2 text-lg font-bold text-black">Organization Settings</h1>
-    <p class="text-sm text-gray-600">
-      View or update your organization and billing settings.
-    </p>
+    <p class="text-sm text-gray-600">View or update your organization and billing settings.</p>
   </div>
   <div>
-    <Tab paddingClass="px-7">
-      <Tab.Item
-        onClick="link('/components/templates/organization-settings/general')"
-      >
+    <Tab className="px-7">
+      <Tab.Item onClick="link('/components/templates/organization-settings/general')">
         General
       </Tab.Item>
-      <Tab.Item
-        onClick="link('/components/templates/organization-settings/users')"
-      >
-        Users
-      </Tab.Item>
-      <Tab.Item
-        onClick="link('/components/templates/organization-settings/billing')"
-        isActive
-      >
+      <Tab.Item onClick="link('/components/templates/organization-settings/users')">Users</Tab.Item>
+      <Tab.Item onClick="link('/components/templates/organization-settings/billing')" isActive>
         Billing
       </Tab.Item>
-      <Tab.Item
-        onClick="link('/components/templates/organization-settings/environment')"
-      >
+      <Tab.Item onClick="link('/components/templates/organization-settings/environment')">
         Environment
       </Tab.Item>
       <!-- <Tab.Item onClick="link('/components/templates/organization-settings/authentication')">Authentication</Tab.Item> -->
@@ -62,25 +49,15 @@ import Tooltip from '@/components/ui/elements/Tooltip';
            Current plan
         </h3>
 
-        <div
-          class="flex items-center rounded-lg border border-zinc-200 shadow-sm"
-        >
+        <div class="flex items-center rounded-lg border border-zinc-200 shadow-sm">
           <div class="w-[320px] flex-none border-r border-zinc-200 px-5 py-4">
-            <h4 class="mb-1 text-xs font-semibold text-gray-900">
-              Currently on
-            </h4>
+            <h4 class="mb-1 text-xs font-semibold text-gray-900">Currently on</h4>
             <div class="mb-2 text-lg font-bold text-indigo-500">Pro plan</div>
-            <div class="text-semibold mb-1 text-xs leading-none">
-              Registered on Nov 2018
-            </div>
+            <div class="text-semibold mb-1 text-xs leading-none">Registered on Nov 2018</div>
           </div>
           <div class="flex-1 px-5 py-4">
-            <h4 class="mb-1 text-xs font-semibold text-gray-900">
-              Next upcoming bill
-            </h4>
-            <div
-              class="mb-2 flex items-center gap-2 text-lg font-bold text-gray-900"
-            >
+            <h4 class="mb-1 text-xs font-semibold text-gray-900">Next upcoming bill</h4>
+            <div class="mb-2 flex items-center gap-2 text-lg font-bold text-gray-900">
               $310
               <Tooltip position="top">
                 <slot slot="tooltip-trigger"
@@ -91,8 +68,7 @@ import Tooltip from '@/components/ui/elements/Tooltip';
                   </div></slot
                 >
                 <slot slot="tooltip-content"
-                  >100k API calls included for $200/mo. Then $0.002 per each API
-                  call.</slot
+                  >100k API calls included for $200/mo. Then $0.002 per each API call.</slot
                 >
               </Tooltip>
             </div>
@@ -103,8 +79,7 @@ import Tooltip from '@/components/ui/elements/Tooltip';
         </div>
         <div class="mt-4">
           <Button size="md" variant="secondary">
-            Manage billing <i class="fa-solid fa-external-link ml-2.5 text-xs"
-            ></i>
+            Manage billing <i class="fa-solid fa-external-link ml-2.5 text-xs"></i>
           </Button>
         </div>
       </div>
@@ -122,20 +97,15 @@ import Tooltip from '@/components/ui/elements/Tooltip';
             stroke-linecap="round"
             stroke-linejoin="round"
             class="lucide lucide-gauge"
-            ><path d="m12 14 4-4"></path><path d="M3.34 19a10 10 0 1 1 17.32 0"
-            ></path></svg
+            ><path d="m12 14 4-4"></path><path d="M3.34 19a10 10 0 1 1 17.32 0"></path></svg
           >
            Current usage
         </h3>
 
         <div class="rounded-lg border border-zinc-200 px-5 py-4 shadow-sm">
-          <h4 class="mb-3 text-xs font-semibold text-gray-900">
-            API Request Usage
-          </h4>
+          <h4 class="mb-3 text-xs font-semibold text-gray-900">API Request Usage</h4>
           <div class="text-semibold mb-6 text-xs leading-none">
-            You have made a total of <strong class="text-gray-900"
-              >12,118 API requests</strong
-            >.
+            You have made a total of <strong class="text-gray-900">12,118 API requests</strong>.
           </div>
           <div class="h-[280px]">
             <canvas id="myChart"></canvas>
@@ -169,9 +139,7 @@ import Tooltip from '@/components/ui/elements/Tooltip';
   };
 
   // Customize the labels to show only every 4 days
-  var customLabels = Array.from({ length: 31 }, (_, i) =>
-    i % 4 === 0 ? `Jan ${i + 1}` : '',
-  );
+  var customLabels = Array.from({ length: 31 }, (_, i) => (i % 4 === 0 ? `Jan ${i + 1}` : ''));
 
   // Chart options
   var options = {

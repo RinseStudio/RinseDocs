@@ -26,9 +26,7 @@ import SelectField from '@/components/ui/elements/SelectField';
     <div
       class="max-h-100vh relative h-[100dvh] w-[480px] max-w-3xl flex-1 overflow-auto rounded-l-xl bg-white shadow-xl"
     >
-      <header
-        class="flex items-center justify-between border-b border-zinc-200 px-4 py-4 pl-6"
-      >
+      <header class="flex items-center justify-between border-b border-zinc-200 px-4 py-4 pl-6">
         <div>
           <h3 class="text-base font-bold text-black">Invite Team Member</h3>
         </div>
@@ -47,46 +45,38 @@ import SelectField from '@/components/ui/elements/SelectField';
           >
         </Button> -->
         <div class="flex justify-end gap-2">
-          <Button size="sm" variant="secondary" @click="dialog = false">
-            Cancel
-          </Button>
+          <Button size="sm" variant="secondary" @click="dialog = false">Cancel</Button>
           <Button size="sm" variant="primary">Invite user</Button>
         </div>
       </header>
       <div class="space-y-6 px-6 py-8">
         <div>
-          <label
-            class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400"
+          <label class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400"
             >First name</label
           >
           <TextField placeholder="Jane" isFluid />
         </div>
 
         <div>
-          <label
-            class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400"
+          <label class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400"
             >Last name</label
           >
           <TextField placeholder="Doe" isFluid />
         </div>
 
         <div>
-          <label
-            class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400"
+          <label class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400"
             >Email</label
           >
           <TextField placeholder="example@comapny.com" type="email" isFluid />
         </div>
 
         <div>
-          <label
-            class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400"
+          <label class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400"
             >User role</label
           >
           <fieldset class="flex">
-            <div
-              class="space-y-4 sm:flex sm:items-center sm:space-x-6 sm:space-y-0"
-            >
+            <div class="space-y-4 sm:flex sm:items-center sm:space-x-6 sm:space-y-0">
               <div class="flex items-center">
                 <input
                   id="email"
@@ -95,9 +85,7 @@ import SelectField from '@/components/ui/elements/SelectField';
                   checked
                   class="h-4 w-4 border-gray-300 text-blue-500 focus:ring-blue-500"
                 />
-                <label
-                  for="email"
-                  class="ml-3 block text-sm font-medium leading-6 text-gray-900"
+                <label for="email" class="ml-3 block text-sm font-medium leading-6 text-gray-900"
                   >Admin</label
                 >
               </div>
@@ -108,9 +96,7 @@ import SelectField from '@/components/ui/elements/SelectField';
                   type="radio"
                   class="h-4 w-4 border-gray-300 text-blue-500 focus:ring-blue-500"
                 />
-                <label
-                  for="sms"
-                  class="ml-3 block text-sm font-medium leading-6 text-gray-900"
+                <label for="sms" class="ml-3 block text-sm font-medium leading-6 text-gray-900"
                   >User</label
                 >
               </div>
@@ -123,31 +109,20 @@ import SelectField from '@/components/ui/elements/SelectField';
 
   <div class="px-7 py-4">
     <h1 class="mb-2 text-lg font-bold text-black">Organization Settings</h1>
-    <p class="text-sm text-gray-600">
-      View or update your organization and billing settings.
-    </p>
+    <p class="text-sm text-gray-600">View or update your organization and billing settings.</p>
   </div>
   <div>
-    <Tab paddingClass="px-7">
-      <Tab.Item
-        onClick="link('/components/templates/organization-settings/general')"
-      >
+    <Tab className="px-7">
+      <Tab.Item onClick="link('/components/templates/organization-settings/general')">
         General
       </Tab.Item>
-      <Tab.Item
-        onClick="link('/components/templates/organization-settings/users')"
-        isActive
-      >
+      <Tab.Item onClick="link('/components/templates/organization-settings/users')" isActive>
         Users
       </Tab.Item>
-      <Tab.Item
-        onClick="link('/components/templates/organization-settings/billing')"
-      >
+      <Tab.Item onClick="link('/components/templates/organization-settings/billing')">
         Billing
       </Tab.Item>
-      <Tab.Item
-        onClick="link('/components/templates/organization-settings/environment')"
-      >
+      <Tab.Item onClick="link('/components/templates/organization-settings/environment')">
         Environment
       </Tab.Item>
       <!-- <Tab.Item onClick="link('/components/templates/organization-settings/authentication')">Authentication</Tab.Item> -->
@@ -168,10 +143,8 @@ import SelectField from '@/components/ui/elements/SelectField';
             stroke-linecap="round"
             stroke-linejoin="round"
             class="lucide lucide-user-plus"
-            ><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle
-              cx="9"
-              cy="7"
-              r="4"></circle><line x1="19" x2="19" y1="8" y2="14"></line><line
+            ><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"
+            ></circle><line x1="19" x2="19" y1="8" y2="14"></line><line
               x1="22"
               x2="16"
               y1="11"
@@ -216,9 +189,10 @@ import SelectField from '@/components/ui/elements/SelectField';
               stroke-linecap="round"
               stroke-linejoin="round"
               class="lucide lucide-users"
-              ><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"
-              ></path><circle cx="9" cy="7" r="4"></circle><path
-                d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path
+              ><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle
+                cx="9"
+                cy="7"
+                r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path
                 d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg
             >
              Active Members
@@ -231,93 +205,63 @@ import SelectField from '@/components/ui/elements/SelectField';
             <Table.Header>
               <Table.Row>
                 <Table.Head className="w-[180px]">
-                  <Button
-                    size="sm"
-                    variant="ghost"
-                    @click="updateHeaderState(0)"
-                  >
+                  <Button size="sm" variant="ghost" @click="updateHeaderState(0)">
                     Member since
                     <i
                       x-cloak
                       x-show="sortSelection == 0"
                       class="fa-solid fa-fw ml-1 text-[11px]"
-                      :class="isAscending == true ? 'fa-angle-down' : 'fa-angle-up'"
-                    ></i>
+                      :class="isAscending == true ? 'fa-angle-down' : 'fa-angle-up'"></i>
                   </Button>
                 </Table.Head>
                 <Table.Head className="w-[180px]">
-                  <Button
-                    size="sm"
-                    variant="ghost"
-                    @click="updateHeaderState(1)"
-                  >
+                  <Button size="sm" variant="ghost" @click="updateHeaderState(1)">
                     First name
                     <i
                       x-cloak
                       x-show="sortSelection == 1"
                       class="fa-solid fa-fw ml-1 text-[11px]"
-                      :class="isAscending == true ? 'fa-angle-down' : 'fa-angle-up'"
-                    ></i>
+                      :class="isAscending == true ? 'fa-angle-down' : 'fa-angle-up'"></i>
                   </Button>
                 </Table.Head>
                 <Table.Head className="w-[180px]">
-                  <Button
-                    size="sm"
-                    variant="ghost"
-                    @click="updateHeaderState(2)"
-                  >
+                  <Button size="sm" variant="ghost" @click="updateHeaderState(2)">
                     Last name
                     <i
                       x-cloak
                       x-show="sortSelection == 2"
                       class="fa-solid fa-fw ml-1 text-[11px]"
-                      :class="isAscending == true ? 'fa-angle-down' : 'fa-angle-up'"
-                    ></i>
+                      :class="isAscending == true ? 'fa-angle-down' : 'fa-angle-up'"></i>
                   </Button>
                 </Table.Head>
                 <Table.Head className="w-[180px]">
-                  <Button
-                    size="sm"
-                    variant="ghost"
-                    @click="updateHeaderState(3)"
-                  >
+                  <Button size="sm" variant="ghost" @click="updateHeaderState(3)">
                     Email
                     <i
                       x-cloak
                       x-show="sortSelection == 3"
                       class="fa-solid fa-fw ml-1 text-[11px]"
-                      :class="isAscending == true ? 'fa-angle-down' : 'fa-angle-up'"
-                    ></i>
+                      :class="isAscending == true ? 'fa-angle-down' : 'fa-angle-up'"></i>
                   </Button>
                 </Table.Head>
                 <Table.Head className="w-[180px]">
-                  <Button
-                    size="sm"
-                    variant="ghost"
-                    @click="updateHeaderState(4)"
-                  >
+                  <Button size="sm" variant="ghost" @click="updateHeaderState(4)">
                     User role
                     <i
                       x-cloak
                       x-show="sortSelection == 4"
                       class="fa-solid fa-fw ml-1 text-[11px]"
-                      :class="isAscending == true ? 'fa-angle-down' : 'fa-angle-up'"
-                    ></i>
+                      :class="isAscending == true ? 'fa-angle-down' : 'fa-angle-up'"></i>
                   </Button>
                 </Table.Head>
                 <Table.Head className="w-[180px]">
-                  <Button
-                    size="sm"
-                    variant="ghost"
-                    @click="updateHeaderState(5)"
-                  >
+                  <Button size="sm" variant="ghost" @click="updateHeaderState(5)">
                     2FA
                     <i
                       x-cloak
                       x-show="sortSelection == 5"
                       class="fa-solid fa-fw ml-1 text-[11px]"
-                      :class="isAscending == true ? 'fa-angle-down' : 'fa-angle-up'"
-                    ></i>
+                      :class="isAscending == true ? 'fa-angle-down' : 'fa-angle-up'"></i>
                   </Button>
                 </Table.Head>
                 <Table.Head />
@@ -333,31 +277,21 @@ import SelectField from '@/components/ui/elements/SelectField';
                 <Table.Cell className="px-4">Enabled</Table.Cell>
                 <Table.Cell className="px-4 py-3">
                   <div class="flex justify-end gap-1.5">
-                    <Button
-                      size="xs"
-                      variant="outline"
-                      @click="updateHeaderState(5)"
-                    >
+                    <Button size="xs" variant="outline" @click="updateHeaderState(5)">
                       Edit role
                       <i
                         x-cloak
                         x-show="sortSelection == 5"
                         class="fa-solid fa-fw ml-1 text-[11px]"
-                        :class="isAscending == true ? 'fa-angle-down' : 'fa-angle-up'"
-                      ></i>
+                        :class="isAscending == true ? 'fa-angle-down' : 'fa-angle-up'"></i>
                     </Button>
-                    <Button
-                      size="xs"
-                      variant="outline"
-                      @click="updateHeaderState(5)"
-                    >
+                    <Button size="xs" variant="outline" @click="updateHeaderState(5)">
                       Remove
                       <i
                         x-cloak
                         x-show="sortSelection == 5"
                         class="fa-solid fa-fw ml-1 text-[11px]"
-                        :class="isAscending == true ? 'fa-angle-down' : 'fa-angle-up'"
-                      ></i>
+                        :class="isAscending == true ? 'fa-angle-down' : 'fa-angle-up'"></i>
                     </Button>
                   </div>
                 </Table.Cell>
@@ -371,31 +305,21 @@ import SelectField from '@/components/ui/elements/SelectField';
                 <Table.Cell className="px-4">Enabled</Table.Cell>
                 <Table.Cell className="px-4 py-3">
                   <div class="flex justify-end gap-1.5">
-                    <Button
-                      size="xs"
-                      variant="outline"
-                      @click="updateHeaderState(5)"
-                    >
+                    <Button size="xs" variant="outline" @click="updateHeaderState(5)">
                       Edit role
                       <i
                         x-cloak
                         x-show="sortSelection == 5"
                         class="fa-solid fa-fw ml-1 text-[11px]"
-                        :class="isAscending == true ? 'fa-angle-down' : 'fa-angle-up'"
-                      ></i>
+                        :class="isAscending == true ? 'fa-angle-down' : 'fa-angle-up'"></i>
                     </Button>
-                    <Button
-                      size="xs"
-                      variant="outline"
-                      @click="updateHeaderState(5)"
-                    >
+                    <Button size="xs" variant="outline" @click="updateHeaderState(5)">
                       Remove
                       <i
                         x-cloak
                         x-show="sortSelection == 5"
                         class="fa-solid fa-fw ml-1 text-[11px]"
-                        :class="isAscending == true ? 'fa-angle-down' : 'fa-angle-up'"
-                      ></i>
+                        :class="isAscending == true ? 'fa-angle-down' : 'fa-angle-up'"></i>
                     </Button>
                   </div>
                 </Table.Cell>
@@ -409,31 +333,21 @@ import SelectField from '@/components/ui/elements/SelectField';
                 <Table.Cell className="px-4">Enabled</Table.Cell>
                 <Table.Cell className="px-4 py-3">
                   <div class="flex justify-end gap-1.5">
-                    <Button
-                      size="xs"
-                      variant="outline"
-                      @click="updateHeaderState(5)"
-                    >
+                    <Button size="xs" variant="outline" @click="updateHeaderState(5)">
                       Edit role
                       <i
                         x-cloak
                         x-show="sortSelection == 5"
                         class="fa-solid fa-fw ml-1 text-[11px]"
-                        :class="isAscending == true ? 'fa-angle-down' : 'fa-angle-up'"
-                      ></i>
+                        :class="isAscending == true ? 'fa-angle-down' : 'fa-angle-up'"></i>
                     </Button>
-                    <Button
-                      size="xs"
-                      variant="outline"
-                      @click="updateHeaderState(5)"
-                    >
+                    <Button size="xs" variant="outline" @click="updateHeaderState(5)">
                       Remove
                       <i
                         x-cloak
                         x-show="sortSelection == 5"
                         class="fa-solid fa-fw ml-1 text-[11px]"
-                        :class="isAscending == true ? 'fa-angle-down' : 'fa-angle-up'"
-                      ></i>
+                        :class="isAscending == true ? 'fa-angle-down' : 'fa-angle-up'"></i>
                     </Button>
                   </div>
                 </Table.Cell>
@@ -441,10 +355,7 @@ import SelectField from '@/components/ui/elements/SelectField';
             </Table.Body>
             <Table.Footer>
               <Table.Row className="bg-zinc-50">
-                <Table.Cell
-                  colspan="7"
-                  className="px-4 py-3 text-left font-medium text-gray-900"
-                >
+                <Table.Cell colspan="7" className="px-4 py-3 text-left font-medium text-gray-900">
                   Total 3 users
                 </Table.Cell>
               </Table.Row>

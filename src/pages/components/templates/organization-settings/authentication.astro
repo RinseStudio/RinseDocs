@@ -11,36 +11,24 @@ import Dropdown from '@/components/ui/modules/Dropdown';
 <Layout layoutClass="">
   <div class="px-7 py-4">
     <h1 class="mb-2 text-lg font-bold text-black">Organization Settings</h1>
-    <p class="text-sm text-gray-600">
-      View or update your organization and billing settings.
-    </p>
+    <p class="text-sm text-gray-600">View or update your organization and billing settings.</p>
   </div>
   <div>
-    <Tab paddingClass="px-7">
-      <Tab.Item
-        onClick="link('/components/templates/organization-settings/general')"
-      >
+    <Tab className="px-7">
+      <Tab.Item onClick="link('/components/templates/organization-settings/general')">
         General
       </Tab.Item>
-      <Tab.Item
-        onClick="link('/components/templates/organization-settings/users')"
-      >
-        Users
-      </Tab.Item>
-      <Tab.Item
-        onClick="link('/components/templates/organization-settings/billing')"
-      >
+      <Tab.Item onClick="link('/components/templates/organization-settings/users')">Users</Tab.Item>
+      <Tab.Item onClick="link('/components/templates/organization-settings/billing')">
         Billing
       </Tab.Item>
-      <Tab.Item
-        onClick="link('/components/templates/organization-settings/environment')"
-      >
+      <Tab.Item onClick="link('/components/templates/organization-settings/environment')">
         Environment
       </Tab.Item>
       <!-- <Tab.Item onClick="link('/components/templates/organization-settings/authentication')" isActive>Authentication</Tab.Item> -->
     </Tab>
 
-    <!-- <Tab paddingClass="px-7">
+    <!-- <Tab className="px-7">
       <Tab.Item>Users</Tab.Item>
       <Tab.Item>Billing</Tab.Item>
       <Tab.Item>Environment</Tab.Item>
@@ -62,9 +50,10 @@ import Dropdown from '@/components/ui/modules/Dropdown';
             stroke-linecap="round"
             stroke-linejoin="round"
             class="lucide lucide-key-round"
-            ><path
-              d="M2 18v3c0 .6.4 1 1 1h4v-3h3v-3h2l1.4-1.4a6.5 6.5 0 1 0-4-4Z"
-            ></path><circle cx="16.5" cy="7.5" r=".5"></circle></svg
+            ><path d="M2 18v3c0 .6.4 1 1 1h4v-3h3v-3h2l1.4-1.4a6.5 6.5 0 1 0-4-4Z"></path><circle
+              cx="16.5"
+              cy="7.5"
+              r=".5"></circle></svg
           >
            Authentication
         </h3>
@@ -79,23 +68,18 @@ import Dropdown from '@/components/ui/modules/Dropdown';
                     >Require 2FA</label
                   >
                   <p class="font-regular mb-4 text-xs text-gray-600">
-                    Required Two-Factor Authentication adds an extra layer of
-                    security for your organization. When required, users that
-                    have Two-Factor Authentication disabled will be prompted to
-                    set this up on their next login.
+                    Required Two-Factor Authentication adds an extra layer of security for your
+                    organization. When required, users that have Two-Factor Authentication disabled
+                    will be prompted to set this up on their next login.
                   </p>
                   <p class="font-regular text-xs text-gray-600">
-                    Make sure you have changed your integration of Castle.js to
-                    support Secure Mode before turning this on.
+                    Make sure you have changed your integration of Castle.js to support Secure Mode
+                    before turning this on.
                   </p>
                 </div>
               </div>
               <div class="flex justify-end">
-                <Button
-                  onClick={'isOpen = !isOpen'}
-                  size="sm"
-                  variant="primary"
-                >
+                <Button onClick={'isOpen = !isOpen'} size="sm" variant="primary">
                   Enable secure mode
                 </Button>
               </div>
@@ -111,19 +95,14 @@ import Dropdown from '@/components/ui/modules/Dropdown';
                     >SSO enabled</label
                   >
                   <p class="font-regular mb-4 text-xs text-gray-600">
-                    Single sign-on (SSO) is an authentication method that
-                    enables users to securely authenticate with multiple
-                    applications and websites by using just one set of
+                    Single sign-on (SSO) is an authentication method that enables users to securely
+                    authenticate with multiple applications and websites by using just one set of
                     credentials.
                   </p>
                 </div>
               </div>
               <div class="flex justify-end">
-                <Button
-                  onClick={'isOpen = !isOpen'}
-                  size="sm"
-                  variant="primary"
-                >
+                <Button onClick={'isOpen = !isOpen'} size="sm" variant="primary">
                   Enable single sign-on
                 </Button>
               </div>
@@ -139,17 +118,12 @@ import Dropdown from '@/components/ui/modules/Dropdown';
                     >Google Login enabled</label
                   >
                   <p class="font-regular mb-4 text-xs text-gray-600">
-                    Allows users to sign in using their Google account
-                    credentials.
+                    Allows users to sign in using their Google account credentials.
                   </p>
                 </div>
               </div>
               <div class="flex justify-end">
-                <Button
-                  onClick={'isOpen = !isOpen'}
-                  size="sm"
-                  variant="primary"
-                >
+                <Button onClick={'isOpen = !isOpen'} size="sm" variant="primary">
                   Enable Google login
                 </Button>
               </div>
@@ -170,10 +144,7 @@ import Dropdown from '@/components/ui/modules/Dropdown';
             stroke-linecap="round"
             stroke-linejoin="round"
             class="lucide lucide-circle-user"
-            ><circle cx="12" cy="12" r="10"></circle><circle
-              cx="12"
-              cy="10"
-              r="3"></circle><path
+            ><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="10" r="3"></circle><path
               d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662"></path></svg
           >
            OpenID Connect Settings
@@ -207,9 +178,7 @@ import Dropdown from '@/components/ui/modules/Dropdown';
                         @click="isVisible = !isVisible"
                         class="absolute right-0 top-0 flex aspect-square h-full items-center justify-center text-sm text-gray-500 hover:text-gray-600"
                       >
-                        <i
-                          class="fa-solid"
-                          :class="isVisible ? 'fa-eye-slash' : 'fa-eye'"></i>
+                        <i class="fa-solid" :class="isVisible ? 'fa-eye-slash' : 'fa-eye'"></i>
                       </button>
                     </Fragment>
                   </TextField>
@@ -226,12 +195,8 @@ import Dropdown from '@/components/ui/modules/Dropdown';
                     <Fragment slot="dropdown-content">
                       <Dropdown.Group>
                         <Dropdown.Items>
-                          <Dropdown.Item onClick={'isOpen = !isOpen'}>
-                            False
-                          </Dropdown.Item>
-                          <Dropdown.Item onClick={'isOpen = !isOpen'}>
-                            True
-                          </Dropdown.Item>
+                          <Dropdown.Item onClick={'isOpen = !isOpen'}>False</Dropdown.Item>
+                          <Dropdown.Item onClick={'isOpen = !isOpen'}>True</Dropdown.Item>
                         </Dropdown.Items>
                       </Dropdown.Group>
                     </Fragment>
@@ -249,12 +214,8 @@ import Dropdown from '@/components/ui/modules/Dropdown';
                     <Fragment slot="dropdown-content">
                       <Dropdown.Group>
                         <Dropdown.Items>
-                          <Dropdown.Item onClick={'isOpen = !isOpen'}>
-                            Admin
-                          </Dropdown.Item>
-                          <Dropdown.Item onClick={'isOpen = !isOpen'}>
-                            User
-                          </Dropdown.Item>
+                          <Dropdown.Item onClick={'isOpen = !isOpen'}>Admin</Dropdown.Item>
+                          <Dropdown.Item onClick={'isOpen = !isOpen'}>User</Dropdown.Item>
                         </Dropdown.Items>
                       </Dropdown.Group>
                     </Fragment>
@@ -279,8 +240,7 @@ import Dropdown from '@/components/ui/modules/Dropdown';
                     >Castle Login Redirect Url</label
                   >
                   <p class="font-regular mb-4 text-xs text-gray-600">
-                    The Login Redirect URL that you must set in your Identity
-                    Provider settings.
+                    The Login Redirect URL that you must set in your Identity Provider settings.
                   </p>
                   <div
                     class="flex items-center justify-between rounded-lg bg-zinc-100 text-sm font-medium text-gray-900"
