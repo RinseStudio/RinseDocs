@@ -2,15 +2,36 @@
 import { twMerge } from 'tailwind-merge';
 import propMerge from 'prop-merge';
 
-const { className = null, ...props } = Astro.props;
+const { className = null, placeholder = 'Select option', ...props } = Astro.props;
 
 const defaultProps = {
-  'x-data': '{isOpen: false}',
+  'x-data': `{isOpen: false, selection: '${placeholder}'}`,
 };
 ---
 
-<div {...propMerge(defaultProps, props)} class={twMerge('relative', className)}>
+<div
+  x-data="Select"
+  class={twMerge('relative', className)}
+  @update-validation.window="updateValidation($event)"
+  {...props}
+>
   <slot />
 </div>
 
-<!-- x-data={props['x-data'] == undefined ? '{isOpen: false}' : props['x-data']} -->
+<script>
+  import Alpine from 'alpinejs';
+
+  document.addEventListener('alpine:init', () => {
+    Alpine.data('Select', () => ({
+      isOpen: true,
+      selection: 'Select option',
+      validation: 'default',
+      updateValidation(event) {
+        console.log(this.$el.getAttribute('data-id'));
+        if (event.detail.targetId === this.$el.getAttribute('data-id')) {
+          this.validation = event.detail.newValidation;
+        }
+      },
+    }));
+  });
+</script>

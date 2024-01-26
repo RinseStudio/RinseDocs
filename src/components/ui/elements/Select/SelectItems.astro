@@ -3,6 +3,6 @@ import { twMerge } from 'tailwind-merge';
 const { className = null, ...props } = Astro.props;
 ---
 
-<nav class={twMerge('space-y-px', className)} {...props}>
+<ul class={twMerge('space-y-px', className)} {...props}>
   <slot />
-</nav>
+</ul>

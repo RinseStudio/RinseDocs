@@ -1,22 +1,27 @@
 import Select from './Select.astro';
-import Trigger from './Trigger.astro';
-import Value from './Value.astro';
-import Content from './Content.astro';
-import Group from './Group.astro';
-import Header from './Header.astro';
-import Item from './Item.astro';
-import Items from './Items.astro';
-import Separator from './Separator.astro';
+import SelectNative from './SelectNative.astro';
+import SelectTrigger from './SelectTrigger.astro';
+import SelectField from './SelectField.astro';
+import SelectContent from './SelectContent.astro';
+import SelectGroup from './SelectGroup.astro';
+import SelectHeader from './SelectHeader.astro';
+import SelectLabel from './SelectLabel.astro';
+import SelectItems from './SelectItems.astro';
+import SelectItem from './SelectItem.astro';
+import SelectOption from './SelectOption.astro';
+import SelectSeparator from './SelectSeparator.astro';
 
-const Component = Object.assign(Select, {
-  Group,
-  Trigger,
-  Value,
-  Content,
-  Header,
-  Item,
-  Items,
-  Separator,
-});
-
-export default Component;
+export {
+  Select,
+  SelectNative,
+  SelectGroup,
+  SelectTrigger,
+  SelectField,
+  SelectContent,
+  SelectHeader,
+  SelectLabel,
+  SelectItems,
+  SelectItem,
+  SelectOption,
+  SelectSeparator,
+};

@@ -11,21 +11,14 @@ import Dropdown from '@/components/ui/modules/Dropdown';
 <Layout layoutClass="">
   <div class="px-7 py-4">
     <h1 class="mb-2 text-lg font-bold text-black">Account Settings</h1>
-    <p class="text-sm text-gray-600">
-      View or update your personal details and security settings.
-    </p>
+    <p class="text-sm text-gray-600">View or update your personal details and security settings.</p>
   </div>
   <div>
     <Tab paddingClass="px-7">
-      <Tab.Item
-        onClick="link('/components/templates/account-settings/personal')"
-        isActive
-      >
+      <Tab.Item onClick="link('/components/templates/account-settings/personal')" isActive>
         Personal Details
       </Tab.Item>
-      <Tab.Item
-        onClick="link('/components/templates/account-settings/security')"
-      >
+      <Tab.Item onClick="link('/components/templates/account-settings/security')">
         Security
       </Tab.Item>
     </Tab>
@@ -45,10 +38,7 @@ import Dropdown from '@/components/ui/modules/Dropdown';
             stroke-linecap="round"
             stroke-linejoin="round"
             class="lucide lucide-circle-user"
-            ><circle cx="12" cy="12" r="10"></circle><circle
-              cx="12"
-              cy="10"
-              r="3"></circle><path
+            ><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="10" r="3"></circle><path
               d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662"></path></svg
           >
            Personal Details
@@ -58,36 +48,32 @@ import Dropdown from '@/components/ui/modules/Dropdown';
           <Card.Group>
             <div class="space-y-6">
               <div>
-                <label
-                  class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400"
+                <label class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400"
                   >First name</label
                 >
                 <TextField value="Jane" isFluid />
               </div>
               <div>
-                <label
-                  class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400"
+                <label class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400"
                   >Last name</label
                 >
                 <TextField value="Jane" isFluid />
               </div>
               <div>
-                <label
-                  class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400"
+                <label class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400"
                   >Phone</label
                 >
                 <TextField value="+1 415 918 2944" isFluid />
               </div>
               <div>
-                <label
-                  class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400"
+                <label class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400"
                   >Email</label
                 >
-                <TextField value="jane@pigibank.com" isFluid />
+                <TextField validation="error" value="jane@@5pigibank.com" isFluid />
+                <div class="mt-2 text-xs text-red-500">Please provide a valid email.</div>
               </div>
               <div>
-                <label
-                  class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400"
+                <label class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400"
                   >Timezone</label
                 >
                 <Dropdown position="bottomEnd" widthClass="w-full">
@@ -95,26 +81,16 @@ import Dropdown from '@/components/ui/modules/Dropdown';
                   <slot slot="dropdown-content">
                     <Dropdown.Group>
                       <Dropdown.Items>
-                        <Dropdown.Item onClick={'isOpen = !isOpen'}>
-                          Africa/Abidjan
-                        </Dropdown.Item>
-                        <Dropdown.Item onClick={'isOpen = !isOpen'}>
-                          Africa/Abidjan
-                        </Dropdown.Item>
-                        <Dropdown.Item onClick={'isOpen = !isOpen'}>
-                          Africa/Abidjan
-                        </Dropdown.Item>
+                        <Dropdown.Item onClick={'isOpen = !isOpen'}>Africa/Abidjan</Dropdown.Item>
+                        <Dropdown.Item onClick={'isOpen = !isOpen'}>Africa/Abidjan</Dropdown.Item>
+                        <Dropdown.Item onClick={'isOpen = !isOpen'}>Africa/Abidjan</Dropdown.Item>
                       </Dropdown.Items>
                     </Dropdown.Group>
                   </slot>
                 </Dropdown>
               </div>
               <div class="flex justify-end">
-                <Button
-                  onClick={'isOpen = !isOpen'}
-                  size="sm"
-                  variant="primary"
-                >
+                <Button onClick={'isOpen = !isOpen'} size="sm" variant="primary">
                   Save settings
                 </Button>
               </div>

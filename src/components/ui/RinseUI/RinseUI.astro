@@ -34,11 +34,11 @@ async function loadFileContents(relativeFilePath) {
   }
 }
 
-console.log(src);
-// Example usage
-const fileContent = await loadFileContents('src' + src);
+let srcContent;
 
-// console.log(fileContent);
+if (src != null) {
+  srcContent = await loadFileContents('src' + src);
+}
 ---
 
 <div
@@ -65,15 +65,22 @@ const fileContent = await loadFileContents('src' + src);
         }"
         @click="tab = 'preview'">Preview</button
       >
-      <button
-        class="h-10 text-xs font-semibold text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"
-        :class="{
+      {
+        srcContent != null && (
+          <button
+            class="h-10 text-xs font-semibold text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"
+            x-bind:class="{
           'text-white': tab == 'code', 
           'text-gray-400 hover:text-white': tab != 'code' && tab != 'preview',
           'text-gray-400 hover:text-gray-600 dark:hover:text-gray-200': tab != 'code' && tab == 'preview',
         }"
-        @click="tab = 'code'">Code</button
-      >
+            x-on:click="tab = 'code'"
+          >
+            Code
+          </button>
+        )
+      }
+
       <button
         class="h-10 text-xs font-semibold text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"
         :class="{
@@ -173,15 +180,19 @@ const fileContent = await loadFileContents('src' + src);
       </div>
     </div>
 
-    <div
-      x-show="tab == 'code'"
-      x-cloak
-      class="max-h-[500px] overflow-auto text-sm"
-      x-ref="codeContainer"
-      data-tab-name="code"
-    >
-      <Code code={fileContent} lang="astro" theme="css-variables" wrap />
-    </div>
+    {
+      srcContent != null && (
+        <div
+          x-show="tab == 'code'"
+          x-cloak
+          class="max-h-[500px] overflow-auto text-sm"
+          x-ref="codeContainer"
+          data-tab-name="code"
+        >
+          <Code code={srcContent} lang="astro" theme="css-variables" wrap />
+        </div>
+      )
+    }
 
     <div
       x-show="tab == 'output'"
