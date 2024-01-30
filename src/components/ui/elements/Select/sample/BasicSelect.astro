@@ -4,75 +4,58 @@ import {
   SelectNative,
   SelectGroup,
   SelectTrigger,
-  SelectField,
   SelectContent,
   SelectHeader,
   SelectLabel,
-  SelectItems,
+  SelectList,
   SelectItem,
   SelectOption,
   SelectSeparator,
 } from '@/components/ui/elements/Select';
+
+const data = `SelectField({
+  'className.validation.success': 'bg-green-500'
+})`;
 ---
 
 <div class="justify-content flex flex-col items-center gap-4">
-  <Select className="w-[200px]" data-id="component1">
-    <SelectTrigger>
-      <SelectField isFluid placeholder="Select option" />
-    </SelectTrigger>
-    <SelectContent position="bottomStart" className="w-[200px]">
-      <SelectGroup>
-        <SelectLabel>Fruits</SelectLabel>
-        <SelectItems>
-          <SelectItem value="Apple">Apple</SelectItem>
-          <SelectItem value="Cherry" @click="isOpen = false">Cherry</SelectItem>
-          <SelectItem value="Tomato">Tomato</SelectItem>
-        </SelectItems>
-      </SelectGroup>
-    </SelectContent>
-  </Select>
-
-  <Select className="w-[200px]">
-    <SelectTrigger>
-      <SelectField isFluid placeholder="Select option" />
-    </SelectTrigger>
-    <SelectContent position="bottomStart" className="w-[200px]">
-      <SelectGroup>
-        <SelectLabel>Fruits</SelectLabel>
-        <SelectItems>
-          <SelectItem value="Apple">Apple</SelectItem>
-          <SelectItem value="Cherry" @click="isOpen = false">Cherry</SelectItem>
-          <SelectItem value="Tomato">Tomato</SelectItem>
-        </SelectItems>
-      </SelectGroup>
-    </SelectContent>
-  </Select>
-
-  <button
-    @click="$dispatch('update-validation', { targetId: 'component1', newValidation: 'success' })"
+  <Select
+    className="w-[200px]"
+    size="md"
+    validation="default"
+    data={{
+      size: 'md',
+    }}
   >
-    Update Validation for Component 1
-  </button>
-
-  <!-- <Select className="w-[200px]" validation="success">
-    <SelectTrigger>
-      <SelectField isFluid placeholder="Select option" />
-    </SelectTrigger>
+    <SelectTrigger>Selet option</SelectTrigger>
     <SelectContent position="bottomStart" className="w-[200px]">
       <SelectGroup>
         <SelectLabel>Fruits</SelectLabel>
-        <SelectItems>
-          <SelectItem value="Apple">Apple</SelectItem>
-          <SelectItem value="Cherry" @click="isOpen = false">Cherry</SelectItem>
-          <SelectItem value="Tomato">Tomato</SelectItem>
-        </SelectItems>
+        <SelectList>
+          <SelectItem value="apple">Apple</SelectItem>
+          <SelectItem value="cherry">
+            <div class="flex items-center">
+              <div class="mr-1 h-2 w-2 bg-red-500"></div> Cherry
+            </div>
+          </SelectItem>
+          <SelectItem value="tomato">Tomato</SelectItem>
+        </SelectList>
       </SelectGroup>
     </SelectContent>
   </Select>
 
   <SelectNative>
     <SelectOption value="Apple">Apple</SelectOption>
-    <SelectOption value="Cherry">Cherry</SelectOption>
+    <SelectOption value="Cherry" @click="{isOpen = false}">Cherry</SelectOption>
     <SelectOption value="Tomato">Tomato</SelectOption>
-  </SelectNative> -->
+  </SelectNative>
+
+  <!-- <button
+    @click="$dispatch('update-state', { 
+    id: 'component1', 
+    state: { isOpen: true, className.field.error: 'bg-black'} 
+  })"
+  >
+    Update Validation for Component 1
+  </button> -->
 </div>

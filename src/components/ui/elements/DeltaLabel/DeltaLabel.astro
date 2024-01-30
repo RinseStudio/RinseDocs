@@ -1,23 +1,65 @@
 ---
 import { twMerge } from 'tailwind-merge';
-const { data, isVisible, className, ...props } = Astro.props;
+const { data, trend, variant, className, ...props } = Astro.props;
 
 const defaultData = {
-  isVisible: isVisible,
+  trend: trend,
+  variant: variant,
 };
 
 const xData = JSON.stringify({ ...defaultData, ...data }, null, 2).replace(/"/g, `'`);
 ---
 
-<div x-data={`Tooltip(${xData})`} class={twMerge('', className)} {...props}>
+<div
+  x-data={`DeltaLabel(${xData})`}
+  class={twMerge(
+    'flex h-6 items-center gap-1 rounded-md bg-gray-100 px-2 text-xs font-semibold leading-none text-gray-600',
+    className,
+  )}
+  x-bind:class={`{ 
+    [getClass('trend.rise.pill')]: trend == 'rise' && variant == 'pill',
+    [getClass('trend.drop.pill')]: trend == 'drop' && variant == 'pill',
+    [getClass('trend.neutral.pill')]: trend == 'neutral' && variant == 'pill',
+    [getClass('trend.rise.text')]: trend == 'rise' && variant == 'text',
+    [getClass('trend.drop.text')]: trend == 'drop' && variant == 'text',
+    [getClass('trend.neutral.text')]: trend == 'neutral' && variant == 'text',
+
+    [getClass('variant.pill')]: variant == 'pill',
+    [getClass('variant.text')]: variant == 'text',
+  }`}
+>
+  <i class="fa-solid fa-caret-up" x-show="trend == 'rise'"></i>
+  <i class="fa-solid fa-caret-down" x-show="trend == 'drop'" x-cloak></i>
   <slot />
 </div>
+
 <script>
   import Alpine from 'alpinejs';
 
   document.addEventListener('alpine:init', () => {
-    Alpine.data('Tooltip', (initialState = {}) => ({
-      isVisible: initialState.isVisible,
+    Alpine.data('DeltaLabel', (initialState = {}) => ({
+      variant: initialState.variant || 'pill',
+      trend: initialState.trend || 'neutral',
+      className: {
+        variant: {
+          pill: 'flex h-6 items-center gap-1 rounded-md px-2 ',
+          text: '',
+        },
+        trend: {
+          rise: {
+            pill: 'bg-green-100 text-green-600',
+            text: 'text-green-600',
+          },
+          drop: {
+            pill: 'bg-red-100 text-red-600',
+            text: 'text-red-600',
+          },
+          neutral: {
+            pill: 'bg-gray-100 text-gray-600',
+            text: 'text-gray-600',
+          },
+        },
+      },
       init() {
         this.setState(initialState);
       },

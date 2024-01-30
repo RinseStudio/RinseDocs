@@ -1,0 +1,17 @@
+---
+import { twMerge } from 'tailwind-merge';
+const { name, isActive, className, ...props } = Astro.props;
+---
+
+<a
+  data-tab-name={name}
+  class="cursor-pointer py-3 text-[13px] font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-500"
+  x-bind:class={`{ 
+    [getClass('trigger.default')]: selection != '${name}',
+    [getClass('trigger.active')]: selection == '${name}',
+  }`}
+  x-on:click={`switchTab('${name}')`}
+  {...props}
+>
+  <slot />
+</a>

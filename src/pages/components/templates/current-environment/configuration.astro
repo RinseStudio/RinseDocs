@@ -15,12 +15,15 @@ import Dropdown from '@/components/ui/modules/Dropdown';
   </div>
   <div>
     <Tab className="px-7">
-      <Tab.Item onClick="link('/components/templates/current-environment/configuration')" isActive>
+      <TabTrigger
+        onClick="link('/components/templates/current-environment/configuration')"
+        isActive
+      >
         Configuration
-      </Tab.Item>
-      <Tab.Item onClick="link('/components/templates/current-environment/integrations')">
+      </TabTrigger>
+      <TabTrigger onClick="link('/components/templates/current-environment/integrations')">
         Integrations
-      </Tab.Item>
+      </TabTrigger>
     </Tab>
   </div>
   <div class="px-7 py-10">

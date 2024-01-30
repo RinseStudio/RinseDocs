@@ -1,12 +1,43 @@
 ---
 import { twMerge } from 'tailwind-merge';
-const {
-  className = null,
-
-  ...props
-} = Astro.props;
+const { className, ...props } = Astro.props;
 ---
 
-<div class="relative" x-on:click="isOpen = !isOpen" x-ref="selectTrigger">
-  <slot />
-</div>
+<button
+  class={twMerge(
+    'relative flex h-9 py-0 items-center rounded-md border-0 gap-3 bg-white px-3 text-[13px] text-gray-900 shadow-sm ring-1 ring-inset ring-zinc-950/10 placeholder:text-gray-400 hover:ring-zinc-950/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500 disabled:ring-gray-200 dark:bg-zinc-100/[0.06] dark:text-gray-200 dark:ring-zinc-50/10 dark:hover:ring-zinc-50/20 dark:focus-visible:ring-blue-500 dark:disabled:bg-zinc-100/[0.06] dark:disabled:text-gray-400',
+    className,
+  )}
+  x-bind:class="{ 
+    [getClass('trigger.validation.default')]: validation == 'default',
+    [getClass('trigger.validation.success')]: validation == 'success' ,
+    [getClass('trigger.validation.error')]: validation == 'error', 
+    [getClass('trigger.size.xs')]: size == 'xs',
+    [getClass('trigger.size.sm')]: size == 'sm',
+    [getClass('trigger.size.md')]: size == 'md',
+    [getClass('trigger.size.lg')]: size == 'lg',
+    [getClass('trigger.size.xl')]: size == 'xl' 
+  }"
+  @click="isOpen = !isOpen"
+  x-ref="selectTrigger"
+  {...props}
+>
+  <div class="flex-1 text-left" data-select-field>
+    <slot />
+  </div>
+  <div class="flex-none text-gray-400">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="14"
+      height="14"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="lucide lucide-chevrons-up-down"
+      ><path d="m7 15 5 5 5-5"></path><path d="m7 9 5-5 5 5"></path></svg
+    >
+  </div>
+</button>

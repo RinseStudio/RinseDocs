@@ -1,23 +1,33 @@
 ---
 import { twMerge } from 'tailwind-merge';
-const { data, isVisible, className, ...props } = Astro.props;
+const { data, selection, className, ...props } = Astro.props;
 
 const defaultData = {
-  isVisible: isVisible,
+  selection: selection,
 };
 
 const xData = JSON.stringify({ ...defaultData, ...data }, null, 2).replace(/"/g, `'`);
 ---
 
-<div x-data={`Tooltip(${xData})`} class={twMerge('', className)} {...props}>
+<div
+  class="flex h-6 items-center gap-1 rounded-md bg-blue-500/10 bg-red-100 px-2 text-xs font-semibold leading-none text-red-600"
+>
+  <i class="fa-solid fa-caret-down"></i>
   <slot />
 </div>
+
 <script>
   import Alpine from 'alpinejs';
 
   document.addEventListener('alpine:init', () => {
-    Alpine.data('Tooltip', (initialState = {}) => ({
-      isVisible: initialState.isVisible,
+    Alpine.data('DeltaLabel', (initialState = {}) => ({
+      selection: initialState.selection,
+      className: {
+        trigger: {
+          default: 'text-gray-400 hover:text-gray-600 dark:hover:text-gray-300',
+          active: 'text-blue-500 dark:text-blue-400',
+        },
+      },
       init() {
         this.setState(initialState);
       },

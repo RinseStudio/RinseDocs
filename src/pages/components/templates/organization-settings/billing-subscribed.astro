@@ -12,17 +12,19 @@ import Tooltip from '@/components/ui/elements/Tooltip';
   </div>
   <div>
     <Tab className="px-7">
-      <Tab.Item onClick="link('/components/templates/organization-settings/general')">
+      <TabTrigger onClick="link('/components/templates/organization-settings/general')">
         General
-      </Tab.Item>
-      <Tab.Item onClick="link('/components/templates/organization-settings/users')">Users</Tab.Item>
-      <Tab.Item onClick="link('/components/templates/organization-settings/billing')" isActive>
+      </TabTrigger>
+      <TabTrigger onClick="link('/components/templates/organization-settings/users')">
+        Users
+      </TabTrigger>
+      <TabTrigger onClick="link('/components/templates/organization-settings/billing')" isActive>
         Billing
-      </Tab.Item>
-      <Tab.Item onClick="link('/components/templates/organization-settings/environment')">
+      </TabTrigger>
+      <TabTrigger onClick="link('/components/templates/organization-settings/environment')">
         Environment
-      </Tab.Item>
-      <!-- <Tab.Item onClick="link('/components/templates/organization-settings/authentication')">Authentication</Tab.Item> -->
+      </TabTrigger>
+      <!-- <TabTrigger onClick="link('/components/templates/organization-settings/authentication')">Authentication</TabTrigger> -->
     </Tab>
   </div>
   <div class="px-7 py-10">
@@ -200,3 +202,4 @@ import Tooltip from '@/components/ui/elements/Tooltip';
     options: options,
   });
 </script>
+ @/components/ui/elements/Tabs

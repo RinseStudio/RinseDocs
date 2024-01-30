@@ -112,8 +112,7 @@ if (src != null) {
         >
           <polyline points="15 3 21 3 21 9"></polyline>
           <>
-            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
-            ></path>
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
             <line x1="10" x2="21" y1="14" y2="3"></line>
           </>
         </svg>
@@ -227,8 +226,7 @@ if (src != null) {
 
         iframe.onload = () => {
           try {
-            const iframeDocument =
-              iframe.contentDocument || iframe.contentWindow.document;
+            const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
             const body = iframeDocument.body;
 
             const resizeObserver = new ResizeObserver((entries) => {
@@ -248,8 +246,7 @@ if (src != null) {
       slideReady(e) {
         e.preventDefault();
         this.slideMoveHandler = this.slideMove.bind(this); // Save a reference to the bound slideMove function
-        this.cursorOffset =
-          e.clientX - this.$refs.resizeHandle.getBoundingClientRect().x;
+        this.cursorOffset = e.clientX - this.$refs.resizeHandle.getBoundingClientRect().x;
         document.body.style.pointerEvents = 'none';
         document.documentElement.style.cursor = 'grabbing';
 
@@ -268,16 +265,12 @@ if (src != null) {
       slideMove(e) {
         let containerWidth = this.$refs.tabContent.offsetWidth;
 
-        let slideWidth =
-          this.$refs.tabContent.getBoundingClientRect().right - e.clientX;
+        let slideWidth = this.$refs.tabContent.getBoundingClientRect().right - e.clientX;
 
         if (e.touches && e.touches[0]) {
-          slideWidth =
-            this.$refs.tabContent.getBoundingClientRect().right -
-            e.touches[0].clientX;
+          slideWidth = this.$refs.tabContent.getBoundingClientRect().right - e.touches[0].clientX;
         } else if (e.clientX) {
-          slideWidth =
-            this.$refs.tabContent.getBoundingClientRect().right - e.clientX;
+          slideWidth = this.$refs.tabContent.getBoundingClientRect().right - e.clientX;
         }
 
         if (slideWidth >= containerWidth - this.cursorOffset) {
@@ -290,9 +283,7 @@ if (src != null) {
       },
       copyCode() {
         // Use the Clipboard API to copy the current Code to the clipboard
-        const activeSlot = this.$refs.tabContent.querySelector(
-          `[data-tab-name="${this.tab}"] pre`,
-        );
+        const activeSlot = this.$refs.tabContent.querySelector(`[data-tab-name="${this.tab}"] pre`);
 
         const codeContent = activeSlot ? activeSlot.innerText : '';
         navigator.clipboard
@@ -331,7 +322,7 @@ if (src != null) {
     --astro-code-token-keyword: #ffe775; /* Nord's Frost for keywords */
     --astro-code-token-parameter: #88c0d0; /* Nord's Frost, another shade for parameters */
     --astro-code-token-function: #31bfff; /* Nord's Frost, another shade for functions */
-    --astro-code-token-string-expression: #76fba0; /* Nord's Aurora, similar to strings */
+    --astro-code-token-string-expression: #0ad8b6; /* Nord's Aurora, similar to strings */
     --astro-code-token-punctuation: #eceff4; /* Nord's Snow Storm, for punctuation */
     --astro-code-token-link: #5e81ac; /* Nord's Frost for links */
   }

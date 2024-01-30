@@ -15,24 +15,26 @@ import Dropdown from '@/components/ui/modules/Dropdown';
   </div>
   <div>
     <Tab className="px-7">
-      <Tab.Item onClick="link('/components/templates/organization-settings/general')">
+      <TabTrigger onClick="link('/components/templates/organization-settings/general')">
         General
-      </Tab.Item>
-      <Tab.Item onClick="link('/components/templates/organization-settings/users')">Users</Tab.Item>
-      <Tab.Item onClick="link('/components/templates/organization-settings/billing')">
+      </TabTrigger>
+      <TabTrigger onClick="link('/components/templates/organization-settings/users')">
+        Users
+      </TabTrigger>
+      <TabTrigger onClick="link('/components/templates/organization-settings/billing')">
         Billing
-      </Tab.Item>
-      <Tab.Item onClick="link('/components/templates/organization-settings/environment')">
+      </TabTrigger>
+      <TabTrigger onClick="link('/components/templates/organization-settings/environment')">
         Environment
-      </Tab.Item>
-      <!-- <Tab.Item onClick="link('/components/templates/organization-settings/authentication')" isActive>Authentication</Tab.Item> -->
+      </TabTrigger>
+      <!-- <TabTrigger onClick="link('/components/templates/organization-settings/authentication')" isActive>Authentication</TabTrigger> -->
     </Tab>
 
     <!-- <Tab className="px-7">
-      <Tab.Item>Users</Tab.Item>
-      <Tab.Item>Billing</Tab.Item>
-      <Tab.Item>Environment</Tab.Item>
-      <Tab.Item isActive>Authentication</Tab.Item>
+      <TabTrigger>Users</TabTrigger>
+      <TabTrigger>Billing</TabTrigger>
+      <TabTrigger>Environment</TabTrigger>
+      <TabTrigger isActive>Authentication</TabTrigger>
     </Tab> -->
   </div>
   <div class="px-7 py-10">

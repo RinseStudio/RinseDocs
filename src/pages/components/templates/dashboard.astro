@@ -1,6 +1,6 @@
 ---
 import Layout from '@/layouts/rinsedocs/Raw.astro';
-import Tab from '@/components/ui/elements/Tab';
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/elements/Tabs';
 import Button from '@/components/ui/elements/Button';
 import Card from '@/components/ui/elements/Card';
 import Table from '@/components/ui/elements/Table';
@@ -8,16 +8,14 @@ import Dropdown from '@/components/ui/modules/Dropdown';
 import Tooltip from '@/components/ui/elements/Tooltip';
 import SelectField from '@/components/ui/elements/SelectField';
 import SearchField from '@/components/ui/elements/SearchField/index.astro';
+
+import { DeltaLabel } from '@/components/ui/elements/DeltaLabel';
+import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/elements/Tooltip';
 ---
 
 <Layout layoutClass="">
-  <div
-    class="app grid grid-cols-[var(--sidebar-width),1fr]"
-    style="--sidebar-width: 240px"
-  >
-    <aside
-      class="sticky top-0 flex h-[100dvh] min-w-[200px] max-w-[400px] flex-none"
-    >
+  <div class="app grid grid-cols-[var(--sidebar-width),1fr]" style="--sidebar-width: 240px">
+    <aside class="sticky top-0 flex h-[100dvh] min-w-[200px] max-w-[400px] flex-none">
       Castle Sidebar
     </aside>
 
@@ -29,454 +27,936 @@ import SearchField from '@/components/ui/elements/SearchField/index.astro';
       >
         <div class="w-[2px] bg-blue-400"></div>
       </div>
-      <div class="px-7 py-4">
+      <div class="px-7 py-5">
         <h1 class="mb-2 text-lg font-bold text-black">Reporting Dashboard</h1>
         <p class="text-sm text-gray-600">
           Here is an overview of how well Castle is protecting your users.
         </p>
       </div>
-      <div class="px-7 py-6">
-        <div class="mb-4 flex items-end justify-between">
-          <Dropdown position="bottomEnd" widthClass="w-full">
-            <Dropdown.Trigger>
-              <SelectField
-                className="min-w-[220px]"
-                value="All Events"
-                isFluid
-              />
-            </Dropdown.Trigger>
-            <Dropdown.Content className="w-full">
-              <Dropdown.Group>
-                <Dropdown.Items>
-                  <Dropdown.Item onClick={'isOpen = !isOpen'}>is</Dropdown.Item>
-                  <Dropdown.Item onClick={'isOpen = !isOpen'}>
-                    is not
-                  </Dropdown.Item>
-                  <Dropdown.Item onClick={'isOpen = !isOpen'}>
-                    is one of
-                  </Dropdown.Item>
-                </Dropdown.Items>
-              </Dropdown.Group>
-            </Dropdown.Content>
-          </Dropdown>
-          <div class="flex items-center gap-2">
-            <SearchField placeholder="Filter by keyword" />
+      <Tabs selection="tab-1">
+        <div class="flex items-end justify-between border-b border-gray-200 pr-7">
+          <TabsList className="border-b-0 px-7">
+            <TabsTrigger name="tab-1">Login</TabsTrigger>
+            <TabsTrigger name="tab-2">Registration</TabsTrigger>
+          </TabsList>
+          <div class="flex items-center gap-2 pb-3">
+            <Button isSquare size="sm" variant="outline">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-download"
+                ><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline
+                  points="7 10 12 15 17 10"></polyline><line x1="12" x2="12" y1="15" y2="3"
+                ></line></svg
+              >
+            </Button>
+            <Button isSquare size="sm" variant="outline">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-share-2"
+                ><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle
+                  cx="18"
+                  cy="19"
+                  r="3"></circle><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"></line><line
+                  x1="15.41"
+                  x2="8.59"
+                  y1="6.51"
+                  y2="10.49"></line></svg
+              >
+            </Button>
           </div>
         </div>
+        <TabsContent name="tab-1" className="px-7">
+          <div class="space-y-10 py-6">
+            <article class="space-y-4">
+              <div class="mb-4 flex items-end justify-between">
+                <div class="flex items-center gap-4">
+                  <h3 class="flex items-center gap-2 text-sm font-bold text-black">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="lucide lucide-bar-chart-3"
+                      ><path d="M3 3v18h18"></path><path d="M18 17V9"></path><path d="M13 17V5"
+                      ></path><path d="M8 17v-3"></path></svg
+                    >
+                     Event Insight
+                  </h3>
+                </div>
+              </div>
+              <Card className="grid grid-cols-5 px-5">
+                <div class="col-span-2 grid grid-cols-2">
+                  <div class="py-5">
+                    <dl>
+                      <dt
+                        class="mb-2 flex items-center gap-2 text-xs font-semibold leading-none text-gray-600"
+                      >
+                        Total logins
+                      </dt>
+                      <dd class="flex items-center gap-2 text-lg font-bold text-black">
+                        263,495
+                        <DeltaLabel trend="drop">1.93%</DeltaLabel>
+                      </dd>
+                    </dl>
+                    <div class="mt-3 text-xs font-semibold leading-none text-gray-900">
+                      30,452 users
+                    </div>
+                    <div class="mt-1 text-xs font-medium leading-none">
+                      680 less than last period
+                    </div>
+                  </div>
 
-        <div class="space-y-10">
-          <Card className="grid grid-cols-4 divide-x divide-zinc-200">
-            <div class="px-5 py-5">
-              <dl>
-                <dt
-                  class="mb-2 flex items-center gap-2 text-xs font-semibold leading-none text-gray-600"
-                >
-                  Total events
-                </dt>
-                <dd
-                  class="flex items-center gap-2 text-2xl font-bold text-black"
-                >
-                  1,520
-                  <div
-                    class="flex h-5 items-center rounded-md bg-blue-500/10 bg-red-100 px-2 text-xs font-semibold text-red-600"
-                  >
-                    5.45%
+                  <div class="py-5">
+                    <dl>
+                      <dt
+                        class="mb-2 flex items-center gap-2 text-xs font-semibold leading-none text-gray-600"
+                      >
+                        Failed logins
+                      </dt>
+                      <dd class="flex items-center gap-2 text-lg font-bold text-black">
+                        24,532
+                        <DeltaLabel trend="drop">6.36%</DeltaLabel>
+                      </dd>
+                    </dl>
+                    <div class="mt-3 text-xs font-semibold leading-none text-gray-900">
+                      30,452 users
+                    </div>
+                    <div class="mt-1 text-xs font-medium leading-none">
+                      680 less than last period
+                    </div>
                   </div>
-                </dd>
-              </dl>
-              <div class="mt-3 text-xs font-medium leading-none">
-                252 more than last period.
-              </div>
-            </div>
-            <div class="px-5 py-5">
-              <dl>
-                <dt
-                  class="mb-2 flex items-center gap-2 text-xs font-semibold leading-none text-gray-600"
-                >
-                  % of Total
-                </dt>
-                <dd
-                  class="flex items-center gap-2 text-2xl font-bold text-black"
-                >
-                  1,520
-                  <div
-                    class="flex h-5 items-center rounded-md bg-blue-500/10 bg-green-100 px-2 text-xs font-semibold text-green-600"
-                  >
-                    5.45%
-                  </div>
-                </dd>
-              </dl>
-              <div class="mt-3 text-xs font-medium leading-none">
-                252 more than last period.
-              </div>
-            </div>
-            <div class="px-5 py-5">
-              <dl>
-                <dt
-                  class="mb-2 flex items-center gap-2 text-xs font-semibold leading-none text-gray-600"
-                >
-                  Highest events
-                </dt>
-                <dd
-                  class="flex items-center gap-2 text-2xl font-bold text-black"
-                >
-                  1,520
-                  <div
-                    class="flex h-5 items-center rounded-md bg-blue-500/10 bg-red-100 px-2 text-xs font-semibold text-red-600"
-                  >
-                    5.45%
-                  </div>
-                </dd>
-              </dl>
-              <div class="mt-3 text-xs font-medium leading-none">
-                252 more than last period.
-              </div>
-            </div>
-            <div class="px-5 py-5">
-              <dl>
-                <dt
-                  class="mb-2 flex items-center gap-2 text-xs font-semibold leading-none text-gray-600"
-                >
-                  Bot score distribution
-                </dt>
-                <dd
-                  class="flex items-center gap-2 text-2xl font-bold text-black"
-                >
-                  1,520
-                  <div
-                    class="flex h-5 items-center rounded-md bg-blue-500/10 bg-red-100 px-2 text-xs font-semibold text-red-600"
-                  >
-                    5.45%
-                  </div>
-                </dd>
-              </dl>
-              <div class="mt-3 text-xs font-medium leading-none">
-                252 more than last period.
-              </div>
-            </div>
-          </Card>
+                </div>
 
-          <div>
-            <div class="mb-4 flex items-end justify-between">
-              <div class="flex items-center gap-4">
-                <h3
-                  class="flex items-center gap-2 text-sm font-bold text-black"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    class="lucide lucide-scan-search"
-                    ><path d="M3 7V5a2 2 0 0 1 2-2h2"></path><path
-                      d="M17 3h2a2 2 0 0 1 2 2v2"></path><path
-                      d="M21 17v2a2 2 0 0 1-2 2h-2"></path><path
-                      d="M7 21H5a2 2 0 0 1-2-2v-2"></path><circle
-                      cx="12"
-                      cy="12"
-                      r="3"></circle><path d="m16 16-1.9-1.9"></path></svg
-                  >
-                   User Insight
-                </h3>
-              </div>
-            </div>
-            <Card className="grid grid-cols-4 divide-x divide-zinc-200">
-              <div class="px-5 py-5">
-                <dl>
-                  <dt
-                    class="mb-2 flex items-center gap-2 text-xs font-semibold leading-none text-gray-600"
-                  >
-                    Total events
-                  </dt>
-                  <dd
-                    class="flex items-center gap-2 text-2xl font-bold text-black"
-                  >
-                    1,520
-                    <div
-                      class="flex h-5 items-center rounded-md bg-blue-500/10 bg-red-100 px-2 text-xs font-semibold text-red-600"
-                    >
-                      5.45%
+                <div class="col-span-3 grid grid-cols-3 gap-5">
+                  <div class="py-5">
+                    <dl>
+                      <dt
+                        class="mb-2 flex items-center gap-2 text-xs font-semibold leading-none text-gray-600"
+                      >
+                        Allow
+                      </dt>
+                      <dd class="flex items-center gap-2 text-lg font-bold text-black">
+                        238,539
+                        <DeltaLabel trend="drop">1.46%</DeltaLabel>
+                      </dd>
+                    </dl>
+                    <div class="mt-3 text-xs font-semibold leading-none text-gray-900">
+                      30,452 users
                     </div>
-                  </dd>
-                </dl>
-                <div class="mt-3 text-xs font-medium leading-none">
-                  252 more than last period.
+                    <div class="mt-1 text-xs font-medium leading-none">
+                      680 less than last period
+                    </div>
+                  </div>
+
+                  <div class="py-5">
+                    <dl>
+                      <dt
+                        class="mb-2 flex items-center gap-2 text-xs font-semibold leading-none text-gray-600"
+                      >
+                        Challenge
+                      </dt>
+                      <dd class="flex items-center gap-2 text-lg font-bold text-black">
+                        375
+                        <DeltaLabel trend="drop">2.89%</DeltaLabel>
+                      </dd>
+                    </dl>
+                    <div class="mt-3 text-xs font-semibold leading-none text-gray-900">
+                      30,452 users
+                    </div>
+                    <div class="mt-1 text-xs font-medium leading-none">
+                      680 less than last period
+                    </div>
+                  </div>
+
+                  <div class="py-5">
+                    <dl>
+                      <dt
+                        class="mb-2 flex items-center gap-2 text-xs font-semibold leading-none text-gray-600"
+                      >
+                        Deny
+                      </dt>
+                      <dd class="flex items-center gap-2 text-lg font-bold text-black">
+                        49
+                        <DeltaLabel trend="drop">2.06%</DeltaLabel>
+                      </dd>
+                    </dl>
+                    <div class="mt-3 text-xs font-semibold leading-none text-gray-900">
+                      30,452 users
+                    </div>
+                    <div class="mt-1 text-xs font-medium leading-none">
+                      680 less than last period
+                    </div>
+                  </div>
+                </div>
+              </Card>
+              <Card className="grid grid-cols-1">
+                <div class="px-5 py-5">
+                  <div
+                    class="mb-4 flex items-center justify-between gap-2 text-xs font-semibold leading-none text-gray-600"
+                  >
+                    Login Activity
+                    <a href="#" class="flex items-center gap-0.5 text-blue-500 hover:text-blue-600"
+                      >Open in explorer
+                      <i data-lucide="chevron-right" class="size-4"></i>
+                    </a>
+                  </div>
+                  <div
+                    class="mb-4 flex h-[200px] items-center justify-center bg-zinc-50 text-sm font-medium"
+                  >
+                    Chart goes here
+                  </div>
+                  <ul class="flex items-center gap-6">
+                    <li class="flex items-center gap-2 text-xs font-semibold text-gray-900">
+                      <div class="h-3 w-3 rounded-full bg-gray-300"></div>
+                       Attempted
+                    </li>
+                    <li class="flex items-center gap-2 text-xs font-semibold text-gray-900">
+                      <div class="h-3 w-3 rounded-full bg-indigo-600"></div>
+                       Succeeded
+                    </li>
+                    <li class="flex items-center gap-2 text-xs font-semibold text-gray-900">
+                      <div class="h-3 w-3 rounded-full bg-red-500"></div>
+                       Failed
+                    </li>
+                  </ul>
+                </div>
+              </Card>
+            </article>
+
+            <article class="space-y-4">
+              <div class="mb-4 flex items-end justify-between">
+                <div class="flex items-center gap-4">
+                  <h3 class="flex items-center gap-2 text-sm font-bold text-black">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="lucide lucide-zap"
+                      ><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg
+                    >
+                    <div class="flex items-center gap-1.5">
+                      Triggered Insight
+                      <Tooltip>
+                        <TooltipTrigger>
+                          <i class="fa-solid fa-fw fa-question-circle text-gray-400"></i>
+                        </TooltipTrigger>
+                        <TooltipContent className="w-[160px]">
+                          Evaluated based on both Attempted and Succeeded
+                        </TooltipContent>
+                      </Tooltip>
+                    </div>
+                  </h3>
                 </div>
               </div>
-              <div class="px-5 py-5">
-                <dl>
-                  <dt
-                    class="mb-2 flex items-center gap-2 text-xs font-semibold leading-none text-gray-600"
+              <Card className="grid grid-cols-1">
+                <div class="px-5 py-5">
+                  <div
+                    class="mb-4 flex items-center justify-between gap-2 text-xs font-semibold leading-none text-gray-600"
                   >
-                    % of Total
-                  </dt>
-                  <dd
-                    class="flex items-center gap-2 text-2xl font-bold text-black"
+                    Logins by Policy Action
+                    <a href="#" class="flex items-center gap-0.5 text-blue-500 hover:text-blue-600"
+                      >Open in explorer
+                      <i data-lucide="chevron-right" class="size-4"></i>
+                    </a>
+                  </div>
+                  <div
+                    class="mb-4 flex h-[200px] items-center justify-center bg-zinc-50 text-sm font-medium"
                   >
-                    1,520
-                    <div
-                      class="flex h-5 items-center rounded-md bg-blue-500/10 bg-green-100 px-2 text-xs font-semibold text-green-600"
-                    >
-                      5.45%
-                    </div>
-                  </dd>
-                </dl>
-                <div class="mt-3 text-xs font-medium leading-none">
-                  252 more than last period.
+                    Chart goes here
+                  </div>
+                  <ul class="flex items-center gap-6">
+                    <li class="flex items-center gap-2 text-xs font-semibold text-gray-900">
+                      <div class="h-3 w-3 rounded-full bg-gray-300"></div>
+                       Allow
+                    </li>
+                    <li class="flex items-center gap-2 text-xs font-semibold text-gray-900">
+                      <div class="h-3 w-3 rounded-full bg-orange-400"></div>
+                       Challenge
+                    </li>
+                    <li class="flex items-center gap-2 text-xs font-semibold text-gray-900">
+                      <div class="h-3 w-3 rounded-full bg-red-500"></div>
+                       Deny
+                    </li>
+                  </ul>
                 </div>
-              </div>
-              <div class="px-5 py-5">
-                <dl>
-                  <dt
-                    class="mb-2 flex items-center gap-2 text-xs font-semibold leading-none text-gray-600"
+              </Card>
+              <Card className="grid grid-cols-1">
+                <div class="py-5">
+                  <div
+                    class="mb-4 flex items-center justify-between gap-2 px-5 text-xs font-semibold leading-none text-gray-600"
                   >
-                    Highest events
-                  </dt>
-                  <dd
-                    class="flex items-center gap-2 text-2xl font-bold text-black"
-                  >
-                    1,520
-                    <div
-                      class="flex h-5 items-center rounded-md bg-blue-500/10 bg-red-100 px-2 text-xs font-semibold text-red-600"
-                    >
-                      5.45%
+                    <div class="flex items-center gap-1.5">
+                      Triggered Policies
+                      <Tooltip>
+                        <TooltipTrigger>
+                          <i class="fa-solid fa-fw fa-question-circle text-gray-400"></i>
+                        </TooltipTrigger>
+                        <TooltipContent className="w-[128px]">
+                          Evaluated based non allow policies.
+                        </TooltipContent>
+                      </Tooltip>
                     </div>
-                  </dd>
-                </dl>
-                <div class="mt-3 text-xs font-medium leading-none">
-                  252 more than last period.
-                </div>
-              </div>
-              <div class="px-5 py-5">
-                <dl>
-                  <dt
-                    class="mb-2 flex items-center gap-2 text-xs font-semibold leading-none text-gray-600"
-                  >
-                    Bot score distribution
-                  </dt>
-                  <dd
-                    class="flex items-center gap-2 text-2xl font-bold text-black"
-                  >
-                    1,520
-                    <div
-                      class="flex h-5 items-center rounded-md bg-blue-500/10 bg-red-100 px-2 text-xs font-semibold text-red-600"
-                    >
-                      5.45%
+                  </div>
+                  <div class="flex pl-5 pr-3">
+                    <div class="w-[200px] flex-none pt-4">
+                      <div class="size-[128px] mb-4 rounded-full bg-red-500"></div>
+                      <div
+                        class="mb-4 flex items-center justify-between gap-2 text-xs font-semibold leading-none text-gray-600"
+                      >
+                        Total policies triggered
+                      </div>
+                      <div class="flex items-center gap-2 text-lg font-bold text-black">
+                        438
+                        <DeltaLabel trend="rise">1.25%</DeltaLabel>
+                      </div>
+                      <a
+                        href="#"
+                        class="mt-4 flex items-center gap-0.5 text-xs font-semibold text-blue-500 hover:text-blue-600"
+                        >View all policies
+                        <i data-lucide="chevron-right" class="size-4"></i>
+                      </a>
                     </div>
-                  </dd>
-                </dl>
-                <div class="mt-3 text-xs font-medium leading-none">
-                  252 more than last period.
+                    <div class="flex-1">
+                      <table class="w-full text-left">
+                        <tr>
+                          <th
+                            colspan="2"
+                            class="w-full whitespace-nowrap px-2 py-1.5 text-xs font-semibold text-gray-400"
+                            >Policy name</th
+                          >
+                          <th
+                            class="whitespace-nowrap py-1.5 pl-6 pr-2 text-xs font-semibold text-gray-400"
+                            >Policy action</th
+                          >
+                          <th
+                            class="whitespace-nowrap py-1.5 pl-6 pr-2 text-xs font-semibold text-gray-400"
+                            >Total events</th
+                          >
+                          <th
+                            class="whitespace-nowrap py-1.5 pl-6 pr-2 text-xs font-semibold text-gray-400"
+                            >% of Total</th
+                          >
+                          <th
+                            class="whitespace-nowrap py-1.5 pl-6 pr-2 text-xs font-semibold text-gray-400"
+                            >% change</th
+                          >
+                        </tr>
+                        <tr class="group">
+                          <td
+                            class="pl-2 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <div class="size-3 rounded-full bg-orange-400"></div>
+                          </td>
+                          <td
+                            class="w-full max-w-0 truncate px-2 py-1.5 text-xs font-semibold text-gray-900 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            Challenge users that have tripped risky international login in the past
+                          </td>
+                          <td
+                            class="max-w-0 truncate px-2 py-1.5 text-right text-xs font-semibold text-gray-400 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <span class="text-orange-500">Challenge</span>
+                          </td>
+                          <td
+                            class="max-w-0 truncate px-2 py-1.5 text-right text-xs font-semibold text-gray-400 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                            >356</td
+                          >
+                          <td
+                            class="max-w-0 truncate px-2 py-1.5 text-right text-xs font-semibold text-gray-400 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                            >81.28%</td
+                          >
+                          <td
+                            class="max-w-0 truncate px-2 py-1.5 text-right text-xs font-semibold text-gray-400 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <DeltaLabel trend="drop" variant="text">1.24%</DeltaLabel>
+                          </td>
+                        </tr>
+                        <tr class="group">
+                          <td
+                            class="pl-2 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <div class="size-3 rounded-full bg-orange-400"></div>
+                          </td>
+                          <td
+                            class="w-full max-w-0 truncate px-2 py-1.5 text-xs font-semibold text-gray-900 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            Risky international login
+                          </td>
+                          <td
+                            class="max-w-0 truncate px-2 py-1.5 text-right text-xs font-semibold text-gray-400 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <span class="text-orange-500">Challenge</span>
+                          </td>
+                          <td
+                            class="max-w-0 truncate px-2 py-1.5 text-right text-xs font-semibold text-gray-400 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                            >30</td
+                          >
+                          <td
+                            class="max-w-0 truncate px-2 py-1.5 text-right text-xs font-semibold text-gray-400 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                            >6.85%</td
+                          >
+                          <td
+                            class="max-w-0 truncate px-2 py-1.5 text-right text-xs font-semibold text-gray-400 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <DeltaLabel trend="rise" variant="text">2.52%</DeltaLabel>
+                          </td>
+                        </tr>
+                        <tr class="group">
+                          <td
+                            class="pl-2 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <div class="size-3 rounded-full bg-red-500"></div>
+                          </td>
+                          <td
+                            class="w-full max-w-0 truncate px-2 py-1.5 text-xs font-semibold text-gray-900 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            Block login attempts from blocked device list
+                          </td>
+                          <td
+                            class="max-w-0 truncate px-2 py-1.5 text-right text-xs font-semibold text-gray-400 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <span class="text-red-500">Deny</span>
+                          </td>
+                          <td
+                            class="max-w-0 truncate px-2 py-1.5 text-right text-xs font-semibold text-gray-400 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                            >28</td
+                          >
+                          <td
+                            class="max-w-0 truncate px-2 py-1.5 text-right text-xs font-semibold text-gray-400 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                            >6.39%</td
+                          >
+                          <td
+                            class="max-w-0 truncate px-2 py-1.5 text-right text-xs font-semibold text-gray-400 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <DeltaLabel trend="rise" variant="text">1.52%</DeltaLabel>
+                          </td>
+                        </tr>
+                        <tr class="group">
+                          <td
+                            class="pl-2 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <div class="size-3 rounded-full bg-red-500"></div>
+                          </td>
+                          <td
+                            class="w-full max-w-0 truncate px-2 py-1.5 text-xs font-semibold text-gray-900 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            Deny login attempts by blocked users
+                          </td>
+                          <td
+                            class="max-w-0 truncate px-2 py-1.5 text-right text-xs font-semibold text-gray-400 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <span class="text-red-500">Deny</span>
+                          </td>
+                          <td
+                            class="max-w-0 truncate px-2 py-1.5 text-right text-xs font-semibold text-gray-400 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                            >9</td
+                          >
+                          <td
+                            class="max-w-0 truncate px-2 py-1.5 text-right text-xs font-semibold text-gray-400 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                            >2.05%</td
+                          >
+                          <td
+                            class="max-w-0 truncate px-2 py-1.5 text-right text-xs font-semibold text-gray-400 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <DeltaLabel trend="drop" variant="text">1.21%</DeltaLabel>
+                          </td>
+                        </tr>
+                        <tr class="group">
+                          <td
+                            class="pl-2 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <div class="size-3 rounded-full bg-red-500"></div>
+                          </td>
+                          <td
+                            class="w-full max-w-0 truncate px-2 py-1.5 text-xs font-semibold text-gray-900 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            Deny credential stuffing
+                          </td>
+                          <td
+                            class="max-w-0 truncate px-2 py-1.5 text-right text-xs font-semibold text-gray-400 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <span class="text-red-500">Deny</span>
+                          </td>
+                          <td
+                            class="max-w-0 truncate px-2 py-1.5 text-right text-xs font-semibold text-gray-400 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                            >5</td
+                          >
+                          <td
+                            class="max-w-0 truncate px-2 py-1.5 text-right text-xs font-semibold text-gray-400 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                            >1.14%</td
+                          >
+                          <td
+                            class="max-w-0 truncate px-2 py-1.5 text-right text-xs font-semibold text-gray-400 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <DeltaLabel trend="drop" variant="text">0.24%</DeltaLabel>
+                          </td>
+                        </tr>
+                      </table>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </Card>
+              </Card>
+              <Card className="grid grid-cols-1">
+                <div class="py-5">
+                  <div
+                    class="mb-4 flex items-center justify-between gap-2 px-5 text-xs font-semibold leading-none text-gray-600"
+                  >
+                    Triggered Signals
+                  </div>
+                  <div class="flex pl-5 pr-3">
+                    <div class="w-[200px] flex-none pt-4">
+                      <div class="size-[128px] mb-4 rounded-full">
+                        <canvas id="triggeredSignalsChart"></canvas>
+                      </div>
+                      <div
+                        class="mb-4 flex items-center justify-between gap-2 text-xs font-semibold leading-none text-gray-600"
+                      >
+                        Total signals triggered
+                      </div>
+                      <div class="flex items-center gap-2 text-lg font-bold text-black">
+                        263
+                        <DeltaLabel trend="rise">6.5%</DeltaLabel>
+                      </div>
+                      <a
+                        href="#"
+                        class="mt-4 flex items-center gap-0.5 text-xs font-semibold text-blue-500 hover:text-blue-600"
+                        >View all signals
+                        <i data-lucide="chevron-right" class="size-4"></i>
+                      </a>
+                    </div>
+                    <div class="flex-1">
+                      <table class="w-full text-left">
+                        <tr>
+                          <th
+                            colspan="2"
+                            class="w-full whitespace-nowrap px-2 py-1.5 text-xs font-semibold text-gray-400"
+                            >Signal name</th
+                          >
+                          <th
+                            class="whitespace-nowrap py-1.5 pl-6 pr-2 text-xs font-semibold text-gray-400"
+                            >Total events</th
+                          >
+                          <th
+                            class="whitespace-nowrap py-1.5 pl-6 pr-2 text-xs font-semibold text-gray-400"
+                            >% of Total</th
+                          >
+                          <th
+                            class="whitespace-nowrap py-1.5 pl-6 pr-2 text-xs font-semibold text-gray-400"
+                            >% change</th
+                          >
+                        </tr>
+                        <tr class="group">
+                          <td
+                            class="pl-2 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <div class="size-3 rounded-full bg-gray-300"></div>
+                          </td>
+                          <td
+                            class="w-full max-w-0 truncate px-2 py-1.5 text-xs font-semibold text-gray-900 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            Multiple accounts per device
+                          </td>
+                          <td
+                            class="max-w-0 truncate px-2 py-1.5 text-right text-xs font-semibold text-gray-400 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                            >122</td
+                          >
+                          <td
+                            class="max-w-0 truncate px-2 py-1.5 text-right text-xs font-semibold text-gray-400 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                            >27.85%</td
+                          >
+                          <td
+                            class="max-w-0 truncate px-2 py-1.5 text-right text-xs font-semibold text-gray-400 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <DeltaLabel trend="drop" variant="text">1.24%</DeltaLabel>
+                          </td>
+                        </tr>
+                        <tr class="group">
+                          <td
+                            class="pl-2 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <div class="size-3 rounded-full bg-orange-400"></div>
+                          </td>
+                          <td
+                            class="w-full max-w-0 truncate px-2 py-1.5 text-xs font-semibold text-gray-900 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            New device
+                          </td>
+                          <td
+                            class="max-w-0 truncate px-2 py-1.5 text-right text-xs font-semibold text-gray-400 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                            >113</td
+                          >
+                          <td
+                            class="max-w-0 truncate px-2 py-1.5 text-right text-xs font-semibold text-gray-400 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                            >25.8%</td
+                          >
+                          <td
+                            class="max-w-0 truncate px-2 py-1.5 text-right text-xs font-semibold text-gray-400 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <DeltaLabel trend="rise" variant="text">2.52%</DeltaLabel>
+                          </td>
+                        </tr>
+                        <tr class="group">
+                          <td
+                            class="pl-2 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <div class="size-3 rounded-full bg-yellow-500"></div>
+                          </td>
+                          <td
+                            class="w-full max-w-0 truncate px-2 py-1.5 text-xs font-semibold text-gray-900 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            New ISP
+                          </td>
+                          <td
+                            class="max-w-0 truncate px-2 py-1.5 text-right text-xs font-semibold text-gray-400 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                            >69</td
+                          >
+                          <td
+                            class="max-w-0 truncate px-2 py-1.5 text-right text-xs font-semibold text-gray-400 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                            >15.75%</td
+                          >
+                          <td
+                            class="max-w-0 truncate px-2 py-1.5 text-right text-xs font-semibold text-gray-400 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <DeltaLabel trend="rise" variant="text">1.52%</DeltaLabel>
+                          </td>
+                        </tr>
+                        <tr class="group">
+                          <td
+                            class="pl-2 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <div class="size-3 rounded-full bg-green-500"></div>
+                          </td>
+                          <td
+                            class="w-full max-w-0 truncate px-2 py-1.5 text-xs font-semibold text-gray-900 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            Datacenter IP
+                          </td>
+                          <td
+                            class="max-w-0 truncate px-2 py-1.5 text-right text-xs font-semibold text-gray-400 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                            >60</td
+                          >
+                          <td
+                            class="max-w-0 truncate px-2 py-1.5 text-right text-xs font-semibold text-gray-400 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                            >13.7%</td
+                          >
+                          <td
+                            class="max-w-0 truncate px-2 py-1.5 text-right text-xs font-semibold text-gray-400 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <DeltaLabel trend="drop" variant="text">0.84%</DeltaLabel>
+                          </td>
+                        </tr>
+                        <tr class="group">
+                          <td
+                            class="pl-2 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <div class="size-3 rounded-full bg-teal-500"></div>
+                          </td>
+                          <td
+                            class="w-full max-w-0 truncate px-2 py-1.5 text-xs font-semibold text-gray-900 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            Proxy IP
+                          </td>
+                          <td
+                            class="max-w-0 truncate px-2 py-1.5 text-right text-xs font-semibold text-gray-400 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                            >58</td
+                          >
+                          <td
+                            class="max-w-0 truncate px-2 py-1.5 text-right text-xs font-semibold text-gray-400 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                            >13.24%</td
+                          >
+                          <td
+                            class="max-w-0 truncate px-2 py-1.5 text-right text-xs font-semibold text-gray-400 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <DeltaLabel trend="drop" variant="text">1.21%</DeltaLabel>
+                          </td>
+                        </tr>
+                        <tr class="group">
+                          <td
+                            class="pl-2 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <div class="size-3 rounded-full bg-blue-500"></div>
+                          </td>
+                          <td
+                            class="w-full max-w-0 truncate px-2 py-1.5 text-xs font-semibold text-gray-900 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            Timezone area mismatch
+                          </td>
+                          <td
+                            class="max-w-0 truncate px-2 py-1.5 text-right text-xs font-semibold text-gray-400 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                            >52</td
+                          >
+                          <td
+                            class="max-w-0 truncate px-2 py-1.5 text-right text-xs font-semibold text-gray-400 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                            >11.87%</td
+                          >
+                          <td
+                            class="max-w-0 truncate px-2 py-1.5 text-right text-xs font-semibold text-gray-400 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <DeltaLabel trend="drop" variant="text">0.24%</DeltaLabel>
+                          </td>
+                        </tr>
+                        <tr class="group">
+                          <td
+                            class="pl-2 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <div class="size-3 rounded-full bg-indigo-500"></div>
+                          </td>
+                          <td
+                            class="w-full max-w-0 truncate px-2 py-1.5 text-xs font-semibold text-gray-900 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            New device type
+                          </td>
+                          <td
+                            class="max-w-0 truncate px-2 py-1.5 text-right text-xs font-semibold text-gray-400 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                            >42</td
+                          >
+                          <td
+                            class="max-w-0 truncate px-2 py-1.5 text-right text-xs font-semibold text-gray-400 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                            >9.59%</td
+                          >
+                          <td
+                            class="max-w-0 truncate px-2 py-1.5 text-right text-xs font-semibold text-gray-400 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <DeltaLabel trend="drop" variant="text">6.23%</DeltaLabel>
+                          </td>
+                        </tr>
+                        <tr class="group">
+                          <td
+                            class="pl-2 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <div class="size-3 rounded-full bg-black"></div>
+                          </td>
+                          <td
+                            class="w-full max-w-0 truncate px-2 py-1.5 text-xs font-semibold text-gray-900 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            Other
+                          </td>
+                          <td
+                            class="max-w-0 truncate px-2 py-1.5 text-right text-xs font-semibold text-gray-400 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                            >76</td
+                          >
+                          <td
+                            class="max-w-0 truncate px-2 py-1.5 text-right text-xs font-semibold text-gray-400 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                            >16.14%</td
+                          >
+                          <td
+                            class="max-w-0 truncate px-2 py-1.5 text-right text-xs font-semibold text-gray-400 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <DeltaLabel trend="drop" variant="text">1.24%</DeltaLabel>
+                          </td>
+                        </tr>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </Card>
+            </article>
           </div>
-
-          <div>
-            <div class="mb-4 flex items-end justify-between">
-              <div class="flex items-center gap-4">
-                <h3
-                  class="flex items-center gap-2 text-sm font-bold text-black"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    class="lucide lucide-scan-search"
-                    ><path d="M3 7V5a2 2 0 0 1 2-2h2"></path><path
-                      d="M17 3h2a2 2 0 0 1 2 2v2"></path><path
-                      d="M21 17v2a2 2 0 0 1-2 2h-2"></path><path
-                      d="M7 21H5a2 2 0 0 1-2-2v-2"></path><circle
-                      cx="12"
-                      cy="12"
-                      r="3"></circle><path d="m16 16-1.9-1.9"></path></svg
-                  >
-                   Protection Insight
-                </h3>
-                <div class="h-4 w-px bg-zinc-200"></div>
-                <Tab className="px-4">
-                  <Tab.Item onClick="" isActive>Policy Action</Tab.Item>
-                  <Tab.Item onClick="">Policies Triggered</Tab.Item>
-                  <Tab.Item onClick="">Signals Triggered</Tab.Item>
-                </Tab>
-              </div>
-            </div>
-
-            <Card className="overflow-auto">
-              <Table x-data="Table" className="table-fixed">
-                <Table.Header>
-                  <Table.Row>
-                    <Table.Head
-                      className="w-[180px] px-4 py-3 text-xs font-medium text-gray-900"
-                    >
-                      Date
-                    </Table.Head>
-                    <Table.Head
-                      className="w-[180px] px-4 py-3 text-xs font-medium text-gray-900"
-                    >
-                      URL
-                    </Table.Head>
-                    <Table.Head
-                      className="w-[180px] px-4 py-3 text-xs font-medium text-gray-900"
-                    >
-                      Event
-                    </Table.Head>
-                    <Table.Head
-                      className="w-[180px] px-4 py-3 text-xs font-medium text-gray-900"
-                    >
-                      Status
-                    </Table.Head>
-                    <Table.Head
-                      className="w-[180px] px-4 py-3 text-xs font-medium text-gray-900"
-                    >
-                      Action
-                    </Table.Head>
-                    <Table.Head
-                      className="w-full px-4 py-3 text-xs font-medium text-gray-900"
-                    >
-                      Message
-                    </Table.Head>
-                  </Table.Row>
-                </Table.Header>
-                <Table.Body>
-                  <Table.Row className="cursor-pointer hover:bg-zinc-50">
-                    <Table.Cell
-                      className="whitespace-nowrap px-4 py-4 font-medium"
-                    >
-                      <div class="flex items-center gap-3">
-                        <div class="h-3 w-3 rounded-full bg-red-500"></div>
-                         Jan 10, 04:35
-                      </div>
-                    </Table.Cell>
-                    <Table.Cell
-                      className="whitespace-nowrap px-4 py-4 font-medium"
-                    >
-                      /v1/log
-                    </Table.Cell>
-                    <Table.Cell
-                      className="whitespace-nowrap px-4 py-4 font-medium"
-                    >
-                      $profile_update
-                    </Table.Cell>
-                    <Table.Cell
-                      className="whitespace-nowrap px-4 py-4 font-medium"
-                    >
-                      succeeded
-                    </Table.Cell>
-                    <Table.Cell
-                      className="whitespace-nowrap px-4 py-4 font-medium"
-                    >
-                      –
-                    </Table.Cell>
-                    <Table.Cell className="truncate px-4 py-4 font-mono">
-                      response.body: One or more parameters are invalid:
-                      context[ip] Private and local IP addresses are not allowed
-                      in production environments. If your application sits
-                      behind a firewall, the true client IP can often be found
-                      in a header such as X-Forwarded-For
-                    </Table.Cell>
-                  </Table.Row>
-                  <Table.Row className="cursor-pointer hover:bg-zinc-50">
-                    <Table.Cell
-                      className="whitespace-nowrap px-4 py-4 font-medium"
-                    >
-                      <div class="flex items-center gap-3">
-                        <div class="h-3 w-3 rounded-full bg-orange-500"></div>
-                         Jan 10, 04:35
-                      </div>
-                    </Table.Cell>
-                    <Table.Cell
-                      className="whitespace-nowrap px-4 py-4 font-medium"
-                    >
-                      /v1/log
-                    </Table.Cell>
-                    <Table.Cell
-                      className="whitespace-nowrap px-4 py-4 font-medium"
-                    >
-                      $profile_update
-                    </Table.Cell>
-                    <Table.Cell
-                      className="whitespace-nowrap px-4 py-4 font-medium"
-                    >
-                      succeeded
-                    </Table.Cell>
-                    <Table.Cell
-                      className="whitespace-nowrap px-4 py-4 font-medium"
-                    >
-                      –
-                    </Table.Cell>
-                    <Table.Cell className="truncate px-4 py-4 font-mono">
-                      response.body: One or more parameters are invalid:
-                      context[ip] Private and local IP addresses are not allowed
-                      in production environments. If your application sits
-                      behind a firewall, the true client IP can often be found
-                      in a header such as X-Forwarded-For
-                    </Table.Cell>
-                  </Table.Row>
-                  <Table.Row className="cursor-pointer hover:bg-zinc-50">
-                    <Table.Cell
-                      className="whitespace-nowrap px-4 py-4 font-medium"
-                    >
-                      <div class="flex items-center gap-3">
-                        <div class="h-3 w-3 rounded-full bg-orange-500"></div>
-                         Jan 10, 04:35
-                      </div>
-                    </Table.Cell>
-                    <Table.Cell
-                      className="whitespace-nowrap px-4 py-4 font-medium"
-                    >
-                      /v1/log
-                    </Table.Cell>
-                    <Table.Cell
-                      className="whitespace-nowrap px-4 py-4 font-medium"
-                    >
-                      $profile_update
-                    </Table.Cell>
-                    <Table.Cell
-                      className="whitespace-nowrap px-4 py-4 font-medium"
-                    >
-                      succeeded
-                    </Table.Cell>
-                    <Table.Cell
-                      className="whitespace-nowrap px-4 py-4 font-medium"
-                    >
-                      –
-                    </Table.Cell>
-                    <Table.Cell className="truncate px-4 py-4 font-mono">
-                      response.body: One or more parameters are invalid:
-                      context[ip] Private and local IP addresses are not allowed
-                      in production environments. If your application sits
-                      behind a firewall, the true client IP can often be found
-                      in a header such as X-Forwarded-For
-                    </Table.Cell>
-                  </Table.Row>
-                </Table.Body>
-                <Table.Footer>
-                  <Table.Row className="bg-zinc-50">
-                    <Table.Cell
-                      colspan="7"
-                      className="px-4 py-3 text-left font-medium text-gray-900"
-                    >
-                      Total 3 events
-                    </Table.Cell>
-                  </Table.Row>
-                </Table.Footer>
-              </Table>
-            </Card>
-          </div>
-        </div>
-      </div>
+        </TabsContent>
+        <TabsContent name="tab-2">C22ntent goes here</TabsContent>
+      </Tabs>
     </main>
   </div>
 </Layout>
+
+<!-- 
+<div>
+  <div class="mb-4 flex items-end justify-between">
+    <div class="flex items-center gap-4">
+      <h3 class="flex items-center gap-2 text-sm font-bold text-black">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="lucide lucide-scan-search"
+          ><path d="M3 7V5a2 2 0 0 1 2-2h2"></path><path d="M17 3h2a2 2 0 0 1 2 2v2"
+          ></path><path d="M21 17v2a2 2 0 0 1-2 2h-2"></path><path
+            d="M7 21H5a2 2 0 0 1-2-2v-2"></path><circle cx="12" cy="12" r="3"
+          ></circle><path d="m16 16-1.9-1.9"></path></svg
+        >
+          Protection Insight
+      </h3>
+      <div class="h-4 w-px bg-zinc-200"></div>
+      <Tab className="px-4">
+        <TabTrigger onClick="" isActive>Policy Action</TabTrigger>
+        <TabTrigger onClick="">Policies Triggered</TabTrigger>
+        <TabTrigger onClick="">Signals Triggered</TabTrigger>
+      </Tab>
+    </div>
+  </div>
+
+  <Card className="overflow-auto">
+    <Table x-data="Table" className="table-fixed">
+      <Table.Header>
+        <Table.Row>
+          <Table.Head className="w-[180px] px-4 py-3 text-xs font-medium text-gray-900">
+            Date
+          </Table.Head>
+          <Table.Head className="w-[180px] px-4 py-3 text-xs font-medium text-gray-900">
+            URL
+          </Table.Head>
+          <Table.Head className="w-[180px] px-4 py-3 text-xs font-medium text-gray-900">
+            Event
+          </Table.Head>
+          <Table.Head className="w-[180px] px-4 py-3 text-xs font-medium text-gray-900">
+            Status
+          </Table.Head>
+          <Table.Head className="w-[180px] px-4 py-3 text-xs font-medium text-gray-900">
+            Action
+          </Table.Head>
+          <Table.Head className="w-full px-4 py-3 text-xs font-medium text-gray-900">
+            Message
+          </Table.Head>
+        </Table.Row>
+      </Table.Header>
+      <Table.Body>
+        <Table.Row className="cursor-pointer hover:bg-zinc-50">
+          <Table.Cell className="whitespace-nowrap px-4 py-4 font-medium">
+            <div class="flex items-center gap-3">
+              <div class="h-3 w-3 rounded-full bg-red-500"></div>
+                Jan 10, 04:35
+            </div>
+          </Table.Cell>
+          <Table.Cell className="whitespace-nowrap px-4 py-4 font-medium">
+            /v1/log
+          </Table.Cell>
+          <Table.Cell className="whitespace-nowrap px-4 py-4 font-medium">
+            $profile_update
+          </Table.Cell>
+          <Table.Cell className="whitespace-nowrap px-4 py-4 font-medium">
+            succeeded
+          </Table.Cell>
+          <Table.Cell className="whitespace-nowrap px-4 py-4 font-medium">–</Table.Cell>
+          <Table.Cell className="truncate px-4 py-4 font-mono">
+            response.body: One or more parameters are invalid: context[ip] Private and
+            local IP addresses are not allowed in production environments. If your
+            application sits behind a firewall, the true client IP can often be found in a
+            header such as X-Forwarded-For
+          </Table.Cell>
+        </Table.Row>
+        <Table.Row className="cursor-pointer hover:bg-zinc-50">
+          <Table.Cell className="whitespace-nowrap px-4 py-4 font-medium">
+            <div class="flex items-center gap-3">
+              <div class="h-3 w-3 rounded-full bg-orange-500"></div>
+                Jan 10, 04:35
+            </div>
+          </Table.Cell>
+          <Table.Cell className="whitespace-nowrap px-4 py-4 font-medium">
+            /v1/log
+          </Table.Cell>
+          <Table.Cell className="whitespace-nowrap px-4 py-4 font-medium">
+            $profile_update
+          </Table.Cell>
+          <Table.Cell className="whitespace-nowrap px-4 py-4 font-medium">
+            succeeded
+          </Table.Cell>
+          <Table.Cell className="whitespace-nowrap px-4 py-4 font-medium">–</Table.Cell>
+          <Table.Cell className="truncate px-4 py-4 font-mono">
+            response.body: One or more parameters are invalid: context[ip] Private and
+            local IP addresses are not allowed in production environments. If your
+            application sits behind a firewall, the true client IP can often be found in a
+            header such as X-Forwarded-For
+          </Table.Cell>
+        </Table.Row>
+        <Table.Row className="cursor-pointer hover:bg-zinc-50">
+          <Table.Cell className="whitespace-nowrap px-4 py-4 font-medium">
+            <div class="flex items-center gap-3">
+              <div class="h-3 w-3 rounded-full bg-orange-500"></div>
+                Jan 10, 04:35
+            </div>
+          </Table.Cell>
+          <Table.Cell className="whitespace-nowrap px-4 py-4 font-medium">
+            /v1/log
+          </Table.Cell>
+          <Table.Cell className="whitespace-nowrap px-4 py-4 font-medium">
+            $profile_update
+          </Table.Cell>
+          <Table.Cell className="whitespace-nowrap px-4 py-4 font-medium">
+            succeeded
+          </Table.Cell>
+          <Table.Cell className="whitespace-nowrap px-4 py-4 font-medium">–</Table.Cell>
+          <Table.Cell className="truncate px-4 py-4 font-mono">
+            response.body: One or more parameters are invalid: context[ip] Private and
+            local IP addresses are not allowed in production environments. If your
+            application sits behind a firewall, the true client IP can often be found in a
+            header such as X-Forwarded-For
+          </Table.Cell>
+        </Table.Row>
+      </Table.Body>
+      <Table.Footer>
+        <Table.Row className="bg-zinc-50">
+          <Table.Cell
+            colspan="7"
+            className="px-4 py-3 text-left font-medium text-gray-900"
+          >
+            Total 3 events
+          </Table.Cell>
+        </Table.Row>
+      </Table.Footer>
+    </Table>
+  </Card>
+</div> 
+-->
+
+<script>
+  import Chart from 'chart.js/auto';
+
+  document.addEventListener('DOMContentLoaded', (event) => {
+    // Your chart initialization code here
+    const ctx = document.getElementById('triggeredSignalsChart').getContext('2d');
+    const myPieChart = new Chart(ctx, {
+      type: 'pie', // Type of chart
+      data: {
+        labels: ['Red', 'Blue', 'Yellow'], // Labels for the segments
+        datasets: [
+          {
+            label: 'My First Dataset',
+            data: [300, 50, 100], // Data points for each segment
+            backgroundColor: ['rgb(255, 99, 132)', 'rgb(54, 162, 235)', 'rgb(255, 205, 86)'],
+            hoverOffset: 4,
+          },
+        ],
+      },
+      options: {
+        plugins: {
+          legend: {
+            display: false, // This will hide the legend
+          },
+        },
+      },
+    });
+  });
+</script>

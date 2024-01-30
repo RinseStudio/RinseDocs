@@ -15,17 +15,19 @@ import Dropdown from '@/components/ui/modules/Dropdown';
   </div>
   <div>
     <Tab className="px-7">
-      <Tab.Item onClick="link('/components/templates/organization-settings/general')" isActive>
+      <TabTrigger onClick="link('/components/templates/organization-settings/general')" isActive>
         General
-      </Tab.Item>
-      <Tab.Item onClick="link('/components/templates/organization-settings/users')">Users</Tab.Item>
-      <Tab.Item onClick="link('/components/templates/organization-settings/billing')">
+      </TabTrigger>
+      <TabTrigger onClick="link('/components/templates/organization-settings/users')">
+        Users
+      </TabTrigger>
+      <TabTrigger onClick="link('/components/templates/organization-settings/billing')">
         Billing
-      </Tab.Item>
-      <Tab.Item onClick="link('/components/templates/organization-settings/environment')">
+      </TabTrigger>
+      <TabTrigger onClick="link('/components/templates/organization-settings/environment')">
         Environment
-      </Tab.Item>
-      <!-- <Tab.Item onClick="link('/components/templates/organization-settings/authentication')">Authentication</Tab.Item> -->
+      </TabTrigger>
+      <!-- <TabTrigger onClick="link('/components/templates/organization-settings/authentication')">Authentication</TabTrigger> -->
     </Tab>
   </div>
   <div class="px-7 py-10">

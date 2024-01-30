@@ -17,11 +17,11 @@ import Link from '@/components/ui/elements/Link/index.astro';
 
       <Dropdown.Content position="bottomEnd" className="w-[320px]">
         <Tab className="px-4">
-          <Tab.Item onClick="" isActive>Fields</Tab.Item>
-          <Tab.Item onClick="">Lists</Tab.Item>
-          <Tab.Item onClick="">Signals</Tab.Item>
-          <Tab.Item onClick="">Policies</Tab.Item>
-          <Tab.Item onClick="">Metrics</Tab.Item>
+          <TabTrigger onClick="" isActive>Fields</TabTrigger>
+          <TabTrigger onClick="">Lists</TabTrigger>
+          <TabTrigger onClick="">Signals</TabTrigger>
+          <TabTrigger onClick="">Policies</TabTrigger>
+          <TabTrigger onClick="">Metrics</TabTrigger>
         </Tab>
         <Dropdown.Group>
           <div class="mt-3 px-2">
@@ -36,8 +36,7 @@ import Link from '@/components/ui/elements/Link/index.astro';
                 stroke-width="2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                class="lucide lucide-chevron-left mr-0.5"
-                ><path d="m15 18-6-6 6-6"></path></svg
+                class="lucide lucide-chevron-left mr-0.5"><path d="m15 18-6-6 6-6"></path></svg
               >
                Event Name
             </Link>
@@ -51,15 +50,9 @@ import Link from '@/components/ui/elements/Link/index.astro';
                 <Dropdown.Content className="w-full">
                   <Dropdown.Group>
                     <Dropdown.Items>
-                      <Dropdown.Item onClick={'isOpen = !isOpen'}>
-                        is
-                      </Dropdown.Item>
-                      <Dropdown.Item onClick={'isOpen = !isOpen'}>
-                        is not
-                      </Dropdown.Item>
-                      <Dropdown.Item onClick={'isOpen = !isOpen'}>
-                        is one of
-                      </Dropdown.Item>
+                      <Dropdown.Item onClick={'isOpen = !isOpen'}>is</Dropdown.Item>
+                      <Dropdown.Item onClick={'isOpen = !isOpen'}>is not</Dropdown.Item>
+                      <Dropdown.Item onClick={'isOpen = !isOpen'}>is one of</Dropdown.Item>
                     </Dropdown.Items>
                   </Dropdown.Group>
                 </Dropdown.Content>
@@ -73,12 +66,8 @@ import Link from '@/components/ui/elements/Link/index.astro';
         <Dropdown.Separator />
         <Dropdown.Group>
           <footer class="flex justify-end gap-2 px-2 py-2">
-            <Button onClick={'isOpen = !isOpen'} size="sm" variant="secondary">
-              Cancel
-            </Button>
-            <Button onClick={'isOpen = !isOpen'} size="sm" variant="primary">
-              Add filter
-            </Button>
+            <Button onClick={'isOpen = !isOpen'} size="sm" variant="secondary">Cancel</Button>
+            <Button onClick={'isOpen = !isOpen'} size="sm" variant="primary">Add filter</Button>
           </footer>
         </Dropdown.Group>
       </Dropdown.Content>

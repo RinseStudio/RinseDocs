@@ -1,10 +1,5 @@
 import Tooltip from './Tooltip.astro';
-import Trigger from './Trigger.astro';
-import Content from './Content.astro';
+import TooltipTrigger from './Trigger.astro';
+import TooltipContent from './Content.astro';
 
-const Component = Object.assign(Tooltip, {
-  Trigger,
-  Content,
-});
-
-export default Component;
+export { Tooltip, TooltipTrigger, TooltipContent };

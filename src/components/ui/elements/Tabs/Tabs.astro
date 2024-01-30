@@ -1,25 +1,62 @@
 ---
 import { twMerge } from 'tailwind-merge';
-const { data, isVisible, className, ...props } = Astro.props;
+const { data, selection, className, ...props } = Astro.props;
 
 const defaultData = {
-  isVisible: isVisible,
+  selection: selection,
 };
 
 const xData = JSON.stringify({ ...defaultData, ...data }, null, 2).replace(/"/g, `'`);
 ---
 
-<div x-data={`Tooltip(${xData})`} class={twMerge('', className)} {...props}>
+<div x-data={`Tab(${xData})`} class={twMerge('', className)} {...props}>
   <slot />
 </div>
+
 <script>
   import Alpine from 'alpinejs';
 
   document.addEventListener('alpine:init', () => {
-    Alpine.data('Tooltip', (initialState = {}) => ({
-      isVisible: initialState.isVisible,
+    Alpine.data('Tab', (initialState = {}) => ({
+      selection: initialState.selection,
+      className: {
+        trigger: {
+          default: 'text-gray-400 hover:text-gray-600 dark:hover:text-gray-300',
+          active: 'text-blue-500 dark:text-blue-400',
+        },
+      },
       init() {
         this.setState(initialState);
+        window.onload = () => {
+          const activeTab = this.$root.querySelector('[data-tab-name="' + this.selection + '"]');
+
+          if (activeTab) {
+            // Set custom properties based on the first button's width and left position
+            const tabOffset = activeTab.offsetLeft;
+            const tabWidth = activeTab.offsetWidth;
+
+            this.$root
+              .querySelector('[data-tab-list]')
+              .style.setProperty('--tab-width', `${tabWidth}px`);
+            this.$root
+              .querySelector('[data-tab-list]')
+              .style.setProperty('--tab-offset', `${tabOffset}px`);
+          }
+        };
+      },
+      switchTab(name) {
+        this.selection = name;
+        const tabWidth = this.$el.offsetWidth;
+        const tabOffset = this.$el.offsetLeft;
+
+        this.$root
+          .querySelector('[data-tab-list]')
+          .style.setProperty('--tab-width', `${tabWidth}px`);
+        this.$root
+          .querySelector('[data-tab-list]')
+          .style.setProperty('--tab-offset', `${tabOffset}px`);
+
+        const tabs = this.$root.querySelectorAll('button');
       },
       setState(state) {
         for (const path in state) {

@@ -14,18 +14,14 @@ import Tab from '@/components/ui/elements/Tab';
       </Dropdown.Trigger>
       <Dropdown.Content position="bottomEnd" className="w-[320px]">
         <Tab className="px-4">
-          <Tab.Item onClick="" isActive>Fields</Tab.Item>
-          <Tab.Item onClick="">Lists</Tab.Item>
-          <Tab.Item onClick="">Signals</Tab.Item>
-          <Tab.Item onClick="">Policies</Tab.Item>
-          <Tab.Item onClick="">Metrics</Tab.Item>
+          <TabTrigger onClick="" isActive>Fields</TabTrigger>
+          <TabTrigger onClick="">Lists</TabTrigger>
+          <TabTrigger onClick="">Signals</TabTrigger>
+          <TabTrigger onClick="">Policies</TabTrigger>
+          <TabTrigger onClick="">Metrics</TabTrigger>
         </Tab>
         <Dropdown.Group className="px-3 py-3">
-          <SearchField
-            placeholder="Search by field name"
-            validation="default"
-            isFluid
-          />
+          <SearchField placeholder="Search by field name" validation="default" isFluid />
         </Dropdown.Group>
         <Dropdown.Separator />
         <Dropdown.Group className="max-h-[300px] min-h-[200px] overflow-auto">
@@ -41,62 +37,36 @@ import Tab from '@/components/ui/elements/Tab';
               <button
                 class="w-full rounded px-2 py-1 text-left hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:hover:bg-zinc-100/[0.06] dark:focus-visible:ring-blue-500"
               >
-                <div
-                  class="text-[13px] font-medium text-gray-900 dark:text-gray-300"
-                >
-                  Lists
-                </div>
-                <div
-                  class="text-[11px] font-medium text-gray-400 dark:text-gray-500"
-                >
-                  lists
-                </div>
+                <div class="text-[13px] font-medium text-gray-900 dark:text-gray-300">Lists</div>
+                <div class="text-[11px] font-medium text-gray-400 dark:text-gray-500">lists</div>
               </button>
             </li>
             <li>
               <button
                 class="w-full rounded px-2 py-1 text-left hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:hover:bg-zinc-100/[0.06] dark:focus-visible:ring-blue-500"
               >
-                <div
-                  class="text-[13px] font-medium text-gray-900 dark:text-gray-300"
-                >
+                <div class="text-[13px] font-medium text-gray-900 dark:text-gray-300">
                   Event Name
                 </div>
-                <div
-                  class="text-[11px] font-medium text-gray-400 dark:text-gray-500"
-                >
-                  name
-                </div>
+                <div class="text-[11px] font-medium text-gray-400 dark:text-gray-500">name</div>
               </button>
             </li>
             <li>
               <button
                 class="w-full rounded px-2 py-1 text-left hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:hover:bg-zinc-100/[0.06] dark:focus-visible:ring-blue-500"
               >
-                <div
-                  class="text-[13px] font-medium text-gray-900 dark:text-gray-300"
-                >
-                  Endpoint
-                </div>
-                <div
-                  class="text-[11px] font-medium text-gray-400 dark:text-gray-500"
-                >
-                  endpoint
-                </div>
+                <div class="text-[13px] font-medium text-gray-900 dark:text-gray-300">Endpoint</div>
+                <div class="text-[11px] font-medium text-gray-400 dark:text-gray-500">endpoint</div>
               </button>
             </li>
             <li>
               <button
                 class="w-full rounded px-2 py-1 text-left hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:hover:bg-zinc-100/[0.06] dark:focus-visible:ring-blue-500"
               >
-                <div
-                  class="text-[13px] font-medium text-gray-900 dark:text-gray-300"
-                >
+                <div class="text-[13px] font-medium text-gray-900 dark:text-gray-300">
                   Timestamp
                 </div>
-                <div
-                  class="text-[11px] font-medium text-gray-400 dark:text-gray-500"
-                >
+                <div class="text-[11px] font-medium text-gray-400 dark:text-gray-500">
                   timestamp
                 </div>
               </button>
@@ -105,14 +75,10 @@ import Tab from '@/components/ui/elements/Tab';
               <button
                 class="w-full rounded px-2 py-1 text-left hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:hover:bg-zinc-100/[0.06] dark:focus-visible:ring-blue-500"
               >
-                <div
-                  class="text-[13px] font-medium text-gray-900 dark:text-gray-300"
-                >
+                <div class="text-[13px] font-medium text-gray-900 dark:text-gray-300">
                   Authenticated
                 </div>
-                <div
-                  class="text-[11px] font-medium text-gray-400 dark:text-gray-500"
-                >
+                <div class="text-[11px] font-medium text-gray-400 dark:text-gray-500">
                   authenticated
                 </div>
               </button>
@@ -121,14 +87,10 @@ import Tab from '@/components/ui/elements/Tab';
               <button
                 class="w-full rounded px-2 py-1 text-left hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:hover:bg-zinc-100/[0.06] dark:focus-visible:ring-blue-500"
               >
-                <div
-                  class="text-[13px] font-medium text-gray-900 dark:text-gray-300"
-                >
+                <div class="text-[13px] font-medium text-gray-900 dark:text-gray-300">
                   Triggered Signals
                 </div>
-                <div
-                  class="text-[11px] font-medium text-gray-400 dark:text-gray-500"
-                >
+                <div class="text-[11px] font-medium text-gray-400 dark:text-gray-500">
                   triggered_signals
                 </div>
               </button>
@@ -137,14 +99,10 @@ import Tab from '@/components/ui/elements/Tab';
               <button
                 class="w-full rounded px-2 py-1 text-left hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:hover:bg-zinc-100/[0.06] dark:focus-visible:ring-blue-500"
               >
-                <div
-                  class="text-[13px] font-medium text-gray-900 dark:text-gray-300"
-                >
+                <div class="text-[13px] font-medium text-gray-900 dark:text-gray-300">
                   Triggered Signals
                 </div>
-                <div
-                  class="text-[11px] font-medium text-gray-400 dark:text-gray-500"
-                >
+                <div class="text-[11px] font-medium text-gray-400 dark:text-gray-500">
                   triggered_signals
                 </div>
               </button>
@@ -153,14 +111,10 @@ import Tab from '@/components/ui/elements/Tab';
               <button
                 class="w-full rounded px-2 py-1 text-left hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:hover:bg-zinc-100/[0.06] dark:focus-visible:ring-blue-500"
               >
-                <div
-                  class="text-[13px] font-medium text-gray-900 dark:text-gray-300"
-                >
+                <div class="text-[13px] font-medium text-gray-900 dark:text-gray-300">
                   Triggered Signals
                 </div>
-                <div
-                  class="text-[11px] font-medium text-gray-400 dark:text-gray-500"
-                >
+                <div class="text-[11px] font-medium text-gray-400 dark:text-gray-500">
                   triggered_signals
                 </div>
               </button>

@@ -2,14 +2,14 @@
 import { twMerge } from 'tailwind-merge';
 
 const {
-  className = null,
   position = 'bottomStart',
-  enterClassName = null,
-  enterStartClassName = null,
-  enterEndClassName = null,
-  leaveClassName = null,
-  leaveStartClassName = null,
-  leaveEndClassName = null,
+  className,
+  enterClassName,
+  enterStartClassName,
+  enterEndClassName,
+  leaveClassName,
+  leaveStartClassName,
+  leaveEndClassName,
   ...props
 } = Astro.props;
 ---

@@ -13,17 +13,22 @@ import Tooltip from '@/components/ui/elements/Tooltip';
   </div>
   <div>
     <Tab className="px-7">
-      <Tab.Item onClick="link('/components/templates/organization-settings/general')">
+      <TabTrigger onClick="link('/components/templates/organization-settings/general')">
         General
-      </Tab.Item>
-      <Tab.Item onClick="link('/components/templates/organization-settings/users')">Users</Tab.Item>
-      <Tab.Item onClick="link('/components/templates/organization-settings/billing')">
+      </TabTrigger>
+      <TabTrigger onClick="link('/components/templates/organization-settings/users')">
+        Users
+      </TabTrigger>
+      <TabTrigger onClick="link('/components/templates/organization-settings/billing')">
         Billing
-      </Tab.Item>
-      <Tab.Item onClick="link('/components/templates/organization-settings/environment')" isActive>
+      </TabTrigger>
+      <TabTrigger
+        onClick="link('/components/templates/organization-settings/environment')"
+        isActive
+      >
         Environment
-      </Tab.Item>
-      <!-- <Tab.Item onClick="link('/components/templates/organization-settings/authentication')">Authentication</Tab.Item> -->
+      </TabTrigger>
+      <!-- <TabTrigger onClick="link('/components/templates/organization-settings/authentication')">Authentication</TabTrigger> -->
     </Tab>
   </div>
   <div class="px-7 py-10">
