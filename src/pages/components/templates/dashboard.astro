@@ -326,7 +326,9 @@ import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/element
                   </div>
                   <div class="flex pl-5 pr-3">
                     <div class="w-[200px] flex-none pt-4">
-                      <div class="size-[128px] mb-4 rounded-full bg-red-500"></div>
+                      <div class="size-[128px] mb-4">
+                        <canvas id="triggeredPoliciesChart"></canvas>
+                      </div>
                       <div
                         class="mb-4 flex items-center justify-between gap-2 text-xs font-semibold leading-none text-gray-600"
                       >
@@ -936,27 +938,67 @@ import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/element
 
   document.addEventListener('DOMContentLoaded', (event) => {
     // Your chart initialization code here
-    const ctx = document.getElementById('triggeredSignalsChart').getContext('2d');
-    const myPieChart = new Chart(ctx, {
-      type: 'pie', // Type of chart
-      data: {
-        labels: ['Red', 'Blue', 'Yellow'], // Labels for the segments
-        datasets: [
-          {
-            label: 'My First Dataset',
-            data: [300, 50, 100], // Data points for each segment
-            backgroundColor: ['rgb(255, 99, 132)', 'rgb(54, 162, 235)', 'rgb(255, 205, 86)'],
-            hoverOffset: 4,
-          },
-        ],
-      },
-      options: {
-        plugins: {
-          legend: {
-            display: false, // This will hide the legend
+    const triggeredPoliciesChart = new Chart(
+      document.getElementById('triggeredPoliciesChart').getContext('2d'),
+      {
+        type: 'pie', // Type of chart
+        data: {
+          labels: ['Red', 'Blue', 'Yellow'], // Labels for the segments
+          datasets: [
+            {
+              label: 'My First Dataset',
+              data: [200, 100, 50, 30, 20, 15], // Data points for each segment
+              backgroundColor: ['#f97316', '#f97316', '#ef4444', '#ef4444', '#ef4444'],
+            },
+          ],
+        },
+        options: {
+          plugins: {
+            tooltip: {
+              enabled: false,
+            },
+            legend: {
+              display: false, // This will hide the legend
+            },
           },
         },
       },
-    });
+    );
+
+    const triggeredSignalsChart = new Chart(
+      document.getElementById('triggeredSignalsChart').getContext('2d'),
+      {
+        type: 'pie', // Type of chart
+        data: {
+          labels: ['Red', 'Blue', 'Yellow'], // Labels for the segments
+          datasets: [
+            {
+              label: 'My First Dataset',
+              data: [100, 40, 40, 30, 20, 12, 10, 5], // Data points for each segment
+              backgroundColor: [
+                '#d1d5db',
+                '#f97316',
+                '#fbbf24',
+                '#22c55e',
+                '#14b8a6',
+                '#0ea5e9',
+                '#6366f1',
+                '#000000',
+              ],
+            },
+          ],
+        },
+        options: {
+          plugins: {
+            tooltip: {
+              enabled: false,
+            },
+            legend: {
+              display: false, // This will hide the legend
+            },
+          },
+        },
+      },
+    );
   });
 </script>
