@@ -55,11 +55,34 @@ import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/element
           Here is an overview of how well Castle is protecting your users.
         </p>
       </div>
-      <Tabs selection="tab-1">
+      <Tabs selection="tab-3">
         <div class="flex items-end justify-between border-b border-gray-200 pr-7">
           <TabsList className="border-b-0 px-7">
             <TabsTrigger name="tab-1">Login</TabsTrigger>
             <TabsTrigger name="tab-2">Registration</TabsTrigger>
+            <TabsTrigger name="tab-3">
+              <div class="flex items-center">
+                <svg
+                  class="size-3 mr-2 animate-spin"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    class="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    stroke-width="4"></circle>
+                  <path
+                    class="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                  ></path>
+                </svg> Login (Loading State)
+              </div>
+            </TabsTrigger>
           </TabsList>
           <div class="flex items-center gap-2 pb-3">
             <Button isSquare size="sm" variant="outline">
@@ -101,6 +124,22 @@ import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/element
                   y2="10.49"></line></svg
               >
             </Button>
+            <Dropdown>
+              <DropdownTrigger>
+                <Button size="sm" variant="outline" className="w-[200px] justify-between pl-2 pr-8">
+                  <div
+                    class="flex h-[18px] items-center rounded bg-black px-1.5 text-[10px] text-white"
+                  >
+                    7d
+                  </div>
+                   Last 7 days
+                  <div class="size-8 absolute right-0 top-0 flex items-center justify-center">
+                    <i data-lucide="calendar-days" class="size-3.5 text-gray-400"></i>
+                  </div>
+                </Button>
+              </DropdownTrigger>
+              <DropdownContent className="w-full">Rangepicker</DropdownContent>
+            </Dropdown>
           </div>
         </div>
         <TabsContent name="tab-1" className="px-7">
@@ -243,21 +282,21 @@ import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/element
                       <i data-lucide="chevron-right" class="size-4"></i>
                     </a>
                   </div>
-                  <div class="mb-4 flex h-[200px] items-center justify-center text-sm font-medium">
+                  <div class="flex h-[200px] items-center justify-center text-sm font-medium">
                     <canvas id="loginActivityChart" class="w-full"></canvas>
                   </div>
-                  <ul class="flex items-center gap-6">
+                  <ul class="mt-4 flex items-center gap-6">
                     <li class="flex items-center gap-2 text-xs font-semibold text-gray-900">
                       <div class="h-3 w-3 rounded-full bg-gray-300"></div>
-                       Attempted
+                      <div>Attempted</div>
                     </li>
                     <li class="flex items-center gap-2 text-xs font-semibold text-gray-900">
                       <div class="h-3 w-3 rounded-full bg-indigo-600"></div>
-                       Succeeded
+                      <div>Succeeded</div>
                     </li>
                     <li class="flex items-center gap-2 text-xs font-semibold text-gray-900">
                       <div class="h-3 w-3 rounded-full bg-black"></div>
-                       Failed
+                      <div>Failed</div>
                     </li>
                   </ul>
                 </div>
@@ -306,12 +345,10 @@ import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/element
                       <i data-lucide="chevron-right" class="size-4"></i>
                     </a>
                   </div>
-                  <div
-                    class="mb-4 flex h-[200px] items-center justify-center bg-zinc-50 text-sm font-medium"
-                  >
+                  <div class="flex h-[200px] items-center justify-center text-sm font-medium">
                     <canvas id="loginActionChart" class="w-full"></canvas>
                   </div>
-                  <ul class="flex items-center gap-6">
+                  <ul class="mt-4 flex items-center gap-6">
                     <li class="flex items-center gap-2 text-xs font-semibold text-gray-900">
                       <div class="h-3 w-3 rounded-full bg-gray-300"></div>
                        Allow
@@ -347,7 +384,7 @@ import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/element
                   <div class="flex pl-5 pr-3">
                     <div class="w-[200px] flex-none pt-4">
                       <div class="size-[128px] mb-4">
-                        <canvas id="triggeredPoliciesChart"></canvas>
+                        <canvas id="loginTriggeredPoliciesChart"></canvas>
                       </div>
                       <div
                         class="mb-4 flex items-center justify-between gap-2 text-xs font-semibold leading-none text-gray-600"
@@ -555,7 +592,7 @@ import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/element
                   <div class="flex pl-5 pr-3">
                     <div class="w-[200px] flex-none pt-4">
                       <div class="size-[128px] mb-4 rounded-full">
-                        <canvas id="triggeredSignalsChart"></canvas>
+                        <canvas id="loginTriggeredSignalsChart"></canvas>
                       </div>
                       <div
                         class="mb-4 flex items-center justify-between gap-2 text-xs font-semibold leading-none text-gray-600"
@@ -802,7 +839,1131 @@ import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/element
             </article>
           </div>
         </TabsContent>
-        <TabsContent name="tab-2">C22ntent goes here</TabsContent>
+        <TabsContent name="tab-2" className="px-7">
+          <div class="space-y-10 py-6">
+            <article class="space-y-4">
+              <div class="mb-4 flex items-end justify-between">
+                <div class="flex items-center gap-4">
+                  <h3 class="flex items-center gap-2 text-sm font-bold text-black">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="lucide lucide-bar-chart-3"
+                      ><path d="M3 3v18h18"></path><path d="M18 17V9"></path><path d="M13 17V5"
+                      ></path><path d="M8 17v-3"></path></svg
+                    >
+                     Event Insight
+                  </h3>
+                </div>
+              </div>
+              <Card className="flex justify-center px-5 py-14">
+                <div class="flex flex-col items-center text-center">
+                  <i class="fa-solid fa-triangle-exclamation mb-2 text-[40px] text-slate-200"></i>
+                  <h4 class="mb-3 text-base font-bold text-gray-900">
+                    No registration events detected
+                  </h4>
+                  <p class="max-w-[420px] text-sm text-gray-600">
+                    We haven't received any registration events. To see an overview of your
+                    registration events, <a href="#" class="font-medium text-blue-500"
+                      >follow our guide</a
+                    >.
+                  </p>
+                </div>
+              </Card>
+              <Card className="grid grid-cols-1">
+                <div class="px-5 py-5">
+                  <div
+                    class="mb-4 flex items-center justify-between gap-2 text-xs font-semibold leading-none text-gray-600"
+                  >
+                    Registration Activity
+                    <a href="#" class="flex items-center gap-0.5 text-blue-500 hover:text-blue-600"
+                      >Open in explorer
+                      <i data-lucide="chevron-right" class="size-4"></i>
+                    </a>
+                  </div>
+                  <div class="flex h-[200px] items-center justify-center text-sm font-medium">
+                    <canvas id="registrationActivityChart" class="w-full"></canvas>
+                  </div>
+                </div>
+              </Card>
+            </article>
+
+            <article class="space-y-4">
+              <div class="mb-4 flex items-end justify-between">
+                <div class="flex items-center gap-4">
+                  <h3 class="flex items-center gap-2 text-sm font-bold text-black">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="lucide lucide-zap"
+                      ><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg
+                    >
+                    <div class="flex items-center gap-1.5">
+                      Triggered Insight
+                      <Tooltip>
+                        <TooltipTrigger>
+                          <i class="fa-solid fa-fw fa-question-circle text-gray-400"></i>
+                        </TooltipTrigger>
+                        <TooltipContent className="w-[160px]">
+                          Evaluated based on both Attempted and Succeeded
+                        </TooltipContent>
+                      </Tooltip>
+                    </div>
+                  </h3>
+                </div>
+              </div>
+              <Card className="grid grid-cols-1">
+                <div class="px-5 py-5">
+                  <div
+                    class="mb-4 flex items-center justify-between gap-2 text-xs font-semibold leading-none text-gray-600"
+                  >
+                    Registrations by Policy Action
+                    <a href="#" class="flex items-center gap-0.5 text-blue-500 hover:text-blue-600"
+                      >Open in explorer
+                      <i data-lucide="chevron-right" class="size-4"></i>
+                    </a>
+                  </div>
+                  <div class="flex h-[200px] items-center justify-center text-sm font-medium">
+                    <canvas id="registrationActionChart" class="w-full"></canvas>
+                  </div>
+                </div>
+              </Card>
+            </article>
+          </div>
+        </TabsContent>
+        <TabsContent name="tab-3" className="px-7">
+          <div class="space-y-10 py-6">
+            <article class="space-y-4">
+              <div class="mb-4 flex items-end justify-between">
+                <div class="flex items-center gap-4">
+                  <h3 class="flex items-center gap-2 text-sm font-bold text-black">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="lucide lucide-bar-chart-3"
+                      ><path d="M3 3v18h18"></path><path d="M18 17V9"></path><path d="M13 17V5"
+                      ></path><path d="M8 17v-3"></path></svg
+                    >
+                     Event Insight
+                  </h3>
+                </div>
+              </div>
+              <Card className="grid grid-cols-5 px-5">
+                <div class="col-span-2 grid grid-cols-2">
+                  <div class="py-5">
+                    <dl>
+                      <dt
+                        class="mb-2 flex items-center gap-2 text-xs font-semibold leading-none text-gray-600"
+                      >
+                        Total logins
+                      </dt>
+                      <dd class="flex items-center gap-2 text-lg font-bold text-black">
+                        <div class="flex h-7 animate-pulse items-center">
+                          <div class="h-3.5 w-[140px] rounded-full bg-slate-200"></div>
+                        </div>
+                      </dd>
+                    </dl>
+
+                    <div class="mt-4">
+                      <div class="h-2 w-10 animate-pulse rounded-full bg-slate-200"></div>
+                    </div>
+                    <div class="mt-2">
+                      <div class="h-2 w-[80px] animate-pulse rounded-full bg-slate-200"></div>
+                    </div>
+                  </div>
+
+                  <div class="py-5">
+                    <dl>
+                      <dt
+                        class="mb-2 flex items-center gap-2 text-xs font-semibold leading-none text-gray-600"
+                      >
+                        Failed logins
+                      </dt>
+                      <dd class="flex items-center gap-2 text-lg font-bold text-black">
+                        <div class="flex h-7 animate-pulse items-center">
+                          <div class="h-3.5 w-[140px] rounded-full bg-slate-200"></div>
+                        </div>
+                      </dd>
+                    </dl>
+
+                    <div class="mt-4">
+                      <div class="h-2 w-10 animate-pulse rounded-full bg-slate-200"></div>
+                    </div>
+                    <div class="mt-2">
+                      <div class="h-2 w-[80px] animate-pulse rounded-full bg-slate-200"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-span-3 grid grid-cols-3 gap-5">
+                  <div class="py-5">
+                    <dl>
+                      <dt
+                        class="mb-2 flex items-center gap-2 text-xs font-semibold leading-none text-gray-600"
+                      >
+                        Allow
+                      </dt>
+                      <dd class="flex items-center gap-2 text-lg font-bold text-black">
+                        <div class="flex h-7 animate-pulse items-center">
+                          <div class="h-3.5 w-[140px] rounded-full bg-slate-200"></div>
+                        </div>
+                      </dd>
+                    </dl>
+
+                    <div class="mt-4">
+                      <div class="h-2 w-10 animate-pulse rounded-full bg-slate-200"></div>
+                    </div>
+                    <div class="mt-2">
+                      <div class="h-2 w-[80px] animate-pulse rounded-full bg-slate-200"></div>
+                    </div>
+                  </div>
+
+                  <div class="py-5">
+                    <dl>
+                      <dt
+                        class="mb-2 flex items-center gap-2 text-xs font-semibold leading-none text-gray-600"
+                      >
+                        Challenge
+                      </dt>
+                      <dd class="flex items-center gap-2 text-lg font-bold text-black">
+                        <div class="flex h-7 animate-pulse items-center">
+                          <div class="h-3.5 w-[140px] rounded-full bg-slate-200"></div>
+                        </div>
+                      </dd>
+                    </dl>
+
+                    <div class="mt-4">
+                      <div class="h-2 w-10 animate-pulse rounded-full bg-slate-200"></div>
+                    </div>
+                    <div class="mt-2">
+                      <div class="h-2 w-[80px] animate-pulse rounded-full bg-slate-200"></div>
+                    </div>
+                  </div>
+
+                  <div class="py-5">
+                    <dl>
+                      <dt
+                        class="mb-2 flex items-center gap-2 text-xs font-semibold leading-none text-gray-600"
+                      >
+                        Deny
+                      </dt>
+                      <dd class="flex items-center gap-2 text-lg font-bold text-black">
+                        <div class="flex h-7 animate-pulse items-center">
+                          <div class="h-3.5 w-[140px] rounded-full bg-slate-200"></div>
+                        </div>
+                      </dd>
+                    </dl>
+
+                    <div class="mt-4">
+                      <div class="h-2 w-10 animate-pulse rounded-full bg-slate-200"></div>
+                    </div>
+                    <div class="mt-2">
+                      <div class="h-2 w-[80px] animate-pulse rounded-full bg-slate-200"></div>
+                    </div>
+                  </div>
+                </div>
+              </Card>
+              <Card className="grid grid-cols-1">
+                <div class="px-5 py-5">
+                  <div
+                    class="mb-4 flex items-center justify-between gap-2 text-xs font-semibold leading-none text-gray-600"
+                  >
+                    Login Activity
+                    <a href="#" class="flex items-center gap-0.5 text-blue-500 hover:text-blue-600"
+                      >Open in explorer
+                      <i data-lucide="chevron-right" class="size-4"></i>
+                    </a>
+                  </div>
+                  <div
+                    class="grid h-[200px] animate-pulse grid-cols-[repeat(80,minmax(0,1fr))] items-end gap-1 pt-10"
+                  >
+                    <div class="h-[67%] w-auto bg-slate-200"></div>
+                    <div class="h-[32%] w-auto bg-slate-200"></div>
+                    <div class="h-[94%] w-auto bg-slate-200"></div>
+                    <div class="h-[58%] w-auto bg-slate-200"></div>
+                    <div class="h-[77%] w-auto bg-slate-200"></div>
+                    <div class="h-[45%] w-auto bg-slate-200"></div>
+                    <div class="h-[85%] w-auto bg-slate-200"></div>
+                    <div class="h-[29%] w-auto bg-slate-200"></div>
+                    <div class="h-[100%] w-auto bg-slate-200"></div>
+                    <div class="h-[52%] w-auto bg-slate-200"></div>
+                    <div class="h-[73%] w-auto bg-slate-200"></div>
+                    <div class="h-[37%] w-auto bg-slate-200"></div>
+                    <div class="h-[81%] w-auto bg-slate-200"></div>
+                    <div class="h-[48%] w-auto bg-slate-200"></div>
+                    <div class="h-[25%] w-auto bg-slate-200"></div>
+                    <div class="h-[65%] w-auto bg-slate-200"></div>
+                    <div class="h-[90%] w-auto bg-slate-200"></div>
+                    <div class="h-[55%] w-auto bg-slate-200"></div>
+                    <div class="h-[78%] w-auto bg-slate-200"></div>
+                    <div class="h-[46%] w-auto bg-slate-200"></div>
+                    <div class="h-[87%] w-auto bg-slate-200"></div>
+                    <div class="h-[30%] w-auto bg-slate-200"></div>
+                    <div class="h-[99%] w-auto bg-slate-200"></div>
+                    <div class="h-[53%] w-auto bg-slate-200"></div>
+                    <div class="h-[72%] w-auto bg-slate-200"></div>
+                    <div class="h-[38%] w-auto bg-slate-200"></div>
+                    <div class="h-[82%] w-auto bg-slate-200"></div>
+                    <div class="h-[49%] w-auto bg-slate-200"></div>
+                    <div class="h-[26%] w-auto bg-slate-200"></div>
+                    <div class="h-[63%] w-auto bg-slate-200"></div>
+                    <div class="h-[91%] w-auto bg-slate-200"></div>
+                    <div class="h-[56%] w-auto bg-slate-200"></div>
+                    <div class="h-[74%] w-auto bg-slate-200"></div>
+                    <div class="h-[41%] w-auto bg-slate-200"></div>
+                    <div class="h-[86%] w-auto bg-slate-200"></div>
+                    <div class="h-[31%] w-auto bg-slate-200"></div>
+                    <div class="h-[98%] w-auto bg-slate-200"></div>
+                    <div class="h-[51%] w-auto bg-slate-200"></div>
+                    <div class="h-[70%] w-auto bg-slate-200"></div>
+                    <div class="h-[35%] w-auto bg-slate-200"></div>
+                    <div class="h-[80%] w-auto bg-slate-200"></div>
+                    <div class="h-[47%] w-auto bg-slate-200"></div>
+                    <div class="h-[27%] w-auto bg-slate-200"></div>
+                    <div class="h-[64%] w-auto bg-slate-200"></div>
+                    <div class="h-[92%] w-auto bg-slate-200"></div>
+                    <div class="h-[57%] w-auto bg-slate-200"></div>
+                    <div class="h-[75%] w-auto bg-slate-200"></div>
+                    <div class="h-[42%] w-auto bg-slate-200"></div>
+                    <div class="h-[88%] w-auto bg-slate-200"></div>
+                    <div class="h-[33%] w-auto bg-slate-200"></div>
+                    <div class="h-[97%] w-auto bg-slate-200"></div>
+                    <div class="h-[50%] w-auto bg-slate-200"></div>
+                    <div class="h-[71%] w-auto bg-slate-200"></div>
+                    <div class="h-[53%] w-auto bg-slate-200"></div>
+                    <div class="h-[72%] w-auto bg-slate-200"></div>
+                    <div class="h-[38%] w-auto bg-slate-200"></div>
+                    <div class="h-[82%] w-auto bg-slate-200"></div>
+                    <div class="h-[49%] w-auto bg-slate-200"></div>
+                    <div class="h-[26%] w-auto bg-slate-200"></div>
+                    <div class="h-[63%] w-auto bg-slate-200"></div>
+                    <div class="h-[91%] w-auto bg-slate-200"></div>
+                    <div class="h-[56%] w-auto bg-slate-200"></div>
+                    <div class="h-[74%] w-auto bg-slate-200"></div>
+                    <div class="h-[41%] w-auto bg-slate-200"></div>
+                    <div class="h-[86%] w-auto bg-slate-200"></div>
+                    <div class="h-[31%] w-auto bg-slate-200"></div>
+                    <div class="h-[98%] w-auto bg-slate-200"></div>
+                    <div class="h-[51%] w-auto bg-slate-200"></div>
+                    <div class="h-[70%] w-auto bg-slate-200"></div>
+                    <div class="h-[35%] w-auto bg-slate-200"></div>
+                    <div class="h-[80%] w-auto bg-slate-200"></div>
+                    <div class="h-[47%] w-auto bg-slate-200"></div>
+                    <div class="h-[27%] w-auto bg-slate-200"></div>
+                    <div class="h-[64%] w-auto bg-slate-200"></div>
+                    <div class="h-[92%] w-auto bg-slate-200"></div>
+                    <div class="h-[57%] w-auto bg-slate-200"></div>
+                    <div class="h-[75%] w-auto bg-slate-200"></div>
+                    <div class="h-[42%] w-auto bg-slate-200"></div>
+                    <div class="h-[88%] w-auto bg-slate-200"></div>
+                    <div class="h-[86%] w-auto bg-slate-200"></div>
+                  </div>
+
+                  <ul class="mt-4 flex items-center gap-6">
+                    <li class="flex h-4 items-center gap-2 text-xs font-semibold text-gray-900">
+                      <div class="h-3 w-3 animate-pulse rounded-full bg-slate-200"></div>
+                      <div class="h-2 w-[60.52px] animate-pulse rounded-full bg-slate-200"></div>
+                    </li>
+                    <li class="flex h-4 items-center gap-2 text-xs font-semibold text-gray-900">
+                      <div class="h-3 w-3 animate-pulse rounded-full bg-slate-200"></div>
+                      <div class="h-2 w-[65.41px] animate-pulse rounded-full bg-slate-200"></div>
+                    </li>
+                    <li class="flex h-4 items-center gap-2 text-xs font-semibold text-gray-900">
+                      <div class="h-3 w-3 animate-pulse rounded-full bg-slate-200"></div>
+                      <div class="h-2 w-[34.59px] animate-pulse rounded-full bg-slate-200"></div>
+                    </li>
+                  </ul>
+                </div>
+              </Card>
+            </article>
+
+            <article class="space-y-4">
+              <div class="mb-4 flex items-end justify-between">
+                <div class="flex items-center gap-4">
+                  <h3 class="flex items-center gap-2 text-sm font-bold text-black">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="lucide lucide-zap"
+                      ><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg
+                    >
+                    <div class="flex items-center gap-1.5">
+                      Triggered Insight
+                      <Tooltip>
+                        <TooltipTrigger>
+                          <i class="fa-solid fa-fw fa-question-circle text-gray-400"></i>
+                        </TooltipTrigger>
+                        <TooltipContent className="w-[160px]">
+                          Evaluated based on both Attempted and Succeeded
+                        </TooltipContent>
+                      </Tooltip>
+                    </div>
+                  </h3>
+                </div>
+              </div>
+              <Card className="grid grid-cols-1">
+                <div class="px-5 py-5">
+                  <div
+                    class="mb-4 flex items-center justify-between gap-2 text-xs font-semibold leading-none text-gray-600"
+                  >
+                    Logins by Policy Action
+                    <a href="#" class="flex items-center gap-0.5 text-blue-500 hover:text-blue-600"
+                      >Open in explorer
+                      <i data-lucide="chevron-right" class="size-4"></i>
+                    </a>
+                  </div>
+                  <div
+                    class="grid h-[200px] animate-pulse grid-cols-[repeat(80,minmax(0,1fr))] items-end gap-1 pt-10"
+                  >
+                    <div class="h-[67%] w-auto bg-slate-200"></div>
+                    <div class="h-[32%] w-auto bg-slate-200"></div>
+                    <div class="h-[94%] w-auto bg-slate-200"></div>
+                    <div class="h-[58%] w-auto bg-slate-200"></div>
+                    <div class="h-[77%] w-auto bg-slate-200"></div>
+                    <div class="h-[45%] w-auto bg-slate-200"></div>
+                    <div class="h-[85%] w-auto bg-slate-200"></div>
+                    <div class="h-[29%] w-auto bg-slate-200"></div>
+                    <div class="h-[100%] w-auto bg-slate-200"></div>
+                    <div class="h-[52%] w-auto bg-slate-200"></div>
+                    <div class="h-[73%] w-auto bg-slate-200"></div>
+                    <div class="h-[37%] w-auto bg-slate-200"></div>
+                    <div class="h-[81%] w-auto bg-slate-200"></div>
+                    <div class="h-[48%] w-auto bg-slate-200"></div>
+                    <div class="h-[25%] w-auto bg-slate-200"></div>
+                    <div class="h-[65%] w-auto bg-slate-200"></div>
+                    <div class="h-[90%] w-auto bg-slate-200"></div>
+                    <div class="h-[55%] w-auto bg-slate-200"></div>
+                    <div class="h-[78%] w-auto bg-slate-200"></div>
+                    <div class="h-[46%] w-auto bg-slate-200"></div>
+                    <div class="h-[87%] w-auto bg-slate-200"></div>
+                    <div class="h-[30%] w-auto bg-slate-200"></div>
+                    <div class="h-[99%] w-auto bg-slate-200"></div>
+                    <div class="h-[53%] w-auto bg-slate-200"></div>
+                    <div class="h-[72%] w-auto bg-slate-200"></div>
+                    <div class="h-[38%] w-auto bg-slate-200"></div>
+                    <div class="h-[82%] w-auto bg-slate-200"></div>
+                    <div class="h-[49%] w-auto bg-slate-200"></div>
+                    <div class="h-[26%] w-auto bg-slate-200"></div>
+                    <div class="h-[63%] w-auto bg-slate-200"></div>
+                    <div class="h-[91%] w-auto bg-slate-200"></div>
+                    <div class="h-[56%] w-auto bg-slate-200"></div>
+                    <div class="h-[74%] w-auto bg-slate-200"></div>
+                    <div class="h-[41%] w-auto bg-slate-200"></div>
+                    <div class="h-[86%] w-auto bg-slate-200"></div>
+                    <div class="h-[31%] w-auto bg-slate-200"></div>
+                    <div class="h-[98%] w-auto bg-slate-200"></div>
+                    <div class="h-[51%] w-auto bg-slate-200"></div>
+                    <div class="h-[70%] w-auto bg-slate-200"></div>
+                    <div class="h-[35%] w-auto bg-slate-200"></div>
+                    <div class="h-[80%] w-auto bg-slate-200"></div>
+                    <div class="h-[47%] w-auto bg-slate-200"></div>
+                    <div class="h-[27%] w-auto bg-slate-200"></div>
+                    <div class="h-[64%] w-auto bg-slate-200"></div>
+                    <div class="h-[92%] w-auto bg-slate-200"></div>
+                    <div class="h-[57%] w-auto bg-slate-200"></div>
+                    <div class="h-[75%] w-auto bg-slate-200"></div>
+                    <div class="h-[42%] w-auto bg-slate-200"></div>
+                    <div class="h-[88%] w-auto bg-slate-200"></div>
+                    <div class="h-[33%] w-auto bg-slate-200"></div>
+                    <div class="h-[97%] w-auto bg-slate-200"></div>
+                    <div class="h-[50%] w-auto bg-slate-200"></div>
+                    <div class="h-[71%] w-auto bg-slate-200"></div>
+                    <div class="h-[53%] w-auto bg-slate-200"></div>
+                    <div class="h-[72%] w-auto bg-slate-200"></div>
+                    <div class="h-[38%] w-auto bg-slate-200"></div>
+                    <div class="h-[82%] w-auto bg-slate-200"></div>
+                    <div class="h-[49%] w-auto bg-slate-200"></div>
+                    <div class="h-[26%] w-auto bg-slate-200"></div>
+                    <div class="h-[63%] w-auto bg-slate-200"></div>
+                    <div class="h-[91%] w-auto bg-slate-200"></div>
+                    <div class="h-[56%] w-auto bg-slate-200"></div>
+                    <div class="h-[74%] w-auto bg-slate-200"></div>
+                    <div class="h-[41%] w-auto bg-slate-200"></div>
+                    <div class="h-[86%] w-auto bg-slate-200"></div>
+                    <div class="h-[31%] w-auto bg-slate-200"></div>
+                    <div class="h-[98%] w-auto bg-slate-200"></div>
+                    <div class="h-[51%] w-auto bg-slate-200"></div>
+                    <div class="h-[70%] w-auto bg-slate-200"></div>
+                    <div class="h-[35%] w-auto bg-slate-200"></div>
+                    <div class="h-[80%] w-auto bg-slate-200"></div>
+                    <div class="h-[47%] w-auto bg-slate-200"></div>
+                    <div class="h-[27%] w-auto bg-slate-200"></div>
+                    <div class="h-[64%] w-auto bg-slate-200"></div>
+                    <div class="h-[92%] w-auto bg-slate-200"></div>
+                    <div class="h-[57%] w-auto bg-slate-200"></div>
+                    <div class="h-[75%] w-auto bg-slate-200"></div>
+                    <div class="h-[42%] w-auto bg-slate-200"></div>
+                    <div class="h-[88%] w-auto bg-slate-200"></div>
+                    <div class="h-[86%] w-auto bg-slate-200"></div>
+                  </div>
+
+                  <ul class="mt-4 flex items-center gap-6">
+                    <li class="flex h-4 items-center gap-2 text-xs font-semibold text-gray-900">
+                      <div class="h-3 w-3 animate-pulse rounded-full bg-slate-200"></div>
+                      <div class="h-2 w-[60.52px] animate-pulse rounded-full bg-slate-200"></div>
+                    </li>
+                    <li class="flex h-4 items-center gap-2 text-xs font-semibold text-gray-900">
+                      <div class="h-3 w-3 animate-pulse rounded-full bg-slate-200"></div>
+                      <div class="h-2 w-[65.41px] animate-pulse rounded-full bg-slate-200"></div>
+                    </li>
+                    <li class="flex h-4 items-center gap-2 text-xs font-semibold text-gray-900">
+                      <div class="h-3 w-3 animate-pulse rounded-full bg-slate-200"></div>
+                      <div class="h-2 w-[34.59px] animate-pulse rounded-full bg-slate-200"></div>
+                    </li>
+                  </ul>
+                </div>
+              </Card>
+              <Card className="grid grid-cols-1">
+                <div class="py-5">
+                  <div
+                    class="mb-4 flex items-center justify-between gap-2 px-5 text-xs font-semibold leading-none text-gray-600"
+                  >
+                    <div class="flex items-center gap-1.5">
+                      Triggered Policies
+                      <Tooltip>
+                        <TooltipTrigger>
+                          <i class="fa-solid fa-fw fa-question-circle text-gray-400"></i>
+                        </TooltipTrigger>
+                        <TooltipContent className="w-[128px]">
+                          Evaluated based non allow policies.
+                        </TooltipContent>
+                      </Tooltip>
+                    </div>
+                  </div>
+                  <div class="flex pl-5 pr-3">
+                    <div class="w-[200px] flex-none pt-4">
+                      <div class="size-[128px] mb-4">
+                        <div class="size-[128px] animate-pulse rounded-full bg-slate-200"></div>
+                      </div>
+                      <div
+                        class="mb-4 flex items-center justify-between gap-2 text-xs font-semibold leading-none text-gray-600"
+                      >
+                        <div class="flex animate-pulse items-center">
+                          <div class="h-3 w-[40px] rounded-full bg-slate-200"></div>
+                        </div>
+                      </div>
+                      <div class="flex items-center gap-2 text-lg font-bold text-black">
+                        <div class="flex h-7 animate-pulse items-start">
+                          <div class="h-3.5 w-[100px] rounded-full bg-slate-200"></div>
+                        </div>
+                      </div>
+                      <a
+                        href="#"
+                        class="mt-4 flex items-center gap-0.5 text-xs font-semibold text-blue-500 hover:text-blue-600"
+                        >View all policies
+                        <i data-lucide="chevron-right" class="size-4"></i>
+                      </a>
+                    </div>
+                    <div class="flex-1">
+                      <table class="w-full text-left">
+                        <tr>
+                          <th
+                            colspan="2"
+                            class="w-full whitespace-nowrap px-2 py-1.5 text-xs font-semibold text-gray-400"
+                            >Policy name</th
+                          >
+                          <th
+                            class="whitespace-nowrap py-1.5 pl-6 pr-2 text-xs font-semibold text-gray-400"
+                            >Policy action</th
+                          >
+                          <th
+                            class="whitespace-nowrap py-1.5 pl-6 pr-2 text-xs font-semibold text-gray-400"
+                            >Total events</th
+                          >
+                          <th
+                            class="whitespace-nowrap py-1.5 pl-6 pr-2 text-xs font-semibold text-gray-400"
+                            >% of Total</th
+                          >
+                          <th
+                            class="whitespace-nowrap py-1.5 pl-6 pr-2 text-xs font-semibold text-gray-400"
+                            >% change</th
+                          >
+                        </tr>
+                        <tr>
+                          <td
+                            class="pl-2 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <div class="size-3 animate-pulse rounded-full bg-slate-200"></div>
+                          </td>
+                          <td
+                            class="w-full max-w-0 truncate px-2 py-1.5 text-xs font-semibold text-gray-900 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <div class="size-[300px] h-3 animate-pulse rounded-full bg-slate-200">
+                            </div>
+                          </td>
+                          <td
+                            class="max-w-0 truncate px-2 py-1.5 text-right text-xs font-semibold text-gray-400 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <div class="flex justify-end">
+                              <div class="size-[50px] h-3 animate-pulse rounded-full bg-slate-200">
+                              </div>
+                            </div>
+                          </td>
+                          <td
+                            class="max-w-0 truncate px-2 py-1.5 text-right text-xs font-semibold text-gray-400 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <div class="flex justify-end">
+                              <div class="size-[30px] h-3 animate-pulse rounded-full bg-slate-200">
+                              </div>
+                            </div>
+                          </td>
+                          <td
+                            class="max-w-0 truncate px-2 py-1.5 text-right text-xs font-semibold text-gray-400 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <div class="flex justify-end">
+                              <div class="size-[30px] h-3 animate-pulse rounded-full bg-slate-200">
+                              </div>
+                            </div>
+                          </td>
+                          <td
+                            class="max-w-0 truncate px-2 py-1.5 text-right text-xs font-semibold text-gray-400 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <div class="flex justify-end">
+                              <div class="size-[30px] h-3 animate-pulse rounded-full bg-slate-200">
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td
+                            class="pl-2 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <div class="size-3 animate-pulse rounded-full bg-slate-200"></div>
+                          </td>
+                          <td
+                            class="w-full max-w-0 truncate px-2 py-1.5 text-xs font-semibold text-gray-900 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <div class="size-[200px] h-3 animate-pulse rounded-full bg-slate-200">
+                            </div>
+                          </td>
+                          <td
+                            class="max-w-0 truncate px-2 py-1.5 text-right text-xs font-semibold text-gray-400 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <div class="flex justify-end">
+                              <div class="size-[50px] h-3 animate-pulse rounded-full bg-slate-200">
+                              </div>
+                            </div>
+                          </td>
+                          <td
+                            class="max-w-0 truncate px-2 py-1.5 text-right text-xs font-semibold text-gray-400 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <div class="flex justify-end">
+                              <div class="size-[30px] h-3 animate-pulse rounded-full bg-slate-200">
+                              </div>
+                            </div>
+                          </td>
+                          <td
+                            class="max-w-0 truncate px-2 py-1.5 text-right text-xs font-semibold text-gray-400 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <div class="flex justify-end">
+                              <div class="size-[30px] h-3 animate-pulse rounded-full bg-slate-200">
+                              </div>
+                            </div>
+                          </td>
+                          <td
+                            class="max-w-0 truncate px-2 py-1.5 text-right text-xs font-semibold text-gray-400 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <div class="flex justify-end">
+                              <div class="size-[30px] h-3 animate-pulse rounded-full bg-slate-200">
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td
+                            class="pl-2 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <div class="size-3 animate-pulse rounded-full bg-slate-200"></div>
+                          </td>
+                          <td
+                            class="w-full max-w-0 truncate px-2 py-1.5 text-xs font-semibold text-gray-900 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <div class="size-[280px] h-3 animate-pulse rounded-full bg-slate-200">
+                            </div>
+                          </td>
+                          <td
+                            class="max-w-0 truncate px-2 py-1.5 text-right text-xs font-semibold text-gray-400 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <div class="flex justify-end">
+                              <div class="size-[50px] h-3 animate-pulse rounded-full bg-slate-200">
+                              </div>
+                            </div>
+                          </td>
+                          <td
+                            class="max-w-0 truncate px-2 py-1.5 text-right text-xs font-semibold text-gray-400 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <div class="flex justify-end">
+                              <div class="size-[30px] h-3 animate-pulse rounded-full bg-slate-200">
+                              </div>
+                            </div>
+                          </td>
+                          <td
+                            class="max-w-0 truncate px-2 py-1.5 text-right text-xs font-semibold text-gray-400 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <div class="flex justify-end">
+                              <div class="size-[30px] h-3 animate-pulse rounded-full bg-slate-200">
+                              </div>
+                            </div>
+                          </td>
+                          <td
+                            class="max-w-0 truncate px-2 py-1.5 text-right text-xs font-semibold text-gray-400 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <div class="flex justify-end">
+                              <div class="size-[30px] h-3 animate-pulse rounded-full bg-slate-200">
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td
+                            class="pl-2 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <div class="size-3 animate-pulse rounded-full bg-slate-200"></div>
+                          </td>
+                          <td
+                            class="w-full max-w-0 truncate px-2 py-1.5 text-xs font-semibold text-gray-900 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <div class="size-[140px] h-3 animate-pulse rounded-full bg-slate-200">
+                            </div>
+                          </td>
+                          <td
+                            class="max-w-0 truncate px-2 py-1.5 text-right text-xs font-semibold text-gray-400 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <div class="flex justify-end">
+                              <div class="size-[50px] h-3 animate-pulse rounded-full bg-slate-200">
+                              </div>
+                            </div>
+                          </td>
+                          <td
+                            class="max-w-0 truncate px-2 py-1.5 text-right text-xs font-semibold text-gray-400 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <div class="flex justify-end">
+                              <div class="size-[30px] h-3 animate-pulse rounded-full bg-slate-200">
+                              </div>
+                            </div>
+                          </td>
+                          <td
+                            class="max-w-0 truncate px-2 py-1.5 text-right text-xs font-semibold text-gray-400 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <div class="flex justify-end">
+                              <div class="size-[30px] h-3 animate-pulse rounded-full bg-slate-200">
+                              </div>
+                            </div>
+                          </td>
+                          <td
+                            class="max-w-0 truncate px-2 py-1.5 text-right text-xs font-semibold text-gray-400 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <div class="flex justify-end">
+                              <div class="size-[30px] h-3 animate-pulse rounded-full bg-slate-200">
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td
+                            class="pl-2 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <div class="size-3 animate-pulse rounded-full bg-slate-200"></div>
+                          </td>
+                          <td
+                            class="w-full max-w-0 truncate px-2 py-1.5 text-xs font-semibold text-gray-900 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <div class="size-[300px] h-3 animate-pulse rounded-full bg-slate-200">
+                            </div>
+                          </td>
+                          <td
+                            class="max-w-0 truncate px-2 py-1.5 text-right text-xs font-semibold text-gray-400 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <div class="flex justify-end">
+                              <div class="size-[50px] h-3 animate-pulse rounded-full bg-slate-200">
+                              </div>
+                            </div>
+                          </td>
+                          <td
+                            class="max-w-0 truncate px-2 py-1.5 text-right text-xs font-semibold text-gray-400 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <div class="flex justify-end">
+                              <div class="size-[30px] h-3 animate-pulse rounded-full bg-slate-200">
+                              </div>
+                            </div>
+                          </td>
+                          <td
+                            class="max-w-0 truncate px-2 py-1.5 text-right text-xs font-semibold text-gray-400 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <div class="flex justify-end">
+                              <div class="size-[30px] h-3 animate-pulse rounded-full bg-slate-200">
+                              </div>
+                            </div>
+                          </td>
+                          <td
+                            class="max-w-0 truncate px-2 py-1.5 text-right text-xs font-semibold text-gray-400 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <div class="flex justify-end">
+                              <div class="size-[30px] h-3 animate-pulse rounded-full bg-slate-200">
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td
+                            class="pl-2 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <div class="size-3 animate-pulse rounded-full bg-slate-200"></div>
+                          </td>
+                          <td
+                            class="w-full max-w-0 truncate px-2 py-1.5 text-xs font-semibold text-gray-900 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <div class="size-[100px] h-3 animate-pulse rounded-full bg-slate-200">
+                            </div>
+                          </td>
+                          <td
+                            class="max-w-0 truncate px-2 py-1.5 text-right text-xs font-semibold text-gray-400 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <div class="flex justify-end">
+                              <div class="size-[50px] h-3 animate-pulse rounded-full bg-slate-200">
+                              </div>
+                            </div>
+                          </td>
+                          <td
+                            class="max-w-0 truncate px-2 py-1.5 text-right text-xs font-semibold text-gray-400 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <div class="flex justify-end">
+                              <div class="size-[30px] h-3 animate-pulse rounded-full bg-slate-200">
+                              </div>
+                            </div>
+                          </td>
+                          <td
+                            class="max-w-0 truncate px-2 py-1.5 text-right text-xs font-semibold text-gray-400 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <div class="flex justify-end">
+                              <div class="size-[30px] h-3 animate-pulse rounded-full bg-slate-200">
+                              </div>
+                            </div>
+                          </td>
+                          <td
+                            class="max-w-0 truncate px-2 py-1.5 text-right text-xs font-semibold text-gray-400 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <div class="flex justify-end">
+                              <div class="size-[30px] h-3 animate-pulse rounded-full bg-slate-200">
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </Card>
+              <Card className="grid grid-cols-1">
+                <div class="py-5">
+                  <div
+                    class="mb-4 flex items-center justify-between gap-2 px-5 text-xs font-semibold leading-none text-gray-600"
+                  >
+                    Triggered Signals
+                  </div>
+                  <div class="flex pl-5 pr-3">
+                    <div class="w-[200px] flex-none pt-4">
+                      <div class="size-[128px] mb-4 rounded-full">
+                        <div class="size-[128px] animate-pulse rounded-full bg-slate-200"></div>
+                      </div>
+                      <div
+                        class="mb-4 flex items-center justify-between gap-2 text-xs font-semibold leading-none text-gray-600"
+                      >
+                        <div class="flex animate-pulse items-center">
+                          <div class="h-3 w-[40px] rounded-full bg-slate-200"></div>
+                        </div>
+                      </div>
+                      <div class="flex items-center gap-2 text-lg font-bold text-black">
+                        <div class="flex h-7 animate-pulse items-start">
+                          <div class="h-3.5 w-[100px] rounded-full bg-slate-200"></div>
+                        </div>
+                      </div>
+                      <a
+                        href="#"
+                        class="mt-4 flex items-center gap-0.5 text-xs font-semibold text-blue-500 hover:text-blue-600"
+                        >View all signals
+                        <i data-lucide="chevron-right" class="size-4"></i>
+                      </a>
+                    </div>
+                    <div class="flex-1">
+                      <table class="w-full text-left">
+                        <tr>
+                          <th
+                            colspan="2"
+                            class="w-full whitespace-nowrap px-2 py-1.5 text-xs font-semibold text-gray-400"
+                            >Signal name</th
+                          >
+                          <th
+                            class="whitespace-nowrap py-1.5 pl-6 pr-2 text-xs font-semibold text-gray-400"
+                            >Total events</th
+                          >
+                          <th
+                            class="whitespace-nowrap py-1.5 pl-6 pr-2 text-xs font-semibold text-gray-400"
+                            >% of Total</th
+                          >
+                          <th
+                            class="whitespace-nowrap py-1.5 pl-6 pr-2 text-xs font-semibold text-gray-400"
+                            >% change</th
+                          >
+                        </tr>
+                        <tr>
+                          <td
+                            class="pl-2 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <div class="size-3 animate-pulse rounded-full bg-slate-200"></div>
+                          </td>
+                          <td
+                            class="w-full max-w-0 truncate px-2 py-1.5 text-xs font-semibold text-gray-900 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <div class="size-[300px] h-3 animate-pulse rounded-full bg-slate-200">
+                            </div>
+                          </td>
+                          <td
+                            class="max-w-0 truncate px-2 py-1.5 text-right text-xs font-semibold text-gray-400 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <div class="flex justify-end">
+                              <div class="size-[30px] h-3 animate-pulse rounded-full bg-slate-200">
+                              </div>
+                            </div>
+                          </td>
+                          <td
+                            class="max-w-0 truncate px-2 py-1.5 text-right text-xs font-semibold text-gray-400 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <div class="flex justify-end">
+                              <div class="size-[30px] h-3 animate-pulse rounded-full bg-slate-200">
+                              </div>
+                            </div>
+                          </td>
+                          <td
+                            class="max-w-0 truncate px-2 py-1.5 text-right text-xs font-semibold text-gray-400 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <div class="flex justify-end">
+                              <div class="size-[30px] h-3 animate-pulse rounded-full bg-slate-200">
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td
+                            class="pl-2 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <div class="size-3 animate-pulse rounded-full bg-slate-200"></div>
+                          </td>
+                          <td
+                            class="w-full max-w-0 truncate px-2 py-1.5 text-xs font-semibold text-gray-900 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <div class="size-[200px] h-3 animate-pulse rounded-full bg-slate-200">
+                            </div>
+                          </td>
+                          <td
+                            class="max-w-0 truncate px-2 py-1.5 text-right text-xs font-semibold text-gray-400 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <div class="flex justify-end">
+                              <div class="size-[30px] h-3 animate-pulse rounded-full bg-slate-200">
+                              </div>
+                            </div>
+                          </td>
+                          <td
+                            class="max-w-0 truncate px-2 py-1.5 text-right text-xs font-semibold text-gray-400 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <div class="flex justify-end">
+                              <div class="size-[30px] h-3 animate-pulse rounded-full bg-slate-200">
+                              </div>
+                            </div>
+                          </td>
+                          <td
+                            class="max-w-0 truncate px-2 py-1.5 text-right text-xs font-semibold text-gray-400 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <div class="flex justify-end">
+                              <div class="size-[30px] h-3 animate-pulse rounded-full bg-slate-200">
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td
+                            class="pl-2 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <div class="size-3 animate-pulse rounded-full bg-slate-200"></div>
+                          </td>
+                          <td
+                            class="w-full max-w-0 truncate px-2 py-1.5 text-xs font-semibold text-gray-900 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <div class="size-[280px] h-3 animate-pulse rounded-full bg-slate-200">
+                            </div>
+                          </td>
+                          <td
+                            class="max-w-0 truncate px-2 py-1.5 text-right text-xs font-semibold text-gray-400 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <div class="flex justify-end">
+                              <div class="size-[30px] h-3 animate-pulse rounded-full bg-slate-200">
+                              </div>
+                            </div>
+                          </td>
+                          <td
+                            class="max-w-0 truncate px-2 py-1.5 text-right text-xs font-semibold text-gray-400 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <div class="flex justify-end">
+                              <div class="size-[30px] h-3 animate-pulse rounded-full bg-slate-200">
+                              </div>
+                            </div>
+                          </td>
+                          <td
+                            class="max-w-0 truncate px-2 py-1.5 text-right text-xs font-semibold text-gray-400 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <div class="flex justify-end">
+                              <div class="size-[30px] h-3 animate-pulse rounded-full bg-slate-200">
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td
+                            class="pl-2 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <div class="size-3 animate-pulse rounded-full bg-slate-200"></div>
+                          </td>
+                          <td
+                            class="w-full max-w-0 truncate px-2 py-1.5 text-xs font-semibold text-gray-900 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <div class="size-[140px] h-3 animate-pulse rounded-full bg-slate-200">
+                            </div>
+                          </td>
+                          <td
+                            class="max-w-0 truncate px-2 py-1.5 text-right text-xs font-semibold text-gray-400 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <div class="flex justify-end">
+                              <div class="size-[30px] h-3 animate-pulse rounded-full bg-slate-200">
+                              </div>
+                            </div>
+                          </td>
+                          <td
+                            class="max-w-0 truncate px-2 py-1.5 text-right text-xs font-semibold text-gray-400 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <div class="flex justify-end">
+                              <div class="size-[30px] h-3 animate-pulse rounded-full bg-slate-200">
+                              </div>
+                            </div>
+                          </td>
+                          <td
+                            class="max-w-0 truncate px-2 py-1.5 text-right text-xs font-semibold text-gray-400 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <div class="flex justify-end">
+                              <div class="size-[30px] h-3 animate-pulse rounded-full bg-slate-200">
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td
+                            class="pl-2 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <div class="size-3 animate-pulse rounded-full bg-slate-200"></div>
+                          </td>
+                          <td
+                            class="w-full max-w-0 truncate px-2 py-1.5 text-xs font-semibold text-gray-900 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <div class="size-[300px] h-3 animate-pulse rounded-full bg-slate-200">
+                            </div>
+                          </td>
+                          <td
+                            class="max-w-0 truncate px-2 py-1.5 text-right text-xs font-semibold text-gray-400 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <div class="flex justify-end">
+                              <div class="size-[30px] h-3 animate-pulse rounded-full bg-slate-200">
+                              </div>
+                            </div>
+                          </td>
+                          <td
+                            class="max-w-0 truncate px-2 py-1.5 text-right text-xs font-semibold text-gray-400 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <div class="flex justify-end">
+                              <div class="size-[30px] h-3 animate-pulse rounded-full bg-slate-200">
+                              </div>
+                            </div>
+                          </td>
+                          <td
+                            class="max-w-0 truncate px-2 py-1.5 text-right text-xs font-semibold text-gray-400 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <div class="flex justify-end">
+                              <div class="size-[30px] h-3 animate-pulse rounded-full bg-slate-200">
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td
+                            class="pl-2 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <div class="size-3 animate-pulse rounded-full bg-slate-200"></div>
+                          </td>
+                          <td
+                            class="w-full max-w-0 truncate px-2 py-1.5 text-xs font-semibold text-gray-900 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <div class="size-[100px] h-3 animate-pulse rounded-full bg-slate-200">
+                            </div>
+                          </td>
+                          <td
+                            class="max-w-0 truncate px-2 py-1.5 text-right text-xs font-semibold text-gray-400 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <div class="flex justify-end">
+                              <div class="size-[30px] h-3 animate-pulse rounded-full bg-slate-200">
+                              </div>
+                            </div>
+                          </td>
+                          <td
+                            class="max-w-0 truncate px-2 py-1.5 text-right text-xs font-semibold text-gray-400 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <div class="flex justify-end">
+                              <div class="size-[30px] h-3 animate-pulse rounded-full bg-slate-200">
+                              </div>
+                            </div>
+                          </td>
+                          <td
+                            class="max-w-0 truncate px-2 py-1.5 text-right text-xs font-semibold text-gray-400 first:rounded-l-md last:rounded-r-md group-hover:bg-gray-100"
+                          >
+                            <div class="flex justify-end">
+                              <div class="size-[30px] h-3 animate-pulse rounded-full bg-slate-200">
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </Card>
+            </article>
+          </div>
+        </TabsContent>
       </Tabs>
     </main>
   </div>
@@ -1106,8 +2267,8 @@ import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/element
       },
     );
 
-    const triggeredPoliciesChart = new Chart(
-      document.getElementById('triggeredPoliciesChart').getContext('2d'),
+    const loginTriggeredPoliciesChart = new Chart(
+      document.getElementById('loginTriggeredPoliciesChart').getContext('2d'),
       {
         type: 'pie', // Type of chart
         data: {
@@ -1133,8 +2294,8 @@ import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/element
       },
     );
 
-    const triggeredSignalsChart = new Chart(
-      document.getElementById('triggeredSignalsChart').getContext('2d'),
+    const loginTriggeredSignalsChart = new Chart(
+      document.getElementById('loginTriggeredSignalsChart').getContext('2d'),
       {
         type: 'pie', // Type of chart
         data: {
@@ -1163,6 +2324,117 @@ import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/element
             },
             legend: {
               display: false, // This will hide the legend
+            },
+          },
+        },
+      },
+    );
+
+    // Registration chart
+    const registrationActivityChart = new Chart(
+      document.getElementById('registrationActivityChart').getContext('2d'),
+      {
+        type: 'bar',
+        data: {
+          labels: Array.from({ length: 80 }, (_, i) => `Bar ${i + 1}`),
+          datasets: [],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              display: false, // This will hide the legend
+            },
+            tooltip: {
+              xAlign: 'center',
+              yAlign: 'bottom',
+              displayColors: false,
+              backgroundColor: 'black', // Set background color
+              titleColor: '#fff', // Set title font color
+              bodyColor: '#fff', // Set body font color,
+              bodyFont: {
+                size: 11,
+              },
+              callbacks: {
+                label: function (context) {
+                  return context.parsed.y + ' ' + 'Activity';
+                },
+                title: function (tooltipItems) {
+                  // Customize the tooltip title
+                  if (tooltipItems.length > 0) {
+                    var firstItem = tooltipItems[0];
+                    return firstItem.label;
+                  }
+                  return '';
+                },
+              },
+            },
+          },
+          scales: {
+            x: {
+              stacked: true,
+              grid: {
+                display: false, // Display grid lines on the x-axis
+              },
+            },
+            y: {
+              stacked: true,
+            },
+          },
+        },
+      },
+    );
+
+    const registrationActionChart = new Chart(
+      document.getElementById('registrationActionChart').getContext('2d'),
+      {
+        type: 'bar',
+        data: {
+          labels: Array.from({ length: 80 }, (_, i) => `Bar ${i + 1}`),
+          datasets: [],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              display: false, // This will hide the legend
+            },
+            tooltip: {
+              xAlign: 'center',
+              yAlign: 'bottom',
+              displayColors: false,
+              backgroundColor: 'black', // Set background color
+              titleColor: '#fff', // Set title font color
+              bodyColor: '#fff', // Set body font color,
+              bodyFont: {
+                size: 11,
+              },
+              callbacks: {
+                label: function (context) {
+                  return context.parsed.y + ' ' + 'Activity';
+                },
+                title: function (tooltipItems) {
+                  // Customize the tooltip title
+                  if (tooltipItems.length > 0) {
+                    var firstItem = tooltipItems[0];
+                    return firstItem.label;
+                  }
+                  return '';
+                },
+              },
+            },
+          },
+          scales: {
+            x: {
+              stacked: true,
+              grid: {
+                display: false, // Display grid lines on the x-axis
+              },
+            },
+            y: {
+              stacked: true,
             },
           },
         },
