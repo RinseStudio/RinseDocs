@@ -23,14 +23,16 @@ import {
     <p class="text-sm text-gray-600">View or update your personal details and security settings.</p>
   </div>
   <div>
-    <Tab className="px-7">
-      <TabTrigger onClick="link('/components/templates/account-settings/personal')">
-        Personal Details
-      </TabTrigger>
-      <TabTrigger onClick="link('/components/templates/account-settings/security')" isActive>
-        Security
-      </TabTrigger>
-    </Tab>
+    <Tabs selection="security">
+      <TabsList className="px-7">
+        <TabsTrigger name="personal" href="/components/templates/account-settings/personal">
+          Personal Details
+        </TabsTrigger>
+        <TabsTrigger name="security" href="/components/templates/account-settings/security">
+          Security
+        </TabsTrigger>
+      </TabsList>
+    </Tabs>
   </div>
   <div class="px-7 py-10">
     <div class="mx-auto max-w-xl space-y-14">

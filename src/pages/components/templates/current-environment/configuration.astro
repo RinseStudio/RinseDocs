@@ -23,17 +23,22 @@ import {
     <p class="text-sm text-gray-600">View and configure your current environment settings.</p>
   </div>
   <div>
-    <Tab className="px-7">
-      <TabTrigger
-        onClick="link('/components/templates/current-environment/configuration')"
-        isActive
-      >
-        Configuration
-      </TabTrigger>
-      <TabTrigger onClick="link('/components/templates/current-environment/integrations')">
-        Integrations
-      </TabTrigger>
-    </Tab>
+    <Tabs selection="configuration">
+      <TabsList className="px-7">
+        <TabsTrigger
+          name="configuration"
+          href="/components/templates/current-environment/configuration"
+        >
+          Configuration
+        </TabsTrigger>
+        <TabsTrigger
+          name="integrations"
+          href="/components/templates/current-environment/integrations"
+        >
+          Integrations
+        </TabsTrigger>
+      </TabsList>
+    </Tabs>
   </div>
   <div class="px-7 py-10">
     <div class="mx-auto max-w-xl space-y-14">
