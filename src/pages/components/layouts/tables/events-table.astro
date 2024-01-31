@@ -22,14 +22,16 @@ import {
     <div class="flex gap-2">
       <Button size="sm" variant="outline">Columns</Button>
       <Button size="sm" variant="outline">Export</Button>
-      <div class="flex -space-x-px overflow-hidden rounded-md shadow-sm dark:shadow-none">
+      <div
+        class="flex -space-x-px divide-x divide-zinc-300 overflow-hidden rounded-md shadow-sm ring-1 ring-zinc-300 dark:shadow-none"
+      >
         <div>
-          <Button size="sm" variant="outline" isSquare noShadow rounded="left">
+          <Button size="sm" variant="outline" isSquare className="rounded-none shadow-none ring-0">
             <i class="fa-solid fa-angle-left"></i>
           </Button>
         </div>
         <div>
-          <Button size="sm" variant="outline" isSquare noShadow rounded="right">
+          <Button size="sm" variant="outline" isSquare className="rounded-none shadow-none ring-0">
             <i class="fa-solid fa-angle-right"></i>
           </Button>
         </div>
