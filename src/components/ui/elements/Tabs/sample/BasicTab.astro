@@ -3,12 +3,15 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/elemen
 ---
 
 <label class="flex items-center text-sm font-medium text-gray-900 dark:text-gray-300">
-  <Tab>
-    <TabTrigger isActive>Tab 1</TabTrigger>
-    <TabTrigger>Tab 2</TabTrigger>
-    <TabTrigger>Tab 3</TabTrigger>
-    <TabTrigger>Tab 4</TabTrigger>
-    <TabTrigger>Tab 5</TabTrigger>
-  </Tab>
+  <Tabs selection="security">
+    <TabsList className="px-7">
+      <TabsTrigger name="personal" href="/components/templates/account-settings/personal">
+        Personal Details
+      </TabsTrigger>
+      <TabsTrigger name="security" href="/components/templates/account-settings/security">
+        Security
+      </TabsTrigger>
+    </TabsList>
+  </Tabs>
 </label>
  @/components/ui/elements/Tabs
