@@ -1,22 +1,43 @@
 ---
 import Layout from '@/layouts/rinsedocs/Raw.astro';
 import Button from '@/components/ui/elements/Button';
-import Dropdown from '@/components/ui/modules/Dropdown';
+import {
+  Dropdown,
+  DropdownContent,
+  DropdownGroup,
+  DropdownHeader,
+  DropdownItem,
+  DropdownList,
+  DropdownSeparator,
+  DropdownTrigger,
+} from '@/components/ui/modules/Dropdown';
 import TextField from '@/components/ui/elements/TextField/index.astro';
-import SelectField from '@/components/ui/elements/SelectField';
+import {
+  Select,
+  SelectNative,
+  SelectGroup,
+  SelectTrigger,
+  SelectContent,
+  SelectHeader,
+  SelectLabel,
+  SelectList,
+  SelectItem,
+  SelectOption,
+  SelectSeparator,
+} from '@/components/ui/elements/Select';
 import Link from '@/components/ui/elements/Link/index.astro';
 ---
 
-<Layout layoutClass="flex items-center justify-center px-4 py-10">
+<Layout class="flex items-center justify-center px-4 py-10">
   <div class="flex min-w-[320px] justify-end">
     <Dropdown position="bottomEnd" isOpen>
-      <Dropdown.Trigger>
+      <DropdownTrigger>
         <Button size="sm" variant="outline">View settings</Button>
-      </Dropdown.Trigger>
+      </DropdownTrigger>
 
-      <Dropdown.Content position="bottomEnd" className="w-[320px]">
-        <Dropdown.Group>
-          <Dropdown.Header>
+      <DropdownContent position="bottomEnd" className="w-[320px]">
+        <DropdownGroup>
+          <DropdownHeader>
             <Link onClick={'isOpen = !isOpen'} size="xs">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -28,64 +49,49 @@ import Link from '@/components/ui/elements/Link/index.astro';
                 stroke-width="2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                class="lucide lucide-chevron-left mr-0.5"
-                ><path d="m15 18-6-6 6-6"></path></svg
+                class="lucide lucide-chevron-left mr-0.5"><path d="m15 18-6-6 6-6"></path></svg
               >
                Event Name
             </Link>
-          </Dropdown.Header>
-        </Dropdown.Group>
-        <Dropdown.Separator />
-        <Dropdown.Group>
+          </DropdownHeader>
+        </DropdownGroup>
+        <DropdownSeparator />
+        <DropdownGroup>
           <div class="grid grid-cols-1 gap-5 px-2 pb-4 pt-2">
             <div>
-              <label
-                class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400"
+              <label class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400"
                 >Column Type</label
               >
 
-              <Dropdown position="bottomEnd" widthClass="w-full">
-                <Dropdown.Trigger>
-                  <SelectField placeholder="Most recent event" isFluid />
-                </Dropdown.Trigger>
-                <Dropdown.Content className="w-full">
-                  <Dropdown.Group>
-                    <Dropdown.Items>
-                      <Dropdown.Item onClick={'isOpen = !isOpen'}>
-                        is
-                      </Dropdown.Item>
-                      <Dropdown.Item onClick={'isOpen = !isOpen'}>
-                        is not
-                      </Dropdown.Item>
-                      <Dropdown.Item onClick={'isOpen = !isOpen'}>
-                        is one of
-                      </Dropdown.Item>
-                    </Dropdown.Items>
-                  </Dropdown.Group>
-                </Dropdown.Content>
-              </Dropdown>
+              <Select className="w-full" selection="is">
+                <SelectTrigger className="w-full">is</SelectTrigger>
+                <SelectContent className="w-full">
+                  <SelectGroup>
+                    <SelectList>
+                      <SelectItem value="is">is</SelectItem>
+                      <SelectItem value="is not">is not</SelectItem>
+                      <SelectItem value="is one of">is one of</SelectItem>
+                    </SelectList>
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
             </div>
             <div>
-              <label
-                class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400"
+              <label class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400"
                 >Column Label</label
               >
               <TextField placeholder="Most recent event" isFluid />
             </div>
           </div>
-        </Dropdown.Group>
-        <Dropdown.Separator />
-        <Dropdown.Group>
+        </DropdownGroup>
+        <DropdownSeparator />
+        <DropdownGroup>
           <footer class="flex justify-end gap-2 px-2 py-2">
-            <Button onClick={'isOpen = !isOpen'} size="sm" variant="secondary">
-              Cancel
-            </Button>
-            <Button onClick={'isOpen = !isOpen'} size="sm" variant="primary">
-              Add column
-            </Button>
+            <Button onClick={'isOpen = !isOpen'} size="sm" variant="secondary">Cancel</Button>
+            <Button onClick={'isOpen = !isOpen'} size="sm" variant="primary">Add column</Button>
           </footer>
-        </Dropdown.Group>
-      </Dropdown.Content>
+        </DropdownGroup>
+      </DropdownContent>
     </Dropdown>
   </div>
 </Layout>

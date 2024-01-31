@@ -1,19 +1,28 @@
 ---
 import Layout from '@/layouts/rinsedocs/Raw.astro';
 import Button from '@/components/ui/elements/Button';
-import Dropdown from '@/components/ui/modules/Dropdown';
+import {
+  Dropdown,
+  DropdownContent,
+  DropdownGroup,
+  DropdownHeader,
+  DropdownItem,
+  DropdownList,
+  DropdownSeparator,
+  DropdownTrigger,
+} from '@/components/ui/modules/Dropdown';
 ---
 
-<Layout layoutClass="flex items-center justify-center px-4 py-10">
+<Layout class="flex items-center justify-center px-4 py-10">
   <div class="flex min-w-[240px] justify-end">
     <Dropdown isOpen>
-      <Dropdown.Trigger>
+      <DropdownTrigger>
         <Button size="sm" variant="outline">View settings</Button>
-      </Dropdown.Trigger>
+      </DropdownTrigger>
 
-      <Dropdown.Content position="bottomEnd" className="w-[200px]">
-        <Dropdown.Group>
-          <Dropdown.Header>View settings</Dropdown.Header>
+      <DropdownContent position="bottomEnd" className="w-[200px]">
+        <DropdownGroup>
+          <DropdownHeader>View settings</DropdownHeader>
           <ul>
             <li>
               <button
@@ -159,7 +168,9 @@ import Dropdown from '@/components/ui/modules/Dropdown';
                   <div class="mr-1.5 dark:text-gray-500">
                     <i class="fa-solid fa-grip-dots fa-fw"></i>
                   </div>
-                  <div class="flex-1 truncate text-left">A really long custom column label goes here</div>
+                  <div class="flex-1 truncate text-left">
+                    A really long custom column label goes here
+                  </div>
                 </div>
                 <div
                   class="hidden h-6 w-6 items-center justify-center text-gray-400 hover:cursor-pointer hover:text-gray-600 group-hover/table-order:flex dark:text-gray-400 dark:hover:text-gray-100"
@@ -169,18 +180,18 @@ import Dropdown from '@/components/ui/modules/Dropdown';
               </button>
             </li>
           </ul>
-        </Dropdown.Group>
-        <Dropdown.Separator />
-        <Dropdown.Group>
-          <Dropdown.Item>
+        </DropdownGroup>
+        <DropdownSeparator />
+        <DropdownGroup>
+          <DropdownItem>
             <div class="mr-1.5 flex items-center justify-center">
               <i class="fa-solid fa-plus"></i>
             </div>
 
              Add new column
-          </Dropdown.Item>
-        </Dropdown.Group>
-      </Dropdown.Content>
+          </DropdownItem>
+        </DropdownGroup>
+      </DropdownContent>
     </Dropdown>
   </div>
 </Layout>

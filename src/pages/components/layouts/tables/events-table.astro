@@ -4,10 +4,19 @@ import Layout from '@/layouts/rinsedocs/Raw.astro';
 import Checkbox from '@/components/ui/elements/Checkbox';
 import Button from '@/components/ui/elements/Button';
 import Tooltip from '@/components/ui/elements/Tooltip';
-import Dropdown from '@/components/ui/modules/Dropdown';
+import {
+  Dropdown,
+  DropdownContent,
+  DropdownGroup,
+  DropdownHeader,
+  DropdownItem,
+  DropdownList,
+  DropdownSeparator,
+  DropdownTrigger,
+} from '@/components/ui/modules/Dropdown';
 ---
 
-<Layout layoutClass="py-10">
+<Layout class="py-10">
   <div class="mb-4 flex items-center justify-between px-5">
     <h3 class="text-[14px] font-semibold text-gray-900 dark:text-gray-300">1,252 Events</h3>
     <div class="flex gap-2">
@@ -54,7 +63,7 @@ import Dropdown from '@/components/ui/modules/Dropdown';
           </th>
           <th class="px-1 py-2 first:pl-5">
             <Dropdown>
-              <Dropdown.Trigger>
+              <DropdownTrigger>
                 <Button size="sm" variant="ghost">
                   Policy
                   <Tooltip widthClass="w-[180px]" className="ml-2">
@@ -67,51 +76,51 @@ import Dropdown from '@/components/ui/modules/Dropdown';
                     </TooltipContent>
                   </Tooltip>
                 </Button>
-              </Dropdown.Trigger>
-              <Dropdown.Content>
-                <Dropdown.Group>
-                  <Dropdown.Items>
-                    <Dropdown.Item onClick="isOpen = false">
+              </DropdownTrigger>
+              <DropdownContent>
+                <DropdownGroup>
+                  <DropdownList>
+                    <DropdownItem onClick="isOpen = false">
                       <div class="mr-1.5 flex items-center justify-center">
                         <i class="fa-solid fa-arrow-up fa-fw"></i>
                       </div>
                        Sort ascending
-                    </Dropdown.Item>
-                    <Dropdown.Item onClick="isOpen = false">
+                    </DropdownItem>
+                    <DropdownItem onClick="isOpen = false">
                       <div class="mr-1.5 flex items-center justify-center">
                         <i class="fa-solid fa-arrow-down fa-fw"></i>
                       </div>
                        Sort descending
-                    </Dropdown.Item>
-                    <Dropdown.Item onClick="isOpen = false">
+                    </DropdownItem>
+                    <DropdownItem onClick="isOpen = false">
                       <div class="mr-1.5 flex items-center justify-center">
                         <i class="fa-solid fa-arrow-left fa-fw"></i>
                       </div>
                        Move left
-                    </Dropdown.Item>
-                    <Dropdown.Item onClick="isOpen = false">
+                    </DropdownItem>
+                    <DropdownItem onClick="isOpen = false">
                       <div class="mr-1.5 flex items-center justify-center">
                         <i class="fa-solid fa-arrow-right fa-fw"></i>
                       </div>
                        Move right
-                    </Dropdown.Item>
-                  </Dropdown.Items>
-                </Dropdown.Group>
-                <Dropdown.Separator />
-                <Dropdown.Group>
-                  <Dropdown.Item onClick="isOpen = false">
+                    </DropdownItem>
+                  </DropdownList>
+                </DropdownGroup>
+                <DropdownSeparator />
+                <DropdownGroup>
+                  <DropdownItem onClick="isOpen = false">
                     <div class="mr-1.5 flex items-center justify-center">
                       <i class="fa-solid fa-eye-slash fa-fw"></i>
                     </div>
                      Hide from view
-                  </Dropdown.Item>
-                </Dropdown.Group>
-              </Dropdown.Content>
+                  </DropdownItem>
+                </DropdownGroup>
+              </DropdownContent>
             </Dropdown>
           </th>
           <th class="px-1 py-2 first:pl-5">
             <Dropdown>
-              <Dropdown.Trigger>
+              <DropdownTrigger>
                 <Button size="sm" variant="ghost">
                   Event
                   <Tooltip widthClass="w-[180px]" className="ml-2">
@@ -124,51 +133,51 @@ import Dropdown from '@/components/ui/modules/Dropdown';
                     </TooltipContent>
                   </Tooltip>
                 </Button>
-              </Dropdown.Trigger>
-              <Dropdown.Content>
-                <Dropdown.Group>
-                  <Dropdown.Items>
-                    <Dropdown.Item onClick="isOpen = false">
+              </DropdownTrigger>
+              <DropdownContent>
+                <DropdownGroup>
+                  <DropdownList>
+                    <DropdownItem onClick="isOpen = false">
                       <div class="mr-1.5 flex items-center justify-center">
                         <i class="fa-solid fa-arrow-up fa-fw"></i>
                       </div>
                        Sort ascending
-                    </Dropdown.Item>
-                    <Dropdown.Item onClick="isOpen = false">
+                    </DropdownItem>
+                    <DropdownItem onClick="isOpen = false">
                       <div class="mr-1.5 flex items-center justify-center">
                         <i class="fa-solid fa-arrow-down fa-fw"></i>
                       </div>
                        Sort descending
-                    </Dropdown.Item>
-                    <Dropdown.Item onClick="isOpen = false">
+                    </DropdownItem>
+                    <DropdownItem onClick="isOpen = false">
                       <div class="mr-1.5 flex items-center justify-center">
                         <i class="fa-solid fa-arrow-left fa-fw"></i>
                       </div>
                        Move left
-                    </Dropdown.Item>
-                    <Dropdown.Item onClick="isOpen = false">
+                    </DropdownItem>
+                    <DropdownItem onClick="isOpen = false">
                       <div class="mr-1.5 flex items-center justify-center">
                         <i class="fa-solid fa-arrow-right fa-fw"></i>
                       </div>
                        Move right
-                    </Dropdown.Item>
-                  </Dropdown.Items>
-                </Dropdown.Group>
-                <Dropdown.Separator />
-                <Dropdown.Group>
-                  <Dropdown.Item onClick="isOpen = false">
+                    </DropdownItem>
+                  </DropdownList>
+                </DropdownGroup>
+                <DropdownSeparator />
+                <DropdownGroup>
+                  <DropdownItem onClick="isOpen = false">
                     <div class="mr-1.5 flex items-center justify-center">
                       <i class="fa-solid fa-eye-slash fa-fw"></i>
                     </div>
                      Hide from view
-                  </Dropdown.Item>
-                </Dropdown.Group>
-              </Dropdown.Content>
+                  </DropdownItem>
+                </DropdownGroup>
+              </DropdownContent>
             </Dropdown>
           </th>
           <th class="px-1 py-2 first:pl-5">
             <Dropdown>
-              <Dropdown.Trigger>
+              <DropdownTrigger>
                 <Button size="sm" variant="ghost">
                   User
                   <Tooltip widthClass="w-[180px]" className="ml-2">
@@ -181,51 +190,51 @@ import Dropdown from '@/components/ui/modules/Dropdown';
                     </TooltipContent>
                   </Tooltip>
                 </Button>
-              </Dropdown.Trigger>
-              <Dropdown.Content>
-                <Dropdown.Group>
-                  <Dropdown.Items>
-                    <Dropdown.Item onClick="isOpen = false">
+              </DropdownTrigger>
+              <DropdownContent>
+                <DropdownGroup>
+                  <DropdownList>
+                    <DropdownItem onClick="isOpen = false">
                       <div class="mr-1.5 flex items-center justify-center">
                         <i class="fa-solid fa-arrow-up fa-fw"></i>
                       </div>
                        Sort ascending
-                    </Dropdown.Item>
-                    <Dropdown.Item onClick="isOpen = false">
+                    </DropdownItem>
+                    <DropdownItem onClick="isOpen = false">
                       <div class="mr-1.5 flex items-center justify-center">
                         <i class="fa-solid fa-arrow-down fa-fw"></i>
                       </div>
                        Sort descending
-                    </Dropdown.Item>
-                    <Dropdown.Item onClick="isOpen = false">
+                    </DropdownItem>
+                    <DropdownItem onClick="isOpen = false">
                       <div class="mr-1.5 flex items-center justify-center">
                         <i class="fa-solid fa-arrow-left fa-fw"></i>
                       </div>
                        Move left
-                    </Dropdown.Item>
-                    <Dropdown.Item onClick="isOpen = false">
+                    </DropdownItem>
+                    <DropdownItem onClick="isOpen = false">
                       <div class="mr-1.5 flex items-center justify-center">
                         <i class="fa-solid fa-arrow-right fa-fw"></i>
                       </div>
                        Move right
-                    </Dropdown.Item>
-                  </Dropdown.Items>
-                </Dropdown.Group>
-                <Dropdown.Separator />
-                <Dropdown.Group>
-                  <Dropdown.Item onClick="isOpen = false">
+                    </DropdownItem>
+                  </DropdownList>
+                </DropdownGroup>
+                <DropdownSeparator />
+                <DropdownGroup>
+                  <DropdownItem onClick="isOpen = false">
                     <div class="mr-1.5 flex items-center justify-center">
                       <i class="fa-solid fa-eye-slash fa-fw"></i>
                     </div>
                      Hide from view
-                  </Dropdown.Item>
-                </Dropdown.Group>
-              </Dropdown.Content>
+                  </DropdownItem>
+                </DropdownGroup>
+              </DropdownContent>
             </Dropdown>
           </th>
           <th class="px-1 py-2 first:pl-5">
             <Dropdown>
-              <Dropdown.Trigger>
+              <DropdownTrigger>
                 <Button size="sm" variant="ghost">
                   Location
                   <Tooltip widthClass="w-[180px]" className="ml-2">
@@ -238,51 +247,51 @@ import Dropdown from '@/components/ui/modules/Dropdown';
                     </TooltipContent>
                   </Tooltip>
                 </Button>
-              </Dropdown.Trigger>
-              <Dropdown.Content>
-                <Dropdown.Group>
-                  <Dropdown.Items>
-                    <Dropdown.Item onClick="isOpen = false">
+              </DropdownTrigger>
+              <DropdownContent>
+                <DropdownGroup>
+                  <DropdownList>
+                    <DropdownItem onClick="isOpen = false">
                       <div class="mr-1.5 flex items-center justify-center">
                         <i class="fa-solid fa-arrow-up fa-fw"></i>
                       </div>
                        Sort ascending
-                    </Dropdown.Item>
-                    <Dropdown.Item onClick="isOpen = false">
+                    </DropdownItem>
+                    <DropdownItem onClick="isOpen = false">
                       <div class="mr-1.5 flex items-center justify-center">
                         <i class="fa-solid fa-arrow-down fa-fw"></i>
                       </div>
                        Sort descending
-                    </Dropdown.Item>
-                    <Dropdown.Item onClick="isOpen = false">
+                    </DropdownItem>
+                    <DropdownItem onClick="isOpen = false">
                       <div class="mr-1.5 flex items-center justify-center">
                         <i class="fa-solid fa-arrow-left fa-fw"></i>
                       </div>
                        Move left
-                    </Dropdown.Item>
-                    <Dropdown.Item onClick="isOpen = false">
+                    </DropdownItem>
+                    <DropdownItem onClick="isOpen = false">
                       <div class="mr-1.5 flex items-center justify-center">
                         <i class="fa-solid fa-arrow-right fa-fw"></i>
                       </div>
                        Move right
-                    </Dropdown.Item>
-                  </Dropdown.Items>
-                </Dropdown.Group>
-                <Dropdown.Separator />
-                <Dropdown.Group>
-                  <Dropdown.Item onClick="isOpen = false">
+                    </DropdownItem>
+                  </DropdownList>
+                </DropdownGroup>
+                <DropdownSeparator />
+                <DropdownGroup>
+                  <DropdownItem onClick="isOpen = false">
                     <div class="mr-1.5 flex items-center justify-center">
                       <i class="fa-solid fa-eye-slash fa-fw"></i>
                     </div>
                      Hide from view
-                  </Dropdown.Item>
-                </Dropdown.Group>
-              </Dropdown.Content>
+                  </DropdownItem>
+                </DropdownGroup>
+              </DropdownContent>
             </Dropdown>
           </th>
           <th class="px-1 py-2 first:pl-5">
             <Dropdown>
-              <Dropdown.Trigger>
+              <DropdownTrigger>
                 <Button size="sm" variant="ghost">
                   Connection
                   <Tooltip widthClass="w-[180px]" className="ml-2">
@@ -295,51 +304,51 @@ import Dropdown from '@/components/ui/modules/Dropdown';
                     </TooltipContent>
                   </Tooltip>
                 </Button>
-              </Dropdown.Trigger>
-              <Dropdown.Content>
-                <Dropdown.Group>
-                  <Dropdown.Items>
-                    <Dropdown.Item onClick="isOpen = false">
+              </DropdownTrigger>
+              <DropdownContent>
+                <DropdownGroup>
+                  <DropdownList>
+                    <DropdownItem onClick="isOpen = false">
                       <div class="mr-1.5 flex items-center justify-center">
                         <i class="fa-solid fa-arrow-up fa-fw"></i>
                       </div>
                        Sort ascending
-                    </Dropdown.Item>
-                    <Dropdown.Item onClick="isOpen = false">
+                    </DropdownItem>
+                    <DropdownItem onClick="isOpen = false">
                       <div class="mr-1.5 flex items-center justify-center">
                         <i class="fa-solid fa-arrow-down fa-fw"></i>
                       </div>
                        Sort descending
-                    </Dropdown.Item>
-                    <Dropdown.Item onClick="isOpen = false">
+                    </DropdownItem>
+                    <DropdownItem onClick="isOpen = false">
                       <div class="mr-1.5 flex items-center justify-center">
                         <i class="fa-solid fa-arrow-left fa-fw"></i>
                       </div>
                        Move left
-                    </Dropdown.Item>
-                    <Dropdown.Item onClick="isOpen = false">
+                    </DropdownItem>
+                    <DropdownItem onClick="isOpen = false">
                       <div class="mr-1.5 flex items-center justify-center">
                         <i class="fa-solid fa-arrow-right fa-fw"></i>
                       </div>
                        Move right
-                    </Dropdown.Item>
-                  </Dropdown.Items>
-                </Dropdown.Group>
-                <Dropdown.Separator />
-                <Dropdown.Group>
-                  <Dropdown.Item onClick="isOpen = false">
+                    </DropdownItem>
+                  </DropdownList>
+                </DropdownGroup>
+                <DropdownSeparator />
+                <DropdownGroup>
+                  <DropdownItem onClick="isOpen = false">
                     <div class="mr-1.5 flex items-center justify-center">
                       <i class="fa-solid fa-eye-slash fa-fw"></i>
                     </div>
                      Hide from view
-                  </Dropdown.Item>
-                </Dropdown.Group>
-              </Dropdown.Content>
+                  </DropdownItem>
+                </DropdownGroup>
+              </DropdownContent>
             </Dropdown>
           </th>
           <th class="px-1 py-2 first:pl-5">
             <Dropdown>
-              <Dropdown.Trigger>
+              <DropdownTrigger>
                 <Button size="sm" variant="ghost">
                   Device
                   <Tooltip widthClass="w-[180px]" className="ml-2">
@@ -352,51 +361,51 @@ import Dropdown from '@/components/ui/modules/Dropdown';
                     </TooltipContent>
                   </Tooltip>
                 </Button>
-              </Dropdown.Trigger>
-              <Dropdown.Content>
-                <Dropdown.Group>
-                  <Dropdown.Items>
-                    <Dropdown.Item onClick="isOpen = false">
+              </DropdownTrigger>
+              <DropdownContent>
+                <DropdownGroup>
+                  <DropdownList>
+                    <DropdownItem onClick="isOpen = false">
                       <div class="mr-1.5 flex items-center justify-center">
                         <i class="fa-solid fa-arrow-up fa-fw"></i>
                       </div>
                        Sort ascending
-                    </Dropdown.Item>
-                    <Dropdown.Item onClick="isOpen = false">
+                    </DropdownItem>
+                    <DropdownItem onClick="isOpen = false">
                       <div class="mr-1.5 flex items-center justify-center">
                         <i class="fa-solid fa-arrow-down fa-fw"></i>
                       </div>
                        Sort descending
-                    </Dropdown.Item>
-                    <Dropdown.Item onClick="isOpen = false">
+                    </DropdownItem>
+                    <DropdownItem onClick="isOpen = false">
                       <div class="mr-1.5 flex items-center justify-center">
                         <i class="fa-solid fa-arrow-left fa-fw"></i>
                       </div>
                        Move left
-                    </Dropdown.Item>
-                    <Dropdown.Item onClick="isOpen = false">
+                    </DropdownItem>
+                    <DropdownItem onClick="isOpen = false">
                       <div class="mr-1.5 flex items-center justify-center">
                         <i class="fa-solid fa-arrow-right fa-fw"></i>
                       </div>
                        Move right
-                    </Dropdown.Item>
-                  </Dropdown.Items>
-                </Dropdown.Group>
-                <Dropdown.Separator />
-                <Dropdown.Group>
-                  <Dropdown.Item onClick="isOpen = false">
+                    </DropdownItem>
+                  </DropdownList>
+                </DropdownGroup>
+                <DropdownSeparator />
+                <DropdownGroup>
+                  <DropdownItem onClick="isOpen = false">
                     <div class="mr-1.5 flex items-center justify-center">
                       <i class="fa-solid fa-eye-slash fa-fw"></i>
                     </div>
                      Hide from view
-                  </Dropdown.Item>
-                </Dropdown.Group>
-              </Dropdown.Content>
+                  </DropdownItem>
+                </DropdownGroup>
+              </DropdownContent>
             </Dropdown>
           </th>
           <th class="px-1 py-2 first:pl-5">
             <Dropdown>
-              <Dropdown.Trigger>
+              <DropdownTrigger>
                 <Button size="sm" variant="ghost">
                   List
                   <Tooltip widthClass="w-[180px]" className="ml-2">
@@ -409,51 +418,51 @@ import Dropdown from '@/components/ui/modules/Dropdown';
                     </TooltipContent>
                   </Tooltip>
                 </Button>
-              </Dropdown.Trigger>
-              <Dropdown.Content>
-                <Dropdown.Group>
-                  <Dropdown.Items>
-                    <Dropdown.Item onClick="isOpen = false">
+              </DropdownTrigger>
+              <DropdownContent>
+                <DropdownGroup>
+                  <DropdownList>
+                    <DropdownItem onClick="isOpen = false">
                       <div class="mr-1.5 flex items-center justify-center">
                         <i class="fa-solid fa-arrow-up fa-fw"></i>
                       </div>
                        Sort ascending
-                    </Dropdown.Item>
-                    <Dropdown.Item onClick="isOpen = false">
+                    </DropdownItem>
+                    <DropdownItem onClick="isOpen = false">
                       <div class="mr-1.5 flex items-center justify-center">
                         <i class="fa-solid fa-arrow-down fa-fw"></i>
                       </div>
                        Sort descending
-                    </Dropdown.Item>
-                    <Dropdown.Item onClick="isOpen = false">
+                    </DropdownItem>
+                    <DropdownItem onClick="isOpen = false">
                       <div class="mr-1.5 flex items-center justify-center">
                         <i class="fa-solid fa-arrow-left fa-fw"></i>
                       </div>
                        Move left
-                    </Dropdown.Item>
-                    <Dropdown.Item onClick="isOpen = false">
+                    </DropdownItem>
+                    <DropdownItem onClick="isOpen = false">
                       <div class="mr-1.5 flex items-center justify-center">
                         <i class="fa-solid fa-arrow-right fa-fw"></i>
                       </div>
                        Move right
-                    </Dropdown.Item>
-                  </Dropdown.Items>
-                </Dropdown.Group>
-                <Dropdown.Separator />
-                <Dropdown.Group>
-                  <Dropdown.Item onClick="isOpen = false">
+                    </DropdownItem>
+                  </DropdownList>
+                </DropdownGroup>
+                <DropdownSeparator />
+                <DropdownGroup>
+                  <DropdownItem onClick="isOpen = false">
                     <div class="mr-1.5 flex items-center justify-center">
                       <i class="fa-solid fa-eye-slash fa-fw"></i>
                     </div>
                      Hide from view
-                  </Dropdown.Item>
-                </Dropdown.Group>
-              </Dropdown.Content>
+                  </DropdownItem>
+                </DropdownGroup>
+              </DropdownContent>
             </Dropdown>
           </th>
           <th class="px-1 py-2 first:pl-5">
             <Dropdown>
-              <Dropdown.Trigger>
+              <DropdownTrigger>
                 <Button size="sm" variant="ghost">
                   Triggered Signal
                   <Tooltip widthClass="w-[180px]" className="ml-2">
@@ -466,46 +475,46 @@ import Dropdown from '@/components/ui/modules/Dropdown';
                     </TooltipContent>
                   </Tooltip>
                 </Button>
-              </Dropdown.Trigger>
-              <Dropdown.Content>
-                <Dropdown.Group>
-                  <Dropdown.Items>
-                    <Dropdown.Item onClick="isOpen = false">
+              </DropdownTrigger>
+              <DropdownContent>
+                <DropdownGroup>
+                  <DropdownList>
+                    <DropdownItem onClick="isOpen = false">
                       <div class="mr-1.5 flex items-center justify-center">
                         <i class="fa-solid fa-arrow-up fa-fw"></i>
                       </div>
                        Sort ascending
-                    </Dropdown.Item>
-                    <Dropdown.Item onClick="isOpen = false">
+                    </DropdownItem>
+                    <DropdownItem onClick="isOpen = false">
                       <div class="mr-1.5 flex items-center justify-center">
                         <i class="fa-solid fa-arrow-down fa-fw"></i>
                       </div>
                        Sort descending
-                    </Dropdown.Item>
-                    <Dropdown.Item onClick="isOpen = false">
+                    </DropdownItem>
+                    <DropdownItem onClick="isOpen = false">
                       <div class="mr-1.5 flex items-center justify-center">
                         <i class="fa-solid fa-arrow-left fa-fw"></i>
                       </div>
                        Move left
-                    </Dropdown.Item>
-                    <Dropdown.Item onClick="isOpen = false">
+                    </DropdownItem>
+                    <DropdownItem onClick="isOpen = false">
                       <div class="mr-1.5 flex items-center justify-center">
                         <i class="fa-solid fa-arrow-right fa-fw"></i>
                       </div>
                        Move right
-                    </Dropdown.Item>
-                  </Dropdown.Items>
-                </Dropdown.Group>
-                <Dropdown.Separator />
-                <Dropdown.Group>
-                  <Dropdown.Item onClick="isOpen = false">
+                    </DropdownItem>
+                  </DropdownList>
+                </DropdownGroup>
+                <DropdownSeparator />
+                <DropdownGroup>
+                  <DropdownItem onClick="isOpen = false">
                     <div class="mr-1.5 flex items-center justify-center">
                       <i class="fa-solid fa-eye-slash fa-fw"></i>
                     </div>
                      Hide from view
-                  </Dropdown.Item>
-                </Dropdown.Group>
-              </Dropdown.Content>
+                  </DropdownItem>
+                </DropdownGroup>
+              </DropdownContent>
             </Dropdown>
           </th>
           <th class="h-10 w-full px-1 first:pl-5"> </th>

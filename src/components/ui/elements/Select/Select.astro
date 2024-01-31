@@ -94,7 +94,9 @@ const xData = JSON.stringify({ ...defaultData, ...data }, null, 2).replace(/"/g,
         this.selection = value;
 
         // Get the clicked item's innerHTML
-        const selectedValue = this.$el.querySelector('[data-select-value=' + value + ']').innerHTML;
+        const selectedValue = this.$el.querySelector(
+          "[data-select-value='" + value + "']",
+        ).innerHTML;
 
         // Update the target div's content
         this.$root.querySelector('[data-select-field]').innerHTML = selectedValue;

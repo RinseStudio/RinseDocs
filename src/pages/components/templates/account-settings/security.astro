@@ -5,10 +5,19 @@ import Button from '@/components/ui/elements/Button';
 import TextField from '@/components/ui/elements/TextField/index.astro';
 import SelectField from '@/components/ui/elements/SelectField';
 import Card from '@/components/ui/elements/Card';
-import Dropdown from '@/components/ui/modules/Dropdown';
+import {
+  Dropdown,
+  DropdownContent,
+  DropdownGroup,
+  DropdownHeader,
+  DropdownItem,
+  DropdownList,
+  DropdownSeparator,
+  DropdownTrigger,
+} from '@/components/ui/modules/Dropdown';
 ---
 
-<Layout layoutClass="">
+<Layout class="">
   <div class="px-7 py-4">
     <h1 class="mb-2 text-lg font-bold text-black">Account Settings</h1>
     <p class="text-sm text-gray-600">View or update your personal details and security settings.</p>

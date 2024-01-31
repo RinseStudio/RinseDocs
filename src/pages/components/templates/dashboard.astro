@@ -4,8 +4,30 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/elemen
 import Button from '@/components/ui/elements/Button';
 import Card from '@/components/ui/elements/Card';
 import Table from '@/components/ui/elements/Table';
-import Dropdown from '@/components/ui/modules/Dropdown';
+import {
+  Dropdown,
+  DropdownContent,
+  DropdownGroup,
+  DropdownHeader,
+  DropdownItem,
+  DropdownList,
+  DropdownSeparator,
+  DropdownTrigger,
+} from '@/components/ui/modules/Dropdown';
 import Tooltip from '@/components/ui/elements/Tooltip';
+import {
+  Select,
+  SelectNative,
+  SelectGroup,
+  SelectTrigger,
+  SelectContent,
+  SelectHeader,
+  SelectLabel,
+  SelectList,
+  SelectItem,
+  SelectOption,
+  SelectSeparator,
+} from '@/components/ui/elements/Select';
 import SelectField from '@/components/ui/elements/SelectField';
 import SearchField from '@/components/ui/elements/SearchField/index.astro';
 
@@ -13,7 +35,7 @@ import { DeltaLabel } from '@/components/ui/elements/DeltaLabel';
 import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/elements/Tooltip';
 ---
 
-<Layout layoutClass="">
+<Layout class="">
   <div class="app grid grid-cols-[var(--sidebar-width),1fr]" style="--sidebar-width: 240px">
     <aside class="sticky top-0 flex h-[100dvh] min-w-[200px] max-w-[400px] flex-none">
       Castle Sidebar

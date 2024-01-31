@@ -5,10 +5,19 @@ import Button from '@/components/ui/elements/Button';
 import Card from '@/components/ui/elements/Card';
 import TextField from '@/components/ui/elements/TextField/index.astro';
 import SelectField from '@/components/ui/elements/SelectField';
-import Dropdown from '@/components/ui/modules/Dropdown';
+import {
+  Dropdown,
+  DropdownContent,
+  DropdownGroup,
+  DropdownHeader,
+  DropdownItem,
+  DropdownList,
+  DropdownSeparator,
+  DropdownTrigger,
+} from '@/components/ui/modules/Dropdown';
 ---
 
-<Layout layoutClass="">
+<Layout class="">
   <div class="px-7 py-4">
     <h1 class="mb-2 text-lg font-bold text-black">Organization Settings</h1>
     <p class="text-sm text-gray-600">View or update your organization and billing settings.</p>
@@ -240,17 +249,17 @@ import Dropdown from '@/components/ui/modules/Dropdown';
                     >Auto create users</label
                   >
                   <Dropdown>
-                    <Dropdown.Trigger>
+                    <DropdownTrigger>
                       <SelectField value="True" isFluid />
-                    </Dropdown.Trigger>
-                    <Dropdown.Content position="bottomEnd" className="w-full">
-                      <Dropdown.Group>
-                        <Dropdown.Items>
-                          <Dropdown.Item onClick={'isOpen = !isOpen'}>False</Dropdown.Item>
-                          <Dropdown.Item onClick={'isOpen = !isOpen'}>True</Dropdown.Item>
-                        </Dropdown.Items>
-                      </Dropdown.Group>
-                    </Dropdown.Content>
+                    </DropdownTrigger>
+                    <DropdownContent position="bottomEnd" className="w-full">
+                      <DropdownGroup>
+                        <DropdownList>
+                          <DropdownItem onClick={'isOpen = !isOpen'}>False</DropdownItem>
+                          <DropdownItem onClick={'isOpen = !isOpen'}>True</DropdownItem>
+                        </DropdownList>
+                      </DropdownGroup>
+                    </DropdownContent>
                   </Dropdown>
                 </div>
                 <div>
@@ -259,17 +268,17 @@ import Dropdown from '@/components/ui/modules/Dropdown';
                     >Default user role</label
                   >
                   <Dropdown>
-                    <Dropdown.Trigger>
+                    <DropdownTrigger>
                       <SelectField value="admin" isFluid />
-                    </Dropdown.Trigger>
-                    <Dropdown.Content position="bottomEnd" className="w-full">
-                      <Dropdown.Group>
-                        <Dropdown.Items>
-                          <Dropdown.Item onClick={'isOpen = !isOpen'}>Admin</Dropdown.Item>
-                          <Dropdown.Item onClick={'isOpen = !isOpen'}>User</Dropdown.Item>
-                        </Dropdown.Items>
-                      </Dropdown.Group>
-                    </Dropdown.Content>
+                    </DropdownTrigger>
+                    <DropdownContent position="bottomEnd" className="w-full">
+                      <DropdownGroup>
+                        <DropdownList>
+                          <DropdownItem onClick={'isOpen = !isOpen'}>Admin</DropdownItem>
+                          <DropdownItem onClick={'isOpen = !isOpen'}>User</DropdownItem>
+                        </DropdownList>
+                      </DropdownGroup>
+                    </DropdownContent>
                   </Dropdown>
                 </div>
                 <div>
