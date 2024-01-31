@@ -1,6 +1,6 @@
 ---
 import Layout from '@/layouts/rinsedocs/Raw.astro';
-import Tab from '@/components/ui/elements/Tab';
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/elements/Tabs';
 import Button from '@/components/ui/elements/Button';
 import Card from '@/components/ui/elements/Card';
 import Table from '@/components/ui/elements/Table';
@@ -14,7 +14,7 @@ import {
   DropdownSeparator,
   DropdownTrigger,
 } from '@/components/ui/modules/Dropdown';
-import Tooltip from '@/components/ui/elements/Tooltip';
+import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/elements/Tooltip';
 import SearchField from '@/components/ui/elements/SearchField/index.astro';
 import TextField from '@/components/ui/elements/TextField/index.astro';
 import SelectField from '@/components/ui/elements/SelectField';
@@ -121,21 +121,29 @@ import SelectField from '@/components/ui/elements/SelectField';
     <p class="text-sm text-gray-600">View or update your organization and billing settings.</p>
   </div>
   <div>
-    <Tab className="px-7">
-      <TabTrigger onClick="link('/components/templates/organization-settings/general')">
-        General
-      </TabTrigger>
-      <TabTrigger onClick="link('/components/templates/organization-settings/users')" isActive>
-        Users
-      </TabTrigger>
-      <TabTrigger onClick="link('/components/templates/organization-settings/billing')">
-        Billing
-      </TabTrigger>
-      <TabTrigger onClick="link('/components/templates/organization-settings/environment')">
-        Environment
-      </TabTrigger>
-      <!-- <TabTrigger onClick="link('/components/templates/organization-settings/authentication')">Authentication</TabTrigger> -->
-    </Tab>
+    <Tabs selection="users">
+      <TabsList className="px-7">
+        <TabsTrigger name="general" href="/components/templates/organization-settings/general">
+          General
+        </TabsTrigger>
+        <TabsTrigger name="users" href="/components/templates/organization-settings/users">
+          Users
+        </TabsTrigger>
+        <TabsTrigger
+          name="billing"
+          href="/components/templates/organization-settings/billing"
+          isActe
+        >
+          Billing
+        </TabsTrigger>
+        <TabsTrigger
+          name="environment"
+          href="/components/templates/organization-settings/environment"
+        >
+          Environment
+        </TabsTrigger>
+      </TabsList>
+    </Tabs>
   </div>
   <div class="px-7 py-10">
     <div class="space-y-14">
