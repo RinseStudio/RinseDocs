@@ -165,21 +165,6 @@ import {
           </div>
 
           <Table x-data="Table">
-            <Table.Header>
-              <Table.Row>
-                <Table.Head className="w-[180px]">
-                  <Button size="sm" variant="ghost" @click="updateHeaderState(0)">
-                    IP
-                    <i
-                      x-cloak
-                      x-show="sortSelection == 0"
-                      class="fa-solid fa-fw ml-1 text-[11px]"
-                      :class="isAscending == true ? 'fa-angle-down' : 'fa-angle-up'"></i>
-                  </Button>
-                </Table.Head>
-                <Table.Head className="w-[180px]" />
-              </Table.Row>
-            </Table.Header>
             <Table.Body>
               <Table.Row>
                 <Table.Cell className="px-4">172.70.110.140</Table.Cell>
@@ -264,21 +249,6 @@ import {
             </div>
           </div>
           <Table x-data="Table">
-            <Table.Header>
-              <Table.Row>
-                <Table.Head className="w-[180px]">
-                  <Button size="sm" variant="ghost" @click="updateHeaderState(0)">
-                    Email or Domain
-                    <i
-                      x-cloak
-                      x-show="sortSelection == 0"
-                      class="fa-solid fa-fw ml-1 text-[11px]"
-                      :class="isAscending == true ? 'fa-angle-down' : 'fa-angle-up'"></i>
-                  </Button>
-                </Table.Head>
-                <Table.Head className="w-[180px]" />
-              </Table.Row>
-            </Table.Header>
             <Table.Body>
               <Table.Row>
                 <Table.Cell className="px-4">*.castle.io</Table.Cell>
