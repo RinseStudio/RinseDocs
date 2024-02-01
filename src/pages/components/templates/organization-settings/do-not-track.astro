@@ -1,0 +1,325 @@
+---
+import Layout from '@/layouts/rinsedocs/Raw.astro';
+import { Icon } from 'astro-icon/components';
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/elements/Tabs';
+import Table from '@/components/ui/elements/Table';
+import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/elements/Tooltip';
+import Button from '@/components/ui/elements/Button';
+import Card from '@/components/ui/elements/Card';
+import TextField from '@/components/ui/elements/TextField/index.astro';
+import SelectField from '@/components/ui/elements/SelectField';
+import {
+  Dropdown,
+  DropdownContent,
+  DropdownGroup,
+  DropdownHeader,
+  DropdownItem,
+  DropdownList,
+  DropdownSeparator,
+  DropdownTrigger,
+} from '@/components/ui/modules/Dropdown';
+---
+
+<Layout class="" x-data="{dialog: false}">
+  <div
+    class="fixed right-0 top-0 z-10"
+    x-cloak
+    x-show="dialog"
+    x-transition:enter="duration-200 transform"
+    x-transition:enter-start="opacity-0 translate-x-40"
+    x-transition:enter-end="opacity-100 translate-x-0"
+    x-transition:leave="duration-200 transform"
+    x-transition:leave-start="opacity-100 translate-x-0"
+    x-transition:leave-end="opacity-0 translate-x-40"
+  >
+    <div
+      class="max-h-100vh relative h-[100dvh] w-[480px] max-w-3xl flex-1 overflow-auto rounded-l-xl bg-white shadow-xl"
+    >
+      <header class="flex items-center justify-between border-b border-zinc-200 px-4 py-4 pl-6">
+        <div>
+          <h3 class="text-base font-bold text-black">Add IP Address</h3>
+        </div>
+        <!-- <Button size="md" variant="secondary" isSquare @click="dialog = false">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-x"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg
+          >
+        </Button> -->
+        <div class="flex justify-end gap-2">
+          <Button size="sm" variant="secondary" @click="dialog = false">Cancel</Button>
+          <Button size="sm" variant="primary">Add</Button>
+        </div>
+      </header>
+      <div class="space-y-6 px-6 py-8">
+        <div>
+          <label class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400"
+            >IP Address or Range</label
+          >
+          <TextField placeholder="Jane" isFluid />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="px-7 py-4">
+    <h1 class="mb-2 text-lg font-bold text-black">Do-Not-Track</h1>
+    <p class="text-sm text-gray-600">
+      Add specific IPs or emails for accounts that you don't want tracked by Castle.
+    </p>
+  </div>
+  <div>
+    <Tabs selection="do-not-track">
+      <TabsList className="px-7">
+        <TabsTrigger name="general" href="/components/templates/organization-settings/general">
+          General
+        </TabsTrigger>
+        <TabsTrigger name="users" href="/components/templates/organization-settings/users">
+          Users
+        </TabsTrigger>
+        <TabsTrigger
+          name="billing"
+          href="/components/templates/organization-settings/billing"
+          isActe
+        >
+          Billing
+        </TabsTrigger>
+        <TabsTrigger
+          name="environment"
+          href="/components/templates/organization-settings/environment"
+        >
+          Environment
+        </TabsTrigger>
+        <TabsTrigger
+          name="do-not-track"
+          href="/components/templates/organization-settings/do-not-track"
+        >
+          Do-not-track
+        </TabsTrigger>
+      </TabsList>
+    </Tabs>
+  </div>
+  <div class="px-7 py-10">
+    <div class="space-y-14">
+      <div>
+        <h3 class="mb-4 flex items-center gap-2 text-sm font-bold text-black">
+          <Icon name="lucide:globe" class="sizie-4" />
+           IPs
+        </h3>
+        <p class="mb-4 max-w-lg text-xs">
+          Do-Not-Track IPs are used when you want to disable tracking for certain IP addresses. A
+          typical use-case is when your support team wants to impersonate your customers, but not
+          affect their risk score or trigger user notifications.
+        </p>
+
+        <button class="flex items-center gap-1 text-xs font-semibold text-blue-500">
+          <Icon name="lucide:plus" class="size-4" /> Add current IP (172.70.110.140)
+        </button>
+
+        <!-- <Card className="mb-4 mt-4 max-w-[400px]">
+          <Card.Group>
+            <div class="space-y-6">
+              <div>
+                <label class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400"
+                  >Orgnization name</label
+                >
+                <TextField value="Castle" isFluid />
+              </div>
+              <div class="flex justify-end">
+                <Button onClick={'isOpen = !isOpen'} size="sm" variant="primary">
+                  Save settings
+                </Button>
+              </div>
+            </div>
+          </Card.Group> -->
+
+        <Card className="mt-4 overflow-auto">
+          <div class="mb-4 space-y-6 px-4 pt-4">
+            <div>
+              <label
+                class="mb-2 flex items-center gap-1.5 text-[13px] font-semibold text-gray-900 dark:text-gray-400"
+              >
+                Add IP address
+                <Tooltip>
+                  <TooltipTrigger>
+                    <i class="fa-solid fa-fw fa-question-circle text-gray-400"></i>
+                  </TooltipTrigger>
+                  <TooltipContent className="w-[200px]">
+                    Single IP address or range in CIDR notation, eg. 127.0.0.1, 10.1.0.0/16.
+                  </TooltipContent>
+                </Tooltip>
+              </label>
+
+              <div class="flex gap-2">
+                <TextField placeholder="127.0.0.1" />
+                <Button size="md" variant="primary">Add</Button>
+              </div>
+            </div>
+          </div>
+
+          <Table x-data="Table">
+            <Table.Header>
+              <Table.Row>
+                <Table.Head className="w-[180px]">
+                  <Button size="sm" variant="ghost" @click="updateHeaderState(0)">
+                    IP
+                    <i
+                      x-cloak
+                      x-show="sortSelection == 0"
+                      class="fa-solid fa-fw ml-1 text-[11px]"
+                      :class="isAscending == true ? 'fa-angle-down' : 'fa-angle-up'"></i>
+                  </Button>
+                </Table.Head>
+                <Table.Head className="w-[180px]" />
+              </Table.Row>
+            </Table.Header>
+            <Table.Body>
+              <Table.Row>
+                <Table.Cell className="px-4">172.70.110.140</Table.Cell>
+                <Table.Cell className="px-4 py-3">
+                  <div class="flex justify-end gap-1.5">
+                    <Button size="xs" variant="outline">
+                      Remove
+                      <i
+                        x-cloak
+                        x-show="sortSelection == 5"
+                        class="fa-solid fa-fw ml-1 text-[11px]"
+                        :class="isAscending == true ? 'fa-angle-down' : 'fa-angle-up'"></i>
+                    </Button>
+                  </div>
+                </Table.Cell>
+              </Table.Row>
+              <Table.Row>
+                <Table.Cell className="px-4">172.70.110.140</Table.Cell>
+                <Table.Cell className="px-4 py-3">
+                  <div class="flex justify-end gap-1.5">
+                    <Button size="xs" variant="outline">
+                      Remove
+                      <i
+                        x-cloak
+                        x-show="sortSelection == 5"
+                        class="fa-solid fa-fw ml-1 text-[11px]"
+                        :class="isAscending == true ? 'fa-angle-down' : 'fa-angle-up'"></i>
+                    </Button>
+                  </div>
+                </Table.Cell>
+              </Table.Row>
+            </Table.Body>
+          </Table>
+        </Card>
+
+        <!-- <div class="mt-4">
+          <Button size="sm" variant="secondary" @click="dialog = true">
+            <i class="fa-regular fa-plus mr-1.5"></i> Add IP
+          </Button>
+        </div> -->
+      </div>
+
+      <div>
+        <h3 class="mb-4 flex items-center gap-2 text-sm font-bold text-black">
+          <Icon name="lucide:globe" class="sizie-4" />
+           Emails
+        </h3>
+        <p class="mb-4 max-w-lg text-xs">
+          You can add specific e-mail addresses or email domains of any accounts that you don't want
+          tracked by Castle. This can be used to whitelist activity from internal employee accounts
+          or accounts used by automated development tools or health check systems owned by your
+          teams or trusted 3rd party vendors. This functionality requires that you are setting the
+          email value for all backend requests.
+        </p>
+
+        <button class="flex items-center gap-1 text-xs font-semibold text-blue-500">
+          <Icon name="lucide:plus" class="size-4" /> Add my email domain (castle.io)
+        </button>
+
+        <Card className="mt-4 overflow-auto">
+          <div class="mb-4 space-y-6 px-4 pt-4">
+            <div>
+              <label
+                class="mb-2 flex items-center gap-1.5 text-[13px] font-semibold text-gray-900 dark:text-gray-400"
+              >
+                Add email or domain
+                <Tooltip>
+                  <TooltipTrigger>
+                    <i class="fa-solid fa-fw fa-question-circle text-gray-400"></i>
+                  </TooltipTrigger>
+                  <TooltipContent className="w-[320px]">
+                    Single e-mail address, top-level domain or subdomains: eg. jane@example.com,
+                    example.com, *.example.com.
+                  </TooltipContent>
+                </Tooltip>
+              </label>
+
+              <div class="flex gap-2">
+                <TextField placeholder="jane@example.com" />
+                <Button size="md" variant="primary">Add</Button>
+              </div>
+            </div>
+          </div>
+          <Table x-data="Table">
+            <Table.Header>
+              <Table.Row>
+                <Table.Head className="w-[180px]">
+                  <Button size="sm" variant="ghost" @click="updateHeaderState(0)">
+                    Email or Domain
+                    <i
+                      x-cloak
+                      x-show="sortSelection == 0"
+                      class="fa-solid fa-fw ml-1 text-[11px]"
+                      :class="isAscending == true ? 'fa-angle-down' : 'fa-angle-up'"></i>
+                  </Button>
+                </Table.Head>
+                <Table.Head className="w-[180px]" />
+              </Table.Row>
+            </Table.Header>
+            <Table.Body>
+              <Table.Row>
+                <Table.Cell className="px-4">*.castle.io</Table.Cell>
+                <Table.Cell className="px-4 py-3">
+                  <div class="flex justify-end gap-1.5">
+                    <Button size="xs" variant="outline">
+                      Remove
+                      <i
+                        x-cloak
+                        x-show="sortSelection == 5"
+                        class="fa-solid fa-fw ml-1 text-[11px]"
+                        :class="isAscending == true ? 'fa-angle-down' : 'fa-angle-up'"></i>
+                    </Button>
+                  </div>
+                </Table.Cell>
+              </Table.Row>
+              <Table.Row>
+                <Table.Cell className="px-4">*.castle.io</Table.Cell>
+                <Table.Cell className="px-4 py-3">
+                  <div class="flex justify-end gap-1.5">
+                    <Button size="xs" variant="outline">
+                      Remove
+                      <i
+                        x-cloak
+                        x-show="sortSelection == 5"
+                        class="fa-solid fa-fw ml-1 text-[11px]"
+                        :class="isAscending == true ? 'fa-angle-down' : 'fa-angle-up'"></i>
+                    </Button>
+                  </div>
+                </Table.Cell>
+              </Table.Row>
+            </Table.Body>
+          </Table>
+        </Card>
+
+        <!-- <div class="mt-4">
+          <Button size="sm" variant="secondary" @click="dialog = true">
+            <i class="fa-regular fa-plus mr-1.5"></i> Add email domain
+          </Button>
+        </div> -->
+      </div>
+    </div>
+  </div>
+</Layout>
