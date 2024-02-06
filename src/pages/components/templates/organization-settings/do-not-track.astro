@@ -1,13 +1,17 @@
 ---
 import Layout from '@/layouts/rinsedocs/Raw.astro';
 import { Icon } from 'astro-icon/components';
-import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/elements/Tabs';
-import Table from '@/components/ui/elements/Table';
-import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/elements/Tooltip';
-import Button from '@/components/ui/elements/Button';
-import Card from '@/components/ui/elements/Card';
-import TextField from '@/components/ui/elements/TextField/index.astro';
-import SelectField from '@/components/ui/elements/SelectField';
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/Tabs';
+import Table from '@/components/ui/Table';
+import {
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+} from '@/components/ui/Tooltip';
+import Button from '@/components/ui/Button';
+import Card from '@/components/ui/Card';
+import { TextField } from '@/components/ui/TextField';
+import SelectField from '@/components/ui/SelectField';
 import {
   Dropdown,
   DropdownContent,
@@ -17,7 +21,7 @@ import {
   DropdownList,
   DropdownSeparator,
   DropdownTrigger,
-} from '@/components/ui/modules/Dropdown';
+} from '@/components/ui/Dropdown';
 ---
 
 <Layout class="" x-data="{dialog: false}">
@@ -35,7 +39,9 @@ import {
     <div
       class="max-h-100vh relative h-[100dvh] w-[480px] max-w-3xl flex-1 overflow-auto rounded-l-xl bg-white shadow-xl"
     >
-      <header class="flex items-center justify-between border-b border-zinc-200 px-4 py-4 pl-6">
+      <header
+        class="flex items-center justify-between border-b border-zinc-200 px-4 py-4 pl-6"
+      >
         <div>
           <h3 class="text-base font-bold text-black">Add IP Address</h3>
         </div>
@@ -54,13 +60,16 @@ import {
           >
         </Button> -->
         <div class="flex justify-end gap-2">
-          <Button size="sm" variant="secondary" @click="dialog = false">Cancel</Button>
+          <Button size="sm" variant="secondary" @click="dialog = false">
+            Cancel
+          </Button>
           <Button size="sm" variant="primary">Add</Button>
         </div>
       </header>
       <div class="space-y-6 px-6 py-8">
         <div>
-          <label class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400"
+          <label
+            class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400"
             >IP Address or Range</label
           >
           <TextField placeholder="Jane" isFluid />
@@ -72,16 +81,23 @@ import {
   <div class="px-7 py-4">
     <h1 class="mb-2 text-lg font-bold text-black">Do-Not-Track</h1>
     <p class="text-sm text-gray-600">
-      Add specific IPs or emails for accounts that you don't want tracked by Castle.
+      Add specific IPs or emails for accounts that you don't want tracked by
+      Castle.
     </p>
   </div>
   <div>
     <Tabs selection="do-not-track">
       <TabsList className="px-7">
-        <TabsTrigger name="general" href="/components/templates/organization-settings/general">
+        <TabsTrigger
+          name="general"
+          href="/components/templates/organization-settings/general"
+        >
           General
         </TabsTrigger>
-        <TabsTrigger name="users" href="/components/templates/organization-settings/users">
+        <TabsTrigger
+          name="users"
+          href="/components/templates/organization-settings/users"
+        >
           Users
         </TabsTrigger>
         <TabsTrigger
@@ -111,15 +127,18 @@ import {
       <div>
         <h3 class="mb-4 flex items-center gap-2 text-sm font-bold text-black">
           <Icon name="lucide:globe" class="sizie-4" />
-           IPs
+          IPs
         </h3>
         <p class="mb-4 max-w-lg text-xs">
-          Do-Not-Track IPs are used when you want to disable tracking for certain IP addresses. A
-          typical use-case is when your support team wants to impersonate your customers, but not
-          affect their risk score or trigger user notifications.
+          Do-Not-Track IPs are used when you want to disable tracking for
+          certain IP addresses. A typical use-case is when your support team
+          wants to impersonate your customers, but not affect their risk score
+          or trigger user notifications.
         </p>
 
-        <button class="flex items-center gap-1 text-xs font-semibold text-blue-500">
+        <button
+          class="flex items-center gap-1 text-xs font-semibold text-blue-500"
+        >
           <Icon name="lucide:plus" class="size-4" /> Add current IP (172.70.110.140)
         </button>
 
@@ -149,10 +168,12 @@ import {
                 Add IP address
                 <Tooltip>
                   <TooltipTrigger>
-                    <i class="fa-solid fa-fw fa-question-circle text-gray-400"></i>
+                    <i class="fa-solid fa-fw fa-question-circle text-gray-400"
+                    ></i>
                   </TooltipTrigger>
                   <TooltipContent className="w-[200px]">
-                    Single IP address or range in CIDR notation, eg. 127.0.0.1, 10.1.0.0/16.
+                    Single IP address or range in CIDR notation, eg. 127.0.0.1,
+                    10.1.0.0/16.
                   </TooltipContent>
                 </Tooltip>
               </label>
@@ -176,7 +197,8 @@ import {
                         x-cloak
                         x-show="sortSelection == 5"
                         class="fa-solid fa-fw ml-1 text-[11px]"
-                        :class="isAscending == true ? 'fa-angle-down' : 'fa-angle-up'"></i>
+                        :class="isAscending == true ? 'fa-angle-down' : 'fa-angle-up'"
+                      ></i>
                     </Button>
                   </div>
                 </Table.Cell>
@@ -191,7 +213,8 @@ import {
                         x-cloak
                         x-show="sortSelection == 5"
                         class="fa-solid fa-fw ml-1 text-[11px]"
-                        :class="isAscending == true ? 'fa-angle-down' : 'fa-angle-up'"></i>
+                        :class="isAscending == true ? 'fa-angle-down' : 'fa-angle-up'"
+                      ></i>
                     </Button>
                   </div>
                 </Table.Cell>
@@ -210,17 +233,20 @@ import {
       <div>
         <h3 class="mb-4 flex items-center gap-2 text-sm font-bold text-black">
           <Icon name="lucide:globe" class="sizie-4" />
-           Emails
+          Emails
         </h3>
         <p class="mb-4 max-w-lg text-xs">
-          You can add specific e-mail addresses or email domains of any accounts that you don't want
-          tracked by Castle. This can be used to whitelist activity from internal employee accounts
-          or accounts used by automated development tools or health check systems owned by your
-          teams or trusted 3rd party vendors. This functionality requires that you are setting the
-          email value for all backend requests.
+          You can add specific e-mail addresses or email domains of any accounts
+          that you don't want tracked by Castle. This can be used to whitelist
+          activity from internal employee accounts or accounts used by automated
+          development tools or health check systems owned by your teams or
+          trusted 3rd party vendors. This functionality requires that you are
+          setting the email value for all backend requests.
         </p>
 
-        <button class="flex items-center gap-1 text-xs font-semibold text-blue-500">
+        <button
+          class="flex items-center gap-1 text-xs font-semibold text-blue-500"
+        >
           <Icon name="lucide:plus" class="size-4" /> Add my email domain (castle.io)
         </button>
 
@@ -233,11 +259,12 @@ import {
                 Add email or domain
                 <Tooltip>
                   <TooltipTrigger>
-                    <i class="fa-solid fa-fw fa-question-circle text-gray-400"></i>
+                    <i class="fa-solid fa-fw fa-question-circle text-gray-400"
+                    ></i>
                   </TooltipTrigger>
                   <TooltipContent className="w-[320px]">
-                    Single e-mail address, top-level domain or subdomains: eg. jane@example.com,
-                    example.com, *.example.com.
+                    Single e-mail address, top-level domain or subdomains: eg.
+                    jane@example.com, example.com, *.example.com.
                   </TooltipContent>
                 </Tooltip>
               </label>
@@ -260,7 +287,8 @@ import {
                         x-cloak
                         x-show="sortSelection == 5"
                         class="fa-solid fa-fw ml-1 text-[11px]"
-                        :class="isAscending == true ? 'fa-angle-down' : 'fa-angle-up'"></i>
+                        :class="isAscending == true ? 'fa-angle-down' : 'fa-angle-up'"
+                      ></i>
                     </Button>
                   </div>
                 </Table.Cell>
@@ -275,7 +303,8 @@ import {
                         x-cloak
                         x-show="sortSelection == 5"
                         class="fa-solid fa-fw ml-1 text-[11px]"
-                        :class="isAscending == true ? 'fa-angle-down' : 'fa-angle-up'"></i>
+                        :class="isAscending == true ? 'fa-angle-down' : 'fa-angle-up'"
+                      ></i>
                     </Button>
                   </div>
                 </Table.Cell>
@@ -292,4 +321,5 @@ import {
       </div>
     </div>
   </div>
-</Layout>
+</Layout>@/components/ui/Table@/components/ui/Tooltip@/components/ui/Button@/components/ui/Card@/components/ui/SelectField@/components/ui/Dropdown
+

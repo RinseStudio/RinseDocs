@@ -1,0 +1,55 @@
+---
+import {
+  Select,
+  SelectNative,
+  SelectGroup,
+  SelectTrigger,
+  SelectContent,
+  SelectHeader,
+  SelectLabel,
+  SelectList,
+  SelectItem,
+  SelectOption,
+  SelectSeparator,
+} from '@/components/ui/Select';
+
+const data = `SelectField({
+  'className.validation.success': 'bg-green-500'
+})`;
+---
+
+<div class="justify-content flex flex-col items-center gap-4">
+  <Select className="w-[200px]">
+    <SelectTrigger>Select option</SelectTrigger>
+    <SelectContent position="bottomStart" className="w-[200px]">
+      <SelectGroup>
+        <SelectLabel>Fruits</SelectLabel>
+        <SelectList>
+          <SelectItem value="apple">Apple</SelectItem>
+          <SelectItem value="cherry">
+            <div class="flex items-center">
+              <div class="mr-1 h-2 w-2 bg-red-500"></div> Cherry
+            </div>
+          </SelectItem>
+          <SelectItem value="tomato">Tomato</SelectItem>
+        </SelectList>
+      </SelectGroup>
+    </SelectContent>
+  </Select>
+
+  <SelectNative>
+    <SelectOption value="Apple">Apple</SelectOption>
+    <SelectOption value="Cherry">Cherry</SelectOption>
+    <SelectOption value="Tomato">Tomato</SelectOption>
+  </SelectNative>
+
+  <!-- <button
+    @click="$dispatch('update-state', { 
+    id: 'component1', 
+    state: { isOpen: true, className.field.error: 'bg-black'} 
+  })"
+  >
+    Update Validation for Component 1
+  </button> -->
+</div>
+ @/components/ui/Select

@@ -4,16 +4,7 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
-      "@js/*": ["src/js/*"],
-      "@pages/*": ["src/pages/*"],
-      "@components/*": ["src/components/*"],
-      "@assets/*": ["src/assets/*"],
-      "@layouts/*": ["src/layouts/*"],
-      "@styles/*": ["src/styles/*"],
-      "@data/*": ["src/data/*"],
-      "@rinseui/*": ["src/components/rinseui/*"]
     },
     "strictNullChecks": true,
-    "jsx": "preserve"
-  }
+  },
 }

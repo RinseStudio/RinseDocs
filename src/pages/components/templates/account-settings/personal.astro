@@ -1,10 +1,10 @@
 ---
 import Layout from '@/layouts/rinsedocs/Raw.astro';
-import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/elements/Tabs';
-import Button from '@/components/ui/elements/Button';
-import TextField from '@/components/ui/elements/TextField/index.astro';
-import SelectField from '@/components/ui/elements/SelectField';
-import Card from '@/components/ui/elements/Card';
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/Tabs';
+import Button from '@/components/ui/Button';
+import { TextField } from '@/components/ui/TextField';
+import SelectField from '@/components/ui/SelectField';
+import Card from '@/components/ui/Card';
 import {
   Dropdown,
   DropdownContent,
@@ -14,21 +14,29 @@ import {
   DropdownList,
   DropdownSeparator,
   DropdownTrigger,
-} from '@/components/ui/modules/Dropdown';
+} from '@/components/ui/Dropdown';
 ---
 
 <Layout class="">
   <div class="px-7 py-4">
     <h1 class="mb-2 text-lg font-bold text-black">Account Settings</h1>
-    <p class="text-sm text-gray-600">View or update your personal details and security settings.</p>
+    <p class="text-sm text-gray-600">
+      View or update your personal details and security settings.
+    </p>
   </div>
   <div>
     <Tabs selection="personal">
       <TabsList className="px-7">
-        <TabsTrigger name="personal" href="/components/templates/account-settings/personal">
+        <TabsTrigger
+          name="personal"
+          href="/components/templates/account-settings/personal"
+        >
           Personal Details
         </TabsTrigger>
-        <TabsTrigger name="security" href="/components/templates/account-settings/security">
+        <TabsTrigger
+          name="security"
+          href="/components/templates/account-settings/security"
+        >
           Security
         </TabsTrigger>
       </TabsList>
@@ -49,42 +57,56 @@ import {
             stroke-linecap="round"
             stroke-linejoin="round"
             class="lucide lucide-circle-user"
-            ><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="10" r="3"></circle><path
+            ><circle cx="12" cy="12" r="10"></circle><circle
+              cx="12"
+              cy="10"
+              r="3"></circle><path
               d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662"></path></svg
           >
-           Personal Details
+          Personal Details
         </h3>
 
         <Card>
           <Card.Group>
             <div class="space-y-6">
               <div>
-                <label class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400"
+                <label
+                  class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400"
                   >First name</label
                 >
                 <TextField value="Jane" isFluid />
               </div>
               <div>
-                <label class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400"
+                <label
+                  class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400"
                   >Last name</label
                 >
                 <TextField value="Jane" isFluid />
               </div>
               <div>
-                <label class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400"
+                <label
+                  class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400"
                   >Phone</label
                 >
                 <TextField value="+1 415 918 2944" isFluid />
               </div>
               <div>
-                <label class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400"
+                <label
+                  class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400"
                   >Email</label
                 >
-                <TextField validation="error" value="jane@@5pigibank.com" isFluid />
-                <div class="mt-2 text-xs text-red-500">Please provide a valid email.</div>
+                <TextField
+                  validation="error"
+                  value="jane@@5pigibank.com"
+                  isFluid
+                />
+                <div class="mt-2 text-xs text-red-500">
+                  Please provide a valid email.
+                </div>
               </div>
               <div>
-                <label class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400"
+                <label
+                  class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400"
                   >Timezone</label
                 >
                 <Dropdown position="bottomEnd" widthClass="w-full">
@@ -92,16 +114,26 @@ import {
                   <slot slot="dropdown-content">
                     <DropdownGroup>
                       <DropdownList>
-                        <DropdownItem onClick={'isOpen = !isOpen'}>Africa/Abidjan</DropdownItem>
-                        <DropdownItem onClick={'isOpen = !isOpen'}>Africa/Abidjan</DropdownItem>
-                        <DropdownItem onClick={'isOpen = !isOpen'}>Africa/Abidjan</DropdownItem>
+                        <DropdownItem onClick={'isOpen = !isOpen'}>
+                          Africa/Abidjan
+                        </DropdownItem>
+                        <DropdownItem onClick={'isOpen = !isOpen'}>
+                          Africa/Abidjan
+                        </DropdownItem>
+                        <DropdownItem onClick={'isOpen = !isOpen'}>
+                          Africa/Abidjan
+                        </DropdownItem>
                       </DropdownList>
                     </DropdownGroup>
                   </slot>
                 </Dropdown>
               </div>
               <div class="flex justify-end">
-                <Button onClick={'isOpen = !isOpen'} size="sm" variant="primary">
+                <Button
+                  onClick={'isOpen = !isOpen'}
+                  size="sm"
+                  variant="primary"
+                >
                   Save settings
                 </Button>
               </div>
@@ -111,4 +143,5 @@ import {
       </div>
     </div>
   </div>
-</Layout>
+</Layout>@/components/ui/Button@/components/ui/SelectField@/components/ui/Card@/components/ui/Dropdown
+

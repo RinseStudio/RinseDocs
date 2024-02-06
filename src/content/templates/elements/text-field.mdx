@@ -1,0 +1,88 @@
+---
+title: Text Field
+date: 2023-05-12
+author: Jin Su Park,
+thumbnail: '@/assets/runboy-01.jpg'
+description: TextFieldes enable users to choose single or multiple options from a group.
+draft: false
+weight: 0
+meta:
+  - label: Edit this page
+    url: '#'
+    icon: pencil
+  - label: View on GitHub
+    url: '#'
+    icon: github
+pageSettings:
+  showSidebar: true
+  showTOC: true
+  enableFluidWidth: true
+---
+
+import RinseUI from '@/components/docs/RinseUI';
+
+## Basic usage
+
+The following is an example of a basic textfield.
+
+import Dialog from '@/components/ui/Dialog';
+import Card from '@/components/ui/Card';
+import Button from '@/components/ui/Button';
+
+<RinseUI
+  className="bg-white dark:bg-transparent"
+>
+  <Fragment slot="preview">
+    <Dialog>
+      <Dialog.Trigger>
+        <Button variant="outline">Open dialog</Button>
+      </Dialog.Trigger>
+      <Dialog.Content>
+        <div class="px-6 py-5">
+          <h3 class="mb-2 text-lg font-semibold text-gray-900">Confirm deletion</h3>
+          <p class="text-sm text-gray-600">
+            Do you really wish to deactivate your account? Please be aware that this will permanently
+            erase all your data and this action is irreversible.
+          </p>
+        </div>
+        <div class="border-t border-zinc-200 px-3 py-3">
+          <div class="flex justify-end gap-2">
+            <Button size="sm" variant="secondary">Cancel</Button>
+            <Button size="sm" variant="primary" isDanger>Confirm delete</Button>
+          </div>
+        </div>
+      </Dialog.Content>
+    </Dialog>
+  </Fragment>
+  <Fragment slot="code">
+    ```astro
+    ---
+    import Dialog from '@/components/ui/Dialog';
+    import Card from '@/components/ui/Card';
+    import Button from '@/components/ui/Button';
+    ---
+
+    <Dialog>
+      <Dialog.Trigger>
+        <Button variant="outline">Open dialog</Button>
+      </Dialog.Trigger>
+      <Dialog.Content>
+        <div class="px-6 py-5">
+          <h3 class="mb-2 text-lg font-semibold text-gray-900">Confirm deletion</h3>
+          <p class="text-sm text-gray-600">
+            Do you really wish to deactivate your account? Please be aware that this will permanently
+            erase all your data and this action is irreversible.
+          </p>
+        </div>
+        <div class="border-t border-zinc-200 px-3 py-3">
+          <div class="flex justify-end gap-2">
+            <Button size="sm" variant="secondary">Cancel</Button>
+            <Button size="sm" variant="primary" isDanger>Confirm delete</Button>
+          </div>
+        </div>
+      </Dialog.Content>
+    </Dialog>
+    ```
+
+  </Fragment>
+</RinseUI>

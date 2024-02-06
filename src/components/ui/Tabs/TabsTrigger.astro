@@ -1,0 +1,19 @@
+---
+import { twMerge } from 'tailwind-merge';
+const { name = 'tab-1', isActive, className, ...props } = Astro.props;
+---
+
+<a
+  class={twMerge(
+    'cursor-pointer py-3 text-[13px] font-medium text-gray-400 hover:text-gray-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:hover:text-gray-300 dark:focus-visible:ring-blue-500 ',
+
+    // Active State
+    `data-[is-active]:dark:text-blue-400
+    data-[is-active]:text-blue-500`,
+    className,
+  )}
+  data-tab-name={name}
+  data-is-active={isActive}
+  x-on:click={`switchToTab('${name}')`}
+  {...props}><slot /></a
+>

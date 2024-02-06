@@ -1,11 +1,20 @@
 ---
 import { getCollection } from 'astro:content';
+import { Icon } from 'astro-icon/components';
 import { SITE } from '@/rinsedocs.config';
 
 import Layout from '@/layouts/rinsedocs/Base.astro';
-import * as helper from '@js/rinsedocs.model.js';
-import SidebarList from '@/components/ui/SidebarList.astro';
-import TOC from '@/components/ui/TOC.astro';
+
+import { buildBreadcrumb, buildNavigation } from '@/utils/helpers.js';
+
+import SidebarList from '@/components/docs/SidebarList.astro';
+import TOC from '@/components/docs/TOC.astro';
+import Button from '@/components/ui/Button';
+import {
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+} from '@/components/ui/Tooltip';
 
 const { frontmatter, headings, entry } = Astro.props;
 
@@ -14,188 +23,169 @@ const allPages = await getCollection(collection, ({ data }) => {
   return data.draft !== true;
 });
 
-const navigation = helper.buildNavigation(
+const navigation = buildNavigation(
   allPages,
   Astro.url.pathname,
   SITE.sidebarOverrides.components,
 );
 
-const breadcrumb = helper.buildBreadcrumb(entry.slug);
-
-import Button from '@/components/ui/elements/Button';
+const breadcrumb = buildBreadcrumb(entry.slug);
 ---
 
-<Layout title={frontmatter.title} pageSettings={frontmatter.pageSettings} frontmatter={frontmatter}>
-  <div class="app grid grid-cols-[48px,var(--sidebar-width),1fr]" style="--sidebar-width: 240px">
+<Layout
+  title={frontmatter.title}
+  pageSettings={frontmatter.pageSettings}
+  frontmatter={frontmatter}
+>
+  <div
+    class="app grid grid-cols-[48px,var(--sidebar-width),1fr]"
+    style="--sidebar-width: 240px"
+  >
     <nav
-      class="relative z-30 flex w-[48px] flex-none flex-col items-center border-r border-zinc-300 dark:border-zinc-800"
+      class="relative z-30 flex w-[48px] flex-none flex-col items-center border-r border-zinc-200 dark:border-zinc-800"
     >
       <div class="sticky top-0 flex flex-col gap-3.5 py-2.5">
-        <a
-          href="#"
-          x-data="tooltip"
-          x-on:mouseenter="showTooltip"
-          x-on:mouseleave="hideTooltip"
-          class="relative flex h-8 w-8 items-center justify-center rounded-full bg-white text-gray-900 shadow-md transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-lg dark:bg-zinc-800 dark:text-gray-200 hover:dark:bg-zinc-700"
+        <div
+          class="relative flex h-7 w-7 items-center justify-center text-black dark:text-white"
         >
           <svg
+            width="24"
+            height="24"
+            viewBox="0 0 28 28"
+            fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-            class="h-4 w-4"
           >
             <path
-              d="M10.75 16.82A7.462 7.462 0 0115 15.5c.71 0 1.396.098 2.046.282A.75.75 0 0018 15.06v-11a.75.75 0 00-.546-.721A9.006 9.006 0 0015 3a8.963 8.963 0 00-4.25 1.065V16.82zM9.25 4.065A8.963 8.963 0 005 3c-.85 0-1.673.118-2.454.339A.75.75 0 002 4.06v11a.75.75 0 00.954.721A7.506 7.506 0 015 15.5c1.579 0 3.042.487 4.25 1.32V4.065z"
-            ></path>
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M13.625 5H5V13.625C9.03133 12.2022 12.2022 9.03133 13.625 5ZM23 13.625V5H14.375C15.7978 9.03133 18.9687 12.2022 23 13.625ZM23 23H14.375C15.7978 18.9687 18.9687 15.7978 23 14.375V23ZM5 14.375V23H13.625C12.2022 18.9687 9.03133 15.7978 5 14.375Z"
+              fill="currentColor"></path>
           </svg>
-
-          <div
-            x-cloak
-            x-show="tooltipVisible"
-            x-transition:enter="transition ease-out duration-200"
-            x-transition:enter-start="opacity-0 translate-x-2"
-            x-transition:enter-end="opacity-100 translate-x-0"
-            x-transition:leave="transition ease-in duration-200"
-            x-transition:leave-start="opacity-100 translate-x-0"
-            x-transition:leave-end="opacity-0 translate-x-2"
-            class="pointer-events-none absolute left-full top-1/2 ml-2 flex h-6 -translate-y-1/2 items-center whitespace-nowrap rounded-md bg-zinc-800 px-1.5 text-[11px] font-semibold text-white dark:bg-zinc-200 dark:text-gray-900"
+        </div>
+        <Tooltip>
+          <TooltipTrigger>
+            <Button
+              size="xs"
+              variant="ghost"
+              className="px-0 hover:bg-zinc-200"
+            >
+              <Icon name="lucide:book-text" class="size-4" />
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent
+            position="right"
+            className="bg-zinc-900 px-1.5 py-1 font-semibold text-white"
           >
             Docs
-          </div>
+          </TooltipContent>
+        </Tooltip>
+
+        <a
+          href="#"
+          class="relative flex h-7 w-7 items-center justify-center text-gray-900 dark:text-gray-200"
+        >
+          <Tooltip>
+            <TooltipTrigger>
+              <Button
+                size="xs"
+                variant="ghost"
+                className="bg-zinc-900 px-0 text-white hover:bg-zinc-900 hover:text-white"
+              >
+                <Icon name="lucide:code" class="size-4" />
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent
+              position="right"
+              className="bg-zinc-900 px-1.5 py-1 font-semibold text-white"
+            >
+              Components
+            </TooltipContent>
+          </Tooltip>
         </a>
         <a
           href="#"
-          x-data="tooltip"
-          x-on:mouseenter="showTooltip"
-          x-on:mouseleave="hideTooltip"
-          class="relative flex h-8 w-8 items-center justify-center rounded-full bg-white text-gray-900 shadow-md transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-lg dark:bg-zinc-800 dark:text-gray-200 hover:dark:bg-zinc-700"
+          class="relative flex h-7 w-7 items-center justify-center text-gray-900 dark:text-gray-200"
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-            class="h-4 w-4"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M3.5 2A1.5 1.5 0 002 3.5V15a3 3 0 106 0V3.5A1.5 1.5 0 006.5 2h-3zm11.753 6.99L9.5 14.743V6.257l1.51-1.51a1.5 1.5 0 012.122 0l2.121 2.121a1.5 1.5 0 010 2.122zM8.364 18H16.5a1.5 1.5 0 001.5-1.5v-3a1.5 1.5 0 00-1.5-1.5h-2.136l-6 6zM5 16a1 1 0 100-2 1 1 0 000 2z"
-              clip-rule="evenodd"></path>
-          </svg>
-
-          <div
-            x-cloak
-            x-show="tooltipVisible"
-            x-transition:enter="transition ease-out duration-200"
-            x-transition:enter-start="opacity-0 translate-x-2"
-            x-transition:enter-end="opacity-100 translate-x-0"
-            x-transition:leave="transition ease-in duration-200"
-            x-transition:leave-start="opacity-100 translate-x-0"
-            x-transition:leave-end="opacity-0 translate-x-2"
-            class="pointer-events-none absolute left-full top-1/2 ml-2 flex h-6 -translate-y-1/2 items-center whitespace-nowrap rounded-md bg-zinc-800 px-1.5 text-[11px] font-semibold text-white dark:bg-zinc-200 dark:text-gray-900"
-          >
-            Colors
-          </div>
+          <Tooltip>
+            <TooltipTrigger>
+              <Button
+                size="xs"
+                variant="ghost"
+                className="px-0 hover:bg-zinc-200"
+              >
+                <Icon name="lucide:layout-panel-left" class="size-4" />
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent
+              position="right"
+              className="bg-zinc-900 px-1.5 py-1 font-semibold text-white"
+            >
+              Templates
+            </TooltipContent>
+          </Tooltip>
         </a>
         <a
           href="#"
-          x-data="tooltip"
-          x-on:mouseenter="showTooltip"
-          x-on:mouseleave="hideTooltip"
-          class="relative flex h-8 w-8 items-center justify-center rounded-full bg-white text-gray-900 shadow-md transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-lg dark:bg-zinc-800 dark:text-gray-200 hover:dark:bg-zinc-700"
+          class="relative flex h-7 w-7 items-center justify-center text-gray-900 dark:text-gray-200"
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-            class="h-4 w-4"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M1 5.25A2.25 2.25 0 013.25 3h13.5A2.25 2.25 0 0119 5.25v9.5A2.25 2.25 0 0116.75 17H3.25A2.25 2.25 0 011 14.75v-9.5zm1.5 5.81v3.69c0 .414.336.75.75.75h13.5a.75.75 0 00.75-.75v-2.69l-2.22-2.219a.75.75 0 00-1.06 0l-1.91 1.909.47.47a.75.75 0 11-1.06 1.06L6.53 8.091a.75.75 0 00-1.06 0l-2.97 2.97zM12 7a1 1 0 11-2 0 1 1 0 012 0z"
-              clip-rule="evenodd"></path>
-          </svg>
-
-          <div
-            x-cloak
-            x-show="tooltipVisible"
-            x-transition:enter="transition ease-out duration-200"
-            x-transition:enter-start="opacity-0 translate-x-2"
-            x-transition:enter-end="opacity-100 translate-x-0"
-            x-transition:leave="transition ease-in duration-200"
-            x-transition:leave-start="opacity-100 translate-x-0"
-            x-transition:leave-end="opacity-0 translate-x-2"
-            class="pointer-events-none absolute left-full top-1/2 ml-2 flex h-6 -translate-y-1/2 items-center whitespace-nowrap rounded-md bg-zinc-800 px-1.5 text-[11px] font-semibold text-white dark:bg-zinc-200 dark:text-gray-900"
-          >
-            Images
-          </div>
+          <Tooltip>
+            <TooltipTrigger>
+              <Button
+                size="xs"
+                variant="ghost"
+                className="px-0 hover:bg-zinc-200"
+              >
+                <Icon name="lucide:droplets" class="size-4" />
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent
+              position="right"
+              className="bg-zinc-900 px-1.5 py-1 font-semibold text-white"
+            >
+              Colors
+            </TooltipContent>
+          </Tooltip>
         </a>
         <a
           href="#"
-          x-data="tooltip"
-          x-on:mouseenter="showTooltip"
-          x-on:mouseleave="hideTooltip"
-          class="relative flex h-8 w-8 items-center justify-center rounded-full bg-black text-white shadow-md dark:bg-white dark:text-gray-900 hover:dark:bg-zinc-700"
+          class="relative flex h-7 w-7 items-center justify-center text-gray-900 dark:text-gray-200"
         >
-          <svg
-            class="h-4 w-4"
-            xmlns="http://www.w3.org/2000/svg"
-            width="32"
-            height="32"
-            fill="currentColor"
-            viewBox="0 0 32 32"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M11 6C5.477 6 1 10.477 1 16s4.477 10 10 10h10c5.523 0 10-4.477 10-10S26.523 6 21 6H11Zm0 17.5a7.5 7.5 0 1 0 0-15 7.5 7.5 0 0 0 0 15Z"
-              clip-rule="evenodd"></path>
-          </svg>
-
-          <div
-            x-cloak
-            x-show="tooltipVisible"
-            x-transition:enter="transition ease-out duration-200"
-            x-transition:enter-start="opacity-0 translate-x-2"
-            x-transition:enter-end="opacity-100 translate-x-0"
-            x-transition:leave="transition ease-in duration-200"
-            x-transition:leave-start="opacity-100 translate-x-0"
-            x-transition:leave-end="opacity-0 translate-x-2"
-            class="pointer-events-none absolute left-full top-1/2 ml-2 flex h-6 -translate-y-1/2 items-center whitespace-nowrap rounded-md bg-zinc-800 px-1.5 text-[11px] font-semibold text-white dark:bg-zinc-200 dark:text-gray-900"
-          >
-            Components
-          </div>
+          <Tooltip>
+            <TooltipTrigger>
+              <Button
+                size="xs"
+                variant="ghost"
+                className="px-0 hover:bg-zinc-200"
+              >
+                <Icon name="lucide:image" class="size-4" />
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent
+              position="right"
+              className="bg-zinc-900 px-1.5 py-1 font-semibold text-white"
+            >
+              Images
+            </TooltipContent>
+          </Tooltip>
         </a>
 
         <a
           href="#"
-          x-data="tooltip"
-          x-on:mouseenter="showTooltip"
-          x-on:mouseleave="hideTooltip"
-          class="relative flex h-8 w-8 items-center justify-center rounded-full border-2 border-white bg-zinc-50 text-gray-900 shadow-md hover:bg-zinc-300 dark:border-zinc-600 dark:bg-zinc-800 dark:text-gray-200 hover:dark:bg-zinc-700"
+          class="relative flex h-7 w-7 items-center justify-center rounded-full border-2 border-white bg-zinc-50 text-gray-900 hover:bg-zinc-300 dark:border-zinc-600 dark:text-gray-200"
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-            class="h-5 w-5"
-          >
-            <path
-              d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z"
-            ></path>
-          </svg>
-
-          <div
-            x-cloak
-            x-show="tooltipVisible"
-            x-transition:enter="transition ease-out duration-200"
-            x-transition:enter-start="opacity-0 translate-x-2"
-            x-transition:enter-end="opacity-100 translate-x-0"
-            x-transition:leave="transition ease-in duration-200"
-            x-transition:leave-start="opacity-100 translate-x-0"
-            x-transition:leave-end="opacity-0 translate-x-2"
-            class="pointer-events-none absolute left-full top-1/2 ml-2 flex h-6 -translate-y-1/2 items-center whitespace-nowrap rounded-md bg-zinc-800 px-1.5 text-[11px] font-semibold text-white dark:bg-zinc-200 dark:text-gray-900"
-          >
-            Add new library
-          </div>
+          <Tooltip>
+            <TooltipTrigger>
+              <Button size="xs" variant="secondary" className="px-0">
+                <Icon name="lucide:plus" class="size-4" />
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent
+              position="right"
+              className="whitespace-nowrap bg-zinc-900 px-1.5 py-1 font-semibold text-white"
+            >
+              Add new library
+            </TooltipContent>
+          </Tooltip>
         </a>
       </div>
     </nav>
@@ -204,11 +194,17 @@ import Button from '@/components/ui/elements/Button';
       transition:persist
     >
       <div class="sidebar flex-1 overflow-auto">
-        <div class="flex items-end justify-between px-3 py-5">
-          <div class="truncate text-sm font-semibold leading-none text-gray-900 dark:text-gray-100">
+        <div class="flex items-end justify-between px-3 py-4">
+          <div
+            class="truncate text-sm font-semibold leading-none text-gray-900 dark:text-gray-100"
+          >
             Component Library
           </div>
-          <div class="text-right text-[11px] font-medium leading-none text-gray-400">v1.0.0</div>
+          <div
+            class="text-right text-[11px] font-medium leading-none text-gray-400"
+          >
+            v1.0.0
+          </div>
         </div>
 
         <div class="mb-5 px-3">
@@ -229,7 +225,9 @@ import Button from '@/components/ui/elements/Button';
                   clip-rule="evenodd"></path>
               </svg>
 
-              <span class="truncate text-sm font-normal text-gray-400">Quick search</span>
+              <span class="truncate text-sm font-normal text-gray-400"
+                >Quick search</span
+              >
             </div>
             <span class="text-[11px] font-normal text-gray-400"> ⌘K</span>
           </button>
@@ -251,19 +249,19 @@ import Button from '@/components/ui/elements/Button';
       </div>
       <div class="py-2">
         <div
-          class="grid min-h-[100dvh] grid-cols-1 rounded-l-lg border border-zinc-200 bg-white shadow-md dark:border-zinc-900 dark:bg-[#0E0E10] lg:grid-cols-[1fr,260px]"
+          class="grid min-h-[100dvh] grid-cols-1 rounded-l-lg border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-[#191919] lg:grid-cols-[1fr,260px]"
           x-bind:class="$store.GLOBAL.showTOC ? 'lg:grid-cols-[1fr,260px]' : 'lg:grid-cols-[1fr]'"
         >
           <div class="grid grid-rows-[auto,1fr]">
             <div
-              class="sticky top-0 z-20 flex items-center justify-between rounded-tl-lg border-b border-zinc-200 bg-white px-2 py-2 dark:border-zinc-800 dark:bg-[#0E0E10]"
+              class="sticky top-0 z-20 flex items-center justify-between rounded-tl-lg border-b border-zinc-200 bg-white px-2 py-2 dark:border-zinc-800 dark:bg-[#191919]"
             >
               <div class="flex items-center">
                 <button
                   x-cloak
                   x-show="!$store.GLOBAL.showSidebar"
                   x-on:click="APP.toggleSidebar"
-                  class="flex h-8 w-8 items-center justify-center rounded-md text-gray-400 hover:bg-zinc-100 hover:text-gray-600 dark:hover:bg-zinc-800 dark:hover:text-gray-100"
+                  class="flex h-7 w-7 items-center justify-center rounded-md text-gray-400 hover:bg-zinc-100 hover:text-gray-600 dark:hover:bg-zinc-800 dark:hover:text-gray-100"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -276,11 +274,9 @@ import Button from '@/components/ui/elements/Button';
                     stroke-linecap="round"
                     stroke-linejoin="round"
                     class="lucide lucide-panel-right-open rotate-180"
-                    ><rect width="18" height="18" x="3" y="3" rx="2" ry="2"></rect><line
-                      x1="15"
-                      x2="15"
-                      y1="3"
-                      y2="21"></line><path d="m10 15-3-3 3-3"></path></svg
+                    ><rect width="18" height="18" x="3" y="3" rx="2" ry="2"
+                    ></rect><line x1="15" x2="15" y1="3" y2="21"></line><path
+                      d="m10 15-3-3 3-3"></path></svg
                   >
                 </button>
                 <ol
@@ -342,8 +338,11 @@ import Button from '@/components/ui/elements/Button';
                         stroke-linejoin="round"
                         class="lucide lucide-link-2"
                         ><path d="M9 17H7A5 5 0 0 1 7 7h2"></path><path
-                          d="M15 7h2a5 5 0 1 1 0 10h-2"></path><line x1="8" x2="16" y1="12" y2="12"
-                        ></line></svg
+                          d="M15 7h2a5 5 0 1 1 0 10h-2"></path><line
+                          x1="8"
+                          x2="16"
+                          y1="12"
+                          y2="12"></line></svg
                       >
                       <div
                         :class="showTooltip == true ? 'opacity-100' : 'opacity-0'"
@@ -359,23 +358,10 @@ import Button from '@/components/ui/elements/Button';
                 <Button
                   size="sm"
                   variant="ghost"
-                  className="text-gray-400"
-                  isSquare
+                  className="px-0 text-gray-400"
                   x-on:click="APP.toggleDarkMode"
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    class="lucide lucide-moon"
-                    ><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg
-                  >
+                  <Icon name="lucide:moon" class="size-4" />
                 </Button>
                 <div class="relative" x-data="tooltip">
                   <Button
@@ -384,23 +370,9 @@ import Button from '@/components/ui/elements/Button';
                     x-on:mouseleave="hideTooltip"
                     size="sm"
                     variant="ghost"
-                    className="text-gray-400"
-                    isSquare
+                    className="px-0 text-gray-400"
                   >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      class="lucide lucide-message-square"
-                      ><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
-                      ></path></svg
-                    >
+                    <Icon name="lucide:message-square" class="size-4" />
                     <div
                       x-cloak
                       x-show="tooltipVisible"
@@ -420,52 +392,19 @@ import Button from '@/components/ui/elements/Button';
                   @click="APP.toggleTOC"
                   size="sm"
                   variant="ghost"
-                  className="text-gray-400"
-                  isSquare
+                  className="px-0 text-gray-400"
                 >
-                  <svg
-                    x-show="$store.GLOBAL.showTOC"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    class="lucide lucide-panel-right-close"
-                    ><rect width="18" height="18" x="3" y="3" rx="2" ry="2"></rect><line
-                      x1="15"
-                      x2="15"
-                      y1="3"
-                      y2="21"></line><path d="m8 9 3 3-3 3"></path></svg
-                  >
-                  <svg
-                    x-cloak
-                    x-show="!$store.GLOBAL.showTOC"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    class="lucide lucide-panel-right-open"
-                    ><rect width="18" height="18" x="3" y="3" rx="2" ry="2"></rect><line
-                      x1="15"
-                      x2="15"
-                      y1="3"
-                      y2="21"></line><path d="m10 15-3-3 3-3"></path></svg
-                  >
+                  <Icon name="lucide:panel-right-close" class="size-4" />
                 </Button>
               </div>
             </div>
             <div class="overflow-auto px-14 py-10">
-              <header class="border-b border-zinc-200 pb-10 dark:border-zinc-700">
-                <h1 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100">
+              <header
+                class="border-b border-zinc-200 pb-10 dark:border-zinc-700"
+              >
+                <h1
+                  class="text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100"
+                >
                   {frontmatter.title}
                 </h1>
                 {
@@ -494,7 +433,6 @@ import Button from '@/components/ui/elements/Button';
                   size="sm"
                   variant="ghost"
                   className="text-gray-400"
-                  isSquare
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -507,7 +445,8 @@ import Button from '@/components/ui/elements/Button';
                     stroke-linecap="round"
                     stroke-linejoin="round"
                     class="lucide lucide-x"
-                    ><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg
+                    ><path d="M18 6 6 18"></path><path d="m6 6 12 12"
+                    ></path></svg
                   >
                 </Button>
               </div>

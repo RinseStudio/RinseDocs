@@ -1,0 +1,26 @@
+---
+import Checkbox from '@/components/ui/Checkbox';
+---
+
+<form class="grid grid-cols-1 gap-2">
+  <label class="flex items-center text-sm text-gray-900 dark:text-gray-300">
+    <Checkbox className="mr-3" checked />
+    <span>This checkbox is <strong class="font-semibold">checked</strong></span>
+  </label>
+
+  <label class="flex items-center text-sm text-gray-900 dark:text-gray-300">
+    <Checkbox className="mr-3" />
+    <span>This checkbox is <strong class="font-semibold">unchecked</strong></span>
+  </label>
+
+  <label class="flex items-center text-sm text-gray-900 dark:text-gray-300">
+    <Checkbox className="mr-3" checked disabled />
+    <span>This checkbox is <strong class="font-semibold">checked and disabled</strong></span>
+  </label>
+
+  <label class="flex items-center text-sm text-gray-900 dark:text-gray-300">
+    <Checkbox className="mr-3" disabled />
+    <span>This checkbox is <strong class="font-semibold">unchecked and disabled</strong></span>
+  </label>
+</form>
+ @/components/ui/Checkbox

@@ -1,9 +1,9 @@
 ---
 import Layout from '@/layouts/rinsedocs/Raw.astro';
-import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/elements/Tabs';
-import Card from '@/components/ui/elements/Card';
-import Button from '@/components/ui/elements/Button';
-import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/elements/Tooltip';
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/Tabs';
+import Card from '@/components/ui/Card';
+import Button from '@/components/ui/Button';
+import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/Tooltip';
 ---
 
 <Layout class="">
@@ -63,7 +63,7 @@ import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/element
               y="14"
               rx="1"></rect></svg
           >
-           Existing environments
+          Existing environments
         </h3>
 
         <div class="space-y-3">
@@ -127,8 +127,8 @@ import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/element
                           <div class="mb-3 text-xs font-medium text-white">
                             This is a sandbox environment and is meant for testing purposes only.
                           </div>
-                           Rate limited to 10 requests per second, 1000 requests per hour and 10.000
-                          requests per day. Events only persist for 24 hours.
+                          Rate limited to 10 requests per second, 1000 requests per hour and 10.000 requests
+                          per day. Events only persist for 24 hours.
                         </div>
                       </slot>
                     </Tooltip>
@@ -168,4 +168,4 @@ import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/element
       </div>
     </div>
   </div>
-</Layout>
+</Layout>@/components/ui/Card@/components/ui/Button@/components/ui/Tooltip

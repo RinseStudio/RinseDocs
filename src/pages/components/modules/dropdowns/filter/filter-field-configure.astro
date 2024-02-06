@@ -1,6 +1,6 @@
 ---
 import Layout from '@/layouts/rinsedocs/Raw.astro';
-import Button from '@/components/ui/elements/Button';
+import Button from '@/components/ui/Button';
 import {
   Dropdown,
   DropdownContent,
@@ -10,7 +10,7 @@ import {
   DropdownList,
   DropdownSeparator,
   DropdownTrigger,
-} from '@/components/ui/modules/Dropdown';
+} from '@/components/ui/Dropdown';
 import {
   Select,
   SelectNative,
@@ -23,15 +23,15 @@ import {
   SelectItem,
   SelectOption,
   SelectSeparator,
-} from '@/components/ui/elements/Select';
-import SearchField from '@/components/ui/elements/SearchField/index.astro';
-import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/elements/Tabs';
-import Checkbox from '@/components/ui/elements/Checkbox';
+} from '@/components/ui/Select';
+import SearchField from '@/components/ui/SearchField/index.astro';
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/Tabs';
+import Checkbox from '@/components/ui/Checkbox';
 ---
 
 <Layout class="flex items-center justify-center px-4 py-10">
   <div class="flex min-w-[320px] justify-end">
-    <Dropdown isOpen>
+    <Dropdown data={{ isOpen: true }}>
       <DropdownTrigger>
         <Button size="sm" variant="outline">Add Filter</Button>
       </DropdownTrigger>
@@ -965,4 +965,5 @@ import Checkbox from '@/components/ui/elements/Checkbox';
       </DropdownContent>
     </Dropdown>
   </div>
-</Layout>
+</Layout>@/components/ui/Dropdown@/components/ui/Select@/components/ui/Tabs@/components/ui/Checkbox
+

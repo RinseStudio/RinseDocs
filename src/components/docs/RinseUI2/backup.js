@@ -1,0 +1,359 @@
+---
+import fs from 'node:fs/promises';
+import path from 'path';
+import prettier from 'prettier';
+import { Code } from 'astro:components';
+import { twMerge } from 'tailwind-merge';
+
+const { url, src, className } = Astro.props;
+
+const outputCode = await Astro.slots.render('output');
+
+const getFormattedCode = async (content, parser) => {
+  try {
+    const formattedCode = await prettier.format(content, {
+      parser: parser,
+    });
+    return formattedCode;
+  } catch (error) {
+    console.error('Error formatting code:', error);
+    throw error; // Re-throw the error for the caller to handle
+  }
+};
+
+async function loadFileContents(relativeFilePath) {
+  // Resolve the path relative to the project root directory
+  const filePath = path.resolve(process.cwd(), relativeFilePath);
+
+  try {
+    const content = await fs.readFile(filePath, 'utf8');
+    return content;
+  } catch (error) {
+    console.error('Error reading file:', error);
+    return null; // Or handle the error as appropriate
+  }
+}
+
+let srcContent;
+
+if (src != null) {
+  srcContent = await loadFileContents('src' + src);
+}
+---
+
+<div
+  x-data="RinseUI"
+  class="rinse-ui overflow-hidden rounded-lg bg-zinc-50 ring-1 ring-zinc-200 dark:bg-black/20 dark:ring-zinc-800"
+  x-bind:class="{
+    'bg-zinc-50 ring-1 ring-zinc-200 dark:bg-black/20 dark:ring-zinc-800': tab == 'preview',
+    'bg-black dark:bg-black/20 dark:ring-1 dark:ring-zinc-800': tab != 'preview'
+  }"
+  data-rinse-ui
+>
+  <header
+    class="flex items-center justify-between border-b border-zinc-200 pl-4 dark:border-zinc-100/10"
+    x-bind:class="{'border-zinc-200 dark:border-zinc-100/10': tab == 'preview',
+      'border-zinc-100/20 dark:border-zinc-100/10': tab != 'preview'
+    }"
+  >
+    <div class="flex items-center gap-4">
+      <button
+        class="h-10 text-xs font-semibold text-gray-900 dark:text-white"
+        x-bind:class="{
+          'text-gray-900 dark:text-white': tab == 'preview', 
+          'text-gray-400 hover:text-white': tab != 'preview'
+        }"
+        x-on:click="tab = 'preview'"
+      >
+        Preview
+      </button>
+      {
+        Astro.slots.has('code') && srcContent == undefined && (
+          <button
+            class="h-10 text-xs font-semibold text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"
+            x-bind:class="{
+          'text-white': tab == 'code', 
+          'text-gray-400 hover:text-white': tab != 'code' && tab != 'preview',
+          'text-gray-400 hover:text-gray-600 dark:hover:text-gray-200': tab != 'code' && tab == 'preview',
+        }"
+            x-on:click="tab = 'code'"
+          >
+            Code
+          </button>
+        )
+      }
+      {
+        srcContent != undefined && (
+          <button
+            class="h-10 text-xs font-semibold text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"
+            x-bind:class="{
+          'text-white': tab == 'code', 
+          'text-gray-400 hover:text-white': tab != 'code' && tab != 'preview',
+          'text-gray-400 hover:text-gray-600 dark:hover:text-gray-200': tab != 'code' && tab == 'preview',
+        }"
+            x-on:click="tab = 'code'"
+          >
+            Code
+          </button>
+        )
+      }
+
+      <button
+        class="h-10 text-xs font-semibold text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"
+        x-bind:class="{
+          'text-white': tab == 'output', 
+          'text-gray-400 hover:text-white': tab != 'output' && tab != 'preview',
+          'text-gray-400 hover:text-gray-600 dark:hover:text-gray-200': tab != 'output' && tab == 'preview',
+        }"
+        x-on:click="tab = 'output'">Output</button
+      >
+    </div>
+
+    <div x-show="tab == 'preview'">
+      <a
+        href={url}
+        target="_blank"
+        class="flex aspect-square w-10 items-center justify-center border-l border-zinc-200 text-gray-500 hover:text-gray-700 dark:border-zinc-100/10 dark:text-gray-300 dark:hover:text-gray-100"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="14"
+          height="14"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="lucide lucide-external-link"
+        >
+          <polyline points="15 3 21 3 21 9"></polyline>
+          <>
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+            <line x1="10" x2="21" y1="14" y2="3"></line>
+          </>
+        </svg>
+      </a>
+    </div>
+
+    <div x-cloak x-show="tab != 'preview'" class="flex gap-3">
+      <div
+        x-bind:class="showTooltip == true ? 'opacity-100' : 'opacity-0'"
+        class="flex h-10 items-center text-xs font-semibold text-white opacity-0"
+      >
+        Copied!
+      </div>
+
+      <button
+        x-on:click="copyCode"
+        target="_blank"
+        class="flex aspect-square w-10 items-center justify-center border-l border-zinc-100/20 text-gray-400 hover:text-gray-200 dark:border-zinc-100/10 dark:text-gray-300 dark:hover:text-gray-100"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="14"
+          height="14"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="lucide lucide-clipboard"
+          ><rect width="8" height="4" x="8" y="2" rx="1" ry="1"></rect><path
+            d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"
+          ></path></svg
+        >
+      </button>
+    </div>
+  </header>
+
+  <div class="rounded-b-lg" x-ref="tabContent">
+    <div x-show="tab == 'preview'" class="relative flex">
+      <div class="flex-1">
+        <iframe
+          src={url}
+          class={twMerge('w-full', className)}
+          x-bind:style="'height:' + iframeHeight + 'px;'"></iframe>
+      </div>
+
+      <div
+        class="flex w-5 flex-none bg-zinc-200 dark:bg-white/10"
+        x-bind:style="'width: ' + width + 'px;'"
+      >
+        <div
+          class="relative z-10 flex w-[20px] flex-none cursor-grab items-center justify-center bg-zinc-50 shadow-[-1px_0_0_0_rgba(0,0,0,0.1)] dark:bg-zinc-900 dark:shadow-[-1px_0_0_0_rgba(255,255,255,0.1)]"
+          @mousedown="slideReady"
+          @touchstart="slideReady"
+          x-ref="resizeHandle"
+        >
+          <div
+            class="after:contents-[''] before:content-['']-[''] flex
+					w-[4] gap-0.5 before:block before:h-3.5 before:w-px
+					before:bg-gray-500 after:block after:h-3.5 after:w-px after:bg-gray-500"
+          >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {
+      Astro.slots.has('code') && srcContent == undefined && (
+        <div
+          x-show="tab == 'code'"
+          x-cloak
+          class="max-h-[500px] overflow-auto text-sm"
+          x-ref="codeContainer"
+          data-tab-name="code"
+        >
+          <slot name="code" />
+        </div>
+      )
+    }
+
+    {
+      srcContent != undefined && (
+        <div
+          x-show="tab == 'code'"
+          x-cloak
+          class="max-h-[500px] overflow-auto text-sm"
+          x-ref="codeContainer"
+          data-tab-name="code"
+        >
+          <Code code={srcContent} lang="astro" theme="css-variables" />
+        </div>
+      )
+    }
+
+    <div
+      x-show="tab == 'output'"
+      x-cloak
+      class="max-h-[500px] overflow-auto text-sm"
+      x-ref="codeContainer"
+      data-tab-name="output"
+    >
+      <Code code={await getFormattedCode(outputCode, 'html')} lang="html" theme="css-variables" />
+    </div>
+  </div>
+</div>
+
+<script>
+  import Alpine from 'alpinejs';
+  document.addEventListener('alpine:init', () => {
+    Alpine.data('RinseUI', () => ({
+      tab: 'preview',
+      iframeHeight: 100,
+      showTooltip: false,
+      cursorOffset: 0,
+      width: null,
+
+      init() {
+        const tabContent = this.$refs.tabContent;
+        const iframe = tabContent.querySelector('iframe');
+
+        iframe.onload = () => {
+          try {
+            const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+            const body = iframeDocument.body;
+
+            const resizeObserver = new ResizeObserver((entries) => {
+              for (let entry of entries) {
+                this.iframeHeight = entry.target.scrollHeight;
+              }
+            });
+
+            resizeObserver.observe(body);
+          } catch (error) {
+            console.error('Error accessing iframe content:', error);
+          }
+        };
+
+        // document.addEventListener('resize', this.resetContainer.bind(this));
+      },
+      slideReady(e) {
+        e.preventDefault();
+        this.slideMoveHandler = this.slideMove.bind(this); // Save a reference to the bound slideMove function
+        this.cursorOffset = e.clientX - this.$refs.resizeHandle.getBoundingClientRect().x;
+        document.body.style.pointerEvents = 'none';
+        document.documentElement.style.cursor = 'grabbing';
+
+        document.addEventListener('mousemove', this.slideMoveHandler);
+        document.addEventListener('mouseup', this.slideFinish.bind(this));
+
+        document.addEventListener('touchmove', this.slideMoveHandler);
+        document.addEventListener('touchend', this.slideFinish.bind(this));
+      },
+      slideFinish() {
+        document.body.style.pointerEvents = 'auto';
+        document.documentElement.style.cursor = 'default';
+        document.removeEventListener('mousemove', this.slideMoveHandler);
+        document.removeEventListener('touchmove', this.slideMoveHandler);
+      },
+      slideMove(e) {
+        let containerWidth = this.$refs.tabContent.offsetWidth;
+
+        let slideWidth = this.$refs.tabContent.getBoundingClientRect().right - e.clientX;
+
+        if (e.touches && e.touches[0]) {
+          slideWidth = this.$refs.tabContent.getBoundingClientRect().right - e.touches[0].clientX;
+        } else if (e.clientX) {
+          slideWidth = this.$refs.tabContent.getBoundingClientRect().right - e.clientX;
+        }
+
+        if (slideWidth >= containerWidth - this.cursorOffset) {
+          this.width = containerWidth;
+        } else if (slideWidth <= 20 - this.cursorOffset) {
+          this.width = 20;
+        } else {
+          this.width = slideWidth + this.cursorOffset;
+        }
+      },
+      copyCode() {
+        // Use the Clipboard API to copy the current Code to the clipboard
+        const activeSlot = this.$refs.tabContent.querySelector(`[data-tab-name="${this.tab}"] pre`);
+
+        const codeContent = activeSlot ? activeSlot.innerText : '';
+        navigator.clipboard
+          .writeText(codeContent)
+          .then(() => {
+            // Successfully copied to clipboard
+            this.showTooltip = true; // Show the tooltip
+
+            // Hide the tooltip after 2 seconds
+            setTimeout(() => {
+              this.showTooltip = false;
+            }, 2000);
+          })
+          .catch((err) => {
+            // Handle errors (such as user not granting clipboard permissions)
+            console.error('Failed to copy: ', err);
+          });
+      },
+      hideTooltip() {
+        this.showTooltip = false; // Hide the tooltip
+      },
+    }));
+  });
+</script>
+
+<style is:global>
+  .astro-code {
+    @apply px-4 py-2.5 text-[13px];
+  }
+  :root {
+    --astro-code-color-text: #ffffff; /* Nord's Snow Storm for general text */
+    --astro-code-color-background: #000000; /* Nord's Polar Night for background */
+    --astro-code-token-constant: #ffe775; /* Nord's Frost for constants */
+    --astro-code-token-string: #8fffb7; /* Nord's Aurora for strings */
+    --astro-code-token-comment: #4c566a; /* Nord's Polar Night, a bit lighter for comments */
+    --astro-code-token-keyword: #ffe775; /* Nord's Frost for keywords */
+    --astro-code-token-parameter: #88c0d0; /* Nord's Frost, another shade for parameters */
+    --astro-code-token-function: #31bfff; /* Nord's Frost, another shade for functions */
+    --astro-code-token-string-expression: #0ad8b6; /* Nord's Aurora, similar to strings */
+    --astro-code-token-punctuation: #eceff4; /* Nord's Snow Storm, for punctuation */
+    --astro-code-token-link: #5e81ac; /* Nord's Frost for links */
+  }
+  .dark {
+    --astro-code-color-background: transparent;
+  }
+</style>

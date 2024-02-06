@@ -1,0 +1,35 @@
+---
+import { twMerge } from 'tailwind-merge';
+const { data, className, ...props } = Astro.props;
+---
+
+<div
+  x-data={`Select(${data !== undefined ? JSON.stringify(data) : ''})`}
+  class={twMerge('relative', className)}
+  {...props}
+>
+  <slot />
+</div>
+
+<script>
+  import Alpine from 'alpinejs';
+
+  document.addEventListener('alpine:init', () => {
+    Alpine.data('Select', (initialState = {}) => ({
+      isOpen: initialState.isOpen || false,
+      selection: initialState.selection || 'option-1',
+      updateSelect(value) {
+        this.isOpen = false;
+        this.selection = value;
+
+        // Get the clicked item's innerHTML
+        const selectedValue = this.$el.querySelector(
+          "[data-select-value='" + value + "']",
+        ).innerHTML;
+
+        // Update the target div's content
+        this.$root.querySelector('[data-select-field]').innerHTML = selectedValue;
+      },
+    }));
+  });
+</script>

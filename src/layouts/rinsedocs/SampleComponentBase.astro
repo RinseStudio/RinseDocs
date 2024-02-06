@@ -1,0 +1,169 @@
+---
+import { Code } from 'astro:components';
+import { JSDOM } from 'jsdom';
+import { prettify } from '@/utils/helpers.js';
+import '@/styles/app.css';
+import { twMerge } from 'tailwind-merge';
+
+const { frontmatter, ...props } = Astro.props;
+
+const outputCode = await Astro.slots.render('default');
+
+// Parse the HTML string with jsdom
+const dom = new JSDOM(outputCode);
+
+// Get the document
+const document = dom.window.document;
+
+// Select the element you want to remove
+const elementToRemove = document.querySelector('.astro-code');
+
+// Remove the selected element
+if (elementToRemove) {
+  elementToRemove.remove(); // Modern method, directly removes the element
+}
+
+const bodyContent = document.body.innerHTML;
+---
+
+<!doctype html>
+<html lang="en" x-data="app">
+  <head>
+    <title>{frontmatter.title}</title>
+
+    <!-- Meta -->
+    <meta charset="UTF-8" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Font Awesome 6 -->
+    <link href="/vendors/fontawesome/css/fontawesome.css" rel="stylesheet" />
+    <link href="/vendors/fontawesome/css/brands.css" rel="stylesheet" />
+    <link href="/vendors/fontawesome/css/solid.css" rel="stylesheet" />
+    <link href="/vendors/fontawesome/css/regular.css" rel="stylesheet" />
+
+    <!-- Chart JS -->
+    <script defer src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body
+    class={twMerge(
+      'font-sans font-normal text-slate-500 antialiased',
+      frontmatter.bodyClassName,
+    )}
+  >
+    <div id="component" class={frontmatter.className}>
+      <slot />
+    </div>
+    <div id="code" style="display: none !important;"></div>
+    <div id="output" style="display: none !important;">
+      <Code
+        code={await prettify(bodyContent, 'html')}
+        lang="html"
+        theme="css-variables"
+      />
+    </div>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script is:inline>
+      document.addEventListener('DOMContentLoaded', function () {
+        Alpine.start();
+        lucide.createIcons();
+      });
+    </script>
+  </body>
+</html>
+
+<style is:global>
+  .astro-code {
+    @apply hidden px-4 py-2.5 text-[13px];
+  }
+  :root {
+    --astro-code-color-text: #ffffff; /* Nord's Snow Storm for general text */
+    --astro-code-color-background: #000000; /* Nord's Polar Night for background */
+    --astro-code-token-constant: #ffe775; /* Nord's Frost for constants */
+    --astro-code-token-string: #8fffb7; /* Nord's Aurora for strings */
+    --astro-code-token-comment: #4c566a; /* Nord's Polar Night, a bit lighter for comments */
+    --astro-code-token-keyword: #ffe775; /* Nord's Frost for keywords */
+    --astro-code-token-parameter: #88c0d0; /* Nord's Frost, another shade for parameters */
+    --astro-code-token-function: #31bfff; /* Nord's Frost, another shade for functions */
+    --astro-code-token-string-expression: #0ad8b6; /* Nord's Aurora, similar to strings */
+    --astro-code-token-punctuation: #eceff4; /* Nord's Snow Storm, for punctuation */
+    --astro-code-token-link: #5e81ac; /* Nord's Frost for links */
+  }
+</style>
+
+<script>
+  import Alpine from 'alpinejs';
+  import persist from '@alpinejs/persist';
+  import anchor from '@alpinejs/anchor';
+
+  Alpine.plugin(persist);
+  Alpine.plugin(anchor);
+
+  window.Alpine = Alpine;
+
+  document.addEventListener('alpine:init', () => {
+    Alpine.data(
+      'app',
+      (sidebarSetting = true, tocSetting = true, fluidWidthSetting = true) => ({
+        APP: {
+          slideReady(e) {
+            e.preventDefault();
+            this.APP.slideMoveHandler = this.APP.slideMove.bind(this); // Save a reference to the bound slideMove function
+
+            this.cursorOffset =
+              e.clientX - this.$refs.slideHandle.getBoundingClientRect().x;
+            document.body.style.pointerEvents = 'none';
+            document.documentElement.style.cursor = 'grabbing';
+
+            document.addEventListener('mousemove', this.APP.slideMoveHandler);
+            document.addEventListener(
+              'mouseup',
+              this.APP.slideFinish.bind(this),
+            );
+          },
+          slideFinish() {
+            document.body.style.pointerEvents = 'auto';
+            document.documentElement.style.cursor = 'default';
+            document.removeEventListener(
+              'mousemove',
+              this.APP.slideMoveHandler,
+            );
+            this.$refs.slideHandle.style.opacity = '';
+          },
+          slideMove(e) {
+            let sidebarWidth = e.clientX;
+            const sidebar = document.querySelector('.app');
+            this.$refs.slideHandle.style.opacity = 1;
+
+            if (sidebarWidth >= 100 + this.cursorOffset) {
+              if (sidebarWidth >= 500 + this.cursorOffset) {
+                sidebar.style.setProperty(
+                  '--sidebar-width',
+                  500 - this.cursorOffset + 'px',
+                );
+                Alpine.store('GLOBAL').showSidebar = false;
+              } else {
+                sidebar.style.setProperty(
+                  '--sidebar-width',
+                  sidebarWidth - this.cursorOffset + 'px',
+                );
+              }
+
+              Alpine.store('GLOBAL').showSidebar = true;
+            } else if (sidebarWidth <= 80 + this.cursorOffset) {
+              sidebar.style.setProperty('--sidebar-width', 12 + 'px');
+              Alpine.store('GLOBAL').showSidebar = false;
+            } else {
+              sidebar.style.setProperty(
+                '--sidebar-width',
+                sidebarWidth - this.cursorOffset + 'px',
+              );
+              Alpine.store('GLOBAL').showSidebar = true;
+            }
+          },
+        },
+      }),
+    );
+  });
+</script>

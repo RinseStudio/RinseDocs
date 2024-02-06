@@ -9,8 +9,8 @@ export async function getStaticPaths() {
 
   // console.log(posts);
   return posts.map((entry) => ({
-    // params: { slug: entry.slug.split('/').slice(1).join('/') },
-    params: { slug: entry.slug.split('/').join('/') },
+    params: { slug: entry.slug.split('/').slice(1).join('/') },
+    // params: { slug: entry.slug.split('/').join('/') },
     props: { entry },
   }));
 }

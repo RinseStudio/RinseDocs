@@ -1,0 +1,24 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '@/layouts/rinsedocs/App.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('templates', ({ data }) => {
+    return data.draft !== true;
+  });
+
+  // console.log(posts);
+  return posts.map((entry) => ({
+    params: { slug: entry.slug.split('/').slice(1).join('/') },
+    // params: { slug: entry.slug.split('/').join('/') },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content, headings } = await entry.render();
+---
+
+<Layout frontmatter={entry.data} headings={headings} entry={entry}>
+  <Content />
+</Layout>

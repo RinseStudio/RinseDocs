@@ -1,9 +1,9 @@
 ---
 import Layout from '@/layouts/rinsedocs/Raw.astro';
-import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/elements/Tabs';
-import Button from '@/components/ui/elements/Button';
-import Card from '@/components/ui/elements/Card';
-import Table from '@/components/ui/elements/Table';
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/Tabs';
+import Button from '@/components/ui/Button';
+import Card from '@/components/ui/Card';
+import Table from '@/components/ui/Table';
 import {
   Dropdown,
   DropdownContent,
@@ -13,8 +13,8 @@ import {
   DropdownList,
   DropdownSeparator,
   DropdownTrigger,
-} from '@/components/ui/modules/Dropdown';
-import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/elements/Tooltip';
+} from '@/components/ui/Dropdown';
+import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/Tooltip';
 import {
   Select,
   SelectNative,
@@ -27,12 +27,12 @@ import {
   SelectItem,
   SelectOption,
   SelectSeparator,
-} from '@/components/ui/elements/Select';
-import SelectField from '@/components/ui/elements/SelectField';
-import SearchField from '@/components/ui/elements/SearchField/index.astro';
+} from '@/components/ui/Select';
+import SelectField from '@/components/ui/SelectField';
+import SearchField from '@/components/ui/SearchField/index.astro';
 
-import { DeltaLabel } from '@/components/ui/elements/DeltaLabel';
-import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/elements/Tooltip';
+import { DeltaLabel } from '@/components/ui/DeltaLabel';
+import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/Tooltip';
 ---
 
 <Layout class="">
@@ -63,7 +63,7 @@ import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/element
             <TabsTrigger name="tab-3">
               <div class="flex items-center">
                 <svg
-                  class="size-3 mr-2 animate-spin"
+                  class="mr-2 size-3 animate-spin"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
@@ -132,8 +132,8 @@ import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/element
                   >
                     7d
                   </div>
-                   Last 7 days
-                  <div class="size-8 absolute right-0 top-0 flex items-center justify-center">
+                  Last 7 days
+                  <div class="absolute right-0 top-0 flex size-8 items-center justify-center">
                     <i data-lucide="calendar-days" class="size-3.5 text-gray-400"></i>
                   </div>
                 </Button>
@@ -162,7 +162,7 @@ import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/element
                       ><path d="M3 3v18h18"></path><path d="M18 17V9"></path><path d="M13 17V5"
                       ></path><path d="M8 17v-3"></path></svg
                     >
-                     Event Insight
+                    Event Insight
                   </h3>
                 </div>
               </div>
@@ -351,15 +351,15 @@ import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/element
                   <ul class="mt-4 flex items-center gap-6">
                     <li class="flex items-center gap-2 text-xs font-semibold text-gray-900">
                       <div class="h-3 w-3 rounded-full bg-gray-300"></div>
-                       Allow
+                      Allow
                     </li>
                     <li class="flex items-center gap-2 text-xs font-semibold text-gray-900">
                       <div class="h-3 w-3 rounded-full bg-orange-400"></div>
-                       Challenge
+                      Challenge
                     </li>
                     <li class="flex items-center gap-2 text-xs font-semibold text-gray-900">
                       <div class="h-3 w-3 rounded-full bg-red-500"></div>
-                       Deny
+                      Deny
                     </li>
                   </ul>
                 </div>
@@ -383,7 +383,7 @@ import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/element
                   </div>
                   <div class="flex pl-5 pr-3">
                     <div class="w-[200px] flex-none pt-4">
-                      <div class="size-[128px] mb-4">
+                      <div class="mb-4 size-[128px]">
                         <canvas id="loginTriggeredPoliciesChart"></canvas>
                       </div>
                       <div
@@ -591,7 +591,7 @@ import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/element
                   </div>
                   <div class="flex pl-5 pr-3">
                     <div class="w-[200px] flex-none pt-4">
-                      <div class="size-[128px] mb-4 rounded-full">
+                      <div class="mb-4 size-[128px] rounded-full">
                         <canvas id="loginTriggeredSignalsChart"></canvas>
                       </div>
                       <div
@@ -859,7 +859,7 @@ import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/element
                       ><path d="M3 3v18h18"></path><path d="M18 17V9"></path><path d="M13 17V5"
                       ></path><path d="M8 17v-3"></path></svg
                     >
-                     Event Insight
+                    Event Insight
                   </h3>
                 </div>
               </div>
@@ -965,7 +965,7 @@ import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/element
                       ><path d="M3 3v18h18"></path><path d="M18 17V9"></path><path d="M13 17V5"
                       ></path><path d="M8 17v-3"></path></svg
                     >
-                     Event Insight
+                    Event Insight
                   </h3>
                 </div>
               </div>
@@ -1360,7 +1360,7 @@ import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/element
                   </div>
                   <div class="flex pl-5 pr-3">
                     <div class="w-[200px] flex-none pt-4">
-                      <div class="size-[128px] mb-4">
+                      <div class="mb-4 size-[128px]">
                         <div class="size-[128px] animate-pulse rounded-full bg-slate-200"></div>
                       </div>
                       <div
@@ -1691,7 +1691,7 @@ import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/element
                   </div>
                   <div class="flex pl-5 pr-3">
                     <div class="w-[200px] flex-none pt-4">
-                      <div class="size-[128px] mb-4 rounded-full">
+                      <div class="mb-4 size-[128px] rounded-full">
                         <div class="size-[128px] animate-pulse rounded-full bg-slate-200"></div>
                       </div>
                       <div
@@ -2441,4 +2441,5 @@ import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/element
       },
     );
   });
-</script>
+</script>@/components/ui/Button@/components/ui/Card@/components/ui/Table@/components/ui/Dropdown@/components/ui/Tooltip@/components/ui/Select@/components/ui/SelectField@/components/ui/DeltaLabel@/components/ui/Tooltip
+

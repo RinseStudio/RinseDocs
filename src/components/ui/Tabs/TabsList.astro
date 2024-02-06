@@ -1,0 +1,16 @@
+---
+import { twMerge } from 'tailwind-merge';
+const { className, ...props } = Astro.props;
+---
+
+<div
+  class={twMerge(
+    'relative flex items-center gap-3 px-3 border-b border-gray-200 before:absolute before:-bottom-px before:left-[var(--tab-offset)] before:h-[2px] before:w-[var(--tab-width)] before:bg-blue-500 before:duration-300 dark:border-zinc-700 dark:before:bg-blue-400 .before:opacity-0',
+    className,
+  )}
+  data-tab-list
+  x-ref="tabList"
+  {...props}
+>
+  <slot />
+</div>

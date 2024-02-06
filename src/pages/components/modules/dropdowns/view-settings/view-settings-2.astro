@@ -1,6 +1,6 @@
 ---
 import Layout from '@/layouts/rinsedocs/Raw.astro';
-import Button from '@/components/ui/elements/Button';
+import Button from '@/components/ui/Button';
 import {
   Dropdown,
   DropdownContent,
@@ -10,13 +10,13 @@ import {
   DropdownList,
   DropdownSeparator,
   DropdownTrigger,
-} from '@/components/ui/modules/Dropdown';
-import SearchField from '@/components/ui/elements/SearchField/index.astro';
+} from '@/components/ui/Dropdown';
+import SearchField from '@/components/ui/SearchField/index.astro';
 ---
 
 <Layout class="flex items-center justify-center px-4 py-10">
   <div class="flex min-w-[320px] justify-end">
-    <Dropdown isOpen>
+    <Dropdown data={{ isOpen: true }}>
       <DropdownTrigger>
         <Button size="sm" variant="outline">View settings</Button>
       </DropdownTrigger>
@@ -105,4 +105,4 @@ import SearchField from '@/components/ui/elements/SearchField/index.astro';
       </DropdownContent>
     </Dropdown>
   </div>
-</Layout>
+</Layout>@/components/ui/Dropdown

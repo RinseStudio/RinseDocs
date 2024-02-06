@@ -1,10 +1,10 @@
 ---
 import Layout from '@/layouts/rinsedocs/Raw.astro';
-import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/elements/Tabs';
-import Button from '@/components/ui/elements/Button';
-import TextField from '@/components/ui/elements/TextField/index.astro';
-import SelectField from '@/components/ui/elements/SelectField';
-import Card from '@/components/ui/elements/Card';
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/Tabs';
+import Button from '@/components/ui/Button';
+import { TextField } from '@/components/ui/TextField';
+import SelectField from '@/components/ui/SelectField';
+import Card from '@/components/ui/Card';
 import {
   Dropdown,
   DropdownContent,
@@ -14,13 +14,15 @@ import {
   DropdownList,
   DropdownSeparator,
   DropdownTrigger,
-} from '@/components/ui/modules/Dropdown';
+} from '@/components/ui/Dropdown';
 ---
 
 <Layout class="">
   <div class="px-7 py-4">
     <h1 class="mb-2 text-lg font-bold text-black">Current Environment</h1>
-    <p class="text-sm text-gray-600">View and configure your current environment settings.</p>
+    <p class="text-sm text-gray-600">
+      View and configure your current environment settings.
+    </p>
   </div>
   <div>
     <Tabs selection="configuration">
@@ -56,9 +58,10 @@ import {
             stroke-linejoin="round"
             class="lucide lucide-check-square"
             ><path d="m9 11 3 3L22 4"></path><path
-              d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg
+              d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"
+            ></path></svg
           >
-           General
+          General
         </h3>
 
         <div class="space-y-6">
@@ -74,7 +77,8 @@ import {
                     Use this when integrating Castle.js. <a
                       href="https://docs.castle.io/docs/creating-a-policy"
                       target="_blank"
-                      class="hover:color-primary-600 font-semibold text-blue-500">Learn more</a
+                      class="hover:color-primary-600 font-semibold text-blue-500"
+                      >Learn more</a
                     >
                   </p>
                   <div
@@ -111,7 +115,9 @@ import {
                   <div
                     class="flex h-10 items-center justify-between rounded-lg bg-zinc-100 text-sm font-medium text-gray-900"
                   >
-                    <div class="flex-1 truncate px-3 font-mono">••••••••••••••••••••••••</div>
+                    <div class="flex-1 truncate px-3 font-mono">
+                      ••••••••••••••••••••••••
+                    </div>
 
                     <div class="flex gap-4 px-3">
                       <button
@@ -147,14 +153,15 @@ import {
             stroke-linejoin="round"
             class="lucide lucide-cog"
             ><path d="M12 20a8 8 0 1 0 0-16 8 8 0 0 0 0 16Z"></path><path
-              d="M12 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"></path><path d="M12 2v2"></path><path
-              d="M12 22v-2"></path><path d="m17 20.66-1-1.73"></path><path d="M11 10.27 7 3.34"
-            ></path><path d="m20.66 17-1.73-1"></path><path d="m3.34 7 1.73 1"></path><path
-              d="M14 12h8"></path><path d="M2 12h2"></path><path d="m20.66 7-1.73 1"></path><path
-              d="m3.34 17 1.73-1"></path><path d="m17 3.34-1 1.73"></path><path d="m11 13.73-4 6.93"
-            ></path></svg
+              d="M12 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"></path><path d="M12 2v2"
+            ></path><path d="M12 22v-2"></path><path d="m17 20.66-1-1.73"
+            ></path><path d="M11 10.27 7 3.34"></path><path d="m20.66 17-1.73-1"
+            ></path><path d="m3.34 7 1.73 1"></path><path d="M14 12h8"
+            ></path><path d="M2 12h2"></path><path d="m20.66 7-1.73 1"
+            ></path><path d="m3.34 17 1.73-1"></path><path d="m17 3.34-1 1.73"
+            ></path><path d="m11 13.73-4 6.93"></path></svg
           >
-           Advanced
+          Advanced
         </h3>
 
         <div class="space-y-6">
@@ -167,18 +174,25 @@ import {
                     >User Cross-linking</label
                   >
                   <p class="font-regular mb-4 text-xs text-gray-600">
-                    Link a Castle user to a corresponding URL in an external tool. A cross-link will
-                    appear on user lists and details
+                    Link a Castle user to a corresponding URL in an external
+                    tool. A cross-link will appear on user lists and details
                   </p>
 
-                  <TextField placeholder="https://yoursite.com/admin/{USER_ID}" isFluid />
+                  <TextField
+                    placeholder="https://yoursite.com/admin/{USER_ID}"
+                    isFluid
+                  />
                   <p class="mt-2 text-[11px] font-medium text-gray-500">
                     {`{USER_ID}`} cannot be replaced by other variables.
                   </p>
                 </div>
               </div>
               <div class="flex justify-end">
-                <Button onClick={'isOpen = !isOpen'} size="sm" variant="primary">
+                <Button
+                  onClick={'isOpen = !isOpen'}
+                  size="sm"
+                  variant="primary"
+                >
                   Save settings
                 </Button>
               </div>
@@ -194,17 +208,22 @@ import {
                     >Secure mode</label
                   >
                   <p class="font-regular mb-4 text-xs text-gray-600">
-                    Secure Mode helps to make sure that one user can't tamper with another user's
-                    personal data, such as their identifier or email.
+                    Secure Mode helps to make sure that one user can't tamper
+                    with another user's personal data, such as their identifier
+                    or email.
                   </p>
                   <p class="font-regular text-xs text-gray-600">
-                    Make sure you have changed your integration of Castle.js to support Secure Mode
-                    before turning this on.
+                    Make sure you have changed your integration of Castle.js to
+                    support Secure Mode before turning this on.
                   </p>
                 </div>
               </div>
               <div class="flex justify-end">
-                <Button onClick={'isOpen = !isOpen'} size="sm" variant="primary">
+                <Button
+                  onClick={'isOpen = !isOpen'}
+                  size="sm"
+                  variant="primary"
+                >
                   Enable secure mode
                 </Button>
               </div>
@@ -214,4 +233,5 @@ import {
       </div>
     </div>
   </div>
-</Layout>
+</Layout>@/components/ui/Button@/components/ui/SelectField@/components/ui/Card@/components/ui/Dropdown
+
