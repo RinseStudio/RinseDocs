@@ -3,6 +3,12 @@ import { twMerge } from 'tailwind-merge';
 const { className = null, ...props } = Astro.props;
 ---
 
-<div class={twMerge('my-2 flex items-center px-2 text-xs font-medium text-gray-500 dark:text-gray-400', className)} {...props}>
+<div
+  class={twMerge(
+    'pt-2 pb-1 flex items-center px-2 text-xs font-medium text-gray-400 dark:text-gray-400',
+    className,
+  )}
+  {...props}
+>
   <slot />
 </div>

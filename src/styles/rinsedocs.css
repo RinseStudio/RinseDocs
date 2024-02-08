@@ -70,6 +70,10 @@
   @apply mb-3.5;
 }
 
+.rinsedown > p a {
+  @apply text-blue-500 decoration-1 underline-offset-2 hover:underline;
+}
+
 .rinsedown > blockquote {
   margin-left: 0;
   padding-left: 1em;

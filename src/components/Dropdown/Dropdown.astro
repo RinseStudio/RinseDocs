@@ -7,6 +7,8 @@ const { data, className, ...props } = Astro.props;
   x-data={`Dropdown({${data}})`}
   x-on:keydown.up.prevent="focusPrev()"
   x-on:keydown.down.prevent="focusNext()"
+  x-on:keydown.left.prevent="focusPrev()"
+  x-on:keydown.right.prevent="focusNext()"
   x-on:keydown.escape="isOpen = false"
   x-on:click.away="isOpen = false"
   class={twMerge('inline-flex relative', className)}
@@ -22,6 +24,7 @@ const { data, className, ...props } = Astro.props;
   document.addEventListener('alpine:init', () => {
     Alpine.data('Dropdown', (initialState = {}) => ({
       isOpen: initialState.isOpen || false,
+      openOnHover: initialState.openOnHover || false,
       focusedIndex: null,
       toggleDropdown() {
         this.$el.focus();
