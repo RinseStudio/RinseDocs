@@ -1,0 +1,58 @@
+---
+const {
+  placeholder = 'Search field',
+  value = '',
+  validation = 'default',
+  isFluid = false,
+  disabled = false,
+} = Astro.props;
+
+const getRingClass = (validation) => {
+  const schema = {
+    default: `ring-1 ring-inset ring-slate-200`,
+    success: `ring-2 ring-inset ring-green-500 dark:ring-green-500`,
+    error: `ring-2 ring-inset ring-red-400 dark:ring-red-400`,
+  };
+
+  return schema[validation] ? `${schema[validation]}` : `${schema['default']}`;
+};
+
+const getTextClass = (validation) => {
+  const schema = {
+    default: `text-gray-900 dark:text-gray-200 placeholder:text-gray-400`,
+    success: `text-green-800 dark:text-green-200 placeholder:text-green-500`,
+    error: `text-red-900 dark:text-red-200 placeholder:text-red-300`,
+  };
+
+  return schema[validation] ? `${schema[validation]}` : `${schema['default']}`;
+};
+---
+
+<div class="relative">
+  <div
+    class="pointer-events-none absolute left-0 top-0 flex h-9 w-9 items-center justify-center text-black dark:text-gray-300"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 20 20"
+      fill="currentColor"
+      class="h-4 w-4"
+    >
+      <path
+        fill-rule="evenodd"
+        d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z"
+        clip-rule="evenodd"></path>
+    </svg>
+  </div>
+
+  <input
+    type="text"
+    class={`flex h-9 items-center rounded-md border-0 pl-9 text-[13px] shadow dark:ring-zinc-700 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500 dark:disabled:text-gray-400 disabled:ring-gray-200 dark:disabled:bg-zinc-100/[0.06] bg-white dark:bg-zinc-100/[0.06] focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-500  
+    ${getRingClass(validation)} 
+		${getTextClass(validation)} 
+    ${isFluid ? 'w-full' : 'w-[320px]'}`}
+    placeholder={placeholder}
+    value={value}
+    disabled={disabled}
+  />
+</div>

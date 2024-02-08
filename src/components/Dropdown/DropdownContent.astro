@@ -1,0 +1,85 @@
+---
+import { twMerge } from 'tailwind-merge';
+
+const {
+  position = 'bottom-start',
+  className,
+  enterClassName,
+  enterStartClassName,
+  enterEndClassName,
+  leaveClassName,
+  leaveStartClassName,
+  leaveEndClassName,
+  ...props
+} = Astro.props;
+
+const anchor = {
+  [`x-anchor.${position}.offset.8`]: '$refs.dropdownTrigger',
+};
+---
+
+<div
+  x-cloak
+  x-show="isOpen"
+  x-on:mouseleave="clearFocus()"
+  {...anchor}
+  x-transition:enter={twMerge(
+    'transition ease-out duration-200',
+    enterClassName,
+  )}
+  x-transition:enter-start={twMerge(
+    'opacity-0',
+    position == 'top' && 'translate-y-2',
+    position == 'top-start' && 'translate-y-2',
+    position == 'top-end' && 'translate-y-2',
+
+    position == 'right' && '-translate-x-2',
+    position == 'right-start' && '-translate-x-2',
+    position == 'right-end' && '-translate-x-2',
+
+    position == 'bottom' && '-translate-y-2',
+    position == 'bottom-start' && '-translate-y-2',
+    position == 'bottom-end' && '-translate-y-2',
+
+    position == 'left' && 'translate-x-2',
+    position == 'left-start' && 'translate-x-2',
+    position == 'left-end' && 'translate-x-2',
+
+    enterStartClassName,
+  )}
+  x-transition:enter-end={twMerge(
+    'opacity-100 translate-y-0',
+    enterEndClassName,
+  )}
+  x-transition:leave={twMerge('transition ease-in duration-50', leaveClassName)}
+  x-transition:leave-start={twMerge(
+    'opacity-100 translate-y-0',
+    leaveStartClassName,
+  )}
+  x-transition:leave-end={twMerge(
+    'opacity-0',
+    position == 'top' && 'translate-y-2',
+    position == 'top-start' && 'translate-y-2',
+    position == 'top-end' && 'translate-y-2',
+
+    position == 'right' && '-translate-x-2',
+    position == 'right-start' && '-translate-x-2',
+    position == 'right-end' && '-translate-x-2',
+
+    position == 'bottom' && '-translate-y-2',
+    position == 'bottom-start' && '-translate-y-2',
+    position == 'bottom-end' && '-translate-y-2',
+
+    position == 'left' && 'translate-x-2',
+    position == 'left-start' && 'translate-x-2',
+    position == 'left-end' && 'translate-x-2',
+    leaveEndClassName,
+  )}
+  class={twMerge(
+    'ring-1 ring-zinc-200 dark:ring-zinc-700 whitespace-nowrap rounded-lg shadow-md bg-white dark:bg-zinc-800 z-10',
+    className,
+  )}
+  {...props}
+>
+  <slot />
+</div>

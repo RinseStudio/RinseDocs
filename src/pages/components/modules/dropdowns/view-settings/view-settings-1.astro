@@ -1,6 +1,6 @@
 ---
 import Layout from '@/layouts/rinsedocs/Raw.astro';
-import Button from '@/components/ui/Button';
+import { Button } from '@/components/Button';on';on';
 import {
   Dropdown,
   DropdownContent,
@@ -10,7 +10,7 @@ import {
   DropdownList,
   DropdownSeparator,
   DropdownTrigger,
-} from '@/components/ui/Dropdown';
+} from '@/components/Dropdown';
 ---
 
 <Layout class="flex items-center justify-center px-4 py-10">
@@ -20,7 +20,7 @@ import {
         <Button size="sm" variant="outline">View settings</Button>
       </DropdownTrigger>
 
-      <DropdownContent position="bottomEnd" className="w-[200px]">
+      <DropdownContent position="bottom-end" className="w-[200px]">
         <DropdownGroup>
           <DropdownHeader>View settings</DropdownHeader>
           <ul>
@@ -188,10 +188,10 @@ import {
               <i class="fa-solid fa-plus"></i>
             </div>
 
-             Add new column
+            Add new column
           </DropdownItem>
         </DropdownGroup>
       </DropdownContent>
     </Dropdown>
   </div>
-</Layout>@/components/ui/Dropdown
+</Layout>

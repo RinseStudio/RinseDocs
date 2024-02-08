@@ -1,8 +1,0 @@
----
-import { twMerge } from 'tailwind-merge';
-const { className = null, ...props } = Astro.props;
----
-
-<div x-on:click="isOpen = !isOpen" x-ref="dropdownTrigger" class={twMerge(className)} {...props}>
-  <slot />
-</div>

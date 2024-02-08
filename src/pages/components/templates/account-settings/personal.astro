@@ -1,10 +1,10 @@
 ---
 import Layout from '@/layouts/rinsedocs/Raw.astro';
-import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/Tabs';
-import Button from '@/components/ui/Button';
-import { TextField } from '@/components/ui/TextField';
-import SelectField from '@/components/ui/SelectField';
-import Card from '@/components/ui/Card';
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/Tabs';
+import Button from '@/components/Button';
+import { TextField } from '@/components/TextField';
+import SelectField from '@/components/SelectField';
+import Card from '@/components/Card';
 import {
   Dropdown,
   DropdownContent,
@@ -14,7 +14,7 @@ import {
   DropdownList,
   DropdownSeparator,
   DropdownTrigger,
-} from '@/components/ui/Dropdown';
+} from '@/components/Dropdown';
 ---
 
 <Layout class="">
@@ -109,7 +109,7 @@ import {
                   class="mb-2 block text-[13px] font-semibold text-gray-900 dark:text-gray-400"
                   >Timezone</label
                 >
-                <Dropdown position="bottomEnd" widthClass="w-full">
+                <Dropdown position="bottom-end" widthClass="w-full">
                   <SelectField value="Browser timezone" isFluid />
                   <slot slot="dropdown-content">
                     <DropdownGroup>
@@ -143,5 +143,4 @@ import {
       </div>
     </div>
   </div>
-</Layout>@/components/ui/Button@/components/ui/SelectField@/components/ui/Card@/components/ui/Dropdown
-
+</Layout>

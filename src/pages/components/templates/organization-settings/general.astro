@@ -1,10 +1,10 @@
 ---
 import Layout from '@/layouts/rinsedocs/Raw.astro';
-import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/Tabs';
-import Button from '@/components/ui/Button';
-import Card from '@/components/ui/Card';
-import { TextField } from '@/components/ui/TextField';
-import SelectField from '@/components/ui/SelectField';
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/Tabs';
+import Button from '@/components/Button';
+import Card from '@/components/Card';
+import { TextField } from '@/components/TextField';
+import SelectField from '@/components/SelectField';
 import {
   Dropdown,
   DropdownContent,
@@ -14,7 +14,7 @@ import {
   DropdownList,
   DropdownSeparator,
   DropdownTrigger,
-} from '@/components/ui/Dropdown';
+} from '@/components/Dropdown';
 ---
 
 <Layout class="">
@@ -294,7 +294,7 @@ import {
                     <DropdownTrigger>
                       <SelectField value="True" isFluid />
                     </DropdownTrigger>
-                    <DropdownContent position="bottomEnd" className="w-full">
+                    <DropdownContent position="bottom-end" className="w-full">
                       <DropdownGroup>
                         <DropdownList>
                           <DropdownItem onClick={'isOpen = !isOpen'}>
@@ -317,7 +317,7 @@ import {
                     <DropdownTrigger>
                       <SelectField value="admin" isFluid />
                     </DropdownTrigger>
-                    <DropdownContent position="bottomEnd" className="w-full">
+                    <DropdownContent position="bottom-end" className="w-full">
                       <DropdownGroup>
                         <DropdownList>
                           <DropdownItem onClick={'isOpen = !isOpen'}>
@@ -399,5 +399,5 @@ import {
       </div>
     </div>
   </div>
-</Layout>@/components/ui/Button@/components/ui/Card@/components/ui/SelectField@/components/ui/Dropdown
-
+</Layout>@/components/Button@/components/Card@/components/SelectField@/components/Dropdown
+@/components/Tabs@/components/Button@/components/Card@/components/TextField@/components/SelectField@/components/Dropdown

@@ -1,0 +1,111 @@
+---
+import { twMerge } from 'tailwind-merge';
+const { data, className, ...props } = Astro.props;
+---
+
+<div
+  x-data={`Select({${data}})`}
+  x-on:keydown.up.prevent="arrowUp()"
+  x-on:keydown.down.prevent="arrowDown()"
+  x-on:keydown.escape="isOpen = false"
+  x-on:keydown.enter.prevent="enterKeyItem"
+  x-on:click.away="isOpen = false"
+  class={twMerge('inline-flex relative', className)}
+  role="listbox"
+  {...props}
+>
+  <slot />
+</div>
+
+<script>
+  import Alpine from 'alpinejs';
+
+  document.addEventListener('alpine:init', () => {
+    Alpine.data('Select', (initialState = {}) => ({
+      isOpen: initialState.isOpen || false,
+      selectedItem: initialState.selectedItem || null,
+      focusedItem: initialState.focusedItem || null,
+      init() {
+        // Optionally, initialize focusedItem to the first item to avoid undefined access
+        let firstItem = this.$el.querySelector('[data-select-item]');
+        if (firstItem) {
+          this.focusedItem = firstItem.dataset.selectItem;
+        }
+      },
+      toggleSelect() {
+        if (!this.isOpen) {
+          this.focusedItem =
+            this.selectedItem ??
+            this.$root.querySelector('[data-select-item]')?.dataset.selectItem;
+        }
+        this.isOpen = !this.isOpen;
+      },
+      hoverItem(value) {
+        this.focusedItem = value;
+      },
+      selectItem(value) {
+        this.isOpen = false;
+        this.selectedItem = value;
+        this.focusedItem = value;
+
+        // Get the clicked item's innerHTML
+        const selectedValue = this.$el.querySelector(
+          '[data-select-item-slot]',
+        ).innerHTML;
+
+        // Update the target div's content
+        this.$root.querySelector('[data-select-trigger-slot]').innerHTML =
+          selectedValue;
+      },
+      enterKeyItem() {
+        if (this.isOpen == false) {
+          this.isOpen = true;
+        } else {
+          this.isOpen = false;
+
+          // Get the clicked item's innerHTML
+          const selectedValue = this.$root.querySelector(
+            `[data-select-item=${this.focusedItem}] [data-select-item-slot]`,
+          ).innerHTML;
+
+          // Update the target div's content
+          this.$root.querySelector('[data-select-trigger-slot]').innerHTML =
+            selectedValue;
+        }
+      },
+      clearFocus() {
+        // Clear the focusedItem when mouse leaves the container
+        if (this.isOpen == true) {
+          this.focusedItem = null;
+        }
+      },
+      arrowUp() {
+        let items = this.$el.querySelectorAll('[data-select-item]');
+        let currentIndex = Array.from(items).findIndex(
+          (item) => item.dataset.selectItem === this.focusedItem,
+        );
+
+        // If no item is focused (e.g., hovered out), start from the bottom
+        if (currentIndex === -1 || this.focusedItem === null) {
+          this.focusedItem = items[items.length - 1].dataset.selectItem;
+        } else {
+          currentIndex = currentIndex > 0 ? currentIndex - 1 : items.length - 1;
+          this.focusedItem = items[currentIndex].dataset.selectItem;
+        }
+      },
+      arrowDown() {
+        let items = this.$el.querySelectorAll('[data-select-item]');
+        let currentIndex = Array.from(items).findIndex(
+          (item) => item.dataset.selectItem === this.focusedItem,
+        );
+
+        if (currentIndex === -1 || this.focusedItem === null) {
+          this.focusedItem = items[0].dataset.selectItem;
+        } else {
+          currentIndex = currentIndex < items.length - 1 ? currentIndex + 1 : 0;
+          this.focusedItem = items[currentIndex].dataset.selectItem;
+        }
+      },
+    }));
+  });
+</script>

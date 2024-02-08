@@ -1,0 +1,77 @@
+---
+title: 'Basic Text Field'
+layout: '@/layouts/rinsedocs/SampleComponentBase.astro'
+className: 'w-[320px] h-[300px] px-4 py-10'
+bodyClassName: 'flex items-center justify-center'
+---
+
+import {
+  Select,
+  SelectNative,
+  SelectGroup,
+  SelectTrigger,
+  SelectContent,
+  SelectHeader,
+  SelectLabel,
+  SelectList,
+  SelectItem,
+  SelectOption,
+  SelectSeparator,
+} from '@/components/Select';
+
+<Select data="isOpen: true" className="w-[200px]">
+  <SelectTrigger>Select option</SelectTrigger>
+  <SelectContent className="w-[200px]">
+    <SelectGroup>
+      <SelectLabel>Fruits</SelectLabel>
+      <SelectList>
+        <SelectItem value="apple">Apple</SelectItem>
+        <SelectItem value="cherry" isDisabled>
+          <div class="flex items-center">
+            <div class="mr-1 h-2 w-2 bg-red-500"></div> Cherry
+          </div>
+        </SelectItem>
+        <SelectItem value="tomato">Tomato</SelectItem>
+      </SelectList>
+    </SelectGroup>
+  </SelectContent>
+</Select>
+
+```mdx
+<Select className="w-[200px]">
+  <SelectTrigger>Select option</SelectTrigger>
+  <SelectContent position="bottomStart" className="w-[200px]">
+    <SelectGroup>
+      <SelectLabel>Fruits</SelectLabel>
+      <SelectList>
+        <SelectItem value="apple">Apple</SelectItem>
+        <SelectItem value="cherry">
+          <div class="flex items-center">
+            <div class="mr-1 h-2 w-2 bg-red-500"></div> Cherry
+          </div>
+        </SelectItem>
+        <SelectItem value="tomato">Tomato</SelectItem>
+      </SelectList>
+    </SelectGroup>
+  </SelectContent>
+</Select>
+```
+
+```js alpine
+Alpine.data('Select', (initialState = {}) => ({
+  isOpen: initialState.isOpen || false,
+  selection: initialState.selection || 'option-1',
+  updateSelect(value) {
+    this.isOpen = false;
+    this.selection = value;
+
+    // Get the clicked item's innerHTML
+    const selectedValue = this.$el.querySelector(
+      "[data-select-value='" + value + "']",
+    ).innerHTML;
+
+    // Update the target div's content
+    this.$root.querySelector('[data-select-field]').innerHTML = selectedValue;
+  },
+}));
+```

@@ -19,33 +19,25 @@ pageSettings:
   enableFluidWidth: true
 ---
 
-import RinseUI from '@/components/docs/RinseUI';
+import RinseUI2 from '@/components/docs/RinseUI2';
 
-## Basic Usage
+## Basic Button
 
 The following is an example of a basic button.
 
-import BasicButton from '@/components/ui/Button/sample/BasicButton.astro';
+<RinseUI2 url="/components/button/basic-button" isPreviewOnly />
 
-<RinseUI
-  url="/components/elements/button/sample/basic-button"
-  src="/components/ui/Button/sample/BasicButton.astro"
->
-  <BasicButton />
-</RinseUI>
+```mdx
+import { Button } from '@/components/Button';
+
+<Button>Button</Button>
+```
 
 ## Button Sizes
 
 Here are 5 different button sizes ranging from `xs` to `xl`.
 
-import ButtonSizes from '@/components/ui/Button/sample/ButtonSizes.astro';
-
-<RinseUI
-  url="/components/elements/button/sample/button-sizes"
-  src="/components/ui/Button/sample/ButtonSizes.astro"
->
-  <ButtonSizes />
-</RinseUI>
+<RinseUI2 url="/components/button/button-sizes" />
 
 ## Variants
 
@@ -53,47 +45,27 @@ Button variant options provide alternative styling to your buttons.
 
 ### Primary buttons
 
-import PrimaryButtons from '@/components/ui/Button/sample/PrimaryButtons.astro';
-
-<RinseUI
-  url="/components/elements/button/sample/primary-buttons"
-  src="/components/ui/Button/sample/PrimaryButtons.astro"
->
-  <PrimaryButtons />
-</RinseUI>
+<RinseUI2 url="/components/button/primary-buttons" />
 
 ### Secondary buttons
 
-import SecondaryButtons from '@/components/ui/Button/sample/SecondaryButtons.astro';
-
-<RinseUI
-  className="bg-white dark:bg-transparent"
-  url="/components/elements/button/sample/secondary-buttons"
-  src="/components/ui/Button/sample/SecondaryButtons.astro"
->
-  <SecondaryButtons />
-</RinseUI>
+<RinseUI2 url="/components/button/secondary-buttons" />
 
 ### Outline buttons
 
-import OutlineButtons from '@/components/ui/Button/sample/OutlineButtons.astro';
-
-<RinseUI
-  className="bg-white dark:bg-transparent"
-  url="/components/elements/button/sample/outline-buttons"
-  src="/components/ui/Button/sample/OutlineButtons.astro"
->
-  <OutlineButtons />
-</RinseUI>
+<RinseUI2 url="/components/button/outline-buttons" />
 
 ### Ghost buttons
 
-import GhostButtons from '@/components/ui/Button/sample/GhostButtons.astro';
+<RinseUI2 url="/components/button/ghost-buttons" />
 
-<RinseUI
-  className="bg-white dark:bg-transparent"
-  url="/components/elements/button/sample/ghost-buttons"
-  src="/components/ui/Button/sample/GhostButtons.astro"
->
-  <GhostButtons />
-</RinseUI>
+## API Reference
+
+The following props and prop values are available for this component.
+
+| Prop       | Values                                     | Default   |
+| ---------- | ------------------------------------------ | --------- |
+| `size`     | `xs`, `sm`, `md`, `lg`, `xl`               | `md`      |
+| `variant`  | `primary`, `secondary`, `outline`, `ghost` | `primary` |
+| `isDanger` | `boolean`                                  | `false`   |
+| `as`       | `button`, `a`, `div`                       | `button`  |

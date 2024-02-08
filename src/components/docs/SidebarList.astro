@@ -10,7 +10,7 @@ const { data } = Astro.props;
       return (
         <li x-data="{open: true}">
           <button
-            class="group/sidebar-parent flex h-7 w-full overflow-hidden whitespace-nowrap text-left text-[10px] font-bold uppercase tracking-wide text-gray-500 dark:text-gray-500"
+            class="group/sidebar-parent flex h-6 w-full overflow-hidden whitespace-nowrap px-3 text-left text-xs font-bold text-gray-900 dark:text-gray-500"
             x-on:click="open = !open, active = !active"
           >
             <div class="inline-flex items-center overflow-hidden">
@@ -31,7 +31,7 @@ const { data } = Astro.props;
             </div>
           </button>
           <div x-show="open == true">
-            <ul class="mb-4 space-y-px">
+            <ul class="mb-6 space-y-px">
               {group.pages.map((page) => (
                 <SidebarListItem page={page} />
               ))}

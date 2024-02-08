@@ -1,0 +1,276 @@
+---
+title: 'Basic Dropdown'
+layout: '@/layouts/rinsedocs/SampleComponentBase.astro'
+className: 'h-[300px] px-4 py-10'
+bodyClassName: 'flex items-center justify-center'
+---
+
+import Button from '@/components/Button';
+import {
+  Dropdown,
+  DropdownContent,
+  DropdownGroup,
+  DropdownHeader,
+  DropdownItem,
+  DropdownList,
+  DropdownSeparator,
+  DropdownTrigger,
+} from '@/components/Dropdown';
+
+{
+
+<Dropdown data={`isOpen: true`}>
+  <DropdownTrigger>
+    <Button as="div" size="sm" variant="outline">View settings</Button>
+  </DropdownTrigger>
+
+  <DropdownContent position="bottom-end" className="w-[200px]">
+    <DropdownGroup>
+      <DropdownHeader>View settings</DropdownHeader>
+      <DropdownList>
+        <DropdownItem className="group/table-order active:cursor-grabbing cursor-grab">
+          <div class="flex flex-1 items-center overflow-hidden">
+            <div class="mr-1.5 dark:text-gray-500">
+              <i class="fa-solid fa-grip-dots fa-fw"></i>
+            </div>
+            <div class="flex-1 truncate text-left">Policy</div>
+          </div>
+          <div
+            class="hidden size-6 items-center justify-center text-gray-400 hover:cursor-pointer hover:text-gray-600 group-hover/table-order:flex dark:text-gray-400 dark:hover:text-gray-100"
+          >
+            <i class="fa-solid fa-times"></i>
+          </div>
+        </DropdownItem>
+        <DropdownItem className="group/table-order active:cursor-grabbing cursor-grab">
+          <div class="flex flex-1 items-center overflow-hidden">
+            <div class="mr-1.5 dark:text-gray-500">
+              <i class="fa-solid fa-grip-dots fa-fw"></i>
+            </div>
+            <div class="flex-1 truncate text-left">Event</div>
+          </div>
+          <div
+            class="hidden size-6 items-center justify-center text-gray-400 hover:cursor-pointer hover:text-gray-600 group-hover/table-order:flex dark:text-gray-400 dark:hover:text-gray-100"
+          >
+            <i class="fa-solid fa-times"></i>
+          </div>
+        </DropdownItem>
+        <DropdownItem className="group/table-order active:cursor-grabbing cursor-grab">
+          <div class="flex flex-1 items-center overflow-hidden">
+            <div class="mr-1.5 dark:text-gray-500">
+              <i class="fa-solid fa-grip-dots fa-fw"></i>
+            </div>
+            <div class="flex-1 truncate text-left">User</div>
+          </div>
+          <div
+            class="hidden size-6 items-center justify-center text-gray-400 hover:cursor-pointer hover:text-gray-600 group-hover/table-order:flex dark:text-gray-400 dark:hover:text-gray-100"
+          >
+            <i class="fa-solid fa-times"></i>
+          </div>
+        </DropdownItem>
+        <DropdownItem className="group/table-order active:cursor-grabbing cursor-grab">
+          <div class="flex flex-1 items-center overflow-hidden">
+            <div class="mr-1.5 dark:text-gray-500">
+              <i class="fa-solid fa-grip-dots fa-fw"></i>
+            </div>
+            <div class="flex-1 truncate text-left">Location</div>
+          </div>
+          <div
+            class="hidden size-6 items-center justify-center text-gray-400 hover:cursor-pointer hover:text-gray-600 group-hover/table-order:flex dark:text-gray-400 dark:hover:text-gray-100"
+          >
+            <i class="fa-solid fa-times"></i>
+          </div>
+        </DropdownItem>
+        <DropdownItem className="group/table-order active:cursor-grabbing cursor-grab">
+          <div class="flex flex-1 items-center overflow-hidden">
+            <div class="mr-1.5 dark:text-gray-500">
+              <i class="fa-solid fa-grip-dots fa-fw"></i>
+            </div>
+            <div class="flex-1 truncate text-left">Connection</div>
+          </div>
+          <div
+            class="hidden size-6 items-center justify-center text-gray-400 hover:cursor-pointer hover:text-gray-600 group-hover/table-order:flex dark:text-gray-400 dark:hover:text-gray-100"
+          >
+            <i class="fa-solid fa-times"></i>
+          </div>
+        </DropdownItem>
+        <DropdownItem className="group/table-order active:cursor-grabbing cursor-grab">
+          <div class="flex flex-1 items-center overflow-hidden">
+            <div class="mr-1.5 dark:text-gray-500">
+              <i class="fa-solid fa-grip-dots fa-fw"></i>
+            </div>
+            <div class="flex-1 truncate text-left">Device</div>
+          </div>
+          <div
+            class="hidden size-6 items-center justify-center text-gray-400 hover:cursor-pointer hover:text-gray-600 group-hover/table-order:flex dark:text-gray-400 dark:hover:text-gray-100"
+          >
+            <i class="fa-solid fa-times"></i>
+          </div>
+        </DropdownItem>
+        <DropdownItem className="group/table-order active:cursor-grabbing cursor-grab">
+          <div class="flex flex-1 items-center overflow-hidden">
+            <div class="mr-1.5 dark:text-gray-500">
+              <i class="fa-solid fa-grip-dots fa-fw"></i>
+            </div>
+            <div class="flex-1 truncate text-left">Triggered signals</div>
+          </div>
+          <div
+            class="hidden size-6 items-center justify-center text-gray-400 hover:cursor-pointer hover:text-gray-600 group-hover/table-order:flex dark:text-gray-400 dark:hover:text-gray-100"
+          >
+            <i class="fa-solid fa-times"></i>
+          </div>
+        </DropdownItem>
+        <DropdownItem className="group/table-order active:cursor-grabbing cursor-grab">
+          <div class="flex flex-1 items-center overflow-hidden">
+            <div class="mr-1.5 dark:text-gray-500">
+              <i class="fa-solid fa-grip-dots fa-fw"></i>
+            </div>
+            <div class="flex-1 truncate text-left">A really long custom name goes here</div>
+          </div>
+          <div
+            class="hidden size-6 items-center justify-center text-gray-400 hover:cursor-pointer hover:text-gray-600 group-hover/table-order:flex dark:text-gray-400 dark:hover:text-gray-100"
+          >
+            <i class="fa-solid fa-times"></i>
+          </div>
+        </DropdownItem>
+      </DropdownList>
+    </DropdownGroup>
+    <DropdownSeparator />
+    <DropdownGroup>
+      <DropdownItem>
+        <div class="mr-1.5 flex items-center justify-center">
+          <i class="fa-solid fa-plus"></i>
+        </div>
+          Add new column
+      </DropdownItem>
+    </DropdownGroup>
+  </DropdownContent>
+</Dropdown>}
+
+```mdx
+<Dropdown data={`isOpen: true`}>
+  <DropdownTrigger>
+    <Button as="div" size="sm" variant="outline">View settings</Button>
+  </DropdownTrigger>
+
+  <DropdownContent position="bottom-end" className="w-[200px]">
+    <DropdownGroup>
+      <DropdownHeader>View settings</DropdownHeader>
+      <DropdownList>
+        <DropdownItem className="group/table-order active:cursor-grabbing cursor-grab">
+          <div class="flex flex-1 items-center overflow-hidden">
+            <div class="mr-1.5 dark:text-gray-500">
+              <i class="fa-solid fa-grip-dots fa-fw"></i>
+            </div>
+            <div class="flex-1 truncate text-left">Policy</div>
+          </div>
+          <div
+            class="hidden size-6 items-center justify-center text-gray-400 hover:cursor-pointer hover:text-gray-600 group-hover/table-order:flex dark:text-gray-400 dark:hover:text-gray-100"
+          >
+            <i class="fa-solid fa-times"></i>
+          </div>
+        </DropdownItem>
+        <DropdownItem className="group/table-order active:cursor-grabbing cursor-grab">
+          <div class="flex flex-1 items-center overflow-hidden">
+            <div class="mr-1.5 dark:text-gray-500">
+              <i class="fa-solid fa-grip-dots fa-fw"></i>
+            </div>
+            <div class="flex-1 truncate text-left">Event</div>
+          </div>
+          <div
+            class="hidden size-6 items-center justify-center text-gray-400 hover:cursor-pointer hover:text-gray-600 group-hover/table-order:flex dark:text-gray-400 dark:hover:text-gray-100"
+          >
+            <i class="fa-solid fa-times"></i>
+          </div>
+        </DropdownItem>
+        <DropdownItem className="group/table-order active:cursor-grabbing cursor-grab">
+          <div class="flex flex-1 items-center overflow-hidden">
+            <div class="mr-1.5 dark:text-gray-500">
+              <i class="fa-solid fa-grip-dots fa-fw"></i>
+            </div>
+            <div class="flex-1 truncate text-left">User</div>
+          </div>
+          <div
+            class="hidden size-6 items-center justify-center text-gray-400 hover:cursor-pointer hover:text-gray-600 group-hover/table-order:flex dark:text-gray-400 dark:hover:text-gray-100"
+          >
+            <i class="fa-solid fa-times"></i>
+          </div>
+        </DropdownItem>
+        <DropdownItem className="group/table-order active:cursor-grabbing cursor-grab">
+          <div class="flex flex-1 items-center overflow-hidden">
+            <div class="mr-1.5 dark:text-gray-500">
+              <i class="fa-solid fa-grip-dots fa-fw"></i>
+            </div>
+            <div class="flex-1 truncate text-left">Location</div>
+          </div>
+          <div
+            class="hidden size-6 items-center justify-center text-gray-400 hover:cursor-pointer hover:text-gray-600 group-hover/table-order:flex dark:text-gray-400 dark:hover:text-gray-100"
+          >
+            <i class="fa-solid fa-times"></i>
+          </div>
+        </DropdownItem>
+        <DropdownItem className="group/table-order active:cursor-grabbing cursor-grab">
+          <div class="flex flex-1 items-center overflow-hidden">
+            <div class="mr-1.5 dark:text-gray-500">
+              <i class="fa-solid fa-grip-dots fa-fw"></i>
+            </div>
+            <div class="flex-1 truncate text-left">Connection</div>
+          </div>
+          <div
+            class="hidden size-6 items-center justify-center text-gray-400 hover:cursor-pointer hover:text-gray-600 group-hover/table-order:flex dark:text-gray-400 dark:hover:text-gray-100"
+          >
+            <i class="fa-solid fa-times"></i>
+          </div>
+        </DropdownItem>
+        <DropdownItem className="group/table-order active:cursor-grabbing cursor-grab">
+          <div class="flex flex-1 items-center overflow-hidden">
+            <div class="mr-1.5 dark:text-gray-500">
+              <i class="fa-solid fa-grip-dots fa-fw"></i>
+            </div>
+            <div class="flex-1 truncate text-left">Device</div>
+          </div>
+          <div
+            class="hidden size-6 items-center justify-center text-gray-400 hover:cursor-pointer hover:text-gray-600 group-hover/table-order:flex dark:text-gray-400 dark:hover:text-gray-100"
+          >
+            <i class="fa-solid fa-times"></i>
+          </div>
+        </DropdownItem>
+        <DropdownItem className="group/table-order active:cursor-grabbing cursor-grab">
+          <div class="flex flex-1 items-center overflow-hidden">
+            <div class="mr-1.5 dark:text-gray-500">
+              <i class="fa-solid fa-grip-dots fa-fw"></i>
+            </div>
+            <div class="flex-1 truncate text-left">Triggered signals</div>
+          </div>
+          <div
+            class="hidden size-6 items-center justify-center text-gray-400 hover:cursor-pointer hover:text-gray-600 group-hover/table-order:flex dark:text-gray-400 dark:hover:text-gray-100"
+          >
+            <i class="fa-solid fa-times"></i>
+          </div>
+        </DropdownItem>
+        <DropdownItem className="group/table-order active:cursor-grabbing cursor-grab">
+          <div class="flex flex-1 items-center overflow-hidden">
+            <div class="mr-1.5 dark:text-gray-500">
+              <i class="fa-solid fa-grip-dots fa-fw"></i>
+            </div>
+            <div class="flex-1 truncate text-left">A really long custom name goes here</div>
+          </div>
+          <div
+            class="hidden size-6 items-center justify-center text-gray-400 hover:cursor-pointer hover:text-gray-600 group-hover/table-order:flex dark:text-gray-400 dark:hover:text-gray-100"
+          >
+            <i class="fa-solid fa-times"></i>
+          </div>
+        </DropdownItem>
+      </DropdownList>
+    </DropdownGroup>
+    <DropdownSeparator />
+    <DropdownGroup>
+      <DropdownItem>
+        <div class="mr-1.5 flex items-center justify-center">
+          <i class="fa-solid fa-plus"></i>
+        </div>
+          Add new column
+      </DropdownItem>
+    </DropdownGroup>
+  </DropdownContent>
+</Dropdown>
+```

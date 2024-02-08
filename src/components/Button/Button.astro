@@ -1,0 +1,164 @@
+---
+import { twMerge } from 'tailwind-merge';
+const {
+  data,
+  size = 'md',
+  as = 'button',
+  variant = 'primary',
+  isDanger,
+  className,
+  ...props
+} = Astro.props;
+
+const buttonClass = twMerge(
+  // Base
+  `
+inline-flex 
+items-center 
+justify-center 
+whitespace-nowrap 
+rounded-md 
+px-[1em] 
+font-semibold 
+disabled:cursor-not-allowed`,
+
+  // Focus
+  `
+focus-visible:outline-none
+focus-visible:ring-2
+focus-visible:ring-inset
+focus-visible:ring-blue-500
+dark:focus-visible:ring-blue-500`,
+
+  // Variant
+  variant == 'primary' &&
+    `
+bg-blue-500 
+text-white 
+hover:bg-blue-600 
+disabled:bg-blue-500/60 
+data-[is-danger]:bg-red-500 
+data-[is-danger]:text-white 
+data-[is-danger]:hover:bg-red-600 
+dark:bg-blue-600
+
+dark:hover:bg-blue-500 
+dark:disabled:bg-blue-600/30 
+dark:disabled:text-white/70 
+data-[is-danger]:dark:bg-red-600 
+data-[is-danger]:dark:hover:bg-red-500`,
+
+  variant == 'secondary' &&
+    `
+bg-slate-100 
+text-gray-700 
+hover:bg-slate-200 
+disabled:bg-slate-200 
+disabled:text-gray-400 
+data-[is-danger]:bg-red-100 
+data-[is-danger]:text-red-700 
+data-[is-danger]:hover:bg-red-200 
+dark:bg-slate-100/10 
+dark:text-gray-100
+
+dark:hover:bg-slate-100/20 
+dark:disabled:bg-slate-600/10 
+dark:disabled:text-gray-600 
+data-[is-danger]:dark:bg-red-400/20 
+data-[is-danger]:dark:text-red-300 
+data-[is-danger]:dark:hover:bg-red-400/30`,
+
+  variant == 'outline' &&
+    `
+data-[is-danger]:disabled:bg-transparentd 
+bg-white 
+text-gray-600 
+ring-1 
+ring-inset 
+ring-zinc-300 
+hover:bg-zinc-50 
+hover:text-gray-700 
+disabled:bg-transparent 
+disabled:text-gray-400 
+disabled:ring-zinc-100 
+data-[is-danger]:bg-white 
+data-[is-danger]:text-red-700 
+data-[is-danger]:ring-1 
+data-[is-danger]:ring-inset 
+data-[is-danger]:ring-red-300 
+data-[is-danger]:hover:bg-red-50 
+data-[is-danger]:hover:text-red-800
+
+data-[is-danger]:disabled:text-red-400 
+data-[is-danger]:disabled:ring-red-100 
+dark:bg-zinc-100/[0.04] 
+dark:text-gray-300 
+dark:ring-zinc-700 
+dark:hover:bg-zinc-100/[0.08] 
+dark:hover:text-gray-100 
+dark:disabled:bg-transparent 
+dark:disabled:text-gray-600 
+dark:disabled:ring-zinc-100/[0.06] 
+data-[is-danger]:dark:bg-red-400/10 
+data-[is-danger]:dark:text-red-300 
+data-[is-danger]:dark:ring-red-300/20 
+data-[is-danger]:dark:hover:bg-red-400/20 
+data-[is-danger]:dark:hover:text-red-200 
+data-[is-danger]:dark:disabled:bg-transparent 
+data-[is-danger]:dark:disabled:text-red-600 
+data-[is-danger]:dark:disabled:ring-red-100/20
+`,
+
+  variant == 'ghost' &&
+    `
+text-gray-600 
+hover:bg-slate-100 
+hover:text-gray-700 
+disabled:bg-transparent 
+disabled:text-gray-400 
+data-[is-danger]:text-red-700 
+data-[is-danger]:hover:bg-red-50 
+data-[is-danger]:hover:text-red-800 
+dark:text-gray-300 
+dark:hover:bg-slate-100/[0.08]
+
+dark:hover:text-gray-100 
+dark:disabled:bg-transparent 
+dark:disabled:text-gray-600 
+data-[is-danger]:dark:text-red-300 
+data-[is-danger]:dark:hover:bg-red-400/10 
+data-[is-danger]:dark:hover:text-red-200`,
+
+  // Size
+  size == 'xs' && 'h-[28px] min-w-[28px] text-[12px]',
+  size == 'sm' && 'h-[32px] min-w-[32px] text-[13px]',
+  size == 'md' && 'h-[36px] min-w-[36px] text-[14px]',
+  size == 'lg' && 'h-[40px] min-w-[40px] text-[15px]',
+  size == 'xl' && 'h-[44px] min-w-[44px] text-[16px]',
+  className,
+);
+---
+
+{
+  as == 'button' && (
+    <button data-is-danger={isDanger} class={buttonClass} {...props}>
+      <slot />
+    </button>
+  )
+}
+
+{
+  as == 'a' && (
+    <a data-is-danger={isDanger} class={buttonClass} {...props}>
+      <slot />
+    </a>
+  )
+}
+
+{
+  as == 'div' && (
+    <div data-is-danger={isDanger} class={buttonClass} {...props}>
+      <slot />
+    </div>
+  )
+}

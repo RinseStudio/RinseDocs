@@ -1,0 +1,12 @@
+---
+import { twMerge } from 'tailwind-merge';
+const { name, className, ...props } = Astro.props;
+---
+
+<div
+  class={twMerge('p-3', className)}
+  x-show={`selectedTab == '${name}'`}
+  {...props}
+>
+  <slot />
+</div>

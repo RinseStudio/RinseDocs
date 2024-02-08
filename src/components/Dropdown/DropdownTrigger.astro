@@ -1,0 +1,20 @@
+---
+import { twMerge } from 'tailwind-merge';
+const { className = null, ...props } = Astro.props;
+---
+
+<button
+  x-on:click.prevent="toggleDropdown"
+  x-ref="dropdownTrigger"
+  class={twMerge(
+    'rounded-md focus-visible:outline-none focus-visible:ring-2  focus-visible:ring-blue-500 dark:focus-visible:ring-blue-500',
+    className,
+  )}
+  x-bind:class={`
+    {'focus-visible:ring-blue-500 dark:focus-visible:ring-blue-500' : isOpen == false, 
+    'focus-visible:ring-0' : isOpen == true}
+  `}
+  {...props}
+>
+  <slot />
+</button>

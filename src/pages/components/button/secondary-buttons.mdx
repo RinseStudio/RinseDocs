@@ -1,0 +1,40 @@
+---
+title: 'Basic Dropdown'
+layout: '@/layouts/rinsedocs/SampleComponentBase.astro'
+className: 'mx-auto grid w-full max-w-[320px] grid-cols-1 gap-2 py-10'
+bodyClassName: 'flex items-center justify-center bg-white'
+---
+
+import { Button } from '@/components/Button';
+
+<div class="grid grid-cols-2 gap-2">
+  <Button variant="secondary">Default</Button>
+  <Button variant="secondary" disabled>
+    Disabled
+  </Button>
+</div>
+<div>
+  <Button variant="secondary" isDanger className="w-full">
+    Danger
+  </Button>
+</div>
+<div>
+  <Button variant="secondary" className="w-full">
+    Fluid
+  </Button>
+</div>
+
+```mdx
+import { Button } from '@/components/Button';
+
+<Button variant="secondary">Default</Button>
+<Button variant="secondary" disabled>
+  Disabled
+</Button>
+<Button variant="secondary" isDanger className="w-full">
+  Danger
+</Button>
+<Button variant="secondary" className="w-full">
+  Fluid
+</Button>
+```

@@ -1,0 +1,44 @@
+---
+import { twMerge } from 'tailwind-merge';
+const {
+  placeholder = 'First name',
+  value = null,
+  type = 'text',
+  validation = null,
+  className,
+  ...props
+} = Astro.props;
+---
+
+<input
+  type={type}
+  class={twMerge(
+    `
+    flex w-full h-9 items-center ring-inset rounded-md border-0 text-[13px] shadow-sm dark:ring-zinc-700 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500 dark:disabled:text-gray-400 disabled:ring-gray-200 dark:disabled:bg-zinc-100/[0.06] bg-white dark:bg-zinc-100/[0.06] focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-500`,
+
+    // Validation
+    `
+    text-gray-900 dark:text-gray-200 placeholder:text-gray-40
+    ring-1 ring-zinc-950/10 hover:ring-zinc-950/20 dark:ring-zinc-50/10 dark:hover:ring-zinc-50/20
+
+    data-[input-validation=success]:ring-2 
+    data-[input-validation=success]:ring-green-500 
+    data-[input-validation=success]:dark:ring-green-500
+    data-[input-validation=success]:text-green-800 
+    data-[input-validation=success]:dark:text-green-200 
+    data-[input-validation=success]:placeholder:text-green-500
+
+    data-[input-validation=error]:ring-2 
+    data-[input-validation=error]:ring-red-400 
+    data-[input-validation=error]:dark:ring-red-400
+    data-[input-validation=error]:text-red-900 
+    data-[input-validation=error]:dark:text-red-200 
+    data-[input-validation=error]:placeholder:text-red-300
+    `,
+    className,
+  )}
+  data-input-validation={validation}
+  placeholder={placeholder}
+  value={value}
+  {...props}
+/>

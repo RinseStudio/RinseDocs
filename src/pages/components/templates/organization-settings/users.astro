@@ -1,9 +1,9 @@
 ---
 import Layout from '@/layouts/rinsedocs/Raw.astro';
-import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/Tabs';
-import Button from '@/components/ui/Button';
-import Card from '@/components/ui/Card';
-import Table from '@/components/ui/Table';
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/Tabs';
+import Button from '@/components/Button';
+import Card from '@/components/Card';
+import Table from '@/components/Table';
 import {
   Dropdown,
   DropdownContent,
@@ -13,15 +13,15 @@ import {
   DropdownList,
   DropdownSeparator,
   DropdownTrigger,
-} from '@/components/ui/Dropdown';
+} from '@/components/Dropdown';
 import {
   Tooltip,
   TooltipTrigger,
   TooltipContent,
-} from '@/components/ui/Tooltip';
-import SearchField from '@/components/ui/SearchField/index.astro';
-import { TextField } from '@/components/ui/TextField';
-import SelectField from '@/components/ui/SelectField';
+} from '@/components/Tooltip';
+import SearchField from '@/components/SearchField/index.astro';
+import { TextField } from '@/components/TextField';
+import SelectField from '@/components/SelectField';
 ---
 
 <Layout class="" x-data="{dialog: true}">
@@ -495,5 +495,6 @@ import SelectField from '@/components/ui/SelectField';
       }
     },
   }));
-</script>@/components/ui/Button@/components/ui/Card@/components/ui/Table@/components/ui/Dropdown@/components/ui/Tooltip@/components/ui/SelectField
+</script>@/components/Button@/components/Card@/components/Table@/components/Dropdown@/components/Tooltip@/components/SelectField
 
+@/components/Tabs@/components/Button@/components/Card@/components/Table@/components/Dropdown@/components/Tooltip@/components/TextField@/components/SelectField

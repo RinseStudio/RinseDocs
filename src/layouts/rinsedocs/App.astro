@@ -9,12 +9,8 @@ import { buildBreadcrumb, buildNavigation } from '@/utils/helpers.js';
 
 import SidebarList from '@/components/docs/SidebarList.astro';
 import TOC from '@/components/docs/TOC.astro';
-import Button from '@/components/ui/Button';
-import {
-  Tooltip,
-  TooltipTrigger,
-  TooltipContent,
-} from '@/components/ui/Tooltip';
+import { Button } from '@/components/Button';
+import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/Tooltip';
 
 const { frontmatter, headings, entry } = Astro.props;
 
@@ -210,22 +206,25 @@ const breadcrumb = buildBreadcrumb(entry.slug);
         <div class="mb-5 px-3">
           <button
             type="button"
-            class="flex w-full items-center justify-between rounded-md bg-white px-2.5 py-2 text-left text-sm font-semibold text-gray-900 shadow outline-none ring-1 ring-zinc-200 hover:ring-zinc-300 dark:bg-zinc-900 dark:text-gray-100 dark:ring-zinc-800 hover:dark:ring-zinc-700"
+            class="da flex w-full items-center justify-between rounded-lg bg-white px-2.5 py-2 text-left text-sm font-semibold text-gray-900 shadow ring-1 ring-inset ring-slate-100 hover:bg-slate-50 hover:ring-slate-200 dark:bg-zinc-900 dark:text-gray-100"
           >
             <div class="flex items-center gap-2 overflow-hidden">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                class="h-3.5 w-3.5 flex-none"
+                width="12"
+                height="12"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-search"
+                ><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"
+                ></path></svg
               >
-                <path
-                  fill-rule="evenodd"
-                  d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z"
-                  clip-rule="evenodd"></path>
-              </svg>
 
-              <span class="truncate text-sm font-normal text-gray-400"
+              <span class="truncate text-[13px] font-medium text-slate-500"
                 >Quick search</span
               >
             </div>
@@ -233,7 +232,7 @@ const breadcrumb = buildBreadcrumb(entry.slug);
           </button>
         </div>
 
-        <nav class="mx-3">
+        <nav class="">
           <SidebarList data={navigation} />
         </nav>
       </div>
@@ -247,14 +246,14 @@ const breadcrumb = buildBreadcrumb(entry.slug);
       >
         <div class="w-[2px] bg-blue-400"></div>
       </div>
-      <div class="py-2">
+      <div class="py-0">
         <div
-          class="grid min-h-[100dvh] grid-cols-1 rounded-l-lg border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-[#191919] lg:grid-cols-[1fr,260px]"
+          class="grid min-h-[100dvh] grid-cols-1 border-l border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-900 lg:grid-cols-[1fr,260px]"
           x-bind:class="$store.GLOBAL.showTOC ? 'lg:grid-cols-[1fr,260px]' : 'lg:grid-cols-[1fr]'"
         >
           <div class="grid grid-rows-[auto,1fr]">
             <div
-              class="sticky top-0 z-20 flex items-center justify-between rounded-tl-lg border-b border-zinc-200 bg-white px-2 py-2 dark:border-zinc-800 dark:bg-[#191919]"
+              class="sticky top-0 z-20 flex items-center justify-between rounded-tl-lg border-b border-zinc-200 bg-white px-2 py-2 dark:border-zinc-800 dark:bg-zinc-900"
             >
               <div class="flex items-center">
                 <button
@@ -432,7 +431,7 @@ const breadcrumb = buildBreadcrumb(entry.slug);
                   @click="$store.GLOBAL.showTOC = false"
                   size="sm"
                   variant="ghost"
-                  className="text-gray-400"
+                  className="px-0 text-gray-400"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -466,7 +465,7 @@ const breadcrumb = buildBreadcrumb(entry.slug);
                     </h3>
                     <ul class="text-sm">
                       {frontmatter.meta.map((link) => (
-                        <li class="text-[13px] font-semibold leading-[28px]">
+                        <li class="text-xs font-semibold leading-[28px]">
                           <a
                             class="flex items-center gap-2 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100"
                             href={link.url}

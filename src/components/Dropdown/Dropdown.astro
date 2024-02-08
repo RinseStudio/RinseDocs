@@ -1,0 +1,112 @@
+---
+import { twMerge } from 'tailwind-merge';
+const { data, className, ...props } = Astro.props;
+---
+
+<div
+  x-data={`Dropdown({${data}})`}
+  x-on:keydown.up.prevent="focusPrev()"
+  x-on:keydown.down.prevent="focusNext()"
+  x-on:keydown.escape="isOpen = false"
+  x-on:click.away="isOpen = false"
+  class={twMerge('inline-flex relative', className)}
+  role="listbox"
+  {...props}
+>
+  <slot />
+</div>
+
+<script>
+  import Alpine from 'alpinejs';
+
+  document.addEventListener('alpine:init', () => {
+    Alpine.data('Dropdown', (initialState = {}) => ({
+      isOpen: initialState.isOpen || false,
+      focusedIndex: null,
+      toggleDropdown() {
+        this.$el.focus();
+        if (!this.isOpen) {
+          this.focusedItem =
+            this.selectedItem ??
+            this.$root.querySelector('[data-dropdown-item]')?.dataset
+              .selectItem;
+        }
+        this.isOpen = !this.isOpen;
+      },
+      clearFocus() {
+        // Clear the focusedItem when mouse leaves the container
+        if (this.isOpen == true) {
+          this.focusedIndex = null;
+          // Query all elements with the 'data-dropdown-item' attribute within the component
+          const items = this.$el.querySelectorAll('[data-dropdown-item]');
+
+          // Iterate over each item and remove the specified attribute
+          items.forEach((item) => {
+            item.removeAttribute('data-is-focused');
+          });
+        }
+      },
+      focusNext() {
+        const items = [...this.$el.querySelectorAll('[data-dropdown-item]')];
+        if (this.focusedIndex === null) {
+          this.focusedIndex = 0; // Select the first item if none is selected
+        } else {
+          this.focusedIndex = (this.focusedIndex + 1) % items.length;
+        }
+        this.updateFocusedItem();
+      },
+      focusPrev() {
+        const items = [...this.$el.querySelectorAll('[data-dropdown-item]')];
+        if (this.focusedIndex === null) {
+          this.focusedIndex = items.length - 1; // Select the last item if none is selected
+        } else {
+          this.focusedIndex =
+            (this.focusedIndex - 1 + items.length) % items.length;
+        }
+        this.updateFocusedItem();
+      },
+      // hoverItem(event) {
+      //   const items = Array.from(
+      //     this.$root.querySelectorAll('[data-dropdown-item]'),
+      //   );
+
+      //   const hoveredItem = event.target.closest('[data-dropdown-item]'); // Use closest in case the event target is a child element
+
+      //   items.forEach((item, index) => {
+      //     item.removeAttribute('data-is-focused'); // Remove highlight from other items
+      //   });
+
+      //   hoveredItem.setAttribute('data-is-focused', 'true'); // Highlight the selected item
+      // },
+
+      hoverItem(event) {
+        const items = Array.from(
+          this.$root.querySelectorAll('[data-dropdown-item]'),
+        );
+
+        const hoveredItem = event.target.closest('[data-dropdown-item]');
+        const index = items.indexOf(hoveredItem);
+
+        if (index > -1) {
+          this.focusedIndex = index; // Update focusedIndex based on hover
+          items.forEach((item) => item.removeAttribute('data-is-focused'));
+          hoveredItem.setAttribute('data-is-focused', 'true');
+        }
+      },
+      updateFocusedItem() {
+        const items = [...this.$el.querySelectorAll('[data-dropdown-item]')];
+        items.forEach((item, index) => {
+          if (index === this.focusedIndex) {
+            item.setAttribute('data-is-focused', 'true'); // Highlight the selected item
+          } else {
+            item.removeAttribute('data-is-focused'); // Remove highlight from other items
+          }
+        });
+      },
+      // Initialize and update the selected item on component mount
+      init() {
+        this.updateFocusedItem();
+      },
+    }));
+  });
+</script>
