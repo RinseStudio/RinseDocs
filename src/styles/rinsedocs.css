@@ -82,7 +82,7 @@
   padding: 14px;
   overflow: auto;
   font-family: monospace;
-  background-color: #f6f6f6;
+  /* background-color: #f6f6f6; */
   @apply rounded-lg text-sm;
 }
 
@@ -123,7 +123,7 @@
 }
 
 .rinsedown > table code {
-  @apply select-all text-blue-600;
+  @apply select-all text-blue-900;
 }
 
 .rinsedown > table th {
@@ -154,4 +154,29 @@
 .rinsedown > img {
   max-width: 100%;
   display: block;
+}
+
+.astro-code,
+.shiki {
+  @apply px-4 py-2.5 text-[13px];
+}
+
+.rinsedown pre.astro-code {
+  @apply border border-slate-200 bg-slate-50;
+}
+
+.rinse-ui pre.astro-code {
+  @apply border-0;
+}
+
+html.dark .shiki,
+html.dark .shiki span,
+html.dark .astro-code,
+html.dark .astro-code span {
+  color: var(--shiki-dark) !important;
+  background-color: var(--shiki-dark-bg) !important;
+  /* Optional, if you also want font styles */
+  font-style: var(--shiki-dark-font-style) !important;
+  font-weight: var(--shiki-dark-font-weight) !important;
+  text-decoration: var(--shiki-dark-text-decoration) !important;
 }

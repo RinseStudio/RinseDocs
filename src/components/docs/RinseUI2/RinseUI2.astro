@@ -24,40 +24,21 @@ const getFormattedCode = async (content, parser) => {
 
 <div
   x-data="RinseUI"
-  class="rinse-ui overflow-hidden rounded-lg bg-slate-50 ring-1 ring-slate-200 dark:bg-black/20 dark:ring-zinc-800"
-  x-bind:class="{
-    'bg-slate-50 ring-1 ring-slate-200 dark:bg-black/20 dark:ring-zinc-800': tab == 'preview',
-    'bg-black': tab != 'preview'
-  }"
+  class="rinse-ui overflow-hidden rounded-lg border border-slate-200 bg-slate-50 dark:border-zinc-800 dark:bg-black/20"
   data-rinse-ui
 >
   {
     isPreviewOnly != true && (
-      <header
-        class="flex items-center justify-between border-b border-slate-200 pl-4 dark:border-slate-100/10"
-        x-bind:class={`{
-      'border-slate-200 dark:border-slate-100/10': tab == 'preview',
-      'border-slate-100/20': tab != 'preview'
-    }`}
-      >
+      <header class="flex items-center justify-between border-b border-slate-200 pl-4 dark:border-slate-100/10">
         <div class="flex items-center gap-4">
           <button
             class="h-10 text-xs font-semibold text-gray-900 dark:text-white"
-            x-bind:class="{
-          'text-gray-900 dark:text-white': tab == 'preview', 
-          'text-gray-400 hover:text-white': tab != 'preview'
-        }"
             x-on:click="tab = 'preview'"
           >
             Preview
           </button>
           <button
             class="h-10 text-xs font-semibold text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"
-            x-bindx-bind:class={`{
-          'text-white': tab == 'code', 
-          'text-gray-400 hover:text-white': tab != 'code' && tab != 'preview',
-          'text-gray-400 hover:text-gray-600 dark:hover:text-gray-200': tab != 'code' && tab == 'preview',
-        }`}
             x-on:click="tab = 'code'"
           >
             Code
@@ -65,11 +46,6 @@ const getFormattedCode = async (content, parser) => {
 
           <button
             class="h-10 text-xs font-semibold text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"
-            x-bind:class={`{
-          'text-white': tab == 'output', 
-          'text-gray-400 hover:text-white': tab != 'output' && tab != 'preview',
-          'text-gray-400 hover:text-gray-600 dark:hover:text-gray-200': tab != 'output' && tab == 'preview',
-        }`}
             x-on:click="tab = 'output'"
           >
             Output
@@ -127,25 +103,6 @@ const getFormattedCode = async (content, parser) => {
     </div>
   </div>
 </div>
-
-<style is:global>
-  .astro-code {
-    @apply px-4 py-2.5 text-[13px];
-  }
-  :root {
-    --astro-code-color-text: #ffffff; /* Nord's Snow Storm for general text */
-    --astro-code-color-background: #000000; /* Nord's Polar Night for background */
-    --astro-code-token-constant: #ffe775; /* Nord's Frost for constants */
-    --astro-code-token-string: #8fffb7; /* Nord's Aurora for strings */
-    --astro-code-token-comment: #4c566a; /* Nord's Polar Night, a bit lighter for comments */
-    --astro-code-token-keyword: #ffe775; /* Nord's Frost for keywords */
-    --astro-code-token-parameter: #88c0d0; /* Nord's Frost, another shade for parameters */
-    --astro-code-token-function: #31bfff; /* Nord's Frost, another shade for functions */
-    --astro-code-token-string-expression: #0ad8b6; /* Nord's Aurora, similar to strings */
-    --astro-code-token-punctuation: #eceff4; /* Nord's Snow Storm, for punctuation */
-    --astro-code-token-link: #5e81ac; /* Nord's Frost for links */
-  }
-</style>
 
 <script>
   import Alpine from 'alpinejs';

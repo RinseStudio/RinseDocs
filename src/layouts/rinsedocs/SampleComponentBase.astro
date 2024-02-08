@@ -24,6 +24,22 @@ if (elementToRemove) {
 }
 
 const bodyContent = document.body.innerHTML;
+
+import { codeToHtml } from 'shiki';
+
+const code = bodyContent; // input code
+
+const formatHTML = await prettify(code, 'html');
+
+const html = await codeToHtml(formatHTML, {
+  lang: 'html',
+  themes: {
+    light: 'vitesse-light',
+    dark: 'vitesse-dark',
+  },
+});
+
+// console.log(html); // highlighted html string
 ---
 
 <!doctype html>
@@ -55,13 +71,7 @@ const bodyContent = document.body.innerHTML;
       <slot />
     </div>
     <div id="code" style="display: none !important;"></div>
-    <div id="output" style="display: none !important;">
-      <Code
-        code={await prettify(bodyContent, 'html')}
-        lang="html"
-        theme="css-variables"
-      />
-    </div>
+    <div id="output" style="display: none !important;" set:html={html} />
 
     <script src="https://unpkg.com/lucide@latest"></script>
     <script is:inline>
