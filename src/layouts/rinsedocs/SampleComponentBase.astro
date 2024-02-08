@@ -16,8 +16,9 @@ const dom = new JSDOM(outputCode);
 const document = dom.window.document;
 
 // Select the element you want to remove
-const elementToRemove = document.querySelector('.astro-code');
+const elementToRemove = document.querySelector('.expressive-code');
 
+const codeOutput = elementToRemove.outerHTML;
 // Remove the selected element
 if (elementToRemove) {
   elementToRemove.remove(); // Modern method, directly removes the element
@@ -67,10 +68,8 @@ const html = await codeToHtml(formatHTML, {
       frontmatter.bodyClassName,
     )}
   >
-    <div id="component" class={frontmatter.className}>
-      <slot />
-    </div>
-    <div id="code" style="display: none !important;"></div>
+    <div id="component" class={frontmatter.className} set:html={bodyContent} />
+    <div id="code" style="display: none !important;" set:html={codeOutput} />
     <div id="output" style="display: none !important;" set:html={html} />
 
     <script src="https://unpkg.com/lucide@latest"></script>

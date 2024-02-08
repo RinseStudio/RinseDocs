@@ -26,6 +26,7 @@ const getFormattedCode = async (content, parser) => {
   x-data="RinseUI"
   class="rinse-ui overflow-hidden rounded-lg border border-slate-200 bg-slate-50 dark:border-zinc-800 dark:bg-black/20"
   data-rinse-ui
+  data-is-preview-only={isPreviewOnly}
 >
   {
     isPreviewOnly != true && (
@@ -83,24 +84,26 @@ const getFormattedCode = async (content, parser) => {
         </div>
       </div>
     </div>
-
-    <div
-      x-show="tab == 'code'"
-      x-cloak
-      class="max-h-[500px] overflow-auto text-sm"
-      x-ref="codeContainer"
-      data-tab-name="code"
-    >
-    </div>
-
-    <div
-      x-show="tab == 'output'"
-      x-cloak
-      class="max-h-[500px] overflow-auto text-sm"
-      x-ref="outputContainer"
-      data-tab-name="output"
-    >
-    </div>
+    {
+      isPreviewOnly != true && (
+        <>
+          <div
+            x-show="tab == 'code'"
+            x-cloak
+            class="max-h-[500px] overflow-auto text-sm"
+            x-ref="codeContainer"
+            data-tab-name="code"
+          />
+          <div
+            x-show="tab == 'output'"
+            x-cloak
+            class="max-h-[500px] overflow-auto text-sm"
+            x-ref="outputContainer"
+            data-tab-name="output"
+          />
+        </>
+      )
+    }
   </div>
 </div>
 
@@ -132,24 +135,26 @@ const getFormattedCode = async (content, parser) => {
 
             resizeObserver.observe(body);
 
-            // # Code Element
-            // Use querySelector on the iframe's document
-            let codeElement = iframeDocument.querySelector('pre.astro-code');
+            if (!this.$root.hasAttribute('data-is-preview-only')) {
+              // # Code Element
+              // Use querySelector on the iframe's document
+              let codeElement = iframeDocument.querySelector('#code');
 
-            // Select or create the div on the parent page where you want to insert the content
-            let codeContainer = this.$refs.codeContainer;
+              // Select or create the div on the parent page where you want to insert the content
+              let codeContainer = this.$refs.codeContainer;
 
-            // Insert the content into the div
-            codeContainer.innerHTML = codeElement.outerHTML;
+              // Insert the content into the div
+              codeContainer.innerHTML = codeElement.innerHTML;
 
-            // # Output Element
-            // Use querySelector to find the target element inside the iframe
-            let componentElement = iframeDocument.querySelector('#output');
+              // # Output Element
+              // Use querySelector to find the target element inside the iframe
+              let componentElement = iframeDocument.querySelector('#output');
 
-            let outputContainer = this.$refs.outputContainer;
+              let outputContainer = this.$refs.outputContainer;
 
-            // Insert the content into the div
-            outputContainer.innerHTML = componentElement.innerHTML;
+              // Insert the content into the div
+              outputContainer.innerHTML = componentElement.innerHTML;
+            }
           } catch (error) {
             console.error('Error accessing iframe content:', error);
           }

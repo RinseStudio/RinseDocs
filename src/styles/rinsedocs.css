@@ -180,3 +180,57 @@ html.dark .astro-code span {
   font-weight: var(--shiki-dark-font-weight) !important;
   text-decoration: var(--shiki-dark-text-decoration) !important;
 }
+
+html.dark .expressive-code,
+html.dark .expressive-code span {
+  color: var(--1, inherit) !important;
+}
+
+.expressive-code {
+  @apply my-4;
+}
+.expressive-code .frame {
+  /* all: inherit !important; */
+  @apply !rounded-md !border !border-slate-200 !shadow-none;
+}
+
+.expressive-code pre {
+  @apply !border !border-slate-200 !bg-white dark:!border-zinc-800 dark:!bg-black/20;
+}
+
+.expressive-code .copy {
+  inset-block-start: 10px !important;
+  inset-inline-end: 10px !important;
+}
+
+.expressive-code .feedback {
+  @apply !flex !h-6 !items-center !rounded-md !bg-black !px-1.5 !text-[11px] !font-medium !transition-transform after:!hidden;
+}
+.expressive-code .copy button {
+  @apply !size-8 !rounded-md !bg-transparent;
+}
+.expressive-code .copy button::before {
+  @apply !border-0;
+}
+.expressive-code .copy button div {
+  @apply !bg-transparent !duration-0;
+}
+.expressive-code .copy button:hover div,
+.expressive-code .copy button:focus:focus-visible div {
+  @apply !bg-slate-100 !opacity-100;
+}
+.expressive-code .copy button::after {
+  @apply !m-[8px] !bg-gray-400;
+}
+
+.expressive-code .copy button:hover:after {
+  @apply !bg-gray-900;
+}
+
+.rinse-ui .expressive-code {
+  @apply my-0;
+}
+
+.rinse-ui .expressive-code pre {
+  @apply !rounded-none !border-0 dark:!bg-transparent;
+}
