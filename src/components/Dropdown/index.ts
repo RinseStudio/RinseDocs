@@ -5,7 +5,7 @@ import DropdownGroup from './DropdownGroup.astro';
 import DropdownHeader from './DropdownHeader.astro';
 import DropdownItem from './DropdownItem.astro';
 import DropdownList from './DropdownList.astro';
-import DropdownSeparator from './DropdownSeparator.astro';
+import DropdownDivider from './DropdownDivider.astro';
 
 export {
   Dropdown,
@@ -15,5 +15,5 @@ export {
   DropdownHeader,
   DropdownItem,
   DropdownList,
-  DropdownSeparator,
+  DropdownDivider,
 };
