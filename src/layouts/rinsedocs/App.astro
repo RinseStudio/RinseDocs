@@ -6,10 +6,9 @@ import { SITE } from '@/rinsedocs.config';
 import Layout from '@/layouts/rinsedocs/Base.astro';
 
 import { buildBreadcrumb, buildNavigation } from '@/utils/helpers.js';
-
+import { Button } from '@/components/Button';
 import SidebarList from '@/components/docs/SidebarList.astro';
 import TOC from '@/components/docs/TOC.astro';
-DropdownDivideron';
 import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/Tooltip';
 
 const { frontmatter, headings, entry } = Astro.props;
