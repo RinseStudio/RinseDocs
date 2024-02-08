@@ -19,46 +19,22 @@ pageSettings:
   enableFluidWidth: true
 ---
 
-import RinseUI from '@/components/docs/RinseUI';
+import RinseUI2 from '@/components/docs/RinseUI2';
 
-## Basic usage
+## Basic Checkbox
 
 The following is an example of a basic checkbox.
 
-import BasicCheckbox from '@/components/Checkbox/sample/BasicCheckbox.astro';
+<RinseUI2 url="/components/checkbox/basic-checkbox"></RinseUI2>
 
-<RinseUI
-  className="bg-white dark:bg-transparent"
-  url="/components/elements/checkbox/sample/basic-checkbox"
-  src="/components/ui/Checkbox/sample/BasicCheckbox.astro"
->
-  <BasicCheckbox />
-</RinseUI>
+## Checkbox States
 
-## Checkbox states
+Checkbox can have various states.
 
-Checkboxes can be in a checked, unchecked, or disabled state.
+<RinseUI2 url="/components/checkbox/checkbox-states"></RinseUI2>
 
-import CheckboxStates from '@/components/Checkbox/sample/CheckboxStates.astro';
-
-<RinseUI
-  className="bg-white dark:bg-transparent"
-  url="/components/elements/checkbox/sample/checkbox-states"
-  src="/components/ui/Checkbox/sample/CheckboxStates.astro"
->
-  <CheckboxStates />
-</RinseUI>
-
-## Multi-select form
+## Multi-Select Checkbox
 
 You can combine multiple checkboxes to create a multi-select field set.
 
-import MultiSelect from '@/components/Checkbox/sample/MultiSelect.astro';
-
-<RinseUI
-  className="bg-white dark:bg-transparent"
-  url="/components/elements/checkbox/sample/multi-select"
-  src="/components/ui/Checkbox/sample/MultiSelect.astro"
->
-  <MultiSelect />
-</RinseUI>
+<RinseUI2 url="/components/checkbox/multi-select-checkbox"></RinseUI2>

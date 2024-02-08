@@ -122,6 +122,10 @@
   @apply overflow-hidden rounded-lg ring-1 ring-slate-200;
 }
 
+.rinsedown > table code {
+  @apply select-all text-blue-600;
+}
+
 .rinsedown > table th {
   @apply border-b border-slate-200 px-4 py-3 text-left text-xs font-semibold text-gray-900;
 }
