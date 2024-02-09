@@ -3,7 +3,9 @@ import { twMerge } from 'tailwind-merge';
 
 const {
   position = 'bottom-start',
+  offset = '8',
   className,
+  childClassName,
   enterClassName,
   enterStartClassName,
   enterEndClassName,
@@ -14,7 +16,7 @@ const {
 } = Astro.props;
 
 const anchor = {
-  [`x-anchor.${position}.offset.8`]: '$refs.dropdownTrigger',
+  [`x-anchor.${position}.offset.${offset}`]: '$refs.dropdownTrigger',
 };
 ---
 
@@ -75,11 +77,15 @@ const anchor = {
     position == 'left-end' && 'translate-x-2',
     leaveEndClassName,
   )}
-  class={twMerge(
-    'ring-1 ring-gray-200 dark:ring-zinc-700 whitespace-nowrap rounded-lg shadow-md bg-white dark:bg-zinc-800 z-10',
-    className,
-  )}
+  class={twMerge('z-10', className)}
   {...props}
 >
-  <slot />
+  <div
+    class={twMerge(
+      'rounded-lg bg-white shadow-md ring-1 ring-gray-200 dark:bg-zinc-800 dark:ring-zinc-700',
+      childClassName,
+    )}
+  >
+    <slot />
+  </div>
 </div>

@@ -1,11 +1,13 @@
 ---
 title: 'Basic Dropdown'
 layout: '@/layouts/rinsedocs/SampleComponentBase.astro'
-className: 'h-[380px] w-[320px] px-4 py-10'
+className: 'h-[420px] w-[320px] px-4 py-10'
 bodyClassName: 'flex items-center justify-center'
 ---
 
 import { Button } from '@/components/Button';
+import { Image } from 'astro:assets';
+import profilePic from "@/assets/images/uifaces-abstract-profile-01.jpg";
 import {
   Dropdown,
   DropdownContent,
@@ -20,19 +22,28 @@ import {
 {
 
 <Dropdown data={`isOpen: true`}>
-  <DropdownTrigger>
-    <Button as="div" size="sm" variant="outline">
-      Settings
-      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down ml-1.5"><path d="m6 9 6 6 6-6"/></svg>
-    </Button>
+  <DropdownTrigger className="w-full">
+    <div class="rounded-lg px-4 py-2.5 flex items-center gap-3 justify-between bg-white shadow-md">
+      <div class="flex items-center">
+        <Image src={profilePic} alt="profile" width="100" class="size-12 rounded-full border-2 border-white shadow-md"/>
+        <div class="ml-4">
+          <div class="mb-1 flex items-center gap-2 text-gray-900 text-sm font-semibold">
+            Capriso Ludzega
+            <div class="flex items-center px-1.5 h-5 text-[10px] rounded-full bg-violet-500 text-violet-100">
+              PRO
+            </div>
+          </div>
+          <div class="text-gray-500 text-xs">ludzega@rinsestudio.com</div>
+        </div>
+      </div>
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down"><path d="m6 9 6 6 6-6"/></svg>
 
+    </div>
   </DropdownTrigger>
-
-  <DropdownContent className="w-[280px]">
+  <DropdownContent className="w-full">
     <DropdownGroup>
       <DropdownHeader>Workspace settings</DropdownHeader>
       <DropdownList>
-        
         <DropdownItem>
           Invite and manage users
         </DropdownItem> 
@@ -61,9 +72,7 @@ import {
     <DropdownGroup>
       <DropdownList>
         <DropdownItem>
-          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-log-out rotate-180 mr-1.5"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" x2="9" y1="12" y2="12"/></svg>
-
-          Sign out
+          Log out
         </DropdownItem>
       </DropdownList>
     </DropdownGroup>

@@ -5,7 +5,7 @@ const { className, value, isDisabled, ...props } = Astro.props;
 
 <div
   class={twMerge(
-    'flex relative h-8 w-full font-medium cursor-default items-center rounded-md text-[13px] text-gray-800 dark:text-gray-300',
+    'flex relative h-8 w-full font-medium cursor-default whitespace-nowrap items-center rounded-md text-[13px] text-gray-800 dark:text-gray-300',
 
     // Disabled State
     'data-[is-disabled]:text-gray-400 data-[disabled]:pointer-events-none',

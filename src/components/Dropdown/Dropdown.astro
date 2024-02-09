@@ -1,16 +1,32 @@
 ---
 import { twMerge } from 'tailwind-merge';
-const { data, className, ...props } = Astro.props;
+const {
+  data,
+  isOpen = false,
+  openOnHover = false,
+  className,
+  ...props
+} = Astro.props;
+
+let hoverListeners;
+
+if (openOnHover) {
+  hoverListeners = {
+    [`x-on:mouseover`]: 'openDropdown',
+    [`x-on:mouseleave`]: 'closeDropdown',
+  };
+}
 ---
 
 <div
-  x-data={`Dropdown({${data}})`}
+  x-data={`Dropdown({ ${isOpen ? 'isOpen: true,' : ''} ${data ? data : ''} })`}
   x-on:keydown.up.prevent="focusPrev()"
   x-on:keydown.down.prevent="focusNext()"
   x-on:keydown.left.prevent="focusPrev()"
   x-on:keydown.right.prevent="focusNext()"
   x-on:keydown.escape="isOpen = false"
   x-on:click.away="isOpen = false"
+  {...hoverListeners}
   class={twMerge('inline-flex relative', className)}
   role="listbox"
   {...props}
@@ -27,14 +43,13 @@ const { data, className, ...props } = Astro.props;
       openOnHover: initialState.openOnHover || false,
       focusedIndex: null,
       toggleDropdown() {
-        this.$el.focus();
-        if (!this.isOpen) {
-          this.focusedItem =
-            this.selectedItem ??
-            this.$root.querySelector('[data-dropdown-item]')?.dataset
-              .selectItem;
-        }
         this.isOpen = !this.isOpen;
+      },
+      openDropdown() {
+        this.isOpen = true;
+      },
+      closeDropdown() {
+        this.isOpen = false;
       },
       clearFocus() {
         // Clear the focusedItem when mouse leaves the container
@@ -68,20 +83,6 @@ const { data, className, ...props } = Astro.props;
         }
         this.updateFocusedItem();
       },
-      // hoverItem(event) {
-      //   const items = Array.from(
-      //     this.$root.querySelectorAll('[data-dropdown-item]'),
-      //   );
-
-      //   const hoveredItem = event.target.closest('[data-dropdown-item]'); // Use closest in case the event target is a child element
-
-      //   items.forEach((item, index) => {
-      //     item.removeAttribute('data-is-focused'); // Remove highlight from other items
-      //   });
-
-      //   hoveredItem.setAttribute('data-is-focused', 'true'); // Highlight the selected item
-      // },
-
       hoverItem(event) {
         const items = Array.from(
           this.$root.querySelectorAll('[data-dropdown-item]'),
