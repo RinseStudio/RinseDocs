@@ -1,11 +1,17 @@
 ---
 import { twMerge } from 'tailwind-merge';
 
-const { data, validation, size = 'md', className, ...props } = Astro.props;
+const {
+  data,
+  validation = 'default',
+  size = 'md',
+  className,
+  ...props
+} = Astro.props;
 ---
 
 <select
-  data-validation={validation}
+  data-select-validation={validation}
   class={twMerge(
     // Base
     `relative 
@@ -69,19 +75,19 @@ const { data, validation, size = 'md', className, ...props } = Astro.props;
     dark:disabled:bg-zinc-100/[0.06] 
     dark:disabled:text-gray-400
     
-    data-[validation=success]:ring-2 
-    data-[validation=success]:ring-green-500 
-    data-[validation=success]:dark:ring-green-500 
-    data-[validation=success]:text-green-800 
-    data-[validation=success]:dark:text-green-200 
-    data-[validation=success]:placeholder:text-green-500
+    data-[select-validation=success]:ring-2 
+    data-[select-validation=success]:ring-green-500 
+    data-[select-validation=success]:dark:ring-green-500 
+    data-[select-validation=success]:text-green-800 
+    data-[select-validation=success]:dark:text-green-200 
+    data-[select-validation=success]:placeholder:text-green-500
 
-    data-[validation=error]ring-2 
-    data-[validation=error]ring-red-500 
-    data-[validation=error]dark:ring-red-500 
-    data-[validation=error]text-red-800 
-    data-[validation=error]dark:text-red-200 
-    data-[validation=error]placeholder:text-red-500
+    data-[select-validation=error]:ring-2 
+    data-[select-validation=error]:ring-red-500 
+    data-[select-validation=error]:dark:ring-red-500 
+    data-[select-validation=error]:text-red-800 
+    data-[select-validation=error]:dark:text-red-200 
+    data-[select-validation=error]:placeholder:text-red-500
     `,
 
     size == 'xs' && 'text-[12px] h-7 pl-3',

@@ -15,14 +15,17 @@ const dom = new JSDOM(outputCode);
 // Get the document
 const document = dom.window.document;
 
-// Select the element you want to remove
-const elementToRemove = document.querySelector('.expressive-code');
+// Select all elements you want to remove
+const elementsToRemove = document.querySelectorAll('.expressive-code');
 
-const codeOutput = elementToRemove.outerHTML;
-// Remove the selected element
-if (elementToRemove) {
-  elementToRemove.remove(); // Modern method, directly removes the element
-}
+// Store code outputs of all elements
+let codeOutputs = [];
+
+// Remove the selected elements
+elementsToRemove.forEach((element) => {
+  codeOutputs.push(element.outerHTML);
+  element.remove(); // Removes the element
+});
 
 const bodyContent = document.body.innerHTML;
 
@@ -69,7 +72,11 @@ const html = await codeToHtml(formatHTML, {
     )}
   >
     <div id="component" class={frontmatter.className} set:html={bodyContent} />
-    <div id="code" style="display: none !important;" set:html={codeOutput} />
+    <div
+      id="code"
+      style="display: none !important;"
+      set:html={codeOutputs[0]}
+    />
     <div id="output" style="display: none !important;" set:html={html} />
 
     <script src="https://unpkg.com/lucide@latest"></script>

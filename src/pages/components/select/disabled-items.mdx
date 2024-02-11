@@ -1,7 +1,7 @@
 ---
 title: 'Basic Text Field'
 layout: '@/layouts/rinsedocs/SampleComponentBase.astro'
-className: 'w-[280px] h-[300px] px-5 py-10'
+className: 'w-[280px] h-[340px] px-5 py-10'
 bodyClassName: 'flex items-center justify-center'
 ---
 
@@ -15,20 +15,35 @@ import {
   SelectItem,
 } from '@/components/Select';
 
+{
+
 <Select isOpen className="w-full">
-  <SelectTrigger>Select a fruit</SelectTrigger>
+  <SelectTrigger>Select size</SelectTrigger>
   <SelectContent className="w-full">
     <SelectGroup>
-      <SelectHeader>Fruits</SelectHeader>
+      <SelectHeader>US Sizes</SelectHeader>
       <SelectList>
-        <SelectItem value="apple">Apple</SelectItem>
-        <SelectItem value="tomato">Banana</SelectItem>
-        <SelectItem value="blueberry">Blueberry</SelectItem>
-        <SelectItem value="grapes">Grapes</SelectItem>
+        <SelectItem value="xs">XS</SelectItem>
+        <SelectItem value="s">S</SelectItem>
+        <SelectItem value="m">M</SelectItem>
+        <SelectItem value="lg" isDisabled>
+          <div class="flex items-center justify-between">
+            LG
+            <div class="italic">Sold out</div>
+          </div>
+        </SelectItem>
+        <SelectItem value="xl" isDisabled>
+          <div class="flex items-center justify-between">
+            XL
+            <div class="italic">Sold out</div>
+          </div>
+        </SelectItem>
       </SelectList>
     </SelectGroup>
   </SelectContent>
 </Select>
+
+}
 
 ```mdx
 import {

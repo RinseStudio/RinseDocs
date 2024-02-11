@@ -20,7 +20,7 @@ import {
 } from '@/components/Dropdown';
 
 {
-<Dropdown openOnHover isOpen>
+<Dropdown openOnHover>
   <DropdownTrigger>
     <div class="rounded-full flex items-center gap-2 pr-3 justify-between bg-white shadow-md">
       <Image src={profilePic} alt="profile" width="100" class="size-10 rounded-full border-2 border-white shadow-md"/>
@@ -29,7 +29,7 @@ import {
     </div>
   </DropdownTrigger>
 
-  <DropdownContent offset="0" position="bottom" className="pt-4">
+  <DropdownContent offset="0" position="bottom-end" className="pt-4">
     <div class="px-3 py-3">
       <div class="text-xs text-gray-600 whitespace-nowrap">
         <span class="font-medium text-gray-900">15</span> followers · <span class="font-medium text-gray-900">33</span> following

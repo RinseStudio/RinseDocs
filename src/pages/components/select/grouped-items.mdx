@@ -1,0 +1,97 @@
+---
+title: 'Basic Text Field'
+layout: '@/layouts/rinsedocs/SampleComponentBase.astro'
+className: 'w-[200px] h-[280px] px-4 py-10'
+bodyClassName: 'flex items-center justify-center'
+---
+
+import {
+  Select,
+  SelectGroup,
+  SelectTrigger,
+  SelectContent,
+  SelectHeader,
+  SelectSeparator,
+  SelectList,
+  SelectItem,
+} from '@/components/Select';
+
+<Select isOpen>
+  <SelectTrigger>Select mode</SelectTrigger>
+  <SelectContent className="w-[160px]">
+    <SelectGroup>
+      <SelectHeader>Select mode</SelectHeader>
+      <SelectList>
+        <SelectItem value="light">
+          <div class="flex items-center">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-sun mr-1.5"
+            >
+              <circle cx="12" cy="12" r="4" />
+              <path d="M12 2v2" />
+              <path d="M12 20v2" />
+              <path d="m4.93 4.93 1.41 1.41" />
+              <path d="m17.66 17.66 1.41 1.41" />
+              <path d="M2 12h2" />
+              <path d="M20 12h2" />
+              <path d="m6.34 17.66-1.41 1.41" />
+              <path d="m19.07 4.93-1.41 1.41" />
+            </svg>
+            Light
+          </div>
+        </SelectItem>
+        <SelectItem value="dark">
+          <div class="flex items-center">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-moon mr-1.5"
+            >
+              <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+            </svg>
+            Dark
+          </div>
+        </SelectItem>
+      </SelectList>
+    </SelectGroup>
+    <SelectSeparator />
+    <SelectGroup>
+      <SelectList>
+        <SelectItem value="system">Based on system</SelectItem>
+      </SelectList>
+    </SelectGroup>
+  </SelectContent>
+</Select>
+
+```mdx
+<Select isOpen className="w-[240px]">
+  <SelectTrigger>Select a fruit</SelectTrigger>
+  <SelectContent position="top" className="w-[240px]">
+    <SelectGroup>
+      <SelectHeader>Fruits</SelectHeader>
+      <SelectList>
+        <SelectItem value="apple">Apple</SelectItem>
+        <SelectItem value="tomato">Banana</SelectItem>
+        <SelectItem value="blueberry">Blueberry</SelectItem>
+        <SelectItem value="grapes">Grapes</SelectItem>
+      </SelectList>
+    </SelectGroup>
+  </SelectContent>
+</Select>
+```

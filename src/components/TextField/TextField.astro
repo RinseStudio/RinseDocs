@@ -1,10 +1,11 @@
 ---
 import { twMerge } from 'tailwind-merge';
 const {
-  placeholder = 'First name',
+  placeholder = 'Placeholder text',
   value = null,
   type = 'text',
   validation = null,
+  size = 'md',
   className,
   ...props
 } = Astro.props;
@@ -26,15 +27,22 @@ const {
     data-[input-validation=success]:dark:ring-green-500
     data-[input-validation=success]:text-green-800 
     data-[input-validation=success]:dark:text-green-200 
-    data-[input-validation=success]:placeholder:text-green-500
+    data-[input-validation=success]:placeholder:text-green-600/70
+    data-[input-validation=success]:dark:placeholder:text-green-400/60
 
     data-[input-validation=error]:ring-2 
     data-[input-validation=error]:ring-red-400 
     data-[input-validation=error]:dark:ring-red-400
     data-[input-validation=error]:text-red-900 
     data-[input-validation=error]:dark:text-red-200 
-    data-[input-validation=error]:placeholder:text-red-300
+    data-[input-validation=error]:placeholder:text-red-500/60
+    data-[input-validation=error]:dark:placeholder:text-red-400/70
     `,
+    size == 'xs' && 'text-[12px] h-7 px-3 gap-3',
+    size == 'sm' && 'text-[13px] h-8 px-3 gap-3',
+    size == 'md' && 'text-[14px] h-9 px-3 gap-3',
+    size == 'lg' && 'text-[15px] h-10 px-3 gap-3',
+    size == 'xl' && 'text-[16px] h-11 px-4 gap-3',
     className,
   )}
   data-input-validation={validation}

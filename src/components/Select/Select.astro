@@ -1,12 +1,20 @@
 ---
 import { twMerge } from 'tailwind-merge';
-const { data, className, ...props } = Astro.props;
+const {
+  data,
+  isOpen = false,
+  selectedItem = null,
+  className,
+  ...props
+} = Astro.props;
 ---
 
 <div
-  x-data={`Select({${data}})`}
-  x-on:keydown.up.prevent="arrowUp()"
-  x-on:keydown.down.prevent="arrowDown()"
+  x-data={`Select({ ${isOpen ? 'isOpen: true,' : ''} ${selectedItem ? 'selectedItem:' + "'" + selectedItem + "'" + ',' : ''}  ${data ? data : ''} })`}
+  x-on:keydown.up.prevent="focusPrev()"
+  x-on:keydown.down.prevent="focusNext()"
+  x-on:keydown.left.prevent="focusPrev()"
+  x-on:keydown.right.prevent="focusNext()"
   x-on:keydown.escape="isOpen = false"
   x-on:keydown.enter.prevent="enterKeyItem"
   x-on:click.away="isOpen = false"
@@ -27,9 +35,22 @@ const { data, className, ...props } = Astro.props;
       focusedItem: initialState.focusedItem || null,
       init() {
         // Optionally, initialize focusedItem to the first item to avoid undefined access
-        let firstItem = this.$el.querySelector('[data-select-item]');
-        if (firstItem) {
-          this.focusedItem = firstItem.dataset.selectItem;
+        if (this.selectedItem != null) {
+          this.focusedItem = this.selectedItem;
+
+          // Get the clicked item's innerHTML
+          const selectedItemInner = this.$root.querySelector(
+            `[data-select-item=${this.selectedItem}] [data-select-item-slot]`,
+          ).innerHTML;
+
+          // Update the target div's content
+          this.$root.querySelector('[data-select-trigger-slot]').innerHTML =
+            selectedItemInner;
+        } else {
+          let firstItem = this.$el.querySelector('[data-select-item]');
+          if (firstItem) {
+            this.focusedItem = firstItem.dataset.selectItem;
+          }
         }
       },
       toggleSelect() {
@@ -79,7 +100,7 @@ const { data, className, ...props } = Astro.props;
           this.focusedItem = null;
         }
       },
-      arrowUp() {
+      focusPrev() {
         let items = this.$el.querySelectorAll('[data-select-item]');
         let currentIndex = Array.from(items).findIndex(
           (item) => item.dataset.selectItem === this.focusedItem,
@@ -93,7 +114,7 @@ const { data, className, ...props } = Astro.props;
           this.focusedItem = items[currentIndex].dataset.selectItem;
         }
       },
-      arrowDown() {
+      focusNext() {
         let items = this.$el.querySelectorAll('[data-select-item]');
         let currentIndex = Array.from(items).findIndex(
           (item) => item.dataset.selectItem === this.focusedItem,

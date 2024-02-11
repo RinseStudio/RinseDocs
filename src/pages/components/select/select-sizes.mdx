@@ -1,0 +1,64 @@
+---
+title: 'Basic Text Field'
+layout: '@/layouts/rinsedocs/SampleComponentBase.astro'
+className: 'flex flex-col gap-4 w-[280px] h-[320px] px-4 py-10'
+bodyClassName: 'flex items-center justify-center'
+---
+
+import { SelectNative, SelectOption } from '@/components/Select';
+
+{<>
+<SelectNative size="xs" className="w-full">
+  <SelectOption value="true">Enabled</SelectOption>
+  <SelectOption value="false">Disabled</SelectOption>
+</SelectNative>
+
+<SelectNative size="sm" className="w-full">
+  <SelectOption value="true">Enabled</SelectOption>
+  <SelectOption value="false">Disabled</SelectOption>
+</SelectNative>
+
+<SelectNative size="md" className="w-full">
+  <SelectOption value="true">Enabled</SelectOption>
+  <SelectOption value="false">Disabled</SelectOption>
+</SelectNative>
+
+<SelectNative size="lg" className="w-full">
+  <SelectOption value="true">Enabled</SelectOption>
+  <SelectOption value="false">Disabled</SelectOption>
+</SelectNative>
+
+<SelectNative size="xl" className="w-full">
+  <SelectOption value="true">Enabled</SelectOption>
+  <SelectOption value="false">Disabled</SelectOption>
+</SelectNative>
+</>}
+
+```mdx
+import { SelectNative, SelectOption } from '@/components/Select';
+
+<SelectNative size="xs" className="w-full">
+  <SelectOption value="true">Enabled</SelectOption>
+  <SelectOption value="false">Disabled</SelectOption>
+</SelectNative>
+
+<SelectNative size="sm" className="w-full">
+  <SelectOption value="true">Enabled</SelectOption>
+  <SelectOption value="false">Disabled</SelectOption>
+</SelectNative>
+
+<SelectNative size="md" className="w-full">
+  <SelectOption value="true">Enabled</SelectOption>
+  <SelectOption value="false">Disabled</SelectOption>
+</SelectNative>
+
+<SelectNative size="lg" className="w-full">
+  <SelectOption value="true">Enabled</SelectOption>
+  <SelectOption value="false">Disabled</SelectOption>
+</SelectNative>
+
+<SelectNative size="xl" className="w-full">
+  <SelectOption value="true">Enabled</SelectOption>
+  <SelectOption value="false">Disabled</SelectOption>
+</SelectNative>
+```

@@ -1,14 +1,15 @@
 ---
 import { twMerge } from 'tailwind-merge';
-const { validation, size = 'md', className, ...props } = Astro.props;
+const {
+  validation = 'default',
+  size = 'md',
+  className,
+  ...props
+} = Astro.props;
 ---
 
 <button
-  data-select-validation={validation == 'success'
-    ? 'success'
-    : validation == 'error'
-      ? 'error'
-      : null}
+  data-select-validation={validation}
   class={twMerge(
     // Base
     `relative 

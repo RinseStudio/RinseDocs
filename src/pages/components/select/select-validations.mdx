@@ -1,34 +1,33 @@
 ---
 title: 'Basic Text Field'
 layout: '@/layouts/rinsedocs/SampleComponentBase.astro'
-className: 'w-[280px] h-[300px] px-5 py-10'
+className: 'w-[280px] h-[180px] px-5 py-10'
 bodyClassName: 'flex items-center justify-center'
 ---
 
 import {
-  Select,
-  SelectGroup,
-  SelectTrigger,
-  SelectContent,
-  SelectHeader,
-  SelectList,
-  SelectItem,
+  SelectNative,
+  SelectOption,
 } from '@/components/Select';
 
-<Select isOpen className="w-full">
-  <SelectTrigger>Select a fruit</SelectTrigger>
-  <SelectContent className="w-full">
-    <SelectGroup>
-      <SelectHeader>Fruits</SelectHeader>
-      <SelectList>
-        <SelectItem value="apple">Apple</SelectItem>
-        <SelectItem value="tomato">Banana</SelectItem>
-        <SelectItem value="blueberry">Blueberry</SelectItem>
-        <SelectItem value="grapes">Grapes</SelectItem>
-      </SelectList>
-    </SelectGroup>
-  </SelectContent>
-</Select>
+{<>
+  <label
+    class="mb-1.5 flex text-sm font-semibold text-gray-900"
+    for="lead-source"
+  >
+    How did you hear about us?
+  </label>
+  <SelectNative validation="error" name="lead-source" className="w-full">
+    <SelectOption value="select">Please choose one option</SelectOption>
+    <SelectOption value="google">Google</SelectOption>
+    <SelectOption value="instagram">Instagram</SelectOption>
+    <SelectOption value="word">Word of mouth</SelectOption>
+    <SelectOption value="other">Other</SelectOption>
+  </SelectNative>
+  <div class="mt-1.5 text-xs font-medium text-red-500">
+    You must select one option.
+  </div>
+</>}
 
 ```mdx
 import {

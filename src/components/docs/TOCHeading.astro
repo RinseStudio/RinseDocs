@@ -4,7 +4,7 @@ const { heading } = Astro.props;
 
 <li
   class="text-xs leading-[28px]"
-  class:list={heading.depth !== 2 ? 'ml-2 font-normal' : 'font-semibold'}
+  class:list={heading.depth !== 2 ? 'ml-2 font-normal' : 'font-medium'}
 >
   {
     heading.depth !== 2 ? (

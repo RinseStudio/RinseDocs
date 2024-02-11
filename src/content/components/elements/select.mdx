@@ -21,14 +21,206 @@ pageSettings:
 
 import RinseUI2 from '@/components/docs/RinseUI2';
 
-## Basic usage
+## Basic select
 
 The following is an example of a basic select.
 
 <RinseUI2 url="/components/select/basic-select" />
 
-## Native Select
+## Configuring select
 
-The following is an example of a basic select.
+The select component can be further customized to change it's interaction behavior and also provide item grouping and directional control.
+
+### Select sizes
+
+<RinseUI2 url="/components/select/select-sizes" />
+
+### Controlling direction
+
+<RinseUI2 url="/components/select/controlling-direction" />
+
+### Grouped items
+
+<RinseUI2 url="/components/select/grouped-items" />
+
+### Pre-selected item
+
+<RinseUI2 url="/components/select/pre-selected-item" />
+
+### Disabled items
+
+<RinseUI2 url="/components/select/disabled-items" />
+
+### Select validations
+
+<RinseUI2 url="/components/select/select-validations" />
+
+### Native select
 
 <RinseUI2 url="/components/select/native-select" />
+
+## API reference
+
+The following props and prop values are available for this component.
+
+### Props for <code class="mx-1.5 inline-flex rounded-md bg-slate-100 px-2.5 py-1 text-sm font-medium text-slate-500">Select</code>
+
+<table class="props-table">
+  <tr>
+    <th width="30%">Prop</th>
+    <th>Values</th>
+    <th width="30%">Default</th>
+  </tr>
+  <tr>
+    <td>
+      <code>isOpen</code>
+    </td>
+    <td>
+      <code>boolean</code>,
+    </td>
+    <td>
+      <code>false</code>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <code>selectedItem</code>
+    </td>
+    <td>
+      <code>string</code>,
+    </td>
+    <td>
+      <code>null</code>
+    </td>
+  </tr>
+</table>
+
+### Props for <code class="mx-1.5 inline-flex rounded-md bg-slate-100 px-2.5 py-1 text-sm font-medium text-slate-500">SelectContent</code>
+
+<table class="props-table">
+  <tr>
+    <th width="30%">Prop</th>
+    <th>Values</th>
+    <th width="30%">Default</th>
+  </tr>
+  <tr>
+    <td>
+      <code>position</code>
+    </td>
+    <td>
+      <code>top</code>,<br />
+      <code>top-start</code>,<br />
+      <code>top-end</code>,<br />
+      <code>right</code>,<br />
+      <code>right-start</code>,<br />
+      <code>right-end</code>,<br />
+      <code>bottom</code>,<br />
+      <code>bottom-start</code>,<br />
+      <code>bottom-end</code>,<br />
+      <code>left</code>,<br />
+      <code>left-start</code>,<br />
+      <code>left-end</code>
+    </td>
+    <td>
+      <code>md</code>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <code>offset</code>
+    </td>
+    <td>
+      <code>number</code>
+    </td>
+    <td>
+      <code>8</code>
+    </td>
+  </tr>
+</table>
+
+### Props for <code class="mx-1.5 inline-flex rounded-md bg-slate-100 px-2.5 py-1 text-sm font-medium text-slate-500">SelectItem</code>
+
+<table class="props-table">
+  <tr>
+    <th width="30%">Prop</th>
+    <th>Values</th>
+    <th width="30%">Default</th>
+  </tr>
+  <tr>
+    <td>
+      <code>isDisabled</code>
+    </td>
+    <td>
+      <code>boolean</code>
+    </td>
+    <td>
+      <code>false</code>
+    </td>
+  </tr>
+</table>
+
+### Props for <code class="mx-1.5 inline-flex rounded-md bg-slate-100 px-2.5 py-1 text-sm font-medium text-slate-500">SelectNative</code>
+
+<table class="props-table">
+  <tr>
+    <th width="30%">Prop</th>
+    <th>Values</th>
+    <th width="30%">Default</th>
+  </tr>
+  <tr>
+    <td>
+      <code>validation</code>
+    </td>
+    <td>
+      <code>default</code>, <code>success</code>, <code>error</code>
+    </td>
+    <td>
+      <code>default</code>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <code>size</code>
+    </td>
+    <td>
+      <code>xs</code>, <code>sm</code>, <code>md</code>, <code>lg</code>,
+      <code>xl</code>
+    </td>
+    <td>
+      <code>md</code>
+    </td>
+  </tr>
+</table>
+
+### Props for <code class="mx-1.5 inline-flex rounded-md bg-slate-100 px-2.5 py-1 text-sm font-medium text-slate-500">SelectTrigger</code>
+
+<table class="props-table">
+  <tr>
+    <th width="30%">Prop</th>
+    <th>Values</th>
+    <th width="30%">Default</th>
+  </tr>
+  <tr>
+    <td>
+      <code>validation</code>
+    </td>
+    <td>
+      <code>default</code>, <code>success</code>, <code>error</code>
+    </td>
+    <td>
+      <code>default</code>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <code>size</code>
+    </td>
+    <td>
+      <code>xs</code>, <code>sm</code>, <code>md</code>, <code>lg</code>,
+      <code>xl</code>
+    </td>
+    <td>
+      <code>default</code>
+    </td>
+  </tr>
+</table>

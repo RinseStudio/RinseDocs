@@ -20,7 +20,7 @@
 }
 
 .sidebar-item {
-  @apply flex items-center justify-between truncate pl-3 pr-1 text-[13px] leading-[26px]  text-slate-500 hover:bg-slate-50 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-zinc-800/70 hover:dark:text-gray-100;
+  @apply flex items-center justify-between truncate pl-3 pr-1 text-[13px] leading-[26px] text-slate-500 hover:bg-slate-50 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-zinc-800/70 hover:dark:text-gray-100;
 }
 .sidebar-item.is-active {
   @apply bg-slate-100 font-medium text-slate-700 dark:bg-zinc-800/70 dark:text-gray-100;
@@ -47,7 +47,7 @@
 .rinsedown > h1,
 .rinsedown > h2,
 .rinsedown > h3 {
-  @apply font-semibold tracking-tight text-gray-900 dark:text-gray-100;
+  @apply font-semibold tracking-[-0.02em] text-gray-800 dark:text-gray-100;
 }
 
 .rinsedown > hr {
@@ -55,15 +55,15 @@
 }
 
 .rinsedown > h1 {
-  font-size: 1.8em;
+  @apply text-2xl;
 }
 
 .rinsedown > h2 {
-  @apply mb-2 mt-9 text-lg font-[650];
+  @apply mb-2 mt-12 text-lg font-[650];
 }
 
 .rinsedown > h3 {
-  @apply mb-3 mt-6 text-[15px] font-[650];
+  @apply mb-3 mt-8 text-[15px] font-bold text-gray-800;
 }
 
 .rinsedown > p {
@@ -83,15 +83,13 @@
 
 .rinsedown > pre {
   @apply my-4;
-  padding: 14px;
   overflow: auto;
-  font-family: monospace;
   /* background-color: #f6f6f6; */
   @apply rounded-lg text-sm;
 }
 
 .rinsedown > p code {
-  @apply mx-1 select-all rounded-md bg-blue-100 px-1.5 py-0.5 text-sm font-medium text-blue-600 dark:bg-blue-700 dark:text-blue-100;
+  @apply mx-1 select-all rounded-md bg-blue-100 px-1.5 py-0.5 text-xs font-medium text-blue-600 dark:bg-blue-500/10 dark:text-blue-400;
 }
 
 .rinsedown > ul,
@@ -127,7 +125,7 @@
 }
 
 .rinsedown > table code {
-  @apply select-all text-blue-500;
+  @apply select-all rounded-md bg-slate-100 px-1.5 py-0.5 text-xs font-medium text-slate-600 dark:bg-slate-800 dark:text-slate-300;
 }
 
 .rinsedown > table th {
@@ -146,6 +144,10 @@
   @apply bg-slate-50 font-semibold;
 }
 
+.rinsedown > .props-table td:first-child code {
+  @apply bg-blue-50 text-blue-500 dark:bg-blue-500/10 dark:text-blue-400;
+}
+
 .rinsedown > a {
   color: #0366d6;
   text-decoration: none;
@@ -162,7 +164,7 @@
 
 .astro-code,
 .shiki {
-  @apply px-4 py-2.5 text-[13px];
+  @apply px-4 py-2.5;
 }
 
 .rinsedown pre.astro-code {

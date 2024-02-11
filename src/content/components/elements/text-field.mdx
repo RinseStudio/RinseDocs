@@ -25,10 +25,77 @@ import RinseUI2 from '@/components/docs/RinseUI2';
 
 The following is an example of a basic textfield.
 
-<RinseUI2 url="/components/elements/text-field/sample/basic-text-field"></RinseUI2>
+<RinseUI2 url="/components/text-field/basic-text-field" isPreviewOnly />
+
+```mdx
+import { TextField } from '@/components/TextField';
+
+<TextField type="email" value="jane@company.com" />
+```
+
+## Text field sizes
+
+Text fields sizes can be changed with the `size` property.
+
+<RinseUI2 url="/components/text-field/text-field-sizes" isPreviewOnly />
+
+```mdx
+import { TextField } from '@/components/TextField';
+
+<TextField size="xs" type="email" value="jane@company.com" />
+<TextField size="sm" type="email" value="jane@company.com" />
+<TextField size="md" type="email" value="jane@company.com" />
+<TextField size="lg" type="email" value="jane@company.com" />
+<TextField size="xl" type="email" value="jane@company.com" />
+```
 
 ## Validations
 
 Text fields can have validation states.
 
-<RinseUI2 url="/components/elements/text-field/sample/text-field-validations"></RinseUI2>
+<RinseUI2 url="/components/text-field/text-field-validations" isPreviewOnly />
+
+```mdx
+import { TextField } from '@/components/TextField';
+
+<TextField placeholder="First name" />
+<TextField placeholder="First name" validation="success" />
+<TextField placeholder="First name" validation="error" />
+```
+
+## API reference
+
+The following props and prop values are available for this component.
+
+### Props for <code class="mx-1.5 inline-flex rounded-md bg-slate-100 px-2.5 py-1 text-sm font-medium text-slate-500">TextField</code>
+
+<table class="props-table">
+  <tr>
+    <th width="30%">Prop</th>
+    <th>Values</th>
+    <th width="30%">Default</th>
+  </tr>
+  <tr>
+    <td>
+      <code>validation</code>
+    </td>
+    <td>
+      <code>default</code>, <code>success</code>, <code>error</code>
+    </td>
+    <td>
+      <code>default</code>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <code>size</code>
+    </td>
+    <td>
+      <code>xs</code>, <code>sm</code>, <code>md</code>, <code>lg</code>,
+      <code>xl</code>
+    </td>
+    <td>
+      <code>md</code>
+    </td>
+  </tr>
+</table>

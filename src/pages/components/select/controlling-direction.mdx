@@ -1,7 +1,7 @@
 ---
 title: 'Basic Text Field'
 layout: '@/layouts/rinsedocs/SampleComponentBase.astro'
-className: 'w-[280px] h-[300px] px-5 py-10'
+className: 'flex items-end w-[280px] h-[300px] px-4 py-10'
 bodyClassName: 'flex items-center justify-center'
 ---
 
@@ -15,9 +15,9 @@ import {
   SelectItem,
 } from '@/components/Select';
 
-<Select isOpen className="w-full">
+<Select isOpen className="w-[240px]">
   <SelectTrigger>Select a fruit</SelectTrigger>
-  <SelectContent className="w-full">
+  <SelectContent position="top" className="w-[240px]">
     <SelectGroup>
       <SelectHeader>Fruits</SelectHeader>
       <SelectList>
@@ -31,19 +31,9 @@ import {
 </Select>
 
 ```mdx
-import {
-  Select,
-  SelectGroup,
-  SelectTrigger,
-  SelectContent,
-  SelectHeader,
-  SelectList,
-  SelectItem,
-} from '@/components/Select';
-
 <Select isOpen className="w-[240px]">
   <SelectTrigger>Select a fruit</SelectTrigger>
-  <SelectContent className="w-[240px]">
+  <SelectContent position="top" className="w-[240px]">
     <SelectGroup>
       <SelectHeader>Fruits</SelectHeader>
       <SelectList>

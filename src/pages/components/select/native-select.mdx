@@ -1,28 +1,22 @@
 ---
 title: 'Basic Text Field'
 layout: '@/layouts/rinsedocs/SampleComponentBase.astro'
-className: 'w-[320px] h-[400px] px-4 py-10'
+className: 'w-[280px] h-[150px] px-4 py-10'
 bodyClassName: 'flex items-center justify-center'
 ---
 
-import {
-  Select,
-  SelectNative,
-  SelectGroup,
-  SelectTrigger,
-  SelectContent,
-  SelectHeader,
-  SelectLabel,
-  SelectList,
-  SelectItem,
-  SelectOption,
-  SelectSeparator,
-} from '@/components/Select';
+import { SelectNative, SelectOption } from '@/components/Select';
 
-<SelectNative>
-  <SelectOption value="Apple">Apple</SelectOption>
-  <SelectOption value="Cherry">Cherry</SelectOption>
-  <SelectOption value="Tomato">Tomato</SelectOption>
+<label class="mb-1.5 flex text-sm font-semibold text-gray-900" for="cars">
+  Choose a car
+</label>
+
+<SelectNative name="cars" className="w-full">
+  <SelectOption value="volvo">Volvo</SelectOption>
+  <SelectOption value="saab">Saab</SelectOption>
+  <SelectOption value="mercedes">Mercedes</SelectOption>
+  <SelectOption value="audi">Audi</SelectOption>
+  <SelectOption value="toyota">Toyota</SelectOption>
 </SelectNative>
 
 ```mdx

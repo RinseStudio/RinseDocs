@@ -1,0 +1,81 @@
+---
+title: 'Basic Text Field'
+layout: '@/layouts/rinsedocs/SampleComponentBase.astro'
+className: 'w-[200px] h-[360px] px-4 py-10'
+bodyClassName: 'flex items-center justify-center'
+---
+
+import {
+  Select,
+  SelectGroup,
+  SelectTrigger,
+  SelectContent,
+  SelectHeader,
+  SelectSeparator,
+  SelectList,
+  SelectItem,
+} from '@/components/Select';
+
+<Select isOpen selectedItem="blue">
+  <SelectTrigger>Select mode</SelectTrigger>
+  <SelectContent className="w-[160px]">
+    <SelectGroup>
+      <SelectHeader>Choose a theme</SelectHeader>
+      <SelectList>
+        <SelectItem value="red">
+          <div class="flex items-center gap-2">
+            <div class="size-3.5 rounded-full border border-white bg-red-500 shadow-md"></div>
+            Red
+          </div>
+        </SelectItem>
+        <SelectItem value="orange">
+          <div class="flex items-center gap-2">
+            <div class="size-3.5 rounded-full border border-white bg-orange-500 shadow-md"></div>
+            Orange
+          </div>
+        </SelectItem>
+        <SelectItem value="yellow">
+          <div class="flex items-center gap-2">
+            <div class="size-3.5 rounded-full border border-white bg-yellow-500 shadow-md"></div>
+            Yellow
+          </div>
+        </SelectItem>
+        <SelectItem value="green">
+          <div class="flex items-center gap-2">
+            <div class="size-3.5 rounded-full border border-white bg-green-500 shadow-md"></div>
+            Green
+          </div>
+        </SelectItem>
+        <SelectItem value="blue">
+          <div class="flex items-center gap-2">
+            <div class="size-3.5 rounded-full border border-white bg-blue-500 shadow-md"></div>
+            Blue
+          </div>
+        </SelectItem>
+        <SelectItem value="purple">
+          <div class="flex items-center gap-2">
+            <div class="size-3.5 rounded-full border border-white bg-purple-500 shadow-md"></div>
+            Purple
+          </div>
+        </SelectItem>
+      </SelectList>
+    </SelectGroup>
+  </SelectContent>
+</Select>
+
+```mdx
+<Select isOpen className="w-[240px]">
+  <SelectTrigger>Select a fruit</SelectTrigger>
+  <SelectContent position="top" className="w-[240px]">
+    <SelectGroup>
+      <SelectHeader>Fruits</SelectHeader>
+      <SelectList>
+        <SelectItem value="apple">Apple</SelectItem>
+        <SelectItem value="tomato">Banana</SelectItem>
+        <SelectItem value="blueberry">Blueberry</SelectItem>
+        <SelectItem value="grapes">Grapes</SelectItem>
+      </SelectList>
+    </SelectGroup>
+  </SelectContent>
+</Select>
+```
