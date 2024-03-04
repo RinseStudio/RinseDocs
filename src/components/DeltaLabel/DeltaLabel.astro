@@ -7,13 +7,16 @@ const defaultData = {
   variant: variant,
 };
 
-const xData = JSON.stringify({ ...defaultData, ...data }, null, 2).replace(/"/g, `'`);
+const xData = JSON.stringify({ ...defaultData, ...data }, null, 2).replace(
+  /"/g,
+  `'`,
+);
 ---
 
 <div
   x-data={`DeltaLabel(${xData})`}
   class={twMerge(
-    'flex h-6 items-center gap-1 rounded-md bg-gray-100 px-2 text-xs font-semibold leading-none text-gray-600',
+    'flex h-6 items-center gap-1 rounded-md px-2 text-xs font-semibold leading-none ',
     className,
   )}
   x-bind:class={`{ 
@@ -42,17 +45,17 @@ const xData = JSON.stringify({ ...defaultData, ...data }, null, 2).replace(/"/g,
       trend: initialState.trend || 'neutral',
       className: {
         variant: {
-          pill: 'flex h-6 items-center gap-1 rounded-md px-2 ',
+          pill: 'flex h-6 items-center gap-1 rounded-md px-2 bg-gray-100 text-gray-600',
           text: '',
         },
         trend: {
           rise: {
-            pill: 'bg-green-100 text-green-600',
-            text: 'text-green-600',
+            pill: 'bg-gray-100 text-gray-600',
+            text: 'text-gray-600',
           },
           drop: {
-            pill: 'bg-red-100 text-red-600',
-            text: 'text-red-600',
+            pill: 'bg-gray-100 text-gray-600',
+            text: 'text-gray-600',
           },
           neutral: {
             pill: 'bg-gray-100 text-gray-600',
@@ -83,7 +86,10 @@ const xData = JSON.stringify({ ...defaultData, ...data }, null, 2).replace(/"/g,
             // Check if we are modifying a property inside className
             if (path.startsWith('className.')) {
               // Use twMerge for className properties
-              currentPart[lastPart] = twMerge(currentPart[lastPart], state[path]);
+              currentPart[lastPart] = twMerge(
+                currentPart[lastPart],
+                state[path],
+              );
             } else {
               // Directly assign the value for other properties
               currentPart[lastPart] = state[path];
