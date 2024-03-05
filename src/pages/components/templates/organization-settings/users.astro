@@ -1,7 +1,7 @@
 ---
 import Layout from '@/layouts/rinsedocs/Raw.astro';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/Tabs';
-import Button from '@/components/Button';
+import { Button } from '@/components/Button';
 import Card from '@/components/Card';
 import Table from '@/components/Table';
 import {
@@ -11,14 +11,10 @@ import {
   DropdownHeader,
   DropdownItem,
   DropdownList,
-  DropdownSeparator,
+  DropdownDivider,
   DropdownTrigger,
 } from '@/components/Dropdown';
-import {
-  Tooltip,
-  TooltipTrigger,
-  TooltipContent,
-} from '@/components/Tooltip';
+import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/Tooltip';
 import SearchField from '@/components/SearchField/index.astro';
 import { TextField } from '@/components/TextField';
 import SelectField from '@/components/SelectField';
@@ -496,5 +492,4 @@ import SelectField from '@/components/SelectField';
     },
   }));
 </script>@/components/Button@/components/Card@/components/Table@/components/Dropdown@/components/Tooltip@/components/SelectField
-
 @/components/Tabs@/components/Button@/components/Card@/components/Table@/components/Dropdown@/components/Tooltip@/components/TextField@/components/SelectField

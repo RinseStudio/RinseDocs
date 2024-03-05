@@ -1,7 +1,7 @@
 ---
 import Layout from '@/layouts/rinsedocs/Raw.astro';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/Tabs';
-import Button from '@/components/Button';
+import { Button } from '@/components/Button';
 import Card from '@/components/Card';
 import Table from '@/components/Table';
 import {
@@ -11,7 +11,7 @@ import {
   DropdownHeader,
   DropdownItem,
   DropdownList,
-  DropdownSeparator,
+  DropdownDivider,
   DropdownTrigger,
 } from '@/components/Dropdown';
 import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/Tooltip';
@@ -22,7 +22,8 @@ import SearchField from '@/components/SearchField/index.astro';
   <div class="px-7 py-4">
     <h1 class="mb-2 text-lg font-bold text-black">Events Debugger</h1>
     <p class="text-sm text-gray-600">
-      Events Debugger lets you monitor incoming Events and spot problems with your integration.
+      Events Debugger lets you monitor incoming Events and spot problems with
+      your integration.
     </p>
   </div>
   <div class="mt-2 border-b border-zinc-200"></div>
@@ -43,10 +44,13 @@ import SearchField from '@/components/SearchField/index.astro';
                 stroke-linecap="round"
                 stroke-linejoin="round"
                 class="lucide lucide-scan-search"
-                ><path d="M3 7V5a2 2 0 0 1 2-2h2"></path><path d="M17 3h2a2 2 0 0 1 2 2v2"
-                ></path><path d="M21 17v2a2 2 0 0 1-2 2h-2"></path><path
-                  d="M7 21H5a2 2 0 0 1-2-2v-2"></path><circle cx="12" cy="12" r="3"></circle><path
-                  d="m16 16-1.9-1.9"></path></svg
+                ><path d="M3 7V5a2 2 0 0 1 2-2h2"></path><path
+                  d="M17 3h2a2 2 0 0 1 2 2v2"></path><path
+                  d="M21 17v2a2 2 0 0 1-2 2h-2"></path><path
+                  d="M7 21H5a2 2 0 0 1-2-2v-2"></path><circle
+                  cx="12"
+                  cy="12"
+                  r="3"></circle><path d="m16 16-1.9-1.9"></path></svg
               >
               Incoming Events
             </h3>
@@ -94,22 +98,34 @@ import SearchField from '@/components/SearchField/index.astro';
           <Table x-data="Table" className="table-fixed">
             <Table.Header>
               <Table.Row>
-                <Table.Head className="w-[180px] px-4 py-3 text-xs font-medium text-gray-900">
+                <Table.Head
+                  className="w-[180px] px-4 py-3 text-xs font-medium text-gray-900"
+                >
                   Date
                 </Table.Head>
-                <Table.Head className="w-[180px] px-4 py-3 text-xs font-medium text-gray-900">
+                <Table.Head
+                  className="w-[180px] px-4 py-3 text-xs font-medium text-gray-900"
+                >
                   URL
                 </Table.Head>
-                <Table.Head className="w-[180px] px-4 py-3 text-xs font-medium text-gray-900">
+                <Table.Head
+                  className="w-[180px] px-4 py-3 text-xs font-medium text-gray-900"
+                >
                   Event
                 </Table.Head>
-                <Table.Head className="w-[180px] px-4 py-3 text-xs font-medium text-gray-900">
+                <Table.Head
+                  className="w-[180px] px-4 py-3 text-xs font-medium text-gray-900"
+                >
                   Status
                 </Table.Head>
-                <Table.Head className="w-[180px] px-4 py-3 text-xs font-medium text-gray-900">
+                <Table.Head
+                  className="w-[180px] px-4 py-3 text-xs font-medium text-gray-900"
+                >
                   Action
                 </Table.Head>
-                <Table.Head className="w-full px-4 py-3 text-xs font-medium text-gray-900">
+                <Table.Head
+                  className="w-full px-4 py-3 text-xs font-medium text-gray-900"
+                >
                   Message
                 </Table.Head>
               </Table.Row>
@@ -122,18 +138,23 @@ import SearchField from '@/components/SearchField/index.astro';
                     Jan 10, 04:35
                   </div>
                 </Table.Cell>
-                <Table.Cell className="whitespace-nowrap px-4 py-4 font-medium">/v1/log</Table.Cell>
+                <Table.Cell className="whitespace-nowrap px-4 py-4 font-medium">
+                  /v1/log
+                </Table.Cell>
                 <Table.Cell className="whitespace-nowrap px-4 py-4 font-medium">
                   $profile_update
                 </Table.Cell>
                 <Table.Cell className="whitespace-nowrap px-4 py-4 font-medium">
                   succeeded
                 </Table.Cell>
-                <Table.Cell className="whitespace-nowrap px-4 py-4 font-medium">–</Table.Cell>
+                <Table.Cell className="whitespace-nowrap px-4 py-4 font-medium">
+                  –
+                </Table.Cell>
                 <Table.Cell className="truncate px-4 py-4 font-mono">
-                  response.body: One or more parameters are invalid: context[ip] Private and local
-                  IP addresses are not allowed in production environments. If your application sits
-                  behind a firewall, the true client IP can often be found in a header such as
+                  response.body: One or more parameters are invalid: context[ip]
+                  Private and local IP addresses are not allowed in production
+                  environments. If your application sits behind a firewall, the
+                  true client IP can often be found in a header such as
                   X-Forwarded-For
                 </Table.Cell>
               </Table.Row>
@@ -144,18 +165,23 @@ import SearchField from '@/components/SearchField/index.astro';
                     Jan 10, 04:35
                   </div>
                 </Table.Cell>
-                <Table.Cell className="whitespace-nowrap px-4 py-4 font-medium">/v1/log</Table.Cell>
+                <Table.Cell className="whitespace-nowrap px-4 py-4 font-medium">
+                  /v1/log
+                </Table.Cell>
                 <Table.Cell className="whitespace-nowrap px-4 py-4 font-medium">
                   $profile_update
                 </Table.Cell>
                 <Table.Cell className="whitespace-nowrap px-4 py-4 font-medium">
                   succeeded
                 </Table.Cell>
-                <Table.Cell className="whitespace-nowrap px-4 py-4 font-medium">–</Table.Cell>
+                <Table.Cell className="whitespace-nowrap px-4 py-4 font-medium">
+                  –
+                </Table.Cell>
                 <Table.Cell className="truncate px-4 py-4 font-mono">
-                  response.body: One or more parameters are invalid: context[ip] Private and local
-                  IP addresses are not allowed in production environments. If your application sits
-                  behind a firewall, the true client IP can often be found in a header such as
+                  response.body: One or more parameters are invalid: context[ip]
+                  Private and local IP addresses are not allowed in production
+                  environments. If your application sits behind a firewall, the
+                  true client IP can often be found in a header such as
                   X-Forwarded-For
                 </Table.Cell>
               </Table.Row>
@@ -166,25 +192,33 @@ import SearchField from '@/components/SearchField/index.astro';
                     Jan 10, 04:35
                   </div>
                 </Table.Cell>
-                <Table.Cell className="whitespace-nowrap px-4 py-4 font-medium">/v1/log</Table.Cell>
+                <Table.Cell className="whitespace-nowrap px-4 py-4 font-medium">
+                  /v1/log
+                </Table.Cell>
                 <Table.Cell className="whitespace-nowrap px-4 py-4 font-medium">
                   $profile_update
                 </Table.Cell>
                 <Table.Cell className="whitespace-nowrap px-4 py-4 font-medium">
                   succeeded
                 </Table.Cell>
-                <Table.Cell className="whitespace-nowrap px-4 py-4 font-medium">–</Table.Cell>
+                <Table.Cell className="whitespace-nowrap px-4 py-4 font-medium">
+                  –
+                </Table.Cell>
                 <Table.Cell className="truncate px-4 py-4 font-mono">
-                  response.body: One or more parameters are invalid: context[ip] Private and local
-                  IP addresses are not allowed in production environments. If your application sits
-                  behind a firewall, the true client IP can often be found in a header such as
+                  response.body: One or more parameters are invalid: context[ip]
+                  Private and local IP addresses are not allowed in production
+                  environments. If your application sits behind a firewall, the
+                  true client IP can often be found in a header such as
                   X-Forwarded-For
                 </Table.Cell>
               </Table.Row>
             </Table.Body>
             <Table.Footer>
               <Table.Row className="bg-zinc-50">
-                <Table.Cell colspan="7" className="px-4 py-3 text-left font-medium text-gray-900">
+                <Table.Cell
+                  colspan="7"
+                  className="px-4 py-3 text-left font-medium text-gray-900"
+                >
                   Total 3 events
                 </Table.Cell>
               </Table.Row>
@@ -212,5 +246,4 @@ import SearchField from '@/components/SearchField/index.astro';
     },
   }));
 </script>@/components/Button@/components/Card@/components/Table@/components/Dropdown@/components/Tooltip
-
 @/components/Tabs@/components/Button@/components/Card@/components/Table@/components/Dropdown@/components/Tooltip

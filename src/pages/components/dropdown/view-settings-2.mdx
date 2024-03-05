@@ -13,7 +13,7 @@ import {
   DropdownHeader,
   DropdownItem,
   DropdownList,
-  DropdownSeparator,
+  DropdownDivider,
   DropdownTrigger,
 } from '@/components/Dropdown';
 import SearchField from '@/components/SearchField/index.astro';
@@ -29,7 +29,7 @@ import SearchField from '@/components/SearchField/index.astro';
         <SearchField placeholder="Search by field name" validation="default" isFluid />
       </div>
     </DropdownGroup>
-    <DropdownSeparator />
+    <DropdownDivider />
     <DropdownGroup className="max-h-[300px] min-h-[200px] overflow-auto">
       <ul class="space-y-px">
         <li class="mb-2 px-2 pt-4">
@@ -223,7 +223,7 @@ import SearchField from '@/components/SearchField/index.astro';
         </DropdownItem>
       </DropdownList>
     </DropdownGroup>
-    <DropdownSeparator />
+    <DropdownDivider />
     <DropdownGroup>
       <DropdownItem>
         <div class="mr-1.5 flex items-center justify-center">

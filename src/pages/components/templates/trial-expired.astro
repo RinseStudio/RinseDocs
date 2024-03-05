@@ -1,7 +1,7 @@
 ---
 import Layout from '@/layouts/rinsedocs/Raw.astro';
 import Card from '@/components/Card';
-import Button from '@/components/Button';
+import { Button } from '@/components/Button';
 ---
 
 <Layout class="">
@@ -9,7 +9,9 @@ import Button from '@/components/Button';
     <Card className="w-full max-w-xl text-center">
       <Card.Group className="px-5 py-16 text-center">
         <i class="fa-solid fa-timer mb-4 text-[48px] text-slate-300"></i>
-        <h1 class="mb-2 text-lg font-bold text-black">Your trial has expired</h1>
+        <h1 class="mb-2 text-lg font-bold text-black">
+          Your trial has expired
+        </h1>
         <p class="text-sm text-gray-600">
           Please update your your <a href="#" class="font-medium text-blue-500"
             >billing information</a
@@ -18,12 +20,12 @@ import Button from '@/components/Button';
         </p>
         <div class="mt-6">
           <Button size="md" variant="primary">
-            Manage billing <i class="fa-solid fa-arrow-right ml-2.5 text-xs"></i>
+            Manage billing <i class="fa-solid fa-arrow-right ml-2.5 text-xs"
+            ></i>
           </Button>
         </div>
       </Card.Group>
     </Card>
   </div>
 </Layout>
- @/components/Card@/components/Button
-@/components/Card@/components/Button
+@/components/Card@/components/Button @/components/Card@/components/Button
