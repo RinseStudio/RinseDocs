@@ -2,10 +2,35 @@
 import Layout from '@/layouts/rinsedocs/Raw.astro';
 import UsageMeter from '@/components/templates/UsageMeter.astro';
 
-console.log(Astro.url + './src/pages/components/modules/elements/buttons/simple-button.astro');
 import { Code } from 'astro:components';
+import { Button } from '@/components/Button';
 ---
 
 <Layout class="flex items-center justify-center px-4 py-10">
-  <UsageMeter />
+  <div
+    astro-component
+    class="w-[240px] rounded-lg bg-white shadow-md dark:bg-zinc-800"
+  >
+    <div class="border-b border-zinc-200 p-3 dark:border-zinc-700">
+      <h4 class="mb-3 text-[12px] font-medium text-gray-900 dark:text-gray-300">
+        Free API usage
+      </h4>
+      <div
+        class="relative mb-2 h-1 overflow-hidden rounded-full bg-zinc-100 dark:bg-zinc-700"
+      >
+        <div class="h-1 bg-blue-500" style="width: 32%"></div>
+      </div>
+      <div class="text-[11px] font-medium text-gray-500 dark:text-gray-400">
+        325/1,000 API calls per month
+      </div>
+    </div>
+    <div class="p-3">
+      <p class="mb-4 text-[11px] font-medium text-gray-500 dark:text-gray-300">
+        Launch your project with unlimited calls and no contractual minimums
+      </p>
+      <Button onClick={'isOpen = !isOpen'} size="sm" isFluid>
+        Upgrade plan <i class="fa-solid fa-arrow-right fa-fw ml-2"></i>
+      </Button>
+    </div>
+  </div>
 </Layout>
