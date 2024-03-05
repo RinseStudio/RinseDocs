@@ -1,0 +1,107 @@
+---
+title: 'Open on hover'
+layout: '@/layouts/rinsedocs/SampleComponentBase.astro'
+className: 'h-[340px] w-[210px] flex items-start justify-center px-4 py-10'
+bodyClassName: 'flex items-center justify-center'
+---
+
+import { Button } from '@/components/Button';
+import { Image } from 'astro:assets';
+import profilePic from "@/assets/images/uifaces-abstract-profile-04.jpg";
+
+import {
+  Dropdown,
+  DropdownContent,
+  DropdownGroup,
+  DropdownDivider,
+  DropdownItem,
+  DropdownList,
+  DropdownTrigger,
+} from '@/components/Dropdown';
+
+{
+<Dropdown openOnHover>
+  <DropdownTrigger>
+    <div class="rounded-full flex items-center gap-2 pr-3 justify-between bg-white shadow-md">
+      <Image src={profilePic} alt="profile" width="100" class="size-10 rounded-full border-2 border-white shadow-md"/>
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down"><path d="m6 9 6 6 6-6"/></svg>
+
+    </div>
+  </DropdownTrigger>
+
+  <DropdownContent offset="0" position="bottom-end" className="pt-4">
+    <div class="px-3 py-3">
+      <div class="text-xs text-gray-600 whitespace-nowrap">
+        <span class="font-medium text-gray-900">15</span> followers · <span class="font-medium text-gray-900">33</span> following
+      </div>
+    </div>
+    <DropdownDivider />
+    <DropdownGroup>
+      <DropdownList>
+        <DropdownItem>
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user mr-1.5"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          Profile
+        </DropdownItem>
+        <DropdownItem>
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-credit-card mr-1.5"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
+          Profile
+        </DropdownItem>
+        <DropdownItem>
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-settings mr-1.5"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+          Settings
+        </DropdownItem>
+      </DropdownList>
+    </DropdownGroup>
+    <DropdownDivider />
+    <DropdownGroup>
+      <DropdownList>      
+        <DropdownItem>
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-log-out mr-1.5"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" x2="9" y1="12" y2="12"/></svg>
+          Log out
+        </DropdownItem>
+      </DropdownList>
+    </DropdownGroup>
+    
+  </DropdownContent>
+</Dropdown>
+}
+
+```mdx
+import { Button } from '@/components/Button';
+import {
+  Dropdown,
+  DropdownContent,
+  DropdownGroup,
+  DropdownItem,
+  DropdownList,
+  DropdownTrigger,
+} from '@/components/Dropdown';
+
+<Dropdown data={`isOpen: true`}>
+  <DropdownTrigger>
+    <Button as="div" size="sm" variant="outline">
+      Options
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down ml-1.5"><path d="m6 9 6 6 6-6"/></svg>
+    </Button>
+  </DropdownTrigger>
+
+  <DropdownContent className="w-[150px]">
+    <DropdownGroup>
+      <DropdownList>
+        <DropdownItem>
+          Settings
+        </DropdownItem>
+        <DropdownItem>
+          Profile
+        </DropdownItem>
+        <DropdownItem>
+          Help
+        </DropdownItem>        
+        <DropdownItem>
+          Sign out
+        </DropdownItem>
+      </DropdownList>
+    </DropdownGroup>
+  </DropdownContent>
+</Dropdown>
+```

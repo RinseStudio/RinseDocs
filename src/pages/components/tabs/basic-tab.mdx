@@ -1,0 +1,33 @@
+---
+title: 'Basic Dropdown'
+layout: '@/layouts/rinsedocs/SampleComponentBase.astro'
+className: 'h-[300px] px-4 py-10'
+bodyClassName: 'flex items-center justify-center'
+---
+
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/Tabs';
+
+{
+
+<Tabs selection="tab-1">
+  <TabsList>
+    <TabsTrigger name="tab-1" isActive>
+      Tab 1
+    </TabsTrigger>
+    <TabsTrigger name="tab-2">Tab 2</TabsTrigger>
+    <TabsTrigger name="tab-3">Tab 3</TabsTrigger>
+    <TabsTrigger name="tab-4">Tab 4</TabsTrigger>
+  </TabsList>
+</Tabs>
+}
+
+```mdx
+<Tabs selection="tab-1">
+  <TabsList>
+    <TabsTrigger name="tab-1">Tab 1</TabsTrigger>
+    <TabsTrigger name="tab-2">Tab 2</TabsTrigger>
+    <TabsTrigger name="tab-3">Tab 3</TabsTrigger>
+    <TabsTrigger name="tab-4">Tab 4</TabsTrigger>
+  </TabsList>
+</Tabs>
+```
