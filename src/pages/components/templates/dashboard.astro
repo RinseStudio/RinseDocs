@@ -49,28 +49,33 @@ import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/Tooltip';
     <main class="relative border-l border-zinc-200">
       <div
         x-data="{isOpen: false}"
-        class="inline-flex border-b border-amber-200 bg-amber-50 px-6 py-3.5 text-xs font-medium text-amber-700"
+        class="border-b border-amber-200 bg-amber-50 px-6 py-3.5 text-xs font-medium text-amber-700"
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="16"
-          height="16"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          class="lucide lucide-alert-triangle mr-2"
-          ><path
-            d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"
-          ></path><path d="M12 9v4"></path><path d="M12 17h.01"></path></svg
-        >
-        This is a sandbox environment and is meant for testing purposes only. <a
-          @click="isOpen = !isOpen"
-          class="cursor-pointer font-semibold text-amber-800 hover:underline"
-          x-text="isOpen ? 'Hide details' : 'See details'">See details</a
-        >
+        <div class="flex items-center">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-alert-triangle mr-2"
+            ><path
+              d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"
+            ></path><path d="M12 9v4"></path><path d="M12 17h.01"></path></svg
+          >
+          <div>
+            This is a sandbox environment and is meant for testing purposes
+            only. <a
+              @click="isOpen = !isOpen"
+              class="cursor-pointer font-semibold text-amber-800 hover:underline"
+              x-text="isOpen ? 'Hide details' : 'See details'">See details</a
+            >
+          </div>
+        </div>
         <div x-cloak x-show="isOpen == true">
           <ul
             class="ml-3 mt-3 list-disc text-xs font-normal leading-[1.5] text-gray-900"
