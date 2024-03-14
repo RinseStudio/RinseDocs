@@ -14,7 +14,6 @@ import {
   DropdownDivider,
   DropdownTrigger,
 } from '@/components/Dropdown';
-import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/Tooltip';
 import {
   Select,
   SelectNative,
@@ -130,7 +129,7 @@ import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/Tooltip';
       <div class="px-7 py-5">
         <h1 class="mb-2 text-lg font-bold text-black">Reporting Dashboard</h1>
         <p class="text-sm text-gray-600">
-          Here is an overview of how well Castle is protecting your users.
+          High level breakdown of traffic patterns and user impact
         </p>
       </div>
       <Tabs>
@@ -218,11 +217,18 @@ import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/Tooltip';
               <Button
                 size="sm"
                 variant="outline"
-                className="rounded-none rounded-l-md px-0"
+                disabled
+                className="disabled: rounded-none rounded-l-md px-0"
+                title="No previous period available"
               >
                 <i data-lucide="chevron-left" class="size-4 text-gray-400"></i>
               </Button>
-              <Button size="sm" variant="outline" className="rounded-none px-0">
+              <Button
+                size="sm"
+                variant="outline"
+                className="rounded-none px-0"
+                title="Next period"
+              >
                 <i data-lucide="chevron-right" class="size-4 text-gray-400"></i>
               </Button>
               <Dropdown>
@@ -284,169 +290,172 @@ import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/Tooltip';
                 </div>
               </div>
               <div class="grid grid-cols-5 gap-4">
-                <Card className="col-span-2 grid grid-cols-2 px-5">
-                  <div class="py-5">
-                    <dl>
-                      <dt
-                        class="mb-2 flex items-center gap-2 text-xs font-semibold leading-none text-gray-600"
-                      >
-                        Total logins
-                      </dt>
-                      <dd
-                        class="flex items-center gap-2 text-lg font-bold text-black"
-                      >
-                        263,495
-                        <DeltaLabel trend="drop" variant="pill">
-                          1.93%
-                        </DeltaLabel>
-                      </dd>
-                    </dl>
-                    <div
-                      class="mt-3 flex items-center text-xs font-semibold leading-none text-gray-900"
-                    >
-                      30,452 users
-                      <DeltaLabel
-                        className="ml-1.5"
-                        variant="text"
-                        trend="drop"
-                      >
-                        680
-                      </DeltaLabel>
+                <Card className="col-span-2 px-5">
+                  <div class="grid grid-cols-2">
+                    <div class="py-5">
+                      <div>
+                        <div
+                          class="mb-2 flex items-center gap-2 text-xs font-semibold leading-none text-gray-600"
+                        >
+                          Total logins
+                        </div>
+                        <div
+                          class="flex items-center gap-2 text-lg font-bold text-black"
+                        >
+                          263,495
+                          <DeltaLabel trend="drop" variant="pill">
+                            1.93%
+                          </DeltaLabel>
+                        </div>
+                        <div class="mt-1 text-xs font-medium leading-none">
+                          23% of total
+                        </div>
+                      </div>
                     </div>
-                    <div class="mt-1 text-xs font-medium leading-none">
-                      23% of total
+
+                    <div class="py-5">
+                      <div>
+                        <div
+                          class="mb-2 flex items-center gap-2 text-xs font-semibold leading-none text-gray-600"
+                        >
+                          Failed logins
+                        </div>
+                        <div
+                          class="flex items-center gap-2 text-lg font-bold text-black"
+                        >
+                          24,532
+                          <DeltaLabel trend="drop" variant="pill">
+                            6.36%
+                          </DeltaLabel>
+                        </div>
+                        <div class="mt-1 text-xs font-medium leading-none">
+                          23% of total
+                        </div>
+                      </div>
                     </div>
                   </div>
-
-                  <div class="py-5">
-                    <dl>
-                      <dt
-                        class="mb-2 flex items-center gap-2 text-xs font-semibold leading-none text-gray-600"
+                  <div
+                    class="grid grid-cols-2 gap-5 border-t border-gray-200 py-5"
+                  >
+                    <div>
+                      <div
+                        class="flex items-center text-xs font-semibold leading-none text-gray-900"
                       >
-                        Failed logins
-                      </dt>
-                      <dd
-                        class="flex items-center gap-2 text-lg font-bold text-black"
-                      >
-                        24,532
-                        <DeltaLabel trend="drop" variant="pill">
-                          6.36%
-                        </DeltaLabel>
-                      </dd>
-                    </dl>
-                    <div
-                      class="mt-3 flex items-center text-xs font-semibold leading-none text-gray-900"
-                    >
-                      30,452 users
-                      <DeltaLabel
-                        className="ml-1.5"
-                        variant="text"
-                        trend="drop"
-                      >
-                        680
-                      </DeltaLabel>
+                        30,452 users
+                      </div>
+                      <div class="mt-1 text-xs font-medium leading-none">
+                        680 less than before
+                      </div>
                     </div>
-                    <div class="mt-1 text-xs font-medium leading-none">
-                      23% of total
+                    <div>
+                      <div
+                        class="flex items-center text-xs font-semibold leading-none text-gray-900"
+                      >
+                        30,452 users
+                      </div>
+                      <div class="mt-1 text-xs font-medium leading-none">
+                        680 less than before
+                      </div>
                     </div>
                   </div>
                 </Card>
 
-                <Card className="col-span-3 grid grid-cols-3 gap-5 px-5">
-                  <div class="py-5">
-                    <dl>
-                      <dt
-                        class="mb-2 flex items-center gap-2 text-xs font-semibold leading-none text-gray-600"
-                      >
-                        Allow
-                      </dt>
-                      <dd
-                        class="flex items-center gap-2 text-lg font-bold text-black"
-                      >
-                        238,539
-                        <DeltaLabel trend="drop" variant="pill">
-                          1.46%
-                        </DeltaLabel>
-                      </dd>
-                    </dl>
-                    <div
-                      class="mt-3 flex items-center text-xs font-semibold leading-none text-gray-900"
-                    >
-                      30,452 users
-                      <DeltaLabel
-                        className="ml-1.5"
-                        variant="text"
-                        trend="drop"
-                      >
-                        680
-                      </DeltaLabel>
+                <Card className="col-span-3 px-5">
+                  <div class="grid grid-cols-3 gap-5">
+                    <div class="py-5">
+                      <div>
+                        <div
+                          class="mb-2 flex items-center gap-2 text-xs font-semibold leading-none text-gray-600"
+                        >
+                          Allow
+                        </div>
+                        <div
+                          class="flex items-center gap-2 text-lg font-bold text-black"
+                        >
+                          238,539
+                          <DeltaLabel trend="drop" variant="pill">
+                            1.46%
+                          </DeltaLabel>
+                        </div>
+                        <div class="mt-1 text-xs font-medium leading-none">
+                          23% of total
+                        </div>
+                      </div>
                     </div>
-                    <div class="mt-1 text-xs font-medium leading-none">
-                      23% of total
+
+                    <div class="py-5">
+                      <div>
+                        <div
+                          class="mb-2 flex items-center gap-2 text-xs font-semibold leading-none text-orange-500"
+                        >
+                          Challenge
+                        </div>
+                        <div
+                          class="flex items-center gap-2 text-lg font-bold text-black"
+                        >
+                          375
+                          <DeltaLabel trend="drop" variant="pill">
+                            2.89%
+                          </DeltaLabel>
+                        </div>
+                        <div class="mt-1 text-xs font-medium leading-none">
+                          23% of total
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="py-5">
+                      <div>
+                        <div
+                          class="mb-2 flex items-center gap-2 text-xs font-semibold leading-none text-red-500"
+                        >
+                          Deny
+                        </div>
+                        <div
+                          class="flex items-center gap-2 text-lg font-bold text-black"
+                        >
+                          49
+                          <DeltaLabel trend="drop">2.06%</DeltaLabel>
+                        </div>
+                        <div class="mt-1 text-xs font-medium leading-none">
+                          23% of total
+                        </div>
+                      </div>
                     </div>
                   </div>
 
-                  <div class="py-5">
-                    <dl>
-                      <dt
-                        class="mb-2 flex items-center gap-2 text-xs font-semibold leading-none text-gray-600"
+                  <div
+                    class="grid grid-cols-3 gap-5 border-t border-gray-200 py-5"
+                  >
+                    <div>
+                      <div
+                        class="flex items-center text-xs font-semibold leading-none text-gray-900"
                       >
-                        Challenge
-                      </dt>
-                      <dd
-                        class="flex items-center gap-2 text-lg font-bold text-black"
-                      >
-                        375
-                        <DeltaLabel trend="drop" variant="pill">
-                          2.89%
-                        </DeltaLabel>
-                      </dd>
-                    </dl>
-                    <div
-                      class="mt-3 flex items-center text-xs font-semibold leading-none text-gray-900"
-                    >
-                      30,452 users
-                      <DeltaLabel
-                        className="ml-1.5"
-                        variant="text"
-                        trend="drop"
-                      >
-                        680
-                      </DeltaLabel>
+                        30,452 users
+                      </div>
+                      <div class="mt-1 text-xs font-medium leading-none">
+                        680 less than before
+                      </div>
                     </div>
-                    <div class="mt-1 text-xs font-medium leading-none">
-                      23% of total
+                    <div>
+                      <div
+                        class="flex items-center text-xs font-semibold leading-none text-gray-900"
+                      >
+                        30,452 users
+                      </div>
+                      <div class="mt-1 text-xs font-medium leading-none">
+                        680 less than before
+                      </div>
                     </div>
-                  </div>
-
-                  <div class="py-5">
-                    <dl>
-                      <dt
-                        class="mb-2 flex items-center gap-2 text-xs font-semibold leading-none text-gray-600"
+                    <div>
+                      <div
+                        class="flex items-center text-xs font-semibold leading-none text-gray-900"
                       >
-                        Deny
-                      </dt>
-                      <dd
-                        class="flex items-center gap-2 text-lg font-bold text-black"
-                      >
-                        49
-                        <DeltaLabel trend="drop">2.06%</DeltaLabel>
-                      </dd>
-                    </dl>
-                    <div
-                      class="mt-3 flex items-center text-xs font-semibold leading-none text-gray-900"
-                    >
-                      30,452 users
-                      <DeltaLabel
-                        className="ml-1.5"
-                        variant="text"
-                        trend="drop"
-                      >
-                        680
-                      </DeltaLabel>
-                    </div>
-                    <div class="mt-1 text-xs font-medium leading-none">
-                      23% of total
+                        30,452 users
+                      </div>
+                      <div class="mt-1 text-xs font-medium leading-none">
+                        680 less than before
+                      </div>
                     </div>
                   </div>
                 </Card>
@@ -460,7 +469,7 @@ import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/Tooltip';
                     <a
                       href="#"
                       class="flex items-center gap-0.5 text-blue-500 hover:text-blue-600"
-                      >Open in explorer
+                      >Open in explore
                       <i data-lucide="chevron-right" class="size-4"></i>
                     </a>
                   </div>
@@ -515,7 +524,7 @@ import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/Tooltip';
                       ></polygon></svg
                     >
                     <div class="flex items-center gap-1.5">
-                      Triggered Insight
+                      Response Insight
                       <Tooltip>
                         <TooltipTrigger>
                           <i
@@ -539,7 +548,7 @@ import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/Tooltip';
                     <a
                       href="#"
                       class="flex items-center gap-0.5 text-blue-500 hover:text-blue-600"
-                      >Open in explorer
+                      >Open in explore
                       <i data-lucide="chevron-right" class="size-4"></i>
                     </a>
                   </div>
@@ -1124,7 +1133,7 @@ import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/Tooltip';
                     <a
                       href="#"
                       class="flex items-center gap-0.5 text-blue-500 hover:text-blue-600"
-                      >Open in explorer
+                      >Open in explore
                       <i data-lucide="chevron-right" class="size-4"></i>
                     </a>
                   </div>
@@ -1183,7 +1192,7 @@ import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/Tooltip';
                     <a
                       href="#"
                       class="flex items-center gap-0.5 text-blue-500 hover:text-blue-600"
-                      >Open in explorer
+                      >Open in explore
                       <i data-lucide="chevron-right" class="size-4"></i>
                     </a>
                   </div>
@@ -1380,13 +1389,13 @@ import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/Tooltip';
               <Card className="grid grid-cols-5 px-5">
                 <div class="col-span-2 grid grid-cols-2">
                   <div class="py-5">
-                    <dl>
-                      <dt
+                    <div>
+                      <div
                         class="mb-2 flex items-center gap-2 text-xs font-semibold leading-none text-gray-600"
                       >
                         Total logins
-                      </dt>
-                      <dd
+                      </div>
+                      <div
                         class="flex items-center gap-2 text-lg font-bold text-black"
                       >
                         <div class="flex h-7 animate-pulse items-center">
@@ -1395,8 +1404,8 @@ import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/Tooltip';
                           >
                           </div>
                         </div>
-                      </dd>
-                    </dl>
+                      </div>
+                    </div>
 
                     <div class="mt-4">
                       <div
@@ -1413,13 +1422,13 @@ import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/Tooltip';
                   </div>
 
                   <div class="py-5">
-                    <dl>
-                      <dt
+                    <div>
+                      <div
                         class="mb-2 flex items-center gap-2 text-xs font-semibold leading-none text-gray-600"
                       >
                         Failed logins
-                      </dt>
-                      <dd
+                      </div>
+                      <div
                         class="flex items-center gap-2 text-lg font-bold text-black"
                       >
                         <div class="flex h-7 animate-pulse items-center">
@@ -1428,8 +1437,8 @@ import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/Tooltip';
                           >
                           </div>
                         </div>
-                      </dd>
-                    </dl>
+                      </div>
+                    </div>
 
                     <div class="mt-4">
                       <div
@@ -1448,13 +1457,13 @@ import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/Tooltip';
 
                 <div class="col-span-3 grid grid-cols-3 gap-5">
                   <div class="py-5">
-                    <dl>
-                      <dt
+                    <div>
+                      <div
                         class="mb-2 flex items-center gap-2 text-xs font-semibold leading-none text-gray-600"
                       >
                         Allow
-                      </dt>
-                      <dd
+                      </div>
+                      <div
                         class="flex items-center gap-2 text-lg font-bold text-black"
                       >
                         <div class="flex h-7 animate-pulse items-center">
@@ -1463,8 +1472,8 @@ import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/Tooltip';
                           >
                           </div>
                         </div>
-                      </dd>
-                    </dl>
+                      </div>
+                    </div>
 
                     <div class="mt-4">
                       <div
@@ -1481,13 +1490,13 @@ import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/Tooltip';
                   </div>
 
                   <div class="py-5">
-                    <dl>
-                      <dt
+                    <div>
+                      <div
                         class="mb-2 flex items-center gap-2 text-xs font-semibold leading-none text-gray-600"
                       >
                         Challenge
-                      </dt>
-                      <dd
+                      </div>
+                      <div
                         class="flex items-center gap-2 text-lg font-bold text-black"
                       >
                         <div class="flex h-7 animate-pulse items-center">
@@ -1496,8 +1505,8 @@ import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/Tooltip';
                           >
                           </div>
                         </div>
-                      </dd>
-                    </dl>
+                      </div>
+                    </div>
 
                     <div class="mt-4">
                       <div
@@ -1514,13 +1523,13 @@ import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/Tooltip';
                   </div>
 
                   <div class="py-5">
-                    <dl>
-                      <dt
+                    <div>
+                      <div
                         class="mb-2 flex items-center gap-2 text-xs font-semibold leading-none text-gray-600"
                       >
                         Deny
-                      </dt>
-                      <dd
+                      </div>
+                      <div
                         class="flex items-center gap-2 text-lg font-bold text-black"
                       >
                         <div class="flex h-7 animate-pulse items-center">
@@ -1529,8 +1538,8 @@ import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/Tooltip';
                           >
                           </div>
                         </div>
-                      </dd>
-                    </dl>
+                      </div>
+                    </div>
 
                     <div class="mt-4">
                       <div
@@ -1556,7 +1565,7 @@ import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/Tooltip';
                     <a
                       href="#"
                       class="flex items-center gap-0.5 text-blue-500 hover:text-blue-600"
-                      >Open in explorer
+                      >Open in explore
                       <i data-lucide="chevron-right" class="size-4"></i>
                     </a>
                   </div>
@@ -1732,7 +1741,7 @@ import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/Tooltip';
                     <a
                       href="#"
                       class="flex items-center gap-0.5 text-blue-500 hover:text-blue-600"
-                      >Open in explorer
+                      >Open in explore
                       <i data-lucide="chevron-right" class="size-4"></i>
                     </a>
                   </div>
