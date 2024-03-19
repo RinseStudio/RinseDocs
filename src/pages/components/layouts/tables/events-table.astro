@@ -195,65 +195,77 @@ import {
               </DropdownContent>
             </Dropdown>
           </th>
-          <th class="px-1 py-2 first:pl-5">
-            <Dropdown>
-              <DropdownTrigger>
-                <Button size="sm" variant="ghost">
-                  User
-                  <Tooltip widthClass="w-[180px]" className="ml-2">
-                    <TooltipTrigger>
-                      <i class="fa-solid fa-fw fa-sparkles text-blue-500"></i>
-                    </TooltipTrigger>
-                    <TooltipContent
-                      className="w-[200px]"
-                      enterClassName="delay-1000"
-                    >
-                      This is a smart column. Castle automatically enriches
-                      content using event data.
-                    </TooltipContent>
-                  </Tooltip>
-                </Button>
-              </DropdownTrigger>
-              <DropdownContent>
-                <DropdownGroup>
-                  <DropdownList>
+          <th class="group px-1 py-2 first:pl-5">
+            <div class="flex min-w-[200px] items-center gap-2">
+              <Dropdown>
+                <DropdownTrigger>
+                  <Button size="sm" variant="ghost">
+                    User
+                    <Tooltip widthClass="w-[180px]" className="ml-2">
+                      <TooltipTrigger>
+                        <i class="fa-solid fa-fw fa-sparkles text-blue-500"></i>
+                      </TooltipTrigger>
+                      <TooltipContent
+                        className="w-[200px]"
+                        enterClassName="delay-1000"
+                      >
+                        This is a smart column. Castle automatically enriches
+                        content using event data.
+                      </TooltipContent>
+                    </Tooltip>
+                  </Button>
+                </DropdownTrigger>
+                <DropdownContent>
+                  <DropdownGroup>
+                    <DropdownList>
+                      <DropdownItem onClick="isOpen = false">
+                        <div class="mr-1.5 flex items-center justify-center">
+                          <i class="fa-solid fa-arrow-up fa-fw"></i>
+                        </div>
+                        Sort ascending
+                      </DropdownItem>
+                      <DropdownItem onClick="isOpen = false">
+                        <div class="mr-1.5 flex items-center justify-center">
+                          <i class="fa-solid fa-arrow-down fa-fw"></i>
+                        </div>
+                        Sort descending
+                      </DropdownItem>
+                      <DropdownItem onClick="isOpen = false">
+                        <div class="mr-1.5 flex items-center justify-center">
+                          <i class="fa-solid fa-arrow-left fa-fw"></i>
+                        </div>
+                        Move left
+                      </DropdownItem>
+                      <DropdownItem onClick="isOpen = false">
+                        <div class="mr-1.5 flex items-center justify-center">
+                          <i class="fa-solid fa-arrow-right fa-fw"></i>
+                        </div>
+                        Move right
+                      </DropdownItem>
+                    </DropdownList>
+                  </DropdownGroup>
+                  <DropdownDivider />
+                  <DropdownGroup>
                     <DropdownItem onClick="isOpen = false">
                       <div class="mr-1.5 flex items-center justify-center">
-                        <i class="fa-solid fa-arrow-up fa-fw"></i>
+                        <i class="fa-solid fa-eye-slash fa-fw"></i>
                       </div>
-                      Sort ascending
+                      Hide from view
                     </DropdownItem>
-                    <DropdownItem onClick="isOpen = false">
-                      <div class="mr-1.5 flex items-center justify-center">
-                        <i class="fa-solid fa-arrow-down fa-fw"></i>
-                      </div>
-                      Sort descending
-                    </DropdownItem>
-                    <DropdownItem onClick="isOpen = false">
-                      <div class="mr-1.5 flex items-center justify-center">
-                        <i class="fa-solid fa-arrow-left fa-fw"></i>
-                      </div>
-                      Move left
-                    </DropdownItem>
-                    <DropdownItem onClick="isOpen = false">
-                      <div class="mr-1.5 flex items-center justify-center">
-                        <i class="fa-solid fa-arrow-right fa-fw"></i>
-                      </div>
-                      Move right
-                    </DropdownItem>
-                  </DropdownList>
-                </DropdownGroup>
-                <DropdownDivider />
-                <DropdownGroup>
-                  <DropdownItem onClick="isOpen = false">
-                    <div class="mr-1.5 flex items-center justify-center">
-                      <i class="fa-solid fa-eye-slash fa-fw"></i>
-                    </div>
-                    Hide from view
-                  </DropdownItem>
-                </DropdownGroup>
-              </DropdownContent>
-            </Dropdown>
+                  </DropdownGroup>
+                </DropdownContent>
+              </Dropdown>
+              <div
+                class="opacity-0 group-hover:opacity-100"
+                x-data="{isExpanded: false}"
+              >
+                <a
+                  @click="isExpanded = !isExpanded"
+                  class="cursor-pointer text-xs font-semibold text-blue-500"
+                  x-text="isExpanded ? 'Collapse' : 'Expand'">Expand</a
+                >
+              </div>
+            </div>
           </th>
           <th class="px-1 py-2 first:pl-5">
             <Dropdown>
@@ -566,5 +578,3 @@ import {
     </table>
   </div>
 </Layout>
-@/components/Checkbox@/components/Button@/components/Tooltip@/components/Dropdown
-@/components/Checkbox@/components/Button@/components/Tooltip@/components/Dropdown

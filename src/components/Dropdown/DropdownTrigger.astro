@@ -3,7 +3,7 @@ import { twMerge } from 'tailwind-merge';
 const { className, ...props } = Astro.props;
 ---
 
-<button
+<div
   x-on:click.prevent="toggleDropdown"
   x-ref="dropdownTrigger"
   class={twMerge(
@@ -16,4 +16,4 @@ const { className, ...props } = Astro.props;
   {...props}
 >
   <slot />
-</button>
+</div>
