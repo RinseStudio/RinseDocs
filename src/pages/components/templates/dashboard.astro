@@ -137,9 +137,9 @@ import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/Tooltip';
           class="flex items-end justify-between border-b border-gray-200 pr-7"
         >
           <TabsList className="border-b-0 px-7">
-            <TabsTrigger name="tab-1" isActive>Login</TabsTrigger>
+            <TabsTrigger name="tab-1">Login</TabsTrigger>
             <TabsTrigger name="tab-2">Registration</TabsTrigger>
-            <TabsTrigger name="tab-3">
+            <TabsTrigger name="tab-3" isActive>
               <div class="flex items-center">
                 <svg
                   class="mr-2 size-3 animate-spin"
@@ -307,7 +307,7 @@ import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/Tooltip';
                             1.93%
                           </DeltaLabel>
                         </div>
-                        <div class="mt-1 text-xs font-medium leading-none">
+                        <div class="mt-2 text-xs font-medium leading-none">
                           23% of total
                         </div>
                       </div>
@@ -328,7 +328,7 @@ import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/Tooltip';
                             6.36%
                           </DeltaLabel>
                         </div>
-                        <div class="mt-1 text-xs font-medium leading-none">
+                        <div class="mt-2 text-xs font-medium leading-none">
                           23% of total
                         </div>
                       </div>
@@ -341,7 +341,7 @@ import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/Tooltip';
                       >
                         30,452 users
                       </div>
-                      <div class="mt-1 text-xs font-medium leading-none">
+                      <div class="mt-2 text-xs font-medium leading-none">
                         680 less than before
                       </div>
                     </div>
@@ -351,7 +351,7 @@ import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/Tooltip';
                       >
                         30,452 users
                       </div>
-                      <div class="mt-1 text-xs font-medium leading-none">
+                      <div class="mt-2 text-xs font-medium leading-none">
                         680 less than before
                       </div>
                     </div>
@@ -375,7 +375,7 @@ import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/Tooltip';
                             1.46%
                           </DeltaLabel>
                         </div>
-                        <div class="mt-1 text-xs font-medium leading-none">
+                        <div class="mt-2 text-xs font-medium leading-none">
                           23% of total
                         </div>
                       </div>
@@ -396,7 +396,7 @@ import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/Tooltip';
                             2.89%
                           </DeltaLabel>
                         </div>
-                        <div class="mt-1 text-xs font-medium leading-none">
+                        <div class="mt-2 text-xs font-medium leading-none">
                           23% of total
                         </div>
                       </div>
@@ -415,7 +415,7 @@ import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/Tooltip';
                           49
                           <DeltaLabel trend="drop">2.06%</DeltaLabel>
                         </div>
-                        <div class="mt-1 text-xs font-medium leading-none">
+                        <div class="mt-2 text-xs font-medium leading-none">
                           23% of total
                         </div>
                       </div>
@@ -431,7 +431,7 @@ import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/Tooltip';
                       >
                         30,452 users
                       </div>
-                      <div class="mt-1 text-xs font-medium leading-none">
+                      <div class="mt-2 text-xs font-medium leading-none">
                         680 less than before
                       </div>
                     </div>
@@ -441,7 +441,7 @@ import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/Tooltip';
                       >
                         30,452 users
                       </div>
-                      <div class="mt-1 text-xs font-medium leading-none">
+                      <div class="mt-2 text-xs font-medium leading-none">
                         680 less than before
                       </div>
                     </div>
@@ -451,7 +451,7 @@ import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/Tooltip';
                       >
                         30,452 users
                       </div>
-                      <div class="mt-1 text-xs font-medium leading-none">
+                      <div class="mt-2 text-xs font-medium leading-none">
                         680 less than before
                       </div>
                     </div>
@@ -1384,176 +1384,203 @@ import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/Tooltip';
                   </h3>
                 </div>
               </div>
-              <Card className="grid grid-cols-5 px-5">
-                <div class="col-span-2 grid grid-cols-2">
-                  <div class="py-5">
-                    <div>
-                      <div
-                        class="mb-2 flex items-center gap-2 text-xs font-semibold leading-none text-gray-600"
-                      >
-                        Total logins
-                      </div>
-                      <div
-                        class="flex items-center gap-2 text-lg font-bold text-black"
-                      >
-                        <div class="flex h-7 animate-pulse items-center">
+              <div class="grid grid-cols-5 gap-4">
+                <Card className="col-span-2 px-5">
+                  <div class="grid grid-cols-2">
+                    <div class="py-5">
+                      <div>
+                        <div
+                          class="mb-2 flex items-center gap-2 text-xs font-semibold leading-none text-gray-600"
+                        >
+                          Total logins
+                        </div>
+                        <div class="flex h-7 items-center">
                           <div
                             class="h-3.5 w-[140px] rounded-full bg-slate-200"
+                          >
+                          </div>
+                        </div>
+                        <div class="mt-2">
+                          <div
+                            class="h-3 w-10 animate-pulse rounded-full bg-slate-200"
                           >
                           </div>
                         </div>
                       </div>
                     </div>
 
-                    <div class="mt-4">
-                      <div
-                        class="h-2 w-10 animate-pulse rounded-full bg-slate-200"
-                      >
-                      </div>
-                    </div>
-                    <div class="mt-2">
-                      <div
-                        class="h-2 w-[80px] animate-pulse rounded-full bg-slate-200"
-                      >
+                    <div class="py-5">
+                      <div>
+                        <div
+                          class="mb-2 flex items-center gap-2 text-xs font-semibold leading-none text-gray-600"
+                        >
+                          Failed logins
+                        </div>
+                        <div class="flex h-7 items-center">
+                          <div
+                            class="h-3.5 w-[140px] rounded-full bg-slate-200"
+                          >
+                          </div>
+                        </div>
+                        <div class="mt-2">
+                          <div
+                            class="h-3 w-10 animate-pulse rounded-full bg-slate-200"
+                          >
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
-
-                  <div class="py-5">
+                  <div class="grid grid-cols-2 border-t border-gray-200 py-5">
                     <div>
-                      <div
-                        class="mb-2 flex items-center gap-2 text-xs font-semibold leading-none text-gray-600"
-                      >
-                        Failed logins
+                      <div>
+                        <div
+                          class="h-2.5 w-16 animate-pulse rounded-full bg-slate-300"
+                        >
+                        </div>
                       </div>
-                      <div
-                        class="flex items-center gap-2 text-lg font-bold text-black"
-                      >
-                        <div class="flex h-7 animate-pulse items-center">
+                      <div class="mt-3">
+                        <div
+                          class="h-2.5 w-24 animate-pulse rounded-full bg-slate-200"
+                        >
+                        </div>
+                      </div>
+                    </div>
+                    <div>
+                      <div>
+                        <div
+                          class="h-2.5 w-16 animate-pulse rounded-full bg-slate-300"
+                        >
+                        </div>
+                      </div>
+                      <div class="mt-3">
+                        <div
+                          class="h-2.5 w-24 animate-pulse rounded-full bg-slate-200"
+                        >
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </Card>
+
+                <Card className="col-span-3 px-5">
+                  <div class="grid grid-cols-3 gap-5">
+                    <div class="py-5">
+                      <div>
+                        <div
+                          class="mb-2 flex items-center gap-2 text-xs font-semibold leading-none text-gray-600"
+                        >
+                          Allow
+                        </div>
+                        <div class="flex h-7 items-center">
                           <div
                             class="h-3.5 w-[140px] rounded-full bg-slate-200"
+                          >
+                          </div>
+                        </div>
+                        <div class="mt-2">
+                          <div
+                            class="h-3 w-10 animate-pulse rounded-full bg-slate-200"
                           >
                           </div>
                         </div>
                       </div>
                     </div>
 
-                    <div class="mt-4">
-                      <div
-                        class="h-2 w-10 animate-pulse rounded-full bg-slate-200"
-                      >
-                      </div>
-                    </div>
-                    <div class="mt-2">
-                      <div
-                        class="h-2 w-[80px] animate-pulse rounded-full bg-slate-200"
-                      >
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col-span-3 grid grid-cols-3 gap-5">
-                  <div class="py-5">
-                    <div>
-                      <div
-                        class="mb-2 flex items-center gap-2 text-xs font-semibold leading-none text-gray-600"
-                      >
-                        Allow
-                      </div>
-                      <div
-                        class="flex items-center gap-2 text-lg font-bold text-black"
-                      >
-                        <div class="flex h-7 animate-pulse items-center">
+                    <div class="py-5">
+                      <div>
+                        <div
+                          class="mb-2 flex items-center gap-2 text-xs font-semibold leading-none text-orange-500"
+                        >
+                          Challenge
+                        </div>
+                        <div class="flex h-7 items-center">
                           <div
                             class="h-3.5 w-[140px] rounded-full bg-slate-200"
+                          >
+                          </div>
+                        </div>
+                        <div class="mt-2">
+                          <div
+                            class="h-3 w-10 animate-pulse rounded-full bg-slate-200"
                           >
                           </div>
                         </div>
                       </div>
                     </div>
 
-                    <div class="mt-4">
-                      <div
-                        class="h-2 w-10 animate-pulse rounded-full bg-slate-200"
-                      >
-                      </div>
-                    </div>
-                    <div class="mt-2">
-                      <div
-                        class="h-2 w-[80px] animate-pulse rounded-full bg-slate-200"
-                      >
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="py-5">
-                    <div>
-                      <div
-                        class="mb-2 flex items-center gap-2 text-xs font-semibold leading-none text-gray-600"
-                      >
-                        Challenge
-                      </div>
-                      <div
-                        class="flex items-center gap-2 text-lg font-bold text-black"
-                      >
-                        <div class="flex h-7 animate-pulse items-center">
+                    <div class="py-5">
+                      <div>
+                        <div
+                          class="mb-2 flex items-center gap-2 text-xs font-semibold leading-none text-red-500"
+                        >
+                          Deny
+                        </div>
+                        <div class="flex h-7 items-center">
                           <div
                             class="h-3.5 w-[140px] rounded-full bg-slate-200"
                           >
                           </div>
                         </div>
-                      </div>
-                    </div>
-
-                    <div class="mt-4">
-                      <div
-                        class="h-2 w-10 animate-pulse rounded-full bg-slate-200"
-                      >
-                      </div>
-                    </div>
-                    <div class="mt-2">
-                      <div
-                        class="h-2 w-[80px] animate-pulse rounded-full bg-slate-200"
-                      >
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="py-5">
-                    <div>
-                      <div
-                        class="mb-2 flex items-center gap-2 text-xs font-semibold leading-none text-gray-600"
-                      >
-                        Deny
-                      </div>
-                      <div
-                        class="flex items-center gap-2 text-lg font-bold text-black"
-                      >
-                        <div class="flex h-7 animate-pulse items-center">
+                        <div class="mt-2">
                           <div
-                            class="h-3.5 w-[140px] rounded-full bg-slate-200"
+                            class="h-3 w-10 animate-pulse rounded-full bg-slate-200"
                           >
                           </div>
                         </div>
                       </div>
                     </div>
+                  </div>
 
-                    <div class="mt-4">
-                      <div
-                        class="h-2 w-10 animate-pulse rounded-full bg-slate-200"
-                      >
+                  <div
+                    class="grid grid-cols-3 gap-5 border-t border-gray-200 py-5"
+                  >
+                    <div>
+                      <div>
+                        <div
+                          class="h-2.5 w-16 animate-pulse rounded-full bg-slate-300"
+                        >
+                        </div>
+                      </div>
+                      <div class="mt-3">
+                        <div
+                          class="h-2.5 w-24 animate-pulse rounded-full bg-slate-200"
+                        >
+                        </div>
                       </div>
                     </div>
-                    <div class="mt-2">
-                      <div
-                        class="h-2 w-[80px] animate-pulse rounded-full bg-slate-200"
-                      >
+                    <div>
+                      <div>
+                        <div
+                          class="h-2.5 w-16 animate-pulse rounded-full bg-slate-300"
+                        >
+                        </div>
+                      </div>
+                      <div class="mt-3">
+                        <div
+                          class="h-2.5 w-24 animate-pulse rounded-full bg-slate-200"
+                        >
+                        </div>
+                      </div>
+                    </div>
+                    <div>
+                      <div>
+                        <div
+                          class="h-2.5 w-16 animate-pulse rounded-full bg-slate-300"
+                        >
+                        </div>
+                      </div>
+                      <div class="mt-3">
+                        <div
+                          class="h-2.5 w-24 animate-pulse rounded-full bg-slate-200"
+                        >
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </Card>
+                </Card>
+              </div>
+
               <Card className="grid grid-cols-1">
                 <div class="px-5 py-5">
                   <div
