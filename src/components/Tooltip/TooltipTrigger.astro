@@ -5,6 +5,7 @@ const { className, ...props } = Astro.props;
 
 <div
   x-ref="tooltipTrigger"
+  x-on:click="isVisible = true"
   x-on:mouseenter="isVisible = true"
   x-on:mouseleave="isVisible = false"
   class={twMerge(className)}

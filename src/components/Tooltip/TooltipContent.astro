@@ -4,6 +4,7 @@ import { twMerge } from 'tailwind-merge';
 const {
   className = null,
   position = 'top',
+  offset = '8',
   enterClassName = null,
   enterStartClassName = null,
   enterEndClassName = null,
@@ -12,29 +13,16 @@ const {
   leaveEndClassName = null,
   ...props
 } = Astro.props;
+
+const anchor = {
+  [`x-anchor.${position}.offset.${offset}`]: '$refs.tooltipTrigger',
+};
 ---
 
 <div
   x-cloak
   x-show="isVisible"
-  x-anchor.top.offset.8={position === 'top' ? '$refs.tooltipTrigger' : null}
-  x-anchor.right.offset.8={position === 'right' ? '$refs.tooltipTrigger' : null}
-  x-anchor.bottom.offset.8={position === 'bottom'
-    ? '$refs.tooltipTrigger'
-    : null}
-  x-anchor.left.offset.8={position === 'left' ? '$refs.tooltipTrigger' : null}
-  x-anchor.top-start.offset.8={position === 'topStart'
-    ? '$refs.tooltipTrigger'
-    : null}
-  x-anchor.top-end.offset.8={position === 'topEnd'
-    ? '$refs.tooltipTrigger'
-    : null}
-  x-anchor.bottom-start.offset.8={position === 'bottomStart'
-    ? '$refs.tooltipTrigger'
-    : null}
-  x-anchor.bottom-end.offset.8={position === 'bottom-end'
-    ? '$refs.tooltipTrigger'
-    : null}
+  {...anchor}
   x-transition:enter={twMerge(
     'transition ease-out duration-200',
     enterClassName,
