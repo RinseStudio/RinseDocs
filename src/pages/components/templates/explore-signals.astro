@@ -1,0 +1,764 @@
+---
+import Layout from '@/layouts/rinsedocs/Raw.astro';
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/Tabs';
+import { Button } from '@/components/Button';
+import Card from '@/components/Card';
+import Table from '@/components/Table';
+import {
+  Dropdown,
+  DropdownContent,
+  DropdownGroup,
+  DropdownHeader,
+  DropdownItem,
+  DropdownList,
+  DropdownDivider,
+  DropdownTrigger,
+} from '@/components/Dropdown';
+import {
+  Select,
+  SelectGroup,
+  SelectTrigger,
+  SelectContent,
+  SelectHeader,
+  SelectList,
+  SelectItem,
+} from '@/components/Select';
+import { Checkbox } from '@/components/Checkbox';
+import { TextField } from '@/components/TextField';
+import SelectField from '@/components/SelectField';
+import SearchField from '@/components/SearchField/index.astro';
+
+import { DeltaLabel } from '@/components/DeltaLabel';
+import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/Tooltip';
+---
+
+<Layout class="">
+  <div
+    class="app grid grid-cols-[var(--sidebar-width),1fr]"
+    style="--sidebar-width: 240px"
+  >
+    <aside
+      class="sticky top-0 flex h-[100dvh] min-w-[200px] max-w-[400px] flex-none"
+    >
+      Castle Sidebar
+    </aside>
+
+    <main class="relative border-l border-zinc-200 bg-slate-50">
+      <div
+        @mousedown="APP.slideReady"
+        x-ref="slideHandle"
+        class="absolute bottom-0 left-0 top-0 z-30 flex w-[10px] cursor-grab justify-start opacity-0 duration-300 hover:opacity-100"
+      >
+        <div class="w-[2px] bg-blue-400"></div>
+      </div>
+
+      <div
+        class="flex items-center justify-between border-b border-zinc-200 bg-white px-5 py-4"
+      >
+        <div class="flex items-center gap-4">
+          <h1 class="text-lg font-bold text-black">Explore</h1>
+          <button
+            class="flex items-center gap-1.5 text-xs font-semibold text-gray-900 hover:text-gray-800"
+          >
+            <i class="fa-solid fa-plus"></i>
+            Add metric row
+          </button>
+        </div>
+        <div class="flex items-center gap-3">
+          <Dropdown>
+            <DropdownTrigger>
+              <Button
+                size="sm"
+                variant="outline"
+                className="w-[200px] justify-between pl-2 pr-8"
+              >
+                <div class="flex items-center gap-2.5">
+                  <div
+                    class="flex h-[18px] items-center rounded bg-black px-1.5 text-[10px] uppercase text-white"
+                  >
+                    7d
+                  </div>
+                  Past week
+                </div>
+                <div
+                  class="absolute right-0 top-0 flex size-8 items-center justify-center"
+                >
+                  <i data-lucide="calendar-days" class="size-3.5 text-gray-400"
+                  ></i>
+                </div>
+              </Button>
+            </DropdownTrigger>
+            <DropdownContent className="w-full">Rangepicker</DropdownContent>
+          </Dropdown>
+          <Button isSquare size="sm" variant="outline" className="p-0">
+            <i data-lucide="refresh-ccw" class="size-3.5 text-zinc-900"></i>
+          </Button>
+          <Button size="sm">Save as view</Button>
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-5 px-5 py-4">
+        <div class="space-y-2">
+          <div
+            class="flex items-start justify-between gap-2 rounded-md bg-slate-800 px-4 py-3"
+          >
+            <div class="flex flex-wrap items-start gap-1">
+              <div
+                class="flex size-6 items-center justify-center rounded-full bg-pink-400 text-xs font-semibold text-white"
+              >
+                A
+              </div>
+              <span
+                class="mx-2 flex h-6 items-center text-xs font-medium text-slate-400"
+                >Start typing operators or `$` to create a new metric.</span
+              >
+            </div>
+            <div>
+              <a
+                href="#"
+                class="h-6 text-xs font-semibold text-blue-400 hover:text-blue-300"
+                >Learn more</a
+              >
+            </div>
+          </div>
+
+          <div
+            class="flex items-start justify-between gap-2 rounded-md bg-slate-800 px-3 py-3"
+          >
+            <div class="flex flex-wrap items-start gap-1">
+              <div
+                class="flex size-6 items-center justify-center rounded-full bg-pink-400 text-xs font-semibold text-white"
+              >
+                A
+              </div>
+              <span
+                class="flex h-6 items-center font-mono text-xs font-medium text-lime-400"
+                >(</span
+              >
+              <button
+                class="font-regular flex h-6 items-center rounded bg-blue-500 px-2.5 text-xs text-white"
+              >
+                <span
+                  >Count Events <span class="font-bold">Failed logins</span
+                  ></span
+                >
+              </button>
+              <span
+                class="flex h-6 items-center font-mono text-xs font-medium text-lime-400"
+                >)</span
+              >
+              <span
+                class="flex h-6 items-center font-mono text-xs font-medium text-teal-400"
+                >/</span
+              >
+              <span
+                class="flex h-6 items-center font-mono text-xs font-medium text-lime-400"
+                >(</span
+              >
+              <Dropdown data={`isOpen: true`}>
+                <DropdownTrigger>
+                  <button
+                    class="font-regular flex h-6 items-center rounded bg-white px-2.5 text-xs text-slate-900 hover:bg-white/90"
+                    :class="{'bg-blue-500 text-white': isOpen, 'bg-white hover:bg-white/90 text-slate-900': !isOpen}"
+                  >
+                    <span
+                      >Count Events <span class="font-bold">Failed logins</span
+                      ></span
+                    >
+                  </button>
+                </DropdownTrigger>
+                <DropdownContent className="w-[800px]">
+                  <div class="space-y-3 px-4 py-4">
+                    <div class="flex items-center">
+                      <div
+                        class="w-[100px] text-xs font-semibold text-slate-400"
+                      >
+                        Function
+                      </div>
+                      <div class="flex items-center gap-4">
+                        <div>
+                          <Dropdown>
+                            <DropdownTrigger>
+                              <button
+                                class="flex h-8 items-center rounded px-2 text-xs font-medium text-zinc-400 shadow hover:text-zinc-900"
+                              >
+                                Set method
+                              </button>
+                            </DropdownTrigger>
+
+                            <DropdownContent className="w-[288px]">
+                              <div class="space-y-3 px-3 py-3">
+                                <Select className="w-full">
+                                  <SelectTrigger size="sm">
+                                    Select function
+                                  </SelectTrigger>
+                                  <SelectContent className="w-full">
+                                    <SelectGroup>
+                                      <SelectList>
+                                        <SelectItem value="average">
+                                          Average
+                                        </SelectItem>
+                                        <SelectItem value="count-events">
+                                          Count Events
+                                        </SelectItem>
+                                        <SelectItem value="count-uniqiue">
+                                          Count Unique
+                                        </SelectItem>
+                                        <SelectItem value="first">
+                                          First
+                                        </SelectItem>
+                                      </SelectList>
+                                    </SelectGroup>
+                                  </SelectContent>
+                                </Select>
+
+                                <Select className="w-full">
+                                  <SelectTrigger size="sm">
+                                    Select field
+                                  </SelectTrigger>
+                                  <SelectContent className="w-full">
+                                    <SelectGroup>
+                                      <SelectList>
+                                        <SelectItem value="average">
+                                          Average
+                                        </SelectItem>
+                                        <SelectItem value="count-events">
+                                          Count Events
+                                        </SelectItem>
+                                        <SelectItem value="count-uniqiue">
+                                          Count Unique
+                                        </SelectItem>
+                                        <SelectItem value="first">
+                                          First
+                                        </SelectItem>
+                                      </SelectList>
+                                    </SelectGroup>
+                                  </SelectContent>
+                                </Select>
+                              </div>
+                            </DropdownContent>
+                          </Dropdown>
+                        </div>
+                        <div class="text-xs font-semibold text-slate-400">
+                          within
+                        </div>
+                        <div>
+                          <div>
+                            <Dropdown>
+                              <DropdownTrigger>
+                                <button
+                                  class="flex h-8 items-center rounded px-2 text-xs font-medium text-zinc-900 shadow hover:text-blue-500"
+                                >
+                                  5 minutes
+                                </button>
+                              </DropdownTrigger>
+
+                              <DropdownContent className="w-[288px]">
+                                <div class="space-y-3 px-3 py-3">
+                                  <div class="flex gap-2">
+                                    <TextField
+                                      type="text"
+                                      placeholder="e.g. 3600"
+                                    />
+
+                                    <Select className="w-full">
+                                      <SelectTrigger>minute</SelectTrigger>
+                                      <SelectContent className="w-full">
+                                        <SelectGroup>
+                                          <SelectList>
+                                            <SelectItem value="average">
+                                              minute
+                                            </SelectItem>
+                                            <SelectItem value="count-events">
+                                              second
+                                            </SelectItem>
+                                            <SelectItem value="count-uniqiue">
+                                              hour
+                                            </SelectItem>
+                                            <SelectItem value="first">
+                                              day
+                                            </SelectItem>
+                                          </SelectList>
+                                        </SelectGroup>
+                                      </SelectContent>
+                                    </Select>
+                                  </div>
+                                  <label
+                                    class="flex items-center text-xs font-medium text-gray-900"
+                                  >
+                                    <Checkbox className="mr-2" checked /> Maximum
+                                    time
+                                  </label>
+                                </div>
+                              </DropdownContent>
+                            </Dropdown>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="flex items-center">
+                      <div
+                        class="w-[100px] text-xs font-semibold text-slate-400"
+                      >
+                        Where
+                      </div>
+                      <div
+                        class="flex flex-1 flex-wrap items-start rounded-md bg-slate-50 p-2"
+                      >
+                        <button
+                          class="size-7 rounded bg-white shadow hover:bg-slate-900 hover:text-white"
+                        >
+                          <i class="fa-solid fa-plus text-xs"></i>
+                        </button>
+                      </div>
+                    </div>
+                    <div class="flex items-center">
+                      <div
+                        class="w-[100px] text-xs font-semibold text-slate-400"
+                      >
+                        Group by
+                      </div>
+                      <div
+                        class="flex flex-1 flex-wrap items-start rounded-md bg-slate-50 p-2"
+                      >
+                        <button
+                          class="size-7 rounded bg-white shadow hover:bg-slate-900 hover:text-white"
+                        >
+                          <i class="fa-solid fa-plus text-xs"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </DropdownContent>
+              </Dropdown>
+
+              <span
+                class="flex h-6 items-center font-mono text-xs font-medium text-lime-400"
+                >)</span
+              >
+            </div>
+            <div>
+              <a
+                href="#"
+                class="h-8 text-xs font-semibold text-blue-400 hover:text-blue-300"
+                >Learn more</a
+              >
+            </div>
+          </div>
+
+          <div
+            class="flex items-center gap-2 rounded-md bg-slate-200 px-3 py-2"
+          >
+            <div
+              class="flex size-6 items-center justify-center rounded-full bg-slate-900 text-xs text-white"
+            >
+              <i class="fa-solid fa-filter-list"></i>
+            </div>
+            <div
+              class="flex h-8 items-center rounded-md bg-white px-3 text-xs text-zinc-900 shadow"
+            >
+              <span>
+                Policy is <span class="font-semibold">Block fake accounts</span>
+              </span>
+            </div>
+            <div
+              class="flex h-8 items-center rounded-md bg-white px-3 text-xs text-zinc-900 shadow"
+            >
+              <span>
+                Policy is <span class="font-semibold">Block fake accounts</span>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <ul class="flex flex-wrap gap-2">
+          <li
+            class="flex h-8 items-center gap-2.5 rounded-md bg-blue-400/30 px-3 text-[13px] font-semibold text-zinc-900"
+          >
+            <i class="fa-solid fa-filter-list text-blue-500"></i>
+            Events (4,201)
+          </li>
+          <li
+            class="flex h-8 items-center gap-2.5 rounded-md bg-slate-400/[0.15] px-3 text-[13px] font-semibold text-zinc-900 hover:bg-slate-400/[0.25]"
+          >
+            <i class="fa-solid fa-exclamation-triangle text-slate-500"></i>
+            Signals (12)
+          </li>
+          <li
+            class="flex h-8 items-center gap-2.5 rounded-md bg-slate-400/[0.15] px-3 text-[13px] font-semibold text-zinc-900 hover:bg-slate-400/[0.25]"
+          >
+            <i class="fa-solid fa-mobile text-slate-500"></i>
+            Devices (24)
+          </li>
+          <li
+            class="flex h-8 items-center gap-2.5 rounded-md bg-slate-400/[0.15] px-3 text-[13px] font-semibold text-zinc-900 hover:bg-slate-400/[0.25]"
+          >
+            <i class="fa-solid fa-user text-slate-500"></i>
+            Users (24)
+          </li>
+          <li
+            class="flex h-8 items-center gap-2.5 rounded-md bg-slate-400/[0.15] px-3 text-[13px] font-semibold text-zinc-900 hover:bg-slate-400/[0.25]"
+          >
+            <i class="fa-solid fa-user text-slate-500"></i>
+            Organizations (24)
+            <div class="text-slate-500 hover:text-slate-900">
+              <i class="fa-solid fa-times"></i>
+            </div>
+          </li>
+        </ul>
+
+        <section
+          class="h-[800px] rounded-lg border border-zinc-200 bg-white shadow-[0px_4px_0px_-2px_rgba(0,0,0,0.025)]"
+        >
+        </section>
+      </div>
+    </main>
+  </div>
+</Layout>
+
+<script>
+  import Chart from 'chart.js/auto';
+
+  document.addEventListener('DOMContentLoaded', (event) => {
+    // Your chart initialization code here
+    const loginActivityChart = new Chart(
+      document.getElementById('loginActivityChart').getContext('2d'),
+      {
+        type: 'bar',
+        data: {
+          labels: Array.from({ length: 80 }, (_, i) => `Bar ${i + 1}`),
+          datasets: [
+            {
+              label: 'Segment 3',
+              data: Array.from({ length: 80 }, () =>
+                Math.floor(Math.random() * 25),
+              ),
+              backgroundColor: '#ef4444',
+              stack: 'Stack 0',
+            },
+            {
+              label: 'Segment 2',
+              data: Array.from({ length: 80 }, () =>
+                Math.floor(Math.random() * (75 - 25) + 25),
+              ),
+              backgroundColor: '#22C55E',
+              stack: 'Stack 0',
+            },
+            {
+              label: 'Segment 1',
+              data: Array.from({ length: 80 }, () =>
+                Math.floor(Math.random() * (100 - 50) + 50),
+              ),
+              backgroundColor: '#e2e8f0',
+              stack: 'Stack 0',
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              display: false, // This will hide the legend
+            },
+            tooltip: {
+              xAlign: 'center',
+              yAlign: 'bottom',
+              displayColors: false,
+              backgroundColor: 'black', // Set background color
+              titleColor: '#fff', // Set title font color
+              bodyColor: '#fff', // Set body font color,
+              bodyFont: {
+                size: 11,
+              },
+              callbacks: {
+                label: function (context) {
+                  return context.parsed.y + ' ' + 'Activity';
+                },
+                title: function (tooltipItems) {
+                  // Customize the tooltip title
+                  if (tooltipItems.length > 0) {
+                    var firstItem = tooltipItems[0];
+                    return firstItem.label;
+                  }
+                  return '';
+                },
+              },
+            },
+          },
+          scales: {
+            x: {
+              stacked: true,
+              grid: {
+                display: false, // Display grid lines on the x-axis
+              },
+            },
+            y: {
+              stacked: true,
+            },
+          },
+        },
+      },
+    );
+
+    const loginActionChart = new Chart(
+      document.getElementById('loginActionChart').getContext('2d'),
+      {
+        type: 'bar',
+        data: {
+          labels: Array.from({ length: 80 }, (_, i) => `Bar ${i + 1}`),
+          datasets: [
+            {
+              label: 'Segment 3',
+              data: Array.from({ length: 80 }, () =>
+                Math.floor(Math.random() * 10),
+              ),
+              backgroundColor: '#ef4444',
+              stack: 'Stack 0',
+            },
+            {
+              label: 'Segment 2',
+              data: Array.from({ length: 80 }, () =>
+                Math.floor(Math.random() * 40),
+              ),
+              backgroundColor: '#fdba74',
+              stack: 'Stack 0',
+            },
+            {
+              label: 'Segment 1',
+              data: Array.from({ length: 80 }, () =>
+                Math.floor(Math.random() * 100),
+              ),
+              backgroundColor: '#e2e8f0',
+              stack: 'Stack 0',
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              display: false, // This will hide the legend
+            },
+            tooltip: {
+              xAlign: 'center',
+              yAlign: 'bottom',
+              displayColors: false,
+              backgroundColor: 'black', // Set background color
+              titleColor: '#fff', // Set title font color
+              bodyColor: '#fff', // Set body font color,
+              bodyFont: {
+                size: 11,
+              },
+              callbacks: {
+                label: function (context) {
+                  return context.parsed.y + ' ' + 'Activity';
+                },
+                title: function (tooltipItems) {
+                  // Customize the tooltip title
+                  if (tooltipItems.length > 0) {
+                    var firstItem = tooltipItems[0];
+                    return firstItem.label;
+                  }
+                  return '';
+                },
+              },
+            },
+          },
+          scales: {
+            x: {
+              stacked: true,
+              grid: {
+                display: false, // Display grid lines on the x-axis
+              },
+            },
+            y: {
+              stacked: true,
+            },
+          },
+        },
+      },
+    );
+
+    const loginTriggeredPoliciesChart = new Chart(
+      document.getElementById('loginTriggeredPoliciesChart').getContext('2d'),
+      {
+        type: 'pie', // Type of chart
+        data: {
+          labels: ['Red', 'Blue', 'Yellow'], // Labels for the segments
+          datasets: [
+            {
+              label: 'My First Dataset',
+              data: [200, 100, 50, 30, 20, 15], // Data points for each segment
+              backgroundColor: [
+                '#f97316',
+                '#f97316',
+                '#ef4444',
+                '#ef4444',
+                '#ef4444',
+              ],
+            },
+          ],
+        },
+        options: {
+          plugins: {
+            tooltip: {
+              enabled: false,
+            },
+            legend: {
+              display: false, // This will hide the legend
+            },
+          },
+        },
+      },
+    );
+
+    const loginTriggeredSignalsChart = new Chart(
+      document.getElementById('loginTriggeredSignalsChart').getContext('2d'),
+      {
+        type: 'pie', // Type of chart
+        data: {
+          labels: ['Red', 'Blue', 'Yellow'], // Labels for the segments
+          datasets: [
+            {
+              label: 'My First Dataset',
+              data: [100, 40, 40, 30, 20, 12, 10, 5], // Data points for each segment
+              backgroundColor: [
+                '#d1d5db',
+                '#f97316',
+                '#fbbf24',
+                '#22c55e',
+                '#14b8a6',
+                '#0ea5e9',
+                '#6366f1',
+                '#000000',
+              ],
+            },
+          ],
+        },
+        options: {
+          plugins: {
+            tooltip: {
+              enabled: false,
+            },
+            legend: {
+              display: false, // This will hide the legend
+            },
+          },
+        },
+      },
+    );
+
+    // Registration chart
+    const registrationActivityChart = new Chart(
+      document.getElementById('registrationActivityChart').getContext('2d'),
+      {
+        type: 'bar',
+        data: {
+          labels: Array.from({ length: 80 }, (_, i) => `Bar ${i + 1}`),
+          datasets: [],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              display: false, // This will hide the legend
+            },
+            tooltip: {
+              xAlign: 'center',
+              yAlign: 'bottom',
+              displayColors: false,
+              backgroundColor: 'black', // Set background color
+              titleColor: '#fff', // Set title font color
+              bodyColor: '#fff', // Set body font color,
+              bodyFont: {
+                size: 11,
+              },
+              callbacks: {
+                label: function (context) {
+                  return context.parsed.y + ' ' + 'Activity';
+                },
+                title: function (tooltipItems) {
+                  // Customize the tooltip title
+                  if (tooltipItems.length > 0) {
+                    var firstItem = tooltipItems[0];
+                    return firstItem.label;
+                  }
+                  return '';
+                },
+              },
+            },
+          },
+          scales: {
+            x: {
+              stacked: true,
+              grid: {
+                display: false, // Display grid lines on the x-axis
+              },
+            },
+            y: {
+              stacked: true,
+            },
+          },
+        },
+      },
+    );
+
+    const registrationActionChart = new Chart(
+      document.getElementById('registrationActionChart').getContext('2d'),
+      {
+        type: 'bar',
+        data: {
+          labels: Array.from({ length: 80 }, (_, i) => `Bar ${i + 1}`),
+          datasets: [],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              display: false, // This will hide the legend
+            },
+            tooltip: {
+              xAlign: 'center',
+              yAlign: 'bottom',
+              displayColors: false,
+              backgroundColor: 'black', // Set background color
+              titleColor: '#fff', // Set title font color
+              bodyColor: '#fff', // Set body font color,
+              bodyFont: {
+                size: 11,
+              },
+              callbacks: {
+                label: function (context) {
+                  return context.parsed.y + ' ' + 'Activity';
+                },
+                title: function (tooltipItems) {
+                  // Customize the tooltip title
+                  if (tooltipItems.length > 0) {
+                    var firstItem = tooltipItems[0];
+                    return firstItem.label;
+                  }
+                  return '';
+                },
+              },
+            },
+          },
+          scales: {
+            x: {
+              stacked: true,
+              grid: {
+                display: false, // Display grid lines on the x-axis
+              },
+            },
+            y: {
+              stacked: true,
+            },
+          },
+        },
+      },
+    );
+  });
+</script>

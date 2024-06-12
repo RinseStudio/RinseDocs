@@ -141,7 +141,11 @@ data-[is-danger]:dark:hover:text-red-200`,
 
 {
   as == 'button' && (
-    <button data-is-danger={isDanger} class={buttonClass} {...props}>
+    <button
+      data-is-danger={isDanger}
+      class={twMerge(buttonClass, className)}
+      {...props}
+    >
       <slot />
     </button>
   )
@@ -149,7 +153,11 @@ data-[is-danger]:dark:hover:text-red-200`,
 
 {
   as == 'a' && (
-    <a data-is-danger={isDanger} class={buttonClass} {...props}>
+    <a
+      data-is-danger={isDanger}
+      class={twMerge(buttonClass, className)}
+      {...props}
+    >
       <slot />
     </a>
   )
@@ -157,7 +165,11 @@ data-[is-danger]:dark:hover:text-red-200`,
 
 {
   as == 'div' && (
-    <div data-is-danger={isDanger} class={buttonClass} {...props}>
+    <div
+      data-is-danger={isDanger}
+      class={twMerge(buttonClass, className)}
+      {...props}
+    >
       <slot />
     </div>
   )
