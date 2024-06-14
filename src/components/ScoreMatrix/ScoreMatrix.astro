@@ -1,0 +1,212 @@
+---
+import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/Tooltip';
+
+const getClassByValue = (value) => {
+  switch (value) {
+    case 0:
+      return 'bg-slate-100';
+    case 1:
+      return 'bg-slate-200';
+    case 2:
+      return 'bg-slate-300';
+    case 3:
+      return 'bg-slate-400';
+    case 4:
+      return 'bg-slate-500';
+    case 5:
+      return 'bg-slate-600';
+    default:
+      return '';
+  }
+};
+
+const items = [
+  {
+    name: '0',
+    icon: 'fa-robot',
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    data: [
+      0, 0, 0, 0, 1, 3, 5, 0, 2, 0, 1, 0, 3, 0, 4, 0, 5, 4, 3, 2, 1, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    ],
+  },
+  {
+    name: '10',
+    icon: 'fa-shield-alt',
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    data: [
+      0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 3, 0, 2, 2, 1, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 3, 0, 0, 2, 0,
+    ],
+  },
+  {
+    name: '20',
+    icon: 'fa-envelope',
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    data: [
+      0, 0, 0, 0, 0, 2, 1, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0,
+    ],
+  },
+  {
+    name: '30',
+    icon: 'fa-bolt',
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    data: [
+      0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 4, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    ],
+  },
+  {
+    name: '40',
+    icon: 'fa-mobile',
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    data: [
+      0, 0, 0, 0, 0, 0, 4, 5, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 0,
+    ],
+  },
+  {
+    name: '50',
+    icon: 'fa-globe',
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    data: [
+      0, 0, 0, 0, 0, 1, 2, 3, 4, 0, 0, 4, 3, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 4, 0, 2, 1, 0, 0, 0,
+    ],
+  },
+  {
+    name: '60',
+    icon: 'fa-plane',
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    data: [
+      0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 5, 2, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    ],
+  },
+  {
+    name: '70',
+    icon: 'fa-phone-laptop',
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    data: [
+      0, 0, 0, 0, 0, 0, 0, 4, 0, 2, 0, 0, 0, 3, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0,
+    ],
+  },
+  {
+    name: '80',
+    icon: 'fa-mobile',
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    data: [
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 3, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    ],
+  },
+  {
+    name: '90',
+    icon: 'fa-laptop',
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    data: [
+      0, 0, 0, 0, 0, 0, 0, 2, 3, 4, 1, 2, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 3, 1, 3, 0, 2, 1, 0, 0, 0,
+    ],
+  },
+  {
+    name: '100',
+    icon: 'fa-browser',
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    data: [
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 4, 5,
+      0, 1, 4, 2, 0, 0, 0, 0, 0, 0, 4, 0, 1, 0, 3, 2, 0, 0, 0,
+    ],
+  },
+];
+---
+
+<div class="flex items-start gap-4">
+  <ul class="grid grid-cols-1 gap-1">
+    {
+      items.map((item) => (
+        <li class="flex flex-none items-center justify-end pl-4">
+          <div class="flex h-[15px] items-center gap-1.5 text-[10px] font-semibold text-slate-900">
+            {item.name}
+          </div>
+          {/* <p>{item.description}</p> */}
+        </li>
+      ))
+    }
+  </ul>
+  <ul class="grid flex-1 grid-cols-1 gap-1">
+    {
+      items.map((item) => (
+        <li class="flex items-center">
+          <ul class="flex flex-1 gap-1">
+            {item.data.map((dataItem) => (
+              <li class={`relative h-[15px] w-full hover:z-10`}>
+                <Tooltip>
+                  <TooltipTrigger>
+                    <div
+                      class={`h-[15px] w-full rounded-sm ring-offset-2 hover:ring ${getClassByValue(dataItem)}`}
+                    />
+                  </TooltipTrigger>
+                  <TooltipContent className="p-0 bg-slate-900 text-white">
+                    <div class="border-b border-slate-700 px-2 py-2 text-[10px] font-semibold uppercase text-slate-300">
+                      15 Minutes
+                    </div>
+                    <div class="space-y-2 px-3 py-2.5">
+                      <div class="flex flex-none items-center gap-2 text-xs">
+                        <div class="flex items-center gap-1">
+                          <i
+                            class={`fa-solid fa-fw fa-code-commit text-[10px] text-blue-400`}
+                          />
+                          <div class="w-10 font-medium text-slate-300">
+                            Events
+                          </div>
+                        </div>
+                        <div class=" text-slate-400">21,524</div>
+                      </div>
+                      <div class="flex flex-none items-center gap-2 text-xs">
+                        <div class="flex items-center gap-1">
+                          <i
+                            class={`fa-solid fa-fw fa-user text-[10px] text-blue-400`}
+                          />
+                          <div class="w-10 font-medium text-slate-300">
+                            Users
+                          </div>
+                        </div>
+                        <div class=" text-slate-400">1,152</div>
+                      </div>
+                    </div>
+                  </TooltipContent>
+                </Tooltip>
+              </li>
+            ))}
+          </ul>
+        </li>
+      ))
+    }
+    <li class="flex items-center">
+      <ul
+        class="flex flex-1 justify-between gap-1 text-[10px] font-semibold uppercase text-slate-400"
+      >
+        <li>15 min</li>
+        <li>19 min</li>
+        <li>23 min</li>
+        <li>27 min</li>
+        <li>31 min</li>
+        <li>35 min</li>
+      </ul>
+    </li>
+  </ul>
+</div>
