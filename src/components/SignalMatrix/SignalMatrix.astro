@@ -352,6 +352,16 @@ const items = [
           <div class="flex h-[15px] items-center gap-1.5 text-[10px] font-semibold text-slate-900">
             <i class={`fa-solid ${item.icon}`} />
             {item.name}
+            <Tooltip className="">
+              <TooltipTrigger>
+                <i class="fa-regular fa-fw fa-question-circle text-slate-400" />
+              </TooltipTrigger>
+              <TooltipContent className="w-[288px]">
+                Triggered by comparing the user's current location with their
+                last known location and then detecting trips that are highly
+                unlikely, or even impossible.
+              </TooltipContent>
+            </Tooltip>
           </div>
           {/* <p>{item.description}</p> */}
         </li>
