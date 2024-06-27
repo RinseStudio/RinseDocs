@@ -378,7 +378,8 @@ const items = [
                 <Tooltip>
                   <TooltipTrigger>
                     <div
-                      class={`h-[15px] w-full rounded-sm ring-offset-2 hover:ring ${getClassByValue(dataItem)}`}
+                      x-on:click="quickview_signalHeatMap = true"
+                      class={`h-[15px] w-full cursor-pointer rounded-sm ring-offset-2 hover:ring ${getClassByValue(dataItem)}`}
                     />
                   </TooltipTrigger>
                   <TooltipContent className="p-0 bg-slate-900 text-white">

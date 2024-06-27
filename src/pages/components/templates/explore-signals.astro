@@ -35,9 +35,11 @@ import { SignalMatrix } from '@/components/SignalMatrix';
 import { ScoreMatrix } from '@/components/ScoreMatrix';
 ---
 
-<Layout class="">
+<Layout class="" x-data="{quickview_signalHeatMap: false}">
   <div
     class="fixed bottom-0 right-0 top-0 z-40 w-[756px] overflow-auto bg-white shadow-2xl"
+    x-show="quickview_signalHeatMap == true"
+    x-cloak
   >
     <header
       class="sticky top-0 z-20 flex items-center justify-between border-b border-zinc-200 bg-white px-5 py-3"
@@ -1123,7 +1125,7 @@ import { ScoreMatrix } from '@/components/ScoreMatrix';
             </ul>
           </div>
           <div class="px-5 py-5">
-            geg<SignalMatrix />
+            <SignalMatrix />
           </div>
         </section>
 
