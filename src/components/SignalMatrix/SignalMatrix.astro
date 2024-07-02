@@ -371,7 +371,7 @@ const items = [
   <ul class="grid flex-1 grid-cols-1 gap-1">
     {
       items.map((item) => (
-        <li class="flex items-center">
+        <li class="flex items-center rounded-sm ring-slate-300 ring-offset-4 hover:relative hover:z-10 hover:ring-2">
           <ul class="flex flex-1 gap-1">
             {item.data.map((dataItem) => (
               <li class={`relative h-[15px] w-full hover:z-10`}>

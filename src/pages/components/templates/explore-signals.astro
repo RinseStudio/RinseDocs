@@ -1025,7 +1025,9 @@ import { ScoreMatrix } from '@/components/ScoreMatrix';
         <section
           class="rounded-lg border border-zinc-200 bg-white shadow-[0px_4px_0px_-2px_rgba(0,0,0,0.025)]"
         >
-          <div class="border-b border-zinc-200 px-5 py-4">
+          <div
+            class="flex items-center justify-between border-b border-zinc-200 px-5 py-3"
+          >
             <ul class="flex items-center gap-4">
               <li
                 class="flex cursor-pointer items-center gap-2 text-sm font-medium text-slate-400 hover:text-slate-900"
@@ -1123,6 +1125,57 @@ import { ScoreMatrix } from '@/components/ScoreMatrix';
                 Heatmap
               </li>
             </ul>
+            <Select isOpen>
+              <SelectTrigger>Group by</SelectTrigger>
+              <SelectContent className="w-[160px]">
+                <SelectGroup>
+                  <SelectHeader>Select attribute</SelectHeader>
+                  <SelectList>
+                    <SelectItem value="light">
+                      <div class="flex items-center gap-1.5">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="16"
+                          height="16"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          class="lucide lucide-triangle-alert"
+                          ><path
+                            d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"
+                          ></path><path d="M12 9v4"></path><path d="M12 17h.01"
+                          ></path></svg
+                        >
+                        Signals
+                      </div>
+                    </SelectItem>
+                    <SelectItem value="dark">
+                      <div class="flex items-center gap-1.5">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="16"
+                          height="16"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          class="lucide lucide-circle-gauge"
+                          ><path d="M15.6 2.7a10 10 0 1 0 5.7 5.7"
+                          ></path><circle cx="12" cy="12" r="2"></circle><path
+                            d="M13.4 10.6 19 5"></path></svg
+                        >
+                        Risk Score
+                      </div>
+                    </SelectItem>
+                  </SelectList>
+                </SelectGroup>
+              </SelectContent>
+            </Select>
           </div>
           <div class="px-5 py-5">
             <SignalMatrix />
