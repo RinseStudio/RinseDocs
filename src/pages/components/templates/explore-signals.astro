@@ -1125,8 +1125,10 @@ import { ScoreMatrix } from '@/components/ScoreMatrix';
                 Heatmap
               </li>
             </ul>
-            <Select isOpen>
-              <SelectTrigger>Group by</SelectTrigger>
+            <Select>
+              <SelectTrigger size="sm">
+                Split by <span class="font-semibold">Signals</span>
+              </SelectTrigger>
               <SelectContent className="w-[160px]">
                 <SelectGroup>
                   <SelectHeader>Select attribute</SelectHeader>

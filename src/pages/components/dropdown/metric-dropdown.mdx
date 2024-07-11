@@ -1,0 +1,112 @@
+---
+title: 'Metric Dropdown'
+layout: '@/layouts/rinsedocs/SampleComponentBase.astro'
+className: 'h-[600px] w-[190px] px-4 py-10'
+bodyClassName: 'flex items-center justify-center'
+---
+
+import { Button } from '@/components/Button';
+import {
+  Dropdown,
+  DropdownHeader,
+  DropdownContent,
+  DropdownGroup,
+  DropdownItem,
+  DropdownList,
+  DropdownTrigger,
+} from '@/components/Dropdown';
+
+{
+
+<Dropdown data={`isOpen: true`}>
+  <DropdownTrigger>
+    <Button as="div" size="sm" variant="outline">
+      Options
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down ml-1.5"><path d="m6 9 6 6 6-6"/></svg>
+    </Button>
+  </DropdownTrigger>
+
+  <DropdownContent className="w-[200px]">
+    <DropdownGroup>
+      <DropdownHeader>New</DropdownHeader>
+      <DropdownList>
+        <DropdownItem>
+          <i class="fa-solid fa-sigma mr-2 text-xs text-gray-400"></i> Aggregation
+        </DropdownItem>
+        <DropdownItem>
+          <i class="fa-solid fa-sigma mr-2 text-xs text-gray-400"></i> Schema field
+        </DropdownItem>
+      </DropdownList>
+      <DropdownHeader>Inline</DropdownHeader>
+      <DropdownList>
+        <DropdownItem>
+          <i class="fa-solid fa-sigma mr-2 text-xs text-gray-400"></i> Average(Battery Level)
+        </DropdownItem>
+        <DropdownItem>
+          <i class="fa-solid fa-sigma mr-2 text-xs text-gray-400"></i> CountEvents()
+        </DropdownItem>
+      </DropdownList>
+      <DropdownHeader>Operators</DropdownHeader>
+      <DropdownList>
+        <DropdownItem>
+          <i class="fa-solid fa-plus mr-2 text-xs text-gray-400"></i> Addition
+        </DropdownItem>
+        <DropdownItem>
+          <i class="fa-solid fa-minus mr-2 text-xs text-gray-400"></i> Subtraction
+        </DropdownItem>
+        <DropdownItem>
+          <i class="fa-solid fa-divide mr-2 text-xs text-gray-400"></i> Division
+        </DropdownItem>
+        <DropdownItem>
+          <i class="fa-solid fa-times mr-2 text-xs text-gray-400"></i> Multiplication
+        </DropdownItem>
+        <DropdownItem>
+          <i class="fa-solid fa-bracket-round mr-2 text-xs text-gray-400"></i> Open bracket
+        </DropdownItem>
+        <DropdownItem>
+          <i class="fa-solid fa-bracket-round-right mr-2 text-xs text-gray-400"></i> Close bracket
+        </DropdownItem>
+      </DropdownList>
+    </DropdownGroup>
+  </DropdownContent>
+</Dropdown>}
+
+```mdx
+import { Button } from '@/components/Button';
+import {
+  Dropdown,
+  DropdownContent,
+  DropdownGroup,
+  DropdownItem,
+  DropdownList,
+  DropdownTrigger,
+} from '@/components/Dropdown';
+
+<Dropdown data={`isOpen: true`}>
+  <DropdownTrigger>
+    <Button as="div" size="sm" variant="outline">
+      Options
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down ml-1.5"><path d="m6 9 6 6 6-6"/></svg>
+    </Button>
+  </DropdownTrigger>
+
+  <DropdownContent className="w-[150px]">
+    <DropdownGroup>
+      <DropdownList>
+        <DropdownItem>
+          Settings
+        </DropdownItem>
+        <DropdownItem>
+          Profile
+        </DropdownItem>
+        <DropdownItem>
+          Help
+        </DropdownItem>        
+        <DropdownItem>
+          Sign out
+        </DropdownItem>
+      </DropdownList>
+    </DropdownGroup>
+  </DropdownContent>
+</Dropdown>
+```
